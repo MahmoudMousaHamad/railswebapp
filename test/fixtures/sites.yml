@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  string: 
+  text: 
+  city: one
+  country: one
+
+two:
+  string: 
+  text: 
+  city: two
+  country: two
