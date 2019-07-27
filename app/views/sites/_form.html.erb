@@ -1,0 +1,8 @@
+<%= simple_form_for @s do |f| %>
+    <%= f.input :name %>
+    <%= f.association :country %>
+    <%= f.association :city %>
+    <%= f.text_area :about %>
+    <%= f.input :photos, :input_html => { :multiple => true } %>
+    <%= f.button :submit %>
+<% end %>

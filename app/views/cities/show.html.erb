@@ -1,0 +1,13 @@
+<h1><%= @city.name %></h1>
+
+<p>
+    <strong>Name: </strong>
+    <%= @city.name %>
+</p>
+<p>
+    <strong>Country: </strong>
+    <%= @city.country.name %>
+</p>
+
+<%= link_to  "Edit", edit_city_path %>
+<%= link_to  "Back to List", cities_path %>

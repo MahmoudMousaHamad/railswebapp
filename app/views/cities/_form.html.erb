@@ -1,0 +1,5 @@
+<%= simple_form_for @city do |f| %>
+    <%= f.input :code %>
+    <%= f.association :country %>
+    <%= f.button :submit %>
+<% end %>

@@ -1,0 +1,28 @@
+<h1><%= @s.name%></h1>
+<p>
+    <strong>Name: </strong>
+    <%= @s.name %>
+</p>
+
+<p>
+    <strong>Country: </strong>
+    <%= @s.country.name %>
+</p>
+
+<p>
+    <strong>City: </strong>
+    <%= @s.city.name %>
+</p>
+
+<p>
+    <strong>About: </strong>
+    <%= @s.about %>
+</p>
+
+<p>
+    <% @s.photos.each do |p| %>
+        <p>
+            <img src="<%=(url_for(p))%>" width=500px>
+        </p>
+    <% end %>
+</p>

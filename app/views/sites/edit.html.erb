@@ -1,0 +1,8 @@
+<h1>Edit Site</h1>
+
+<%= render  "form" %>
+
+<%= link_to  "Back to List", sites_path %>
+<%= link_to  "Delete", site_path,
+                    method: :delete,
+                     data: { confirm: "Are you sure?"} %>

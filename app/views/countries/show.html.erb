@@ -1,0 +1,12 @@
+<h1><%= @c.code %></h1>
+<p>
+    <strong>Code: </strong>
+    <%= @c.code %>
+</p>
+<%= link_to  "Edit", edit_country_path %>
+<%= link_to  "Delete", country_path(@c),
+                        method: :delete,
+                        data: { confirm: 'Are you sure?' } %>
+<%= link_to  "Back", countries_path %>
+<br>
+<%= link_to  "New Country", new_country_path %>

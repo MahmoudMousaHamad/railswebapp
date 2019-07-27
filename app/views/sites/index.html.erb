@@ -1,0 +1,4 @@
+<h1>Sites in <%= @city.name %></h1>
+<% @sites.each do |s| %>
+    <h3> <%= link_to  s.name,  country_city_site_path(s.country_id, s.city_id, s) %></h3>
+<% end %>
