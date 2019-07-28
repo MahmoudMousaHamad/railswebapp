@@ -4,13 +4,24 @@
     <title>IACAROS</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1" /> 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
   </head>
 
-  <body class="container-fluid">
+  <body>
+    <nav>
+      <div class="nav-wrapper">
+        <a href="/" class="brand-logo">IACAROS</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li><a href="#"><%= link_to  "Countries List", {controller: 'countries'}, class: 'nav-item nav-link' %></a></li>
+          <li><a href="#">Library</a></li>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+      </div>
+    </nav>
     <%= yield %>
   </body>
 </html>

@@ -13,7 +13,7 @@ module CarouselHelper
 
         def html
             content = safe_join([indicators, slides, controls])
-            content_tag(:div, content, id: uid, class: 'carousel slide overlay')
+            content_tag(:div, content, id: uid, class: 'carousel slide overlay', style: 'height: auto;')
         end
 
         private
@@ -47,7 +47,7 @@ module CarouselHelper
             options = {
                 class: (is_active ? 'item active' : 'item'),
             }
-            content_tag(:div, image_tag(image,  style: 'margin: auto; height: 100vh'), options)
+            content_tag(:div, image_tag(image,  style: 'margin: auto; width: 100vw; height: 80vh; object-fit: cover;'), options)
         end
 
         def controls

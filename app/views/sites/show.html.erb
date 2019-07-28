@@ -1,28 +1,14 @@
-<h1><%= @s.name%></h1>
-<p>
-    <strong>Name: </strong>
-    <%= @s.name %>
-</p>
+<%= carousel_for( @s.photos ) %>
 
-<p>
-    <strong>Country: </strong>
-    <%= @s.country.name %>
-</p>
+<br>
+<br>
+<br>
 
-<p>
-    <strong>City: </strong>
-    <%= @s.city.name %>
-</p>
+<div class="container">
+    <div class="about-site">
+        <h2><%= @s.name %>: </h2>
+        <p class="lead"> <%= @s.about %></p>
+    </div>
 
-<p>
-    <strong>About: </strong>
-    <%= @s.about %>
-</p>
-
-<p>
-    <% @s.photos.each do |p| %>
-        <p>
-            <img src="<%=(url_for(p))%>" width=500px>
-        </p>
-    <% end %>
-</p>
+    
+</div>

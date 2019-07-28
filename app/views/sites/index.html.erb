@@ -1,4 +1,23 @@
-<h1>Sites in <%= @city.name %></h1>
-<% @sites.each do |s| %>
-    <h3> <%= link_to  s.name,  country_city_site_path(s.country_id, s.city_id, s) %></h3>
-<% end %>
+<%= carousel_for( @city.photos ) %>
+
+<br>
+<br>
+<br>
+
+<div class="container">
+    <div class="city-tagline">
+        <h2><%= @city.name %>: <%= @city.tagline %></h2>
+    </div>
+    <% @sites.each do |c| %>
+        <div class="card" style="width: 55rem; margin: auto; margin-top: 100px">
+            <img width="100%" class="card-img-top" src="<%= url_for(c.photos.first) %>" alt="Card image cap">
+            <div class="card-body" style="padding: 20px;">
+                <h3 class="card-title"><%= c.name %></h3>
+                <h5 class="card-text"><%= c.about %></h5>
+                <%= link_to  "View Site",
+                country_city_site_path(c.id, c.city_id, c.country_id), class: "btn btn-primary" %>
+            </div>
+        </div>
+    <% end %>
+
+</div>

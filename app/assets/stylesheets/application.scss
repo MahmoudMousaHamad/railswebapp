@@ -13,3 +13,19 @@
  */
  @import "bootstrap-sprockets";
  @import "bootstrap";
+ @import "materialize";
+
+$main-color: 	#FFFADC;
+$accent-color: #3A2A91;
+
+.bd-navbar {
+    background-color: $main-color;
+}
+
+.nav-item {
+    color: $accent-color !important;
+}
+
+.navbar-brand {
+    padding-top: 25px !important;
+}
