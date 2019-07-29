@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  number: 1
+  year: 1
+  pageFrom: 1
+  pageTo: 1
+  journal: one
+
+two:
+  number: 1
+  year: 1
+  pageFrom: 1
+  pageTo: 1
+  journal: two

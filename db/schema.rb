@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_26_141159) do
+ActiveRecord::Schema.define(version: 2019_07_29_151609) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -59,6 +59,18 @@ ActiveRecord::Schema.define(version: 2019_07_26_141159) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "books", force: :cascade do |t|
+    t.string "title"
+    t.text "about"
+    t.integer "year"
+    t.string "author"
+    t.integer "pages"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "publisher_id"
+    t.index ["publisher_id"], name: "index_books_on_publisher_id"
+  end
+
   create_table "cities", force: :cascade do |t|
     t.string "name"
     t.string "tagline"
@@ -71,6 +83,37 @@ ActiveRecord::Schema.define(version: 2019_07_26_141159) do
   create_table "countries", force: :cascade do |t|
     t.string "name"
     t.text "about"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "issues", force: :cascade do |t|
+    t.integer "number"
+    t.integer "year"
+    t.integer "pageFrom"
+    t.integer "pageTo"
+    t.integer "journal_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["journal_id"], name: "index_issues_on_journal_id"
+  end
+
+  create_table "journals", force: :cascade do |t|
+    t.string "title"
+    t.string "about"
+    t.integer "coverageFrom"
+    t.integer "coverageTo"
+    t.integer "publisher_id"
+    t.string "issn"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["publisher_id"], name: "index_journals_on_publisher_id"
+  end
+
+  create_table "publishers", force: :cascade do |t|
+    t.string "name"
+    t.text "about"
+    t.string "website"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
