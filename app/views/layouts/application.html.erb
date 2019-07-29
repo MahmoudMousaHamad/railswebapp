@@ -5,23 +5,35 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <meta name="viewport" content="width=device-width, initial-scale=1" /> 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
-  </head>
 
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">      
+    
+  </head>
   <body>
-    <nav>
-      <div class="nav-wrapper">
-        <a href="/" class="brand-logo">IACAROS</a>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li><a href="#"><%= link_to  "Countries List", {controller: 'countries'}, class: 'nav-item nav-link' %></a></li>
-          <li><a href="#">Library</a></li>
-          <li><a href="#">About Us</a></li>
-          <li><a href="#">Contact Us</a></li>
-        </ul>
-      </div>
-    </nav>
+    <div class="navbar-fixed">
+      <nav>
+        <div class="container nav-wrapper">
+          <a href="/" class="brand-logo">IACAROS</a>
+          <a href="" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+          <ul class="right hide-on-med-and-down">
+            <li><a href="#"><%= link_to  "Countries List", {controller: 'countries'}, class: 'nav-item nav-link' %></a></li>
+            <li><a href="#" class="nav-item nav-link">Library</a></li>
+            <li><a href="#" class="nav-item nav-link">About Us</a></li>
+            <li><a href="#" class="nav-item nav-link">Contact Us</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <ul class="sidenav" id="mobile-demo">
+      <li><a href="#"><%= link_to  "Countries List", {controller: 'countries'}, class: 'nav-item nav-link' %></a></li>
+      <li><a href="#">Library</a></li>
+      <li><a href="#">About Us</a></li>
+      <li><a href="#">Contact Us</a></li>
+    </ul>
     <%= yield %>
   </body>
 </html>

@@ -9,13 +9,21 @@
         <h2><%= @city.name %>: <%= @city.tagline %></h2>
     </div>
     <% @sites.each do |c| %>
-        <div class="card" style="width: 55rem; margin: auto; margin-top: 100px">
-            <img width="100%" class="card-img-top" src="<%= url_for(c.photos.first) %>" alt="Card image cap">
-            <div class="card-body" style="padding: 20px;">
-                <h3 class="card-title"><%= c.name %></h3>
-                <h5 class="card-text"><%= c.about %></h5>
-                <%= link_to  "View Site",
-                country_city_site_path(c.id, c.city_id, c.country_id), class: "btn btn-primary" %>
+        <div class="row">
+            <div class="col s12 m7">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="<%= url_for(c.photos.first) %>" alt="<%= c.name %>">
+                        <span class="card-title"><%= c.name %></span>
+                    </div>
+                    <div class="card-content">
+                        <p><%= c.about %></p>
+                    </div>
+                    <div class="card-action">
+                        <%= link_to  "View Site",
+                country_city_site_path(c.id, c.city_id, c.country_id) %>
+                    </div>
+                </div>
             </div>
         </div>
     <% end %>

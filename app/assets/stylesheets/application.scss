@@ -11,21 +11,40 @@
  * It is generally better to create a new file per style scope.
  *
  */
+ @import "materialize/components/color-variables";
+ $primary-color: #3A2A91  !default;
+ $secondary-color: #FFFADC !default;
+ @import "materialize";
  @import "bootstrap-sprockets";
  @import "bootstrap";
- @import "materialize";
 
-$main-color: 	#FFFADC;
-$accent-color: #3A2A91;
+ $body-bg-color: #fffdf0;
 
-.bd-navbar {
-    background-color: $main-color;
+ body {
+     background-color: $body-bg-color !important; 
+ }
+
+ a:hover {
+    text-decoration: none !important;
+ }
+ .nav-link {
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    font-weight: 300;
+ }
+
+.nav-link, .brand-logo {
+    color: white !important;
+    &:hover {
+        color: white !important;
+        text-decoration: none;
+    }
 }
 
-.nav-item {
-    color: $accent-color !important;
+.page-title {
+    margin: 50px 0 0 0;
 }
 
-.navbar-brand {
-    padding-top: 25px !important;
+.collection-item {
+    background-color: #3A2A91 !important;
 }

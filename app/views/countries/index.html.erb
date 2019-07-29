@@ -1,4 +1,10 @@
-<h1>All Countries</h1>
-<% @countries.each do |c| %>
-    <h3> <%= link_to  c.name, country_cities_path(c) %> </h3>
-<% end %>
+<div class="container">
+
+    <h1 class="page-title">Countries List</h1>
+
+    <div class="collection">
+        <% @countries.each do |c| %>
+            <%= link_to  c.name, country_cities_path(c), class: "collection-item" %>
+        <% end %>
+    </div>
+</div>
