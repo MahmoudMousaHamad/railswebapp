@@ -1,0 +1,42 @@
+<div class="container">
+    <div class="content">
+        <div class="row">
+            <h2 class="title"><%= @j.title %></h2>
+            <hr>
+        <div>
+        <div class="row">
+            <div class="col s2">
+                <%= image_tag  url_for(@j.cover), style: "width: 150px;" %>
+            </div>
+            <div class="col s10" style="float: left;">
+                <h6><strong>Coverage:</strong> <%= "#{@j.coverageFrom} - #{@j.coverageTo}" %></h6>
+                <h6><strong>Published by:</strong> <%= link_to  @j.publisher.name, "https://" + @j.publisher.website, target: "_blank" %></h6>
+                <p class=""><strong>Description: </strong><%= @j.about %></p>
+            </div>
+        </div>
+
+        <div class="row">
+            <h3 class="title">All Issues</h3>
+            <hr>
+            <% if @issues.length > 0 %>
+                <ul class="collapsible">
+                    <% @issues.each_pair  do |year, issues| %>
+                        <li>
+                            <div class="collapsible-header"><%= year %></div>
+                            <div class="collapsible-body">
+                                <% issues.each do |i| %>
+                                    <p>
+                                        <%= link_to  "Issue No. #{i.number}, #{i.year}, pp #{i.pageFrom} - #{i.pageTo}",
+                                            issue_path(i) %>
+                                    </p>
+                                <% end %>
+                            </div>
+                        </li>
+                    <% end %>  
+                </ul>
+            <% else %>
+                <p>There are not issues for this journal.</p>
+            <% end %>
+        </div>
+    </div>
+</div>

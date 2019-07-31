@@ -1,0 +1,42 @@
+<div class="container">
+    <div class="content">
+        <div class="row browse-link">
+            <h3>Browse by Title:</h3>
+            <%= link_to  "Browse", library_browse_path(:letter => "0-9"), class: "waves-effect waves-light btn" %>
+
+        </div>
+            <div class=" row search-container">
+                <div class="seach-content">
+                    <h3>Search journals and books</h3>
+                    <nav>
+                        <div class="nav-wrapper">
+                            <form id="search-form" action="<%= library_path %>" method="get">
+                                <div class="input-field">
+                                    <input name="q" id="search" type="search" required>
+                                    <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                                    <i class="material-icons">close</i>
+                                </div>
+                                <p>
+                                    <label class="search-checkbox-label">
+                                        <input name="category" type="radio" value="journals" required/>
+                                        <span>Journals</span>
+                                    </label>
+                                    <label class="search-checkbox-label">
+                                        <input name="category" type="radio" valur="books" required/>
+                                        <span>Books</span>
+                                    </label>
+                                </p>
+                            </form>
+                        </div>
+                    </nav>
+                </div>
+                <% if @results %>
+                    <div class="search-results collection">
+                        <% @results.each do |r| %>
+                            <%= link_to  r.title + ", " + truncate(r.about), journal_path(r.id), class: "collection-item" %>
+                        <% end %>
+                    </div>
+                <% end %>
+            </div>
+    </div>
+</div>

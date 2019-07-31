@@ -13,12 +13,17 @@
  */
  @import "materialize/components/color-variables";
  $primary-color: #3A2A91  !default;
- $secondary-color: #FFFADC !default;
+ $secondary-color: #D0C49C !default;
  @import "materialize";
  @import "bootstrap-sprockets";
  @import "bootstrap";
 
- $body-bg-color: #fffdf0;
+ $body-bg-color: white;
+
+ .content {
+     margin-top: 50px;
+
+ }
 
  body {
      background-color: $body-bg-color !important; 
@@ -47,4 +52,27 @@
 
 .collection-item {
     background-color: #3A2A91 !important;
+}
+
+.search-checkbox-label {
+    margin-left: 25px;
+}
+
+.search-results {
+    margin-top: 60px;
+}
+
+.title {
+    margin-bottom: 20px;
+}
+
+.row {
+    margin-bottom: 50px;
+}
+
+body > div.container > div > ul > li > a {
+    color: $primary-color;
+    &:hover {
+        color: $secondary-color
+    }
 }

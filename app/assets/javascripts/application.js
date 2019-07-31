@@ -20,3 +20,18 @@
 $(document).ready(function(){
     $('.sidenav').sidenav();
 });
+
+$(document).ready(function(){
+    $('.tabs').tabs({
+      swipeable: true,
+    });
+  });
+
+  $(document).ready(function(){
+    $('.collapsible').collapsible();
+  });
+
+  $('.pagination > li > a').on('click', function(){
+    $('.pagination > li').removeClass('active');
+    $('.pagination > li').addClass('active');
+  });

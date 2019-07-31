@@ -12,6 +12,7 @@
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">      
     
+    
   </head>
   <body>
     <div class="navbar-fixed">
@@ -21,7 +22,7 @@
           <a href="" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
           <ul class="right hide-on-med-and-down">
             <li><a href="#"><%= link_to  "Countries List", {controller: 'countries'}, class: 'nav-item nav-link' %></a></li>
-            <li><a href="#" class="nav-item nav-link">Library</a></li>
+            <li><a href="#"><%= link_to  "Library", {controller: 'library'}, class: 'nav-item nav-link' %></a></li>
             <li><a href="#" class="nav-item nav-link">About Us</a></li>
             <li><a href="#" class="nav-item nav-link">Contact Us</a></li>
           </ul>

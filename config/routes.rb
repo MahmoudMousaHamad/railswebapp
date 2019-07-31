@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :publishers
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
@@ -12,12 +11,12 @@ Rails.application.routes.draw do
   resources :cities
 
   resources :publishers
-
-  resources :journals do 
-    resources :issues
-  end
-
+  resources :journals
   resources :books
+  resources :issues
 
+  get '/library', to: 'library#index'
+  get '/library/browse', to: 'library#browse'
+  
   root 'home#index'
 end

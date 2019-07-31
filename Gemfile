@@ -65,3 +65,5 @@ gem 'bootstrap-sass'
 gem 'materialize-sass', '~> 1.0.0'
 
 gem 'autoprefixer-rails'
+
+gem 'searchkick'
