@@ -1,0 +1,44 @@
+<div class="container">
+    <div class="content">
+        <div class="row">
+            <div class="col s12 m3 l2">
+                <%= image_tag  url_for(@b.cover), style: "max-width: 150px; margin-bottom: 20px;" %>
+            </div>
+            <div class="col s12 m5 l6" style="float: left;">
+                <h2 class="title"><%= @b.title %></h2>
+                <hr>
+                <h6><strong>Author:</strong> <%= @b.author %></h6>
+                <h6><strong>Published by:</strong> <%= link_to  @b.publisher.name, "https://" + @b.publisher.website, target: "_blank" %></h6>
+                <h6><strong>Pages: </strong><%= @b.pages %></h6>
+                <h6><strong>Library Link: </strong><%= link_to request.original_url, request.original_url %></h6>
+            </div>
+            <div class="col s12 m4 l4">
+                <ul class="collapsible popout">
+                    <li>
+                        <div class="collapsible-header">CITE THIS BOOK</div>
+                        <div class="collapsible-body">
+                            <h4>Copy Citation</h4>
+                            <label>MLA:</label>
+                            <textarea id="mla-text" class="citation" readonly><%= "#{@b.author}, #{@b.title}. #{@b.publisher.name}, #{@b.year}, IACAROS, #{request.original_url}" %></textarea>
+                            <a id="copy-btn" onclick="copyMla()" class="waves-effect waves-light btn-small">COPY</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="collapsible-header">BOOK INFO</div>
+                        <div class="collapsible-body">
+                            <h4>Title: <%= @b.title %></h4>
+                            <label>Book Description: </label>
+                            <p><%= @b.about %></p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row">
+            <h3 class="title">Gain Access</h3>
+            <hr>
+            <%= link_to  "Download PDF", url_for(@b.pdf), target: "_blank" %>
+        </div>
+    </div>
+</div>

@@ -35,3 +35,17 @@ $(document).ready(function(){
     $('.pagination > li').removeClass('active');
     $('.pagination > li').addClass('active');
   });
+
+  $('#copy-btn').on('click', function() {
+    var copyText = document.getElementById('mla-text');
+    copyText.select();
+    document.execCommand('copy');
+    M.toast({html: 'Copied!'});
+  });
+
+  function copyMla() {
+    var copyText = document.getElementById('mla-text');
+    copyText.select();
+    document.execCommand('copy');
+    M.toast({html: 'Copied!'});
+  }

@@ -52,8 +52,8 @@
                 <h5 style="margin-top: 20px;">Titles starting with <%= params[:letter] %></h5>
                 <% if @books %>
                     <div class="search-results collection">
-                        <% @books.each do |r| %>
-                            <%= link_to  r.title + ", " + truncate(r.about), journal_path(r.id), class: "collection-item" %>
+                        <% @books.each do |b| %>
+                            <%= link_to  b.title + ", " + truncate(b.about), book_path(b.id), class: "collection-item" %>
                         <% end %>
                     </div>
                 <% end %>

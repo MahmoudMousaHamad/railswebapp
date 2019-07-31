@@ -13,8 +13,8 @@ class LibraryController < ApplicationController
 
     def browse
         if params[:letter]
-            @journals = Journal.order("title ASC").where("substr(title, 1, 1) = ?", params[:letter])
-            @books = Book.order("title ASC").where("substr(title, 1, 1) = ?", params[:letter])
+            @journals = Journal.order("title ASC").where("substr(title, 1, 1) = ? OR substr(title, 1, 1) = ?", params[:letter].upcase, params[:letter].downcase)
+            @books = Book.order("title ASC").where("substr(title, 1, 1) = ? OR substr(title, 1, 1) = ?", params[:letter].upcase, params[:letter].downcase)
         end
     end
 
