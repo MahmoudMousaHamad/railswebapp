@@ -10,7 +10,7 @@
             </div>
             <div class="col s10" style="float: left;">
                 <h6><strong>Coverage:</strong> <%= "#{@j.coverageFrom} - #{@j.coverageTo}" %></h6>
-                <h6><strong>Published by:</strong> <%= link_to  @j.publisher.name, "https://" + @j.publisher.website, target: "_blank" %></h6>
+                <h6><strong>Published by:</strong> <%= link_to  @j.publisher.name, publisher_path(@j.publisher), target: "_blank" %></h6>
                 <p class=""><strong>Description: </strong><%= @j.about %></p>
             </div>
         </div>

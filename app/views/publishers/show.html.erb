@@ -1,0 +1,34 @@
+<div class="container">
+    <div class="content">
+        <h2 class="title"><%= @p.name %></h2>
+        <h5>Publisher Description</h5>
+        <h6><%= @p.about %></h6>
+        <a class="waves-effect btn-light btn-small" href="http://<%= @p.website %>" target="_blank">Visit Publisher's Website</a>
+        <div class="publisher-list">
+            <div class="col s12">
+            <ul class="tabs tabs-fixed-width">
+                <li class="tab col s3"><a class="active" href="#journals">Journals</a></li>
+                <li class="tab col s3"><a href="#books">Books</a></li>
+            </ul>
+            </div>
+            <div id="journals" class="col s12">
+                <% if @journals %>
+                    <div class="search-results collection">
+                        <% @journals.each do |r| %>
+                            <%= link_to  r.title + ", " + truncate(r.about), journal_path(r), class: "collection-item" %>
+                        <% end %>
+                    </div>
+                <% end %>
+            </div>
+            <div id="books" class="col s12">
+                <% if @books %>
+                    <div class="search-results collection">
+                        <% @books.each do |b| %>
+                            <%= link_to  b.title + ", " + truncate(b.about), book_path(b.id), class: "collection-item" %>
+                        <% end %>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>

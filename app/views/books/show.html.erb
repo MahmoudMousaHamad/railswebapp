@@ -8,7 +8,7 @@
                 <h2 class="title"><%= @b.title %></h2>
                 <hr>
                 <h6><strong>Author:</strong> <%= @b.author %></h6>
-                <h6><strong>Published by:</strong> <%= link_to  @b.publisher.name, "https://" + @b.publisher.website, target: "_blank" %></h6>
+                <h6><strong>Published by:</strong> <%= link_to  @b.publisher.name, publisher_path(@b.publisher), target: "_blank" %></h6>
                 <h6><strong>Pages: </strong><%= @b.pages %></h6>
                 <h6><strong>Library Link: </strong><%= link_to request.original_url, request.original_url %></h6>
             </div>

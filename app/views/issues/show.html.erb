@@ -10,7 +10,7 @@
             <div class="col s8">
                 <h5><%= "Issue No. #{@i.number}, #{@i.year}, pp #{@i.pageFrom} - #{@i.pageTo}" %></h5>
                 <h6>Coverage: <%= "#{@j.coverageFrom} - #{@j.coverageTo}" %></h6>
-                <h6>Published by: <%= link_to  @j.publisher.name, "https://" + @j.publisher.website, target: "_blank" %></h6>
+                <h6>Published by: <%= link_to  @j.publisher.name, publisher_path(@j.publisher), target: "_blank" %></h6>
             </div>
         </div>
 

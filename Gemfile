@@ -67,3 +67,5 @@ gem 'materialize-sass', '~> 1.0.0'
 gem 'autoprefixer-rails'
 
 gem 'searchkick'
+
+gem "breadcrumbs_on_rails"
