@@ -4,6 +4,19 @@
 #   Ensure the SQLite 3 gem is defined in your Gemfile
 #   gem 'sqlite3'
 #
+
+# [START mysql_settings]
+mysql_settings: &mysql_settings
+  adapter: mysql2
+  encoding: utf8
+  pool: 5
+  username: mahmoud
+  password: Ma7moud*Mousa/Hamad
+  database: app_db
+  socket: /cloudsql/iacaros-rails:us-central1:iacaros-sql-instance
+# [END mysql_settings]
+
+
 default: &default
   adapter: sqlite3
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>

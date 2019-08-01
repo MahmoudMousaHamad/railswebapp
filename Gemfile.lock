@@ -295,6 +295,7 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   materialize-sass (~> 1.0.0)
   puma (~> 3.11)
+  rack
   rails (~> 5.2.3)
   sass-rails (~> 5.0)
   searchkick

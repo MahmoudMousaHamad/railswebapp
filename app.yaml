@@ -1,0 +1,13 @@
+entrypoint: bundle exec rails server -p $PORT
+env: flex
+runtime: ruby
+beta_settings:
+  cloud_sql_instances: iacaros-rails:us-central1:iacaros-sql-instance
+env_variables:
+  SECRET_KEY_BASE: [8f4d5fa52c388176033fe201f41ffd6b5a7d9adb7aed41546804a63334ffdf45be10b6a3cc60da3f22a523ef6eb73e6d9c731ee287b87f9f0bf6aa65c7c25c55]
+skip_files:
+  - Gemfile.lock
+# runtime_config:
+#   build:
+#     - npm install
+#     - bundle exec rake assets:precompile
