@@ -1,10 +1,3 @@
-# SQLite version 3.x
-#   gem install sqlite3
-#
-#   Ensure the SQLite 3 gem is defined in your Gemfile
-#   gem 'sqlite3'
-#
-
 # [START mysql_settings]
 mysql_settings: &mysql_settings
   adapter: mysql2
@@ -16,27 +9,32 @@ mysql_settings: &mysql_settings
   socket: /cloudsql/iacaros-rails:us-central1:iacaros-sql-instance
 # [END mysql_settings]
 
-
 default: &default
-  adapter: sqlite3
+  adapter: postgresql
+  encoding: unicode
+  # For details on connection pooling, see Rails configuration guide
+  # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  timeout: 5000
 
 development:
   <<: *default
-  database: db/development.sqlite3
+  database: demo_test_development
+  username: postgres
+  password: 5337301Mh&!
+  timeout: 5000
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: db/test.sqlite3
+  database: demo_test_test
+  username: postgres
+  password: 5337301Mh&!
+  timeout: 5000
 
 production:
   <<: *default
-  adapter: sqlite3
-  encoding: utf8
   database: <%= ENV['RDS_DB_NAME'] %>
   username: <%= ENV['RDS_USERNAME'] %>   
   password: <%= ENV['RDS_PASSWORD'] %>   
