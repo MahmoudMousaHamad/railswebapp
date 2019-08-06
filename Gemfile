@@ -71,3 +71,5 @@ gem 'searchkick'
 gem "breadcrumbs_on_rails"
 
 gem 'mini_racer', platforms: :ruby
+
+gem 'google-cloud-storage'
