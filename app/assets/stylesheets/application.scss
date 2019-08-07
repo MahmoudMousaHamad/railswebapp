@@ -12,8 +12,9 @@
  *
  */
  @import "materialize/components/color-variables";
- $primary-color: #3A2A91  !default;
- $secondary-color: #D0C49C !default;
+ $primary-color: rgb(58, 42, 145)  !default;
+ $secondary-color: rgb(208, 196, 156) !default;
+ $reference-secondary-color: rgb(254, 251, 220);
  @import "materialize";
  @import "bootstrap-sprockets";
  @import "bootstrap";

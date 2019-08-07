@@ -16,6 +16,8 @@
 //= require_tree .
 //= require bootstrap
 //= require_tree .
+//= require underscore
+//= require gmaps/google
 
 $(document).ready(function(){
     $('.sidenav').sidenav();
@@ -49,3 +51,5 @@ $(document).ready(function(){
     document.execCommand('copy');
     M.toast({html: 'Copied!'});
   }
+
+  

@@ -28,4 +28,49 @@
         </div>
     <% end %>
 
+    <h3>Map of sites in <%= @city.name %></h3>
+    <br>
+    <div class="row">
+        <div class="col-sm-8">
+            <div>
+                <div id="map" style='width: 100%; height: 90vh;'></div>
+            </div>
+        </div>
+        
+        <div class="col-sm-4">
+            <% @city.sites.each do |s| %>
+                <%= link_to  s.name, country_city_site_path(@city.country, @city, s),
+                class: "text-uppercase text-left" %>
+                <br>
+            <% end %>
+        </div>
+    </div>
 </div>
+
+<script>
+    $(document).ready(() => {
+        markers_json = <%=raw @hash.to_json %>;
+        handler = Gmaps.build('Google');
+        handler.buildMap({ 
+            provider: {
+                disableDefaultUI: true
+            },
+             internal: {
+                 id: 'map'
+                }
+            }, function(){
+                markers = handler.addMarkers(markers_json);
+                handler.bounds.extendWith(markers);
+
+                links = []
+
+                for (var i = 0; i < markers.length; i++) {
+                    links.push(markers_json[i].link);
+                    google.maps.event.addListener(markers[i].getServiceObject(), 'click', function(){
+                    window.open(links[0]);
+                    })
+                }
+                handler.fitMapToBounds();
+            });
+    })
+</script>

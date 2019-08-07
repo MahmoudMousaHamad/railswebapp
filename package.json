@@ -2,7 +2,9 @@
   "name": "webapp",
   "private": true,
   "dependencies": {
+    "g": "^2.0.1",
     "jquery": "^3.4.1",
-    "materialize-css": "^1.0.0-rc.2"
+    "materialize-css": "^1.0.0-rc.2",
+    "underscore": "^1.9.1"
   }
 }

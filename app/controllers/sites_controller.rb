@@ -2,6 +2,16 @@ class SitesController < ApplicationController
     def index
         @sites = Site.where("city_id = ?", params[:city_id])
         @city = City.find(params[:city_id])
+        if @sites
+            @hash = Gmaps4rails.build_markers(@sites) do |site, marker|
+                results = Geocoder.search(site.name + ", " + @city.name + ", " + @city.country.name)
+                coordinates = results.first.coordinates
+                marker.lat coordinates[0]
+                marker.lng coordinates[1]
+                marker.title site.name
+                marker.json({ link: country_city_site_url(@city.country.id, @city.id, site.id) })
+            end
+        end
     end
 
     def show
