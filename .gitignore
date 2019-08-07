@@ -25,11 +25,11 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+/config/secrets/*
+/config/iacaros_runner.key
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
 
-# Ignore app secrets
-/config/secrets/*
