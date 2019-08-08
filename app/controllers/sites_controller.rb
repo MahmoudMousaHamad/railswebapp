@@ -5,11 +5,13 @@ class SitesController < ApplicationController
         if @sites
             @hash = Gmaps4rails.build_markers(@sites) do |site, marker|
                 results = Geocoder.search(site.name + ", " + @city.name + ", " + @city.country.name)
-                coordinates = results.first.coordinates
-                marker.lat coordinates[0]
-                marker.lng coordinates[1]
-                marker.title site.name
-                marker.json({ link: country_city_site_path(@city.country.id, @city.id, site.id) })
+                if results.first.coordinates
+                    coordinates = results.first.coordinates
+                    marker.lat coordinates[0]
+                    marker.lng coordinates[1]
+                    marker.title site.name
+                    marker.json({ link: country_city_site_path(@city.country.id, @city.id, site.id) })
+                end
             end
         end
     end
