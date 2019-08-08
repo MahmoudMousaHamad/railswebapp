@@ -64,10 +64,10 @@
 
                 links = []
 
-                for (var i = 0; i < markers.length; i++) {
+                for (let i = 0; i < markers.length; i++) {
                     links.push(markers_json[i].link);
                     google.maps.event.addListener(markers[i].getServiceObject(), 'click', function(){
-                    window.open(links[0]);
+                    window.open(links[i]);
                     })
                 }
                 handler.fitMapToBounds();
