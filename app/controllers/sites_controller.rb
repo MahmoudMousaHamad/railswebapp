@@ -9,7 +9,7 @@ class SitesController < ApplicationController
                 marker.lat coordinates[0]
                 marker.lng coordinates[1]
                 marker.title site.name
-                marker.json({ link: country_city_site_url(@city.country.id, @city.id, site.id) })
+                marker.json({ link: country_city_site_path(@city.country.id, @city.id, site.id) })
             end
         end
     end

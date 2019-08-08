@@ -9,7 +9,7 @@ class CitiesController < ApplicationController
                 marker.lat coordinates[0]
                 marker.lng coordinates[1]
                 marker.title city.name
-                marker.json({ link: country_city_sites_url(@country.id, city.id) })
+                marker.json({ link: country_city_sites_path(@country.id, city.id) })
             end
         end
     end
@@ -49,6 +49,4 @@ class CitiesController < ApplicationController
         @city.destroy
         redirect_to cities_path
     end
-    
-
 end
