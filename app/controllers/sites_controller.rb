@@ -5,7 +5,7 @@ class SitesController < ApplicationController
         if @sites
             @hash = Gmaps4rails.build_markers(@sites) do |site, marker|
                 results = Geocoder.search(site.name + ", " + @city.name + ", " + @city.country.name)
-                if results.first.coordinates
+                if results.first.coordinates != nil
                     coordinates = results.first.coordinates
                     marker.lat coordinates[0]
                     marker.lng coordinates[1]
