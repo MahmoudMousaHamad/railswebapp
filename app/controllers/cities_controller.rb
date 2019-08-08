@@ -49,4 +49,6 @@ class CitiesController < ApplicationController
         @city.destroy
         redirect_to cities_path
     end
+    
+
 end
