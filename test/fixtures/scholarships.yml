@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  about: MyText
+  degree: MyString
+  scholarship: MyText
+  deadline: 2019-08-10 11:32:42
+  university: one
+
+two:
+  name: MyString
+  about: MyText
+  degree: MyString
+  scholarship: MyText
+  deadline: 2019-08-10 11:32:42
+  university: two

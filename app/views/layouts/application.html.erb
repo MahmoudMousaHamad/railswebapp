@@ -21,8 +21,8 @@
           <a href="/" class="brand-logo">IACAROS</a>
           <a href="" data-target="mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
           <ul class="right hide-on-med-and-down">
-            <li><a href="#"><%= link_to  "Countries List", {controller: 'countries'}, class: 'nav-item nav-link' %></a></li>
-            <li><a href="#"><%= link_to  "Library", {controller: 'library'}, class: 'nav-item nav-link' %></a></li>
+            <li><a href="#"><%= link_to  "Countries List", countries_path, class: 'nav-item nav-link' %></a></li>
+            <li><a href="#"><%= link_to  "Library", library_path, class: 'nav-item nav-link' %></a></li>
             <li><a href="#" class="nav-item nav-link">About Us</a></li>
             <li><a href="#" class="nav-item nav-link">Contact Us</a></li>
           </ul>
@@ -30,12 +30,12 @@
       </nav>
     </div>
     <ul class="sidenav" id="mobile">
-      <li><%= link_to  "Countries List", {controller: 'countries'} %></li>
-      <li><%= link_to  "Library", {controller: 'library'} %></li>
+      <li><%= link_to  "Countries List", countries_path %></li>
+      <li><%= link_to  "Library", library_path %></li>
       <li><a href="#">About Us</a></li>
       <li><a href="#">Contact Us</a></li>
     </ul>
-    <%= render_breadcrumbs %>
+    
     <%= yield %>
 
     <script src="//maps.google.com/maps/api/js?key=AIzaSyCmdd6SZJ6i55zv5GwiF3jAJRWYboJrTbM"></script>

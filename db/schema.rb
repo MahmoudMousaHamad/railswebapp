@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_06_225615) do
+ActiveRecord::Schema.define(version: 2019_08_10_164104) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -80,6 +80,32 @@ ActiveRecord::Schema.define(version: 2019_08_06_225615) do
     t.index ["country_id"], name: "index_cities_on_country_id"
   end
 
+  create_table "colleges", force: :cascade do |t|
+    t.string "name"
+    t.text "about"
+    t.integer "university_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["university_id"], name: "index_colleges_on_university_id"
+  end
+
+  create_table "conferences", force: :cascade do |t|
+    t.string "name"
+    t.text "about"
+    t.integer "city_id"
+    t.integer "country_id"
+    t.string "website"
+    t.string "organizer"
+    t.text "papers"
+    t.float "lat"
+    t.float "lng"
+    t.datetime "date_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["city_id"], name: "index_conferences_on_city_id"
+    t.index ["country_id"], name: "index_conferences_on_country_id"
+  end
+
   create_table "countries", force: :cascade do |t|
     t.string "name"
     t.text "about"
@@ -110,12 +136,63 @@ ActiveRecord::Schema.define(version: 2019_08_06_225615) do
     t.index ["publisher_id"], name: "index_journals_on_publisher_id"
   end
 
+  create_table "museums", force: :cascade do |t|
+    t.string "name"
+    t.text "about"
+    t.integer "city_id"
+    t.integer "country_id"
+    t.string "website"
+    t.text "ticket_price"
+    t.text "working_hours"
+    t.float "lat"
+    t.float "lng"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["city_id"], name: "index_museums_on_city_id"
+    t.index ["country_id"], name: "index_museums_on_country_id"
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.string "title"
+    t.text "body"
+    t.integer "country_id"
+    t.integer "city_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["city_id"], name: "index_posts_on_city_id"
+    t.index ["country_id"], name: "index_posts_on_country_id"
+  end
+
   create_table "publishers", force: :cascade do |t|
     t.string "name"
     t.text "about"
     t.string "website"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "scholarships", force: :cascade do |t|
+    t.string "name"
+    t.text "about"
+    t.string "degree"
+    t.text "scholarship"
+    t.datetime "deadline"
+    t.integer "university_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["university_id"], name: "index_scholarships_on_university_id"
+  end
+
+  create_table "schools", force: :cascade do |t|
+    t.string "name"
+    t.text "about"
+    t.text "professors"
+    t.integer "college_id"
+    t.integer "university_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["college_id"], name: "index_schools_on_college_id"
+    t.index ["university_id"], name: "index_schools_on_university_id"
   end
 
   create_table "sites", force: :cascade do |t|
@@ -127,8 +204,33 @@ ActiveRecord::Schema.define(version: 2019_08_06_225615) do
     t.datetime "updated_at", null: false
     t.float "latitude"
     t.float "longitude"
+    t.integer "user_id"
     t.index ["city_id"], name: "index_sites_on_city_id"
     t.index ["country_id"], name: "index_sites_on_country_id"
+    t.index ["user_id"], name: "index_sites_on_user_id"
+  end
+
+  create_table "universities", force: :cascade do |t|
+    t.string "name"
+    t.text "about"
+    t.integer "city_id"
+    t.integer "country_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["city_id"], name: "index_universities_on_city_id"
+    t.index ["country_id"], name: "index_universities_on_country_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
 end

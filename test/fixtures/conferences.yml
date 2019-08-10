@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  about: MyText
+  city: one
+  country: one
+  website: MyString
+  organizer: MyString
+  papers: MyText
+  lat: 1.5
+  lng: 1.5
+  date_time: 2019-08-10 11:30:14
+
+two:
+  name: MyString
+  about: MyText
+  city: two
+  country: two
+  website: MyString
+  organizer: MyString
+  papers: MyText
+  lat: 1.5
+  lng: 1.5
+  date_time: 2019-08-10 11:30:14
