@@ -1,0 +1,25 @@
+<div class="container">
+
+    <h1 class="page-title">Scholarships in <%= @country.name %></h1>
+
+    <% @country.scholarships.each do |i| %>
+        <div class="row">
+            <div class="col s12 m7">
+                <div class="card">
+                    <div class="card-content">
+                        <h4><%= i.name %></h4>
+                        <p><%= i.about.truncate(27) %></p>
+                        <p><b>Degree:</b> <%= i.degree %></p>
+                        <p><b>University:</b> <%= i.university.name %></p>
+                        <p><b>Scholarship:</b> <%= i.scholarship %></p>
+                        <p><b>Deadline:</b> <%= i.deadline %></p>
+                    </div>
+                    <div class="card-action">
+                        <%= link_to  "View Scholarship",
+                        country_scholarship_path(@country, i) %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <% end %>
+</div>

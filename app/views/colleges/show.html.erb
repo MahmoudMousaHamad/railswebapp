@@ -1,0 +1,13 @@
+<%= carousel_for( @i.university.photos ) %>
+
+<br>
+<br>
+<br>
+
+<div class="container">
+    <div class="about">
+        <h2><img src="<%= url_for(@i.university.logo)%>" width="50px"/>   <%= @i.name %> in <%= @i.university.name %> </h2>
+        <p class="lead"> <%= @i.about %></p>
+        <p><b>Address:</b> <%= @i.name + ", " + @i.university.name + ", " + @i.university.city.name + ", " + @i.university.country.name %></p>
+    </div>
+</div>

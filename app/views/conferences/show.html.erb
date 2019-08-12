@@ -1,0 +1,12 @@
+<div class="container">
+    <div class="about">
+        <h2><%= @i.name %>: </h2>
+        <p><%= @i.date_time.strftime("On %d/%m/%Y at %H:%M") %></p>
+        <p><b>Address:</b> <%= Geocoder.search([@i.lat, @i.lng]) %></p>
+        <p class="lead"> <%= @i.about %></p>
+        <p><b>Website:</b> <%= link_to  "VISTI SITE", @i.website %></p>
+        <p><b>Organized by:</b> <%= @i.organizer %></p>
+        <p><b>Papers discussed:</b></p>
+        <p><%= @i.papers %></p>
+    </div>
+</div>

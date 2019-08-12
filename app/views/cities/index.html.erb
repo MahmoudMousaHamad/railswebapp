@@ -4,7 +4,21 @@
 <br>
 <br>
 
+<nav>
+    <div class="container nav-wrapper">
+        <a href="" data-target="mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <ul class="right hide-on-med-and-down">
+            <li><a href="#"><%= link_to  "Museums", country_museums_path, class: 'nav-item nav-link' %></a></li>
+            <li><a href="#"><%= link_to  "Conferences", country_conferences_path, class: 'nav-item nav-link' %></a></li>
+            <li><a href="#"><%= link_to  "Scholarships", country_scholarships_path, class: 'nav-item nav-link' %></a></li>
+            <li><a href="#"><%= link_to  "News", country_posts_path, class: 'nav-item nav-link' %></a></li>
+            <li><a href="#"><%= link_to  "Universities", country_universities_path, class: 'nav-item nav-link' %></a></li>
+        </ul>
+    </div>
+</nav>
+
 <div class="container">
+
     <div class="about-country">
         <h2>About <%= @country.name %>: </h2>
         <p class="lead"><%= @country.about %></p>

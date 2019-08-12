@@ -1,0 +1,18 @@
+<%= carousel_for( @i.photos ) %>
+
+<br>
+<br>
+<br>
+
+<div class="container">
+    <div class="about">
+        <h2><%= @i.name %>: </h2>
+        <p class="lead"> <%= @i.about %></p>
+        <p><b>Address:</b> <%= Geocoder.search([@i.lat, @i.lng]) %></p>
+        <p><b>Website:</b> <%= link_to  "VISTI SITE", @i.website %></p>
+        <p><b>Ticket Price:</b></p>
+        <p><%= @i.ticket_price %></p>
+        <p><b>Working Hours:</b></p>
+        <p><%= @i.working_hours %></p>
+    </div>
+</div>

@@ -1,0 +1,24 @@
+<div class="container">
+
+    <h1 class="page-title">Museums in <%= @country.name %></h1>
+
+    <% @country.museums.each do |i| %>
+        <div class="row">
+            <div class="col s12 m7">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="<%= url_for(i.photos.first) %>" alt="<%= i.name %>">
+                        <span class="card-title"><%= i.name %></span>
+                    </div>
+                    <div class="card-content">
+                        <p><%= i.about.truncate(27) %></p>
+                    </div>
+                    <div class="card-action">
+                        <%= link_to  "View " + i.name,
+                        country_museum_path(@country, i) %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <% end %>
+</div>

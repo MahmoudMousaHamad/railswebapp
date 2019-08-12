@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_10_164104) do
+ActiveRecord::Schema.define(version: 2019_08_10_191228) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -180,6 +180,8 @@ ActiveRecord::Schema.define(version: 2019_08_10_164104) do
     t.integer "university_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "country_id"
+    t.index ["country_id"], name: "index_scholarships_on_country_id"
     t.index ["university_id"], name: "index_scholarships_on_university_id"
   end
 

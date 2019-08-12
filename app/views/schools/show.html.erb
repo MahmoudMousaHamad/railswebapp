@@ -1,0 +1,9 @@
+<div class="container">
+    <div class="about">
+        <h2><%= @i.name %>: </h2>
+        <p class="lead"><%= @i.about %></p>
+        <p><b>College:</b> <%= link_to  @i.college.name, college_path(@i.college) %> </p>
+        <p><b>University:</b> <%= link_to  @i.university.name, university_path(@i.university) %> </p>
+        <p><b>Faculty:</b> <%= @i.professors %></p>
+    </div>
+</div>
