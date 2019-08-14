@@ -1,0 +1,6 @@
+<div class="history-nav">
+    <% nav.each do |n| %>
+        <%= link_to n[:title], n[:url] %>
+    <% end %>
+    <%= link_to yield(:title), request.path, :class => 'no-link' %>
+</div>

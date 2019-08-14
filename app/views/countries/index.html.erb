@@ -1,7 +1,7 @@
+<% content_for :title, 'Countries' %>
+<% navigation_add 'Home', root_path %>
 <div class="container">
-
     <h1 class="page-title">Countries List</h1>
-
     <div class="collection">
         <% @countries.each do |c| %>
             <%= link_to  c.name, country_cities_path(c), class: "collection-item" %>

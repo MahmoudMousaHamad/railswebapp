@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>IACAROS</title>
+    <title>IACAROS - <%= yield :title %></title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <meta name="viewport" content="width=device-width, initial-scale=1" /> 
@@ -33,6 +33,11 @@
       <li><a href="#">About Us</a></li>
       <li><a href="#">Contact Us</a></li>
     </ul>
+    <%
+=begin%>
+ <%= render_navigation %> 
+<%
+=end%>
     
     <%= yield %>
 
