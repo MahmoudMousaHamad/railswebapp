@@ -1,23 +1,26 @@
 <%= carousel_for( @country.photos ) %>
-
-<br>
-<br>
-<br>
-
 <nav>
     <div class="container nav-wrapper">
-        <a href="" data-target="mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-        <ul class="right hide-on-med-and-down">
-            <li><a href="#"><%= link_to  "Museums", country_museums_path, class: 'nav-item nav-link' %></a></li>
-            <li><a href="#"><%= link_to  "Conferences", country_conferences_path, class: 'nav-item nav-link' %></a></li>
-            <li><a href="#"><%= link_to  "Scholarships", country_scholarships_path, class: 'nav-item nav-link' %></a></li>
-            <li><a href="#"><%= link_to  "News", country_posts_path, class: 'nav-item nav-link' %></a></li>
-            <li><a href="#"><%= link_to  "Universities", country_universities_path, class: 'nav-item nav-link' %></a></li>
+        <a href="" data-target="mobile-sub-nav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <ul>
+            <li><%= link_to  "Museums", country_museums_path, class: 'nav-item nav-link' %></li>
+            <li><%= link_to  "Conferences", country_conferences_path, class: 'nav-item nav-link' %></li>
+            <li><%= link_to  "Scholarships", country_scholarships_path, class: 'nav-item nav-link' %></li>
+            <li><%= link_to  "News", country_posts_path, class: 'nav-item nav-link' %></li>
+            <li><%= link_to  "Universities", country_universities_path, class: 'nav-item nav-link' %></li>
         </ul>
     </div>
 </nav>
 
-<div class="container">
+<ul class="sidenav" id="mobile-sub-nav">
+    <li><%= link_to  "Museums", country_museums_path %></li>
+    <li><%= link_to  "Conferences", country_conferences_path %></li>
+    <li><%= link_to  "Scholarships", country_scholarships_path %></li>
+    <li><%= link_to  "News", country_posts_path %></li>
+    <li><%= link_to  "Universities", country_universities_path %></li>
+</ul>
+
+<div class="container content">
 
     <div class="about-country">
         <h2>About <%= @country.name %>: </h2>
@@ -86,7 +89,7 @@
                 for (let i = 0; i < markers.length; i++) {
                     links.push(markers_json[i].link);
                     google.maps.event.addListener(markers[i].getServiceObject(), 'click', function(){
-                    window.open(links[i]);
+                    window.open(links[i], "_self");
                     })
                 }
                 handler.fitMapToBounds();

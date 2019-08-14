@@ -21,17 +21,14 @@
 
 $(document).ready(function(){
     $('.sidenav').sidenav();
-});
-
-$(document).ready(function(){
     $('.tabs').tabs({
       swipeable: true,
     });
-  });
-
-  $(document).ready(function(){
     $('.collapsible').collapsible();
-  });
+
+    initLocationMap();
+});
+
 
   $('.pagination > li > a').on('click', function(){
     $('.pagination > li').removeClass('active');
@@ -52,4 +49,22 @@ $(document).ready(function(){
     M.toast({html: 'Copied!'});
   }
 
-  
+  function initLocationMap() {
+    var lat = $('#show-map-location').data('lat');
+    var lng = $('#show-map-location').data('lng');
+
+    var myCoords = new google.maps.LatLng(lat, lng);
+
+    var mapOptions = {
+        center: myCoords,
+        zoom: 14
+    };
+
+    var map = new google.maps.Map(document.getElementById('show-map-location'), mapOptions);
+
+    var marker = new google.maps.Marker({
+        position: myCoords,
+        animation: google.maps.Animation.DROP,
+        map: map,
+    });
+  }

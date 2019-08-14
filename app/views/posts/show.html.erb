@@ -1,11 +1,11 @@
 <div class="container">
-    <div class="post-container">
+    <div class="content">
         <div class="post-title page-title">
             <h1><%= @i.title %></h1>
         </div>
 
         <div class="post-photo-container">
-            <div class="post-photo" style="background-url:<%= url_for(@i.cover_photo) %>; height: 200px; width: 200px"></div>
+            <img width="100%" src="<%= url_for(@i.cover_photo) %>" style="margin: 20px 0px;"/>
         </div>
 
         <div class="post-body">

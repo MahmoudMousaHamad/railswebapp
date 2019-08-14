@@ -15,6 +15,9 @@
                     <div class="card-action">
                         <%= link_to  "View Schools in " + i.name,
                         country_university_college_schools_path(params[:country_id], @university, i) %>
+                        <br>
+                        <%= link_to  "Learn More About " + i.name,
+                        country_university_college_path(params[:country_id], @university, i) %>
                     </div>
                 </div>
             </div>

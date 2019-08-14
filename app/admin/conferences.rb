@@ -11,13 +11,11 @@ ActiveAdmin.register Conference do
       input :website
       input :organizer
       input :papers
+      input :date_time
       input :lat
       input :lng
-      input :date_time
+      div :id => "admin-add-map"
     end
     actions
   end
-  
-  
-
 end

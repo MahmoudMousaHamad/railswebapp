@@ -80,6 +80,12 @@ body > div.container > div > ul > li > a {
 
 .citation {
     resize: none;
-    height: auto;
-    
+    height: auto;    
+}
+
+.location-map {
+    display: block;
+    height: 400px;
+    width: 100%;
+    margin-bottom: 50px;
 }

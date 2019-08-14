@@ -7,7 +7,11 @@
 <div class="container">
     <div class="about">
         <h2><img src="<%= url_for(@i.university.logo)%>" width="50px"/>   <%= @i.name %> in <%= @i.university.name %> </h2>
+        <p><b>About:</b></p>
         <p class="lead"> <%= @i.about %></p>
-        <p><b>Address:</b> <%= @i.name + ", " + @i.university.name + ", " + @i.university.city.name + ", " + @i.university.country.name %></p>
+        <p><b>Address:</b> <%= Geocoder.search([@i.lat, @i.lng]).first.display_name %></p>
+        <p><b>Schools: </b><%= link_to  "View Schools in " + @i.name, country_university_college_schools_path(params[:country_id], params[:university_id], params[:id]) %></p>
+        <p><b>Location:</b></p>
+        <%= location_map_for( @i.lat, @i.lng )%>
     </div>
 </div>

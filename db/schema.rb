@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_10_191228) do
+ActiveRecord::Schema.define(version: 2019_08_13_012530) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -86,6 +86,8 @@ ActiveRecord::Schema.define(version: 2019_08_10_191228) do
     t.integer "university_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "lat"
+    t.float "lng"
     t.index ["university_id"], name: "index_colleges_on_university_id"
   end
 
@@ -204,9 +206,9 @@ ActiveRecord::Schema.define(version: 2019_08_10_191228) do
     t.integer "country_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.float "latitude"
-    t.float "longitude"
     t.integer "user_id"
+    t.float "lat"
+    t.float "lng"
     t.index ["city_id"], name: "index_sites_on_city_id"
     t.index ["country_id"], name: "index_sites_on_country_id"
     t.index ["user_id"], name: "index_sites_on_user_id"
@@ -219,6 +221,8 @@ ActiveRecord::Schema.define(version: 2019_08_10_191228) do
     t.integer "country_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "lat"
+    t.float "lng"
     t.index ["city_id"], name: "index_universities_on_city_id"
     t.index ["country_id"], name: "index_universities_on_country_id"
   end

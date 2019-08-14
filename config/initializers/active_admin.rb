@@ -312,4 +312,11 @@ ActiveAdmin.setup do |config|
   # You can inherit it with own class and inject it for all resources
   #
   # config.order_clause = MyOrderClause
+
+end
+
+Rails.application.config.after_initialize do
+  javascripts = Array.wrap("//maps.google.com/maps/api/js?key=AIzaSyCmdd6SZJ6i55zv5GwiF3jAJRWYboJrTbM&libraries=places")
+  javascripts += ActiveAdmin.application.javascripts.to_a
+  ActiveAdmin.application.javascripts.replace javascripts
 end

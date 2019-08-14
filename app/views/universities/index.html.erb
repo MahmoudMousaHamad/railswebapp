@@ -18,6 +18,9 @@
                     <div class="card-action">
                         <%= link_to  "View Colleges in " + i.name,
                         country_university_colleges_path(@country, i) %>
+                        <br>
+                        <%= link_to  "Learn More About " + i.name,
+                        country_university_path(@country, i) %>
                     </div>
                 </div>
             </div>

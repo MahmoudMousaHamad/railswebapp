@@ -11,9 +11,10 @@ ActiveAdmin.register Museum do
       input :website
       input :ticket_price
       input :working_hours
+      input :photos, as: :file, input_html: { multiple: true }
       input :lat
       input :lng
-      input :photos, as: :file, input_html: { multiple: true }
+      div :id => "admin-add-map"
     end
     actions
   end

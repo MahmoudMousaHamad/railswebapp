@@ -1,6 +1,6 @@
 ActiveAdmin.register University do
 
-  permit_params :name, :about, :city_id, :country_id, :logo, photos: []
+  permit_params :name, :about, :city_id, :country_id, :logo, :lat, :lng, photos: []
 
   form do |f|
     inputs do
@@ -10,6 +10,9 @@ ActiveAdmin.register University do
       input :country
       input :logo, as: :file
       input :photos, as: :file, input_html: { multiple: true }
+      input :lat
+      input :lng
+      div :id => "admin-add-map"
     end
     actions
   end
