@@ -10,7 +10,7 @@
         <p><b>About:</b></p>
         <p class="lead"> <%= @i.about %></p>
         <p><b>Address:</b> <%= Geocoder.search([@i.lat, @i.lng]).first.display_name %></p>
-        <p><b>Schools: </b><%= link_to  "View Schools in " + @i.name, country_university_college_schools_path(params[:country_id], params[:university_id], params[:id]) %></p>
+        <p><b>Schools: </b><%= link_to  "View Schools in " + @i.name, country_university_college_schools_path(@i.university.country, @i.university, @i) %></p>
         <p><b>Location:</b></p>
         <%= location_map_for( @i.lat, @i.lng )%>
     </div>
