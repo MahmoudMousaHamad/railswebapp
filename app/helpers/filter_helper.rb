@@ -32,7 +32,11 @@ module FilterHelper
             selects = []
             filters.each do |filter|
                 if filter == 'degree'
-                    selects.push select_degree
+                    selects.push custom_select("degree", params[:degree], 
+                    { "phd" => "PhD", "masters" => "Masters", "bachelor" => "Bachelor's" })
+                elsif filter == 'period'
+                    selects.push custom_select("period", params[:period], 
+                        { "past" => "Past", "current" => "Current", "upcoming" => "Upcoming" })
                 elsif filter == 'university'
                     selects.push select_university
                 elsif filter == 'category'
@@ -57,30 +61,6 @@ module FilterHelper
             nav_wrapper_div = content_tag(:div, input_field_div, class: "nav-wrapper search-container")
 
             content_tag(:nav, nav_wrapper_div)
-        end
-
-        def select_degree
-            blank_option = content_tag(:option, "All Degrees", :value => "")
-            degree = params[:degree]
-            if degree == "phd"
-                phd_option = content_tag(:option, "PhD", :value => "phd", :selected => "selected")
-            else
-                phd_option = content_tag(:option, "PhD", :value => "phd")
-            end
-
-            if degree == "masters"
-                masters_option = content_tag(:option, "Masters", :value => "masters", :selected => "selected")
-            else
-                masters_option = content_tag(:option, "Masters", :value => "masters")
-            end
-
-            if degree == "bachelor"
-                bachelor_option = content_tag(:option, "Bachelor's", :value => "bachelor", :selected => "selected")
-            else
-                bachelor_option = content_tag(:option, "Bachelor's", :value => "bachelor")
-            end
-
-            content_tag(:select, safe_join([blank_option, phd_option, masters_option, bachelor_option]), :name => "degree", :onchange => "this.form.submit();")
         end
 
         def select_university
@@ -108,6 +88,19 @@ module FilterHelper
                 end
             end
             content_tag(:select, safe_join(options), :name => "category", :onchange => "this.form.submit();")
+        end
+
+        def custom_select(name, param_value, values_options)
+            options = []
+            options.push content_tag(:option, "All #{name.capitalize}s", :value => "")
+            values_options.each do |value, option|
+                if param_value.to_s == value.to_s
+                    options.push content_tag(:option, option, :value => value, :selected => "selected")
+                else
+                    options.push content_tag(:option, option, :value => value)
+                end
+            end
+            content_tag(:select, safe_join(options), :name => name, :onchange => "this.form.submit();")
         end
 
     end

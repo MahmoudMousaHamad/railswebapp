@@ -1,23 +1,7 @@
 <div class="container">
-
-    <div class="row">
-        <h1 class="page-title"><%= @period ? @period.capitalize : "" %> Conferences in <%= @country.name %></h1>
-    </div>
-    <div class="row filter-btns-container">
-        <a class="waves-effect waves-light btn" href="?<%= "category_id=#{params[:category_id]}" %>&period=past">Past</a>
-        <a class="waves-effect waves-light btn" href="?<%= "category_id=#{params[:category_id]}" %>&period=current">Current</a>
-        <a class="waves-effect waves-light btn" href="?<%= "category_id=#{params[:category_id]}" %>&period=upcoming">Upcoming</a>
-        <a class="waves-effect waves-light btn" href="?period=all">All</a>
-    </div>
-    <div class="row">
-        <form action="<%= country_conferences_path(@country) %>" method="get">
-            <input type="hidden" name="period" value="<%= params[:period] %>" />
-            <select name="category_id" onchange="this.form.submit()">
-                <option value="0"></option>
-                <%= options_from_collection_for_select(Category.all, :id, :name, params[:category_id]) %>
-            </select>
-        </form>
-    </div>
+    <h1 class="page-title"><%= @period ? @period.capitalize : "" %> Conferences in <%= @country.name %></h1>
+    <%= filters_for(country_conferences_path(@country), ["category", "period"], params)%>
+    <hr>
     <div class="row">
     <% @conferences.each do |i| %>
         <%= card_for(i.name, 
