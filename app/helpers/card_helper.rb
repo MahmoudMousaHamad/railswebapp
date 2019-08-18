@@ -34,7 +34,7 @@ module CardHelper
             items.push content_tag(:h4, title)
             model.each_pair do |label, value|
                 label_text = content_tag(:b, "#{label}:")
-                items.push content_tag(:div, (label_text + " " + value).truncate(50))
+                items.push content_tag(:div, label_text + " " + value.truncate(50))
             end
             content_tag(:div, safe_join(items), class: "card-content")
         end
