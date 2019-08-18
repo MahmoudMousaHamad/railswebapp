@@ -1,25 +1,54 @@
 <div class="container">
 
     <h1 class="page-title">Scholarships in <%= @country.name %></h1>
-
-    <% @country.scholarships.each do |i| %>
-        <div class="row">
-            <div class="col s12 m7">
-                <div class="card">
-                    <div class="card-content">
-                        <h4><%= i.name %></h4>
-                        <p><%= i.about.truncate(27) %></p>
-                        <p><b>Degree:</b> <%= i.degree %></p>
-                        <p><b>University:</b> <%= i.university.name %></p>
-                        <p><b>Scholarship:</b> <%= i.scholarship %></p>
-                        <p><b>Deadline:</b> <%= i.deadline %></p>
-                    </div>
-                    <div class="card-action">
-                        <%= link_to  "View Scholarship",
-                        country_scholarship_path(@country, i) %>
-                    </div>
+<%
+=begin%>
+ 
+    <form action="<%= country_scholarships_path(params[:country_id]) %>" method="get">
+        <nav>
+            <div class="nav-wrapper search-container">
+                <div class="input-field">
+                    <input name="q" id="search" type="search" value="<%= params[:q]%>">
+                    <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                    <i class="material-icons">close</i>
                 </div>
             </div>
+        </nav>
+        <div class="select-container">
+            <select name="degree" onchange="this.form.submit()">
+                <option value="">All Degrees</option>
+                <option value="phd" <%= params[:degree] == "phd" ? "selected" : ""%> >PhD</option>
+                <option value="masters" <%= params[:degree] == "masters" ? "selected" : ""%>>Masters</option>
+                <option value="bachelor" <%= params[:degree] == "bachelor" ? "selected" : ""%>>Bachelor's</option>
+            </select>
+            <select name="university" onchange="this.form.submit()">
+                <option value="">All Universities</option>
+                <%= options_from_collection_for_select(University.where("country_id = ?", params[:country_id]), :id, :name, params[:university]) %>
+            </select>
+            <select name="category" onchange="this.form.submit()">
+                <option value="">All Categories</option>
+                <%= options_from_collection_for_select(Category.all, :id, :name, params[:category]) %>
+            </select>
         </div>
+    </form> 
+<%
+=end%>
+
+    <%= filters_for(country_scholarships_path(params[:country_id]),
+     ["degree", "university", "category"], params) %>
+
+    <hr>
+
+    <div class="row">
+    <% @scholarships.each do |i| %>
+        <%= card_for(i.name, 
+                    {"About"=> i.about,
+                     "Degree" => i.degree, 
+                    "University" => i.university.name, 
+                    "Scholarship" => i.scholarship,
+                    "Deadline" => i.deadline.strftime("%d/%m/%Y") },
+                    country_scholarship_path(@country, i), 3) %>
     <% end %>
+    </div>
+    <%= paginate @scholarships %>
 </div>

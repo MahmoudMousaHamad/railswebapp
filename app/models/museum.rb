@@ -3,4 +3,6 @@ class Museum < ApplicationRecord
   belongs_to :country
 
   has_many_attached :photos
+
+  paginates_per 5
 end

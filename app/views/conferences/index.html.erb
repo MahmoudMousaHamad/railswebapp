@@ -1,22 +1,32 @@
 <div class="container">
 
-    <h1 class="page-title">Conferences in <%= @country.name %></h1>
-
-    <% @country.conferences.each do |i| %>
-        <div class="row">
-            <div class="col s12 m7">
-                <div class="card">
-                    <div class="card-content">
-                        <h4><%= i.name %></h4>
-                        <p><b>City:</b> <%= i.city.name %></p>
-                        <p><%= i.about.truncate(27) %></p>
-                    </div>
-                    <div class="card-action">
-                        <%= link_to  "View " + i.name,
-                        country_conference_path(@country, i) %>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="row">
+        <h1 class="page-title"><%= @period ? @period.capitalize : "" %> Conferences in <%= @country.name %></h1>
+    </div>
+    <div class="row filter-btns-container">
+        <a class="waves-effect waves-light btn" href="?<%= "category_id=#{params[:category_id]}" %>&period=past">Past</a>
+        <a class="waves-effect waves-light btn" href="?<%= "category_id=#{params[:category_id]}" %>&period=current">Current</a>
+        <a class="waves-effect waves-light btn" href="?<%= "category_id=#{params[:category_id]}" %>&period=upcoming">Upcoming</a>
+        <a class="waves-effect waves-light btn" href="?period=all">All</a>
+    </div>
+    <div class="row">
+        <form action="<%= country_conferences_path(@country) %>" method="get">
+            <input type="hidden" name="period" value="<%= params[:period] %>" />
+            <select name="category_id" onchange="this.form.submit()">
+                <option value="0"></option>
+                <%= options_from_collection_for_select(Category.all, :id, :name, params[:category_id]) %>
+            </select>
+        </form>
+    </div>
+    <div class="row">
+    <% @conferences.each do |i| %>
+        <%= card_for(i.name, 
+                    {"City"=> i.city.name,
+                     "Dates" => "#{i.from_date.strftime('%d/%m/%Y')} - #{i.to_date.strftime('%d/%m/%Y')}", 
+                    "About" => i.about},
+                    country_conference_path(@country, i), 3) %>
     <% end %>
+    </div>
+    <%= paginate @conferences %>
 </div>
+

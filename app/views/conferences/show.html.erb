@@ -1,7 +1,7 @@
 <div class="container">
     <div class="content">
         <h2><%= @i.name %>: </h2>
-        <p><%= @i.date_time.strftime("On %d/%m/%Y at %H:%M") %></p>
+        <p><%= "#{@i.from_date.strftime("%d/%m/%Y")} - #{@i.to_date.strftime("%d/%m/%Y")}" %></p>
         <p><b>Address:</b> <%= Geocoder.search([@i.lat, @i.lng]).first.display_name %></p>
         <p><b>About:</b></p>
         <p class="lead"> <%= @i.about %></p>

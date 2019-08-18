@@ -1,6 +1,6 @@
 ActiveAdmin.register Scholarship do
 
-  permit_params :name, :about, :degree, :scholarship, :deadline, :university_id, :country_id
+  permit_params :name, :about, :degree, :scholarship, :deadline, :university_id, :country_id, :category_id
 
   form do |f|
     inputs do
@@ -11,6 +11,7 @@ ActiveAdmin.register Scholarship do
       input :deadline
       input :university
       input :country
+      input :category
     end
     actions
   end

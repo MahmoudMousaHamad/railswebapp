@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_13_012530) do
+ActiveRecord::Schema.define(version: 2019_08_17_154046) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -71,6 +71,13 @@ ActiveRecord::Schema.define(version: 2019_08_13_012530) do
     t.index ["publisher_id"], name: "index_books_on_publisher_id"
   end
 
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.text "about"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "cities", force: :cascade do |t|
     t.string "name"
     t.string "tagline"
@@ -101,9 +108,12 @@ ActiveRecord::Schema.define(version: 2019_08_13_012530) do
     t.text "papers"
     t.float "lat"
     t.float "lng"
-    t.datetime "date_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "from_date"
+    t.datetime "to_date"
+    t.integer "category_id"
+    t.index ["category_id"], name: "index_conferences_on_category_id"
     t.index ["city_id"], name: "index_conferences_on_city_id"
     t.index ["country_id"], name: "index_conferences_on_country_id"
   end
@@ -183,6 +193,8 @@ ActiveRecord::Schema.define(version: 2019_08_13_012530) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "country_id"
+    t.integer "category_id"
+    t.index ["category_id"], name: "index_scholarships_on_category_id"
     t.index ["country_id"], name: "index_scholarships_on_country_id"
     t.index ["university_id"], name: "index_scholarships_on_university_id"
   end

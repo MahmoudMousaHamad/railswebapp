@@ -347,12 +347,14 @@ DEPENDENCIES
   gmaps4rails
   google-cloud-storage
   jbuilder (~> 2.5)
+  kaminari
   materialize-sass (~> 1.0.0)
   mini_racer
   pg
   puma (~> 3.11)
   rack
   rails (~> 5.2.3)
+  ransack
   sass-rails (~> 5.0)
   searchkick
   selenium-webdriver

@@ -10,7 +10,9 @@ one:
   papers: MyText
   lat: 1.5
   lng: 1.5
-  date_time: 2019-08-10 11:30:14
+  to: 2019-08-10 11:30:14
+  from: 2019-08-10 11:30:14
+
 
 two:
   name: MyString
@@ -22,4 +24,5 @@ two:
   papers: MyText
   lat: 1.5
   lng: 1.5
-  date_time: 2019-08-10 11:30:14
+  to: 2019-08-10 11:30:14
+  from: 2019-08-10 11:30:14

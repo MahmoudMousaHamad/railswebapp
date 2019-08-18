@@ -2,7 +2,7 @@
 
     <h1 class="page-title">Museums in <%= @country.name %></h1>
 
-    <% @country.museums.each do |i| %>
+    <% @museums.each do |i| %>
         <div class="row">
             <div class="col s12 m7">
                 <div class="card">
@@ -21,4 +21,6 @@
             </div>
         </div>
     <% end %>
+
+    <%= paginate @museums %>
 </div>

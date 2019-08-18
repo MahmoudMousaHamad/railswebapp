@@ -9,4 +9,7 @@ class University < ApplicationRecord
 
   has_many :colleges
   has_many :schools
+
+  paginates_per 5
+
 end
