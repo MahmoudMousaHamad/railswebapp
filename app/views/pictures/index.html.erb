@@ -4,7 +4,7 @@
 
         <main class="grid content">
             <% @pictures.each do |p| %>
-                <img class="materialboxed" width="100%" src="<%= url_for (p)%>">
+                <img class="materialboxed" width="100%" src="<%= url_for (p)%>" alt="Photo of a place in <%= Country.find(params[:country_id]).name %>">
             <% end %>
         </main>
 
