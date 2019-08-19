@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'pictures/index'
+  get 'videos/index'
   get 'schools/index'
   get 'schools/show'
   get 'colleges/index'
@@ -22,6 +24,8 @@ Rails.application.routes.draw do
     resources :conferences
     resources :scholarships
     resources :posts
+    resources :pictures
+    resources :videos
     resources :universities do
       resources :colleges do
         resources :schools

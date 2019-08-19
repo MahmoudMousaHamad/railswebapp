@@ -328,6 +328,7 @@ GEM
     websocket-extensions (0.1.4)
     xpath (3.2.0)
       nokogiri (~> 1.8)
+    youtube_rails (1.2.2)
 
 PLATFORMS
   x64-mingw32
@@ -363,6 +364,7 @@ DEPENDENCIES
   uglifier (>= 1.3.0)
   underscore-rails
   web-console (>= 3.3.0)
+  youtube_rails
 
 RUBY VERSION
    ruby 2.6.3p62

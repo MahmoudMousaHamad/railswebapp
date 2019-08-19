@@ -1,0 +1,17 @@
+<div class="container">
+    <div class="content">
+        <h1><%= @videos.first.country.name %>'s Video Gallery</h1>
+
+        <div class="row">
+            <% @videos.each do |v| %>
+                <div class="col s12 m4 ">
+                    <div class="video-container">
+                        <%= raw YouTubeRails.youtube_embed_url(v.link, "auto", 400, disable_suggestion: true, ssl: true) %>
+                    </div>
+                    <p class="center"><b><%= v.title %></b></p>
+                </div>
+            <% end %>
+        </div>
+    </div>
+
+</div>

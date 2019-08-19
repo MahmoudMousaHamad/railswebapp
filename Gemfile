@@ -84,3 +84,5 @@ gem 'underscore-rails'
 gem 'kaminari'
 
 gem 'ransack'
+
+gem 'youtube_rails'
