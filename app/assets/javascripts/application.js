@@ -25,7 +25,7 @@ $(document).ready(function(){
       swipeable: true,
     });
     $('.collapsible').collapsible();
-
+    $('.materialboxed').materialbox();
     initLocationMap();
 });
 
