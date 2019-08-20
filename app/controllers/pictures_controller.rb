@@ -1,26 +1,13 @@
 class PicturesController < ApplicationController
   def index
-    @pictures = []
+    @records = []
     country_id = params[:country_id]
 
-    @pictures.concat Country.find(country_id).photos
+    @records.concat Site.where("country_id = ?", country_id)
+    @records.concat Museum.where("country_id = ?", country_id)
+    @records.concat University.where("country_id = ?", country_id)
 
-    City.where("country_id = ?", country_id).each do |i|
-      @pictures.concat i.photos
-    end
+    @records = Kaminari.paginate_array(@records).page(params[:page]).per(10)
 
-    Site.where("country_id = ?", country_id).each do |i|
-      @pictures.concat i.photos
-    end
-
-    Museum.where("country_id = ?", country_id).each do |i|
-      @pictures.concat i.photos
-    end
-
-    University.where("country_id = ?", country_id).each do |i|
-      @pictures.concat i.photos
-    end
-
-    @pictures = Kaminari.paginate_array(@pictures).page(params[:page]).per(10)
   end
 end
