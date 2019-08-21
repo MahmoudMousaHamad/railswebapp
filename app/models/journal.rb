@@ -1,6 +1,8 @@
 class Journal < ApplicationRecord
   belongs_to :publisher
   has_many :issues
+  has_and_belongs_to_many :subjects
+  
   has_one_attached :cover
 
   validates :title, presence: true, uniqueness: true

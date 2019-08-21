@@ -1,6 +1,6 @@
 ActiveAdmin.register Book do
 
-  permit_params :title, :about, :year, :author, :pages, :pdf, :cover, :publisher_id
+  permit_params :title, :about, :year, :author, :pages, :pdf, :cover, :publisher_id, subject_ids: []
 
   form do |f|
     inputs do
@@ -12,6 +12,7 @@ ActiveAdmin.register Book do
       input :publisher
       input :pdf, as: :file
       input :cover, as: :file
+      input :subjects, label: 'Subjects', as: :check_boxes, collection: Subject.all
     end
     actions
   end
@@ -32,6 +33,11 @@ ActiveAdmin.register Book do
       row :cover do |c|
         div do
           image_tag image_path(main_app.url_for(book.cover))
+        end
+      end
+      table_for book.subjects do
+        column "Subjects" do |s|
+          link_to s.name, [ :admin, s ]
         end
       end
     end

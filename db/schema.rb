@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_19_142727) do
+ActiveRecord::Schema.define(version: 2019_08_21_142856) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -71,6 +71,13 @@ ActiveRecord::Schema.define(version: 2019_08_19_142727) do
     t.index ["publisher_id"], name: "index_books_on_publisher_id"
   end
 
+  create_table "books_subjects", id: false, force: :cascade do |t|
+    t.integer "subject_id", null: false
+    t.integer "book_id", null: false
+    t.index ["book_id"], name: "index_books_subjects_on_book_id"
+    t.index ["subject_id"], name: "index_books_subjects_on_subject_id"
+  end
+
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.text "about"
@@ -125,6 +132,13 @@ ActiveRecord::Schema.define(version: 2019_08_19_142727) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "disciplines", force: :cascade do |t|
+    t.string "name"
+    t.text "about"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "issues", force: :cascade do |t|
     t.integer "number"
     t.integer "year"
@@ -146,6 +160,13 @@ ActiveRecord::Schema.define(version: 2019_08_19_142727) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["publisher_id"], name: "index_journals_on_publisher_id"
+  end
+
+  create_table "journals_subjects", id: false, force: :cascade do |t|
+    t.integer "journal_id", null: false
+    t.integer "subject_id", null: false
+    t.index ["journal_id", "subject_id"], name: "index_journals_subjects_on_journal_id_and_subject_id"
+    t.index ["subject_id", "journal_id"], name: "index_journals_subjects_on_subject_id_and_journal_id"
   end
 
   create_table "museums", force: :cascade do |t|
@@ -224,6 +245,15 @@ ActiveRecord::Schema.define(version: 2019_08_19_142727) do
     t.index ["city_id"], name: "index_sites_on_city_id"
     t.index ["country_id"], name: "index_sites_on_country_id"
     t.index ["user_id"], name: "index_sites_on_user_id"
+  end
+
+  create_table "subjects", force: :cascade do |t|
+    t.string "name"
+    t.text "about"
+    t.integer "discipline_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["discipline_id"], name: "index_subjects_on_discipline_id"
   end
 
   create_table "universities", force: :cascade do |t|
