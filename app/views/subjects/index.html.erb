@@ -1,0 +1,18 @@
+<div class="container">
+    <div class="content">
+        <h1>Browse by Subject</h1>
+
+        <div class="subjects-container">
+            <% @disciplines.each do |d| %>
+                <div class="discipline-container">
+                    <h3><%= d.name %></h3>
+                    <% d.subjects.each do |s| %>
+                        <ul>
+                            <li><%= link_to  s.name, subject_path(s.name) %></li>
+                        </ul>
+                    <% end %>
+                </div>
+            <% end %>
+        </div>
+    </div>
+</div>

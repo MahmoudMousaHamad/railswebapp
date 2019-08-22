@@ -1,0 +1,46 @@
+<div class="container">
+    <div class="content">
+        <h2><%= @subject.name %></h2>
+        <h4>Search within <%= @subject.name %></h3>
+        <div class="row">
+            <div class="col s12">
+            <ul class="tabs">
+                <li class="tab col s3"><a class="active" href="#journals">Journals</a></li>
+                <li class="tab col s3"><a href="#books">Books</a></li>
+            </ul>
+            </div>
+            <div id="journals" class="col s12">
+                <% if @subject.journals %>
+                    <div class="search-results collection">
+                        <table class="journal-table">
+                            <thead></thead>
+                            <tbody>
+                                <% @subject.journals.each do |r| %>
+                                    <tr>
+                                        <%= link_to  r.title, class: "collection-item" %>
+                                    </tr>
+                                <% end %>
+                            </tbody>
+                        </table>
+                    </div>
+                <% end %>
+            </div>
+            <div id="books" class="col s12">
+                <% if @subject.books %>
+                    <div class="search-results collection">
+                        <table class="book-table">
+                            <thead></thead>
+                            <tbody>
+                                <% @subject.books.each do |b| %>
+                                    <tr>
+                                        <%= link_to  b.title, class: "collection-item" %>
+                                    </tr>
+                                <% end %>
+                            </tbody>
+                        </table>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>

@@ -21,9 +21,7 @@
 
 $(document).ready(function(){
     $('.sidenav').sidenav();
-    $('.tabs').tabs({
-      swipeable: true,
-    });
+    $('.tabs').tabs();
     $('.collapsible').collapsible();
     $('.materialboxed').materialbox();
     initLocationMap();

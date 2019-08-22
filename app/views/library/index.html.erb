@@ -1,9 +1,20 @@
 <div class="container">
     <div class="content">
         <div class="row browse-link">
+            <h3>Browse by Subject:</h3>
+            <%= link_to  "Browse", subjects_path, class: "waves-effect waves-light btn" %>
+        </div>
+        <div class="row browse-link">
             <h3>Browse by Title:</h3>
             <%= link_to  "Browse", library_browse_path(:letter => "0-9"), class: "waves-effect waves-light btn" %>
         </div>
+        <div class="row browse-link">
+            <h3>Browse by Publisher:</h3>
+            <%= link_to  "Browse", publishers_path, class: "waves-effect waves-light btn" %>
+        </div>
+
+        <hr>
+
             <div class=" row search-container">
                 <div class="seach-content">
                     <h3>Search journals and books</h3>

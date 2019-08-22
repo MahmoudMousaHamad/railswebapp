@@ -46,6 +46,9 @@ Rails.application.routes.draw do
   resources :books
   resources :issues
 
+  resources :subjects, param: :name
+
+  
   get '/library', to: 'library#index'
   get '/library/browse', to: 'library#browse'
   
