@@ -1,16 +1,26 @@
 class LibraryController < ApplicationController
 
     def basic_search
+        q = params[:q]
+        content_type = ""
+        if params[:books] && params[:journals]
+            content_type = "book and journal"
+        elsif params[:books]
+            content_type = "book"
+        elsif params[:journals]
+            content_type = "journal"
+        else
+            content_type = "book and journal"
+        end
+
+        if q
+            @result = Search.new(q, content_type)
+        end
     end
 
     def index
         if params[:q]
-            if params[:category] == 'journals'
-                @results = Journal.basic_search(params[:q])
-            end
-            if params[:category] == 'books'
-                @results = Book.basic_search(params[:q])
-            end
+            redirect_to :action => "basic_search", :q => params[:q] 
         end
     end
 
@@ -21,4 +31,5 @@ class LibraryController < ApplicationController
         end
     end
 
+    private
 end

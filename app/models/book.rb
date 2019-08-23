@@ -8,11 +8,5 @@ class Book < ApplicationRecord
     validates :title, presence: true, uniqueness: true
     validates_presence_of :about, :year, :author, :pages, :pdf, :cover, :publisher
 
-    def self.search(search)
-        if search 
-          where('title LIKE :search OR about LIKE :search', search: "%#{search}%");
-        else
-          find(:all)
-        end
-    end
+    include Filterable
 end

@@ -128,3 +128,27 @@ max-width: 100%;
 padding: 15px;
 text-align: center;
 }
+
+.search-result-buttons a {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.content-type-name {
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.filter {
+    margin-bottom: 50px;
+}
+
+.filter-section {
+    background: rgb(241, 241, 241);
+    padding: 20px !important;
+}
+
+.result-section {
+    padding: 20px !important;
+}

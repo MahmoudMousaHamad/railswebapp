@@ -1,0 +1,72 @@
+<div class="container">
+    <div class="content">
+        <%= filters_for(library_basic_search_path, [], params) %>
+        <div class="content row">
+            <div class="col s12 m3 filter-section">
+                <h3>Filter Results</h3>
+                <form action="<%= library_basic_search_path %>">
+                    <input name="q" type="hidden" value="<%= params[:q] %>">
+                    <div style="margin-top: 20px;" class="filter">
+                        <h5>Content Type:</h5>
+                        <div class="checkboxes">
+                            <label>
+                                <%= check_box_tag "journals", nil, params[:journals] == "on", onChange: "this.form.submit();" %>
+                                <span>Journals</span>
+                            </label>
+                            <br>
+                            <label>
+                                <%= check_box_tag "books", nil, params[:books] == "on", onChange: "this.form.submit();" %>
+                                <span>Books</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="filter">
+                        <h5>Publication Year:</h5>
+                        <div class="col s12 m6">
+                            <input name="from_date" type="number" placeholder="From" value="<%= params[:from_date] %>">
+                        </div>
+                        <div class="col s12 m6">
+                            <input name="to_date" type="number" placeholder="To" value="<%= params[:to_date] %>">
+                        </div>
+                        <input class="btn-small" type="submit" value="Apply">
+                    </div>
+                    <div class="filter">
+                        <h5>Subject: </h5>
+                        <div class="checkboxes">
+                            <% Subject.all.each do |s| %>
+                                <label>
+                                    <%= check_box_tag s.name.downcase, nil, params[s.name.downcase] == "on", onChange: "this.form.submit();" %>
+                                    <span><%= s.name %></span>
+                                </label>
+                            <% end %>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="col s12 m9 result-section">
+                <% if @result %>
+                    <% @result.each do |r| %>
+                        <div class="row">
+                            <div class="col s12 m9">
+                                <div class="content-type-name">
+                                    <%= is_journal = r.class.name == "Journal"; r.class.name%>
+                                </div>
+                                <a href="<%= is_journal ? journal_path(r) : book_path(r) %>"><h4><%= r.title %></h4></a>
+                                <p><%= r.about.truncate(100) %></p>
+                                <p><b>Subjects: </b> <%= safe_join(r.subjects.map { |s| link_to  s.name, subject_path(s.name) }, ",").html_safe %> </p>
+                            </div>
+                            <div class="search-result-buttons col s12 m3">
+                                <a href="#" class="waves-effect waves-light btn">Download PDF</a>
+                                <a href="#" class="waves-effect waves-light btn">Cite this item</a>
+                            </div>
+                        </div>
+                        <hr style="margin-bottom: 50px;">
+                    <% end %>
+                <% else %>
+                    <h4>Please enter a search term.</h4>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>
