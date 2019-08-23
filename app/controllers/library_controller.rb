@@ -1,12 +1,15 @@
 class LibraryController < ApplicationController
 
+    def basic_search
+    end
+
     def index
         if params[:q]
             if params[:category] == 'journals'
-                @results = Journal.search(params[:q])
+                @results = Journal.basic_search(params[:q])
             end
             if params[:category] == 'books'
-                @results = Books.search(params[:q])
+                @results = Book.basic_search(params[:q])
             end
         end
     end

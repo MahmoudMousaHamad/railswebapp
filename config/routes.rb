@@ -43,7 +43,11 @@ Rails.application.routes.draw do
 
   resources :publishers
   resources :journals
-  resources :books
+  resources :books do
+    collection do
+      get :search
+    end
+  end
   resources :issues
 
   resources :subjects, param: :name

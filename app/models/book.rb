@@ -6,13 +6,7 @@ class Book < ApplicationRecord
     has_one_attached :pdf
 
     validates :title, presence: true, uniqueness: true
-    validates :about, presence: true
-    validates :year, presence: true
-    validates :author, presence: true
-    validates :pages, presence: true
-    validates :pdf, presence: true
-    validates :cover, presence: true
-    validates :publisher, presence: true
+    validates_presence_of :about, :year, :author, :pages, :pdf, :cover, :publisher
 
     def self.search(search)
         if search 

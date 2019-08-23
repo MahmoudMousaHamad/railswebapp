@@ -2,38 +2,16 @@
     <div class="content">
         <h2 class="browse-title">Browse by Title: <%= params[:letter] %></h2>
         <h3 class="browse-sub-title">Browse by titles starting with:</h3>
-        <ul class="pagination">
-            <li class="active"><%= link_to  "0-9", :letter => "0-9" %></li>
-            <li class="waves-effect"><%= link_to "A", :letter => "A" %></li>
-            <li class="waves-effect"><%= link_to "B", :letter => "B" %></li>
-            <li class="waves-effect"><%= link_to "C", :letter => "C" %></li>
-            <li class="waves-effect"><%= link_to "D", :letter => "D" %></li>
-            <li class="waves-effect"><%= link_to "E", :letter => "E" %></li>
-            <li class="waves-effect"><%= link_to "F", :letter => "F" %></li>
-            <li class="waves-effect"><%= link_to "G", :letter => "G" %></li>
-            <li class="waves-effect"><%= link_to "H", :letter => "H" %></li>
-            <li class="waves-effect"><%= link_to "I", :letter => "I" %></li>
-            <li class="waves-effect"><%= link_to "J", :letter => "J" %></li>
-            <li class="waves-effect"><%= link_to "K", :letter => "K" %></li>
-            <li class="waves-effect"><%= link_to "L", :letter => "L" %></li>
-            <li class="waves-effect"><%= link_to "M", :letter => "M" %></li>
-            <li class="waves-effect"><%= link_to "N", :letter => "N" %></li>
-            <li class="waves-effect"><%= link_to "O", :letter => "O" %></li>
-            <li class="waves-effect"><%= link_to "P", :letter => "P" %></li>
-            <li class="waves-effect"><%= link_to "Q", :letter => "Q" %></li>
-            <li class="waves-effect"><%= link_to "R", :letter => "R" %></li>
-            <li class="waves-effect"><%= link_to "S", :letter => "S" %></li>
-            <li class="waves-effect"><%= link_to "T", :letter => "T" %></li>
-            <li class="waves-effect"><%= link_to "U", :letter => "U" %></li>
-            <li class="waves-effect"><%= link_to "V", :letter => "V" %></li>
-            <li class="waves-effect"><%= link_to "W", :letter => "W" %></li>
-            <li class="waves-effect"><%= link_to "X", :letter => "X" %></li>
-            <li class="waves-effect"><%= link_to "Y", :letter => "Y" %></li>
-            <li class="waves-effect"><%= link_to "Z", :letter => "Z" %></li>
-        </ul>
+        <div class="letters-container">
+            <ul class="pagination">
+                <% [('0-9'), *('A'..'Z')].each do |l| %>
+                    <li><a href="?letter=<%= l %>"><%= l %></a></li>
+                <% end %>
+            </ul>
+        </div>
         <div class="row">
             <div class="col s12">
-            <ul class="tabs tabs-fixed-width">
+            <ul class="tabs">
                 <li class="tab col s3"><a class="active" href="#journals">Journals</a></li>
                 <li class="tab col s3"><a href="#books">Books</a></li>
             </ul>

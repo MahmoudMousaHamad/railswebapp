@@ -8,11 +8,16 @@
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
-
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">      
+
   </head>
   <body>
+    <ul id="dropdown-library" class="dropdown-content">
+      <li><%= link_to  "By Subject", subjects_path %></li>
+      <li><%= link_to  "By Title", library_browse_path(:letter => "0-9") %></li>
+      <li><%= link_to  "By Publisher", publishers_path %></li>
+    </ul>
     <div class="navbar-fixed">
       <nav>
         <div class="container nav-wrapper">
@@ -33,11 +38,6 @@
       <li><a href="#">About Us</a></li>
       <li><a href="#">Contact Us</a></li>
     </ul>
-    <%
-=begin%>
- <%= render_navigation %> 
-<%
-=end%>
     
     <%= yield %>
 
@@ -45,6 +45,4 @@
     <script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"></script>
     <script src='//cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/infobox/src/infobox_packed.js' type='text/javascript'></script> <!-- only if you need custom infoboxes -->
   </body>
-
-  
 </html>
