@@ -23,10 +23,10 @@
                     <div class="filter">
                         <h5>Publication Year:</h5>
                         <div class="col s12 m6">
-                            <input name="from_date" type="number" placeholder="From" value="<%= params[:from_date] %>">
+                            <input name="from_year" type="number" placeholder="From" value="<%= params[:from_year] %>">
                         </div>
                         <div class="col s12 m6">
-                            <input name="to_date" type="number" placeholder="To" value="<%= params[:to_date] %>">
+                            <input name="to_year" type="number" placeholder="To" value="<%= params[:to_year] %>">
                         </div>
                         <input class="btn-small" type="submit" value="Apply">
                     </div>
@@ -35,9 +35,10 @@
                         <div class="checkboxes">
                             <% Subject.all.each do |s| %>
                                 <label>
-                                    <%= check_box_tag s.name.downcase, nil, params[s.name.downcase] == "on", onChange: "this.form.submit();" %>
+                                    <%= check_box_tag "search[subjects][]", s.name, params[:search].nil? ? false : params[:search][:subjects].include?(s.name), onChange: "this.form.submit();" %>
                                     <span><%= s.name %></span>
                                 </label>
+                                <br>
                             <% end %>
                         </div>
                     </div>
