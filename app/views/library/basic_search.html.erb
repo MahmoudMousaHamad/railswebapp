@@ -58,8 +58,8 @@
                                 <p><b>Subjects: </b> <%= safe_join(r.subjects.map { |s| link_to  s.name, subject_path(s.name) }, ",").html_safe %> </p>
                             </div>
                             <div class="search-result-buttons col s12 m3">
-                                <a href="#" class="waves-effect waves-light btn">Download PDF</a>
-                                <a href="#" class="waves-effect waves-light btn">Cite this item</a>
+                                <%= link_to  "Download PDF", url_for(r.pdf), target: "_blank", class: "waves-effect waves-light btn" if r.class.name == "Book" %>
+                                <%= citation_btn_for(r) if r.class.name == "Book" %>
                             </div>
                         </div>
                         <hr style="margin-bottom: 50px;">

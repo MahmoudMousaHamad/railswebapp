@@ -14,7 +14,6 @@
 //= require rails-ujs
 //= require activestorage
 //= require_tree .
-//= require bootstrap
 //= require_tree .
 //= require underscore
 //= require gmaps/google
@@ -24,6 +23,7 @@ $(document).ready(function(){
     $('.tabs').tabs();
     $('.collapsible').collapsible();
     $('.materialboxed').materialbox();
+    $('.modal').modal();
     initLocationMap();
 });
 
@@ -33,15 +33,9 @@ $(document).ready(function(){
     $('.pagination > li').addClass('active');
   });
 
-  $('#copy-btn').on('click', function() {
-    var copyText = document.getElementById('mla-text');
-    copyText.select();
-    document.execCommand('copy');
-    M.toast({html: 'Copied!'});
-  });
-
-  function copyMla() {
-    var copyText = document.getElementById('mla-text');
+  
+  function copyCitation(id) {
+    var copyText = document.getElementById(id);
     copyText.select();
     document.execCommand('copy');
     M.toast({html: 'Copied!'});

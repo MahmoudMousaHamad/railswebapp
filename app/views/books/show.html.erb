@@ -15,20 +15,12 @@
             <div class="col s12 m4 l4">
                 <ul class="collapsible popout">
                     <li>
-                        <div class="collapsible-header">CITE THIS BOOK</div>
-                        <div class="collapsible-body">
-                            <h4>Copy Citation</h4>
-                            <label>MLA:</label>
-                            <textarea id="mla-text" class="citation" readonly><%= "#{@b.author}, #{@b.title}. #{@b.publisher.name}, #{@b.year}, IACAROS, #{request.original_url}" %></textarea>
-                            <a id="copy-btn" onclick="copyMla()" class="waves-effect waves-light btn-small">COPY</a>
-                        </div>
-                    </li>
-                    <li>
                         <div class="collapsible-header">BOOK INFO</div>
                         <div class="collapsible-body">
                             <h4>Title: <%= @b.title %></h4>
                             <label>Book Description: </label>
                             <p><%= @b.about %></p>
+                            <%= citation_btn_for(@b) %>
                         </div>
                     </li>
                 </ul>
