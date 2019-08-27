@@ -2,9 +2,14 @@
   "name": "webapp",
   "private": true,
   "dependencies": {
+    "@rails/webpacker": "^4.0.7",
     "g": "^2.0.1",
     "jquery": "^3.4.1",
     "materialize-css": "^1.0.0-rc.2",
-    "underscore": "^1.9.1"
+    "underscore": "^1.9.1",
+    "yarn": "^1.17.3"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "^3.8.0"
   }
 }
