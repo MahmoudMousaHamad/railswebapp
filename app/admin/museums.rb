@@ -1,6 +1,6 @@
 ActiveAdmin.register Museum do
 
-  permit_params :name, :about, :city_id, :country_id, :website, :ticket_price, :working_hours, :lat, :lng, photos: []
+  permit_params :name, :about, :city_id, :country_id, :website, :ticket_price, :working_hours, :lat, :lng, :logo, :kind, photos: []
 
   form do |f|
     inputs do
@@ -11,7 +11,9 @@ ActiveAdmin.register Museum do
       input :website
       input :ticket_price
       input :working_hours
-      input :photos, as: :file, input_html: { multiple: true }
+      input :logo, as: :file, input_html: { accept: 'image/png,image/gif,image/jpeg' }
+      input :photos, as: :file, input_html: { multiple: true, accept: 'image/png,image/gif,image/jpeg' }
+      input :kind, collection: ["Archaeological", "Heritage", "Other"]
       input :lat
       input :lng
       div :id => "admin-add-map"

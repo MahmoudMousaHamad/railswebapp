@@ -41,6 +41,11 @@ module FilterHelper
                     selects.push select_university
                 elsif filter == 'category'
                     selects.push select_category
+                elsif filter == 'museum_kind'
+                    selects.push custom_select("kind", params[:kind], 
+                        { "Archaeological" => "Archaeological",
+                             "Heritage" => "Heritage",
+                              "Other" => "Other" })
                 end
             end
             selects_content = content_tag(:div, safe_join(selects), class: "select-container")

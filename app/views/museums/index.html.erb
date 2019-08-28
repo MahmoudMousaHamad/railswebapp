@@ -2,23 +2,15 @@
 
     <h1 class="page-title">Museums in <%= @country.name %></h1>
 
+    <%= filters_for country_museums_path(@country), ["museum_kind"], params %>
+
     <% @museums.each do |i| %>
         <div class="row">
-            <div class="col s12 m7">
-                <div class="card">
-                    <div class="card-image">
-                        <img src="<%= url_for(i.photos.first) %>" alt="<%= i.name %>">
-                        <span class="card-title"><%= i.name %></span>
-                    </div>
-                    <div class="card-content">
-                        <p><%= i.about.truncate(27) %></p>
-                    </div>
-                    <div class="card-action">
-                        <%= link_to  "View " + i.name,
-                        country_museum_path(@country, i) %>
-                    </div>
-                </div>
-            </div>
+            <%= card_for("#{i.name}, #{i.city.name}", 
+            { "About" => i.about },
+            country_museum_path(@country, i),
+            3,
+            i.logo) %>
         </div>
     <% end %>
 
