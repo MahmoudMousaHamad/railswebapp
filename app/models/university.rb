@@ -1,4 +1,6 @@
 class University < ApplicationRecord
+  include Filterable
+    
   belongs_to :city
   belongs_to :country
   has_many :scholarships

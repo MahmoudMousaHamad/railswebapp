@@ -1,6 +1,6 @@
 ActiveAdmin.register Conference do
 
-  permit_params :name, :about, :city_id, :country_id, :website, :organizer, :papers, :lat, :lng, :to_date, :from_date, :category_id
+  permit_params :name, :about, :city_id, :country_id, :website, :organizer, :papers, :lat, :lng, :to_date, :from_date, :category_id, photos: []
 
   form do |f|
     inputs do
@@ -13,6 +13,7 @@ ActiveAdmin.register Conference do
       input :papers
       input :from_date
       input :to_date
+      input :photos, as: :file, input_html: { multiple: true }
       input :lat
       input :lng
       input :category

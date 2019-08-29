@@ -1,6 +1,6 @@
 module CarouselHelper
     def carousel_for(images)
-        Carousel.new(self, images).html
+        Carousel.new(self, images).html if images
     end
 
     class Carousel

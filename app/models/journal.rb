@@ -1,4 +1,6 @@
 class Journal < ApplicationRecord
+  include Filterable
+    
   belongs_to :publisher
   has_many :issues
   has_and_belongs_to_many :subjects

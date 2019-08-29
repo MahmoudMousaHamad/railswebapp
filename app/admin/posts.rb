@@ -1,6 +1,6 @@
 ActiveAdmin.register Post do
 
-  permit_params :title, :body, :cover_photo, :country_id, :city_id
+  permit_params :title, :body, :cover_photo, :country_id, :city_id, :date_occurred
 
   form do |f|
     inputs do
@@ -9,6 +9,7 @@ ActiveAdmin.register Post do
       input :cover_photo, as: :file 
       input :city
       input :country
+      input :date_occurred
     end
     actions
   end
@@ -19,6 +20,7 @@ ActiveAdmin.register Post do
       row :body
       row :city
       row :country
+      row :date_occurred
       row :cover_photo do |c|
         div do
           image_tag image_path(main_app.url_for(post.cover_photo))

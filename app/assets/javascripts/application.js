@@ -15,6 +15,7 @@
 //= require activestorage
 //= require_tree .
 //= require_tree .
+//= require bootstrap
 //= require underscore
 //= require gmaps/google
 
@@ -23,7 +24,7 @@ $(document).ready(function(){
     $('.tabs').tabs();
     $('.collapsible').collapsible();
     $('.materialboxed').materialbox();
-    $('.modal').modal();
+    // $('.modal').modal();
     initLocationMap();
 });
 

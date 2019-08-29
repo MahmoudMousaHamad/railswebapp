@@ -1,4 +1,6 @@
 class School < ApplicationRecord
+  include Filterable
+    
   belongs_to :college
   belongs_to :university
 

@@ -1,4 +1,6 @@
 class Publisher < ApplicationRecord
+  include Filterable
+    
   has_many :journals
   has_many :books
   

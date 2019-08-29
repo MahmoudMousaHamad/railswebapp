@@ -1,4 +1,6 @@
 class Issue < ApplicationRecord
+  include Filterable
+    
   belongs_to :journal
   has_one_attached :pdf
 

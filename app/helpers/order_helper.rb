@@ -1,5 +1,5 @@
-module FilterHelper
-    def filters_for(action, filters, params)
+module OrderHelper
+    def order_for(action, filters, params)
         Filters.new(self, action, filters, params).html
     end
 
@@ -46,6 +46,8 @@ module FilterHelper
                         { "Archaeological" => "Archaeological",
                              "Heritage" => "Heritage",
                               "Other" => "Other" })
+                elsif filter == 'city'
+                    selects.push select_city
                 end
             end
             selects_content = content_tag(:div, safe_join(selects), class: "select-container")
@@ -93,6 +95,19 @@ module FilterHelper
                 end
             end
             content_tag(:select, safe_join(options), :name => "category", :onchange => "this.form.submit();")
+        end
+
+        def select_city
+            options = []
+            options.push content_tag(:option, "All Cities", :value => "")
+            City.where("country_id = ?", params[:country_id]).each do |c|
+                if c.id.to_s == params[:city]
+                    options.push content_tag(:option, c.name, :value => c.id, :selected => "selected")
+                else
+                    options.push content_tag(:option, c.name, :value => c.id)
+                end
+            end
+            content_tag(:select, safe_join(options), :name => "city", :onchange => "this.form.submit();")
         end
 
         def custom_select(name, param_value, values_options)

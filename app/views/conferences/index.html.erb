@@ -1,6 +1,6 @@
 <div class="container">
     <h1 class="page-title"><%= @period ? @period.capitalize : "" %> Conferences in <%= @country.name %></h1>
-    <%= filters_for(country_conferences_path(@country), ["category", "period"], params)%>
+    <%= filters_and_order_for(country_conferences_path(@country), ["category", "period"], params)%>
     <hr>
     <div class="row">
     <% @conferences.each do |i| %>

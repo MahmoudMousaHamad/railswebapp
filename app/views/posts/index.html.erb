@@ -1,26 +1,14 @@
 <div class="container">
-
     <h1 class="page-title">Posts related to <%= @country.name %></h1>
-
-    <% @country.posts.each do |i| %>
-        <div class="row">
-            <div class="col s12 m7">
-                <div class="card">
-                    <div class="card-image">
-                        <img src="<%= url_for(i.cover_photo) %>" alt="Cover Photo">
-                        <span class="card-title"><%= i.title %></span>
-                    </div>
-                    <div class="card-content">
-                        <p><%= i.body.truncate(100) %></p>
-                        <p><b>City:</b> <%= i.city.name %></p>
-                    </div>
-                    <div class="card-action">
-                        <%= link_to  "Read",
-                        country_post_path(@country, i) %>
-                    </div>
-                </div>
-            </div>
-        </div>
-    <% end %>
+        <%= filters_and_order_for(country_posts_path(@country), ["city"], params)%>
+    
+    <div class="row">
+        <% @posts.each do |i| %>
+            <%= card_for(i.title, 
+                        {"City"=> i.city.name, 
+                        "" => i.body},
+                        country_post_path(@country, i), 3, i.cover_photo) %>
+        <% end %>
+    </div>
     <%= paginate @posts %>
 </div>

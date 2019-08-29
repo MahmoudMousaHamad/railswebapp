@@ -1,4 +1,6 @@
 class Book < ApplicationRecord
+    include Filterable
+    
     belongs_to :publisher
     has_and_belongs_to_many :subjects
 
@@ -7,6 +9,4 @@ class Book < ApplicationRecord
 
     validates :title, presence: true, uniqueness: true
     validates_presence_of :about, :year, :author, :pages, :pdf, :cover, :publisher
-
-    include Filterable
 end
