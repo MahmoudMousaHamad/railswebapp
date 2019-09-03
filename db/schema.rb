@@ -29,9 +29,9 @@ ActiveRecord::Schema.define(version: 2019_08_29_022357) do
     t.string "namespace"
     t.text "body"
     t.string "resource_type"
-    t.integer "resource_id"
+    t.bigint "resource_id"
     t.string "author_type"
-    t.integer "author_id"
+    t.bigint "author_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
@@ -42,8 +42,8 @@ ActiveRecord::Schema.define(version: 2019_08_29_022357) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
-    t.integer "record_id", null: false
-    t.integer "blob_id", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
@@ -80,13 +80,13 @@ ActiveRecord::Schema.define(version: 2019_08_29_022357) do
     t.integer "pages"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "publisher_id"
+    t.bigint "publisher_id"
     t.index ["publisher_id"], name: "index_books_on_publisher_id"
   end
 
   create_table "books_subjects", id: false, force: :cascade do |t|
-    t.integer "subject_id", null: false
-    t.integer "book_id", null: false
+    t.bigint "subject_id", null: false
+    t.bigint "book_id", null: false
     t.index ["book_id"], name: "index_books_subjects_on_book_id"
     t.index ["subject_id"], name: "index_books_subjects_on_subject_id"
   end
@@ -101,7 +101,7 @@ ActiveRecord::Schema.define(version: 2019_08_29_022357) do
   create_table "cities", force: :cascade do |t|
     t.string "name"
     t.string "tagline"
-    t.integer "country_id"
+    t.bigint "country_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["country_id"], name: "index_cities_on_country_id"
@@ -110,7 +110,7 @@ ActiveRecord::Schema.define(version: 2019_08_29_022357) do
   create_table "colleges", force: :cascade do |t|
     t.string "name"
     t.text "about"
-    t.integer "university_id"
+    t.bigint "university_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.float "lat"
@@ -121,8 +121,8 @@ ActiveRecord::Schema.define(version: 2019_08_29_022357) do
   create_table "conferences", force: :cascade do |t|
     t.string "name"
     t.text "about"
-    t.integer "city_id"
-    t.integer "country_id"
+    t.bigint "city_id"
+    t.bigint "country_id"
     t.string "website"
     t.string "organizer"
     t.text "papers"
@@ -132,7 +132,7 @@ ActiveRecord::Schema.define(version: 2019_08_29_022357) do
     t.datetime "updated_at", null: false
     t.datetime "from_date"
     t.datetime "to_date"
-    t.integer "category_id"
+    t.bigint "category_id"
     t.index ["category_id"], name: "index_conferences_on_category_id"
     t.index ["city_id"], name: "index_conferences_on_city_id"
     t.index ["country_id"], name: "index_conferences_on_country_id"
@@ -157,7 +157,7 @@ ActiveRecord::Schema.define(version: 2019_08_29_022357) do
     t.integer "year"
     t.integer "pageFrom"
     t.integer "pageTo"
-    t.integer "journal_id"
+    t.bigint "journal_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["journal_id"], name: "index_issues_on_journal_id"
@@ -168,7 +168,7 @@ ActiveRecord::Schema.define(version: 2019_08_29_022357) do
     t.string "about"
     t.integer "coverageFrom"
     t.integer "coverageTo"
-    t.integer "publisher_id"
+    t.bigint "publisher_id"
     t.string "issn"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -176,8 +176,8 @@ ActiveRecord::Schema.define(version: 2019_08_29_022357) do
   end
 
   create_table "journals_subjects", id: false, force: :cascade do |t|
-    t.integer "journal_id", null: false
-    t.integer "subject_id", null: false
+    t.bigint "journal_id", null: false
+    t.bigint "subject_id", null: false
     t.index ["journal_id", "subject_id"], name: "index_journals_subjects_on_journal_id_and_subject_id"
     t.index ["subject_id", "journal_id"], name: "index_journals_subjects_on_subject_id_and_journal_id"
   end
@@ -185,8 +185,8 @@ ActiveRecord::Schema.define(version: 2019_08_29_022357) do
   create_table "museums", force: :cascade do |t|
     t.string "name"
     t.text "about"
-    t.integer "city_id"
-    t.integer "country_id"
+    t.bigint "city_id"
+    t.bigint "country_id"
     t.string "website"
     t.text "ticket_price"
     t.text "working_hours"
@@ -202,8 +202,8 @@ ActiveRecord::Schema.define(version: 2019_08_29_022357) do
   create_table "posts", force: :cascade do |t|
     t.string "title"
     t.text "body"
-    t.integer "country_id"
-    t.integer "city_id"
+    t.bigint "country_id"
+    t.bigint "city_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.date "date_occurred"
@@ -225,11 +225,11 @@ ActiveRecord::Schema.define(version: 2019_08_29_022357) do
     t.string "degree"
     t.text "scholarship"
     t.datetime "deadline"
-    t.integer "university_id"
+    t.bigint "university_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "country_id"
-    t.integer "category_id"
+    t.bigint "country_id"
+    t.bigint "category_id"
     t.index ["category_id"], name: "index_scholarships_on_category_id"
     t.index ["country_id"], name: "index_scholarships_on_country_id"
     t.index ["university_id"], name: "index_scholarships_on_university_id"
@@ -239,8 +239,8 @@ ActiveRecord::Schema.define(version: 2019_08_29_022357) do
     t.string "name"
     t.text "about"
     t.text "professors"
-    t.integer "college_id"
-    t.integer "university_id"
+    t.bigint "college_id"
+    t.bigint "university_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["college_id"], name: "index_schools_on_college_id"
@@ -250,11 +250,11 @@ ActiveRecord::Schema.define(version: 2019_08_29_022357) do
   create_table "sites", force: :cascade do |t|
     t.string "name"
     t.text "about"
-    t.integer "city_id"
-    t.integer "country_id"
+    t.bigint "city_id"
+    t.bigint "country_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id"
+    t.bigint "user_id"
     t.float "lat"
     t.float "lng"
     t.index ["city_id"], name: "index_sites_on_city_id"
@@ -265,7 +265,7 @@ ActiveRecord::Schema.define(version: 2019_08_29_022357) do
   create_table "subjects", force: :cascade do |t|
     t.string "name"
     t.text "about"
-    t.integer "discipline_id"
+    t.bigint "discipline_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["discipline_id"], name: "index_subjects_on_discipline_id"
@@ -274,8 +274,8 @@ ActiveRecord::Schema.define(version: 2019_08_29_022357) do
   create_table "universities", force: :cascade do |t|
     t.string "name"
     t.text "about"
-    t.integer "city_id"
-    t.integer "country_id"
+    t.bigint "city_id"
+    t.bigint "country_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.float "lat"
@@ -299,10 +299,35 @@ ActiveRecord::Schema.define(version: 2019_08_29_022357) do
   create_table "videos", force: :cascade do |t|
     t.string "title"
     t.string "link"
-    t.integer "country_id"
+    t.bigint "country_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["country_id"], name: "index_videos_on_country_id"
   end
 
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "books", "publishers"
+  add_foreign_key "cities", "countries"
+  add_foreign_key "colleges", "universities"
+  add_foreign_key "conferences", "categories"
+  add_foreign_key "conferences", "cities"
+  add_foreign_key "conferences", "countries"
+  add_foreign_key "issues", "journals"
+  add_foreign_key "journals", "publishers"
+  add_foreign_key "museums", "cities"
+  add_foreign_key "museums", "countries"
+  add_foreign_key "posts", "cities"
+  add_foreign_key "posts", "countries"
+  add_foreign_key "scholarships", "categories"
+  add_foreign_key "scholarships", "countries"
+  add_foreign_key "scholarships", "universities"
+  add_foreign_key "schools", "colleges"
+  add_foreign_key "schools", "universities"
+  add_foreign_key "sites", "cities"
+  add_foreign_key "sites", "countries"
+  add_foreign_key "sites", "users"
+  add_foreign_key "subjects", "disciplines"
+  add_foreign_key "universities", "cities"
+  add_foreign_key "universities", "countries"
+  add_foreign_key "videos", "countries"
 end

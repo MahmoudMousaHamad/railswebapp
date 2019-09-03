@@ -1,1 +1,1 @@
-..\..\..\..\Tools\pgsql\bin\pg_ctl -D c:\Users\mous0003\pgdata start
+pg_ctl -D c:\Users\mous0003\pgdata start
