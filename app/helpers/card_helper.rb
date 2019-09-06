@@ -26,7 +26,14 @@ module CardHelper
 
         def card
             content = safe_join([card_content, card_action])
-            if image.attached?
+            # check that image exists if it is attached using has_one_attached
+            if image.class.name == "ActiveStorage::Attached::One"
+                if image.attached?
+                    content = safe_join([card_image, content])
+                end
+            end
+            # check that image exists if it is attached using has_many_attached
+            if image.class.name == "ActiveStorage::Attachment" and image
                 content = safe_join([card_image, content])
             end
             content_tag(:div, content, class: "card")
