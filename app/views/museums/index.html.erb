@@ -5,15 +5,15 @@
     <%= filters_and_order_for country_museums_path(@country), 
     ["museum_kind", {"name" => "Name" }],params %>
 
-    <% @museums.each do |i| %>
-        <div class="row">
+    <div class="row">
+        <% @museums.each do |i| %>
             <%= card_for("#{i.name}, #{i.city.name}", 
-            { "About" => i.about },
-            country_museum_path(@country, i),
-            3,
-            i.logo) %>
-        </div>
-    <% end %>
+                { "About" => i.about },
+                country_museum_path(@country, i),
+                3,
+                i.logo) %>
+        <% end %>
+    </div>
 
     <%= paginate @museums %>
 </div>
