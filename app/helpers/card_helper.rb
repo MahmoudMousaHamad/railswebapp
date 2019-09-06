@@ -26,7 +26,7 @@ module CardHelper
 
         def card
             content = safe_join([card_content, card_action])
-            if image
+            if image.attached?
                 content = safe_join([card_image, content])
             end
             content_tag(:div, content, class: "card")

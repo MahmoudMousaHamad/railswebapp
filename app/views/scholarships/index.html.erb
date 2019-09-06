@@ -2,7 +2,6 @@
 
     <h1 class="page-title">Scholarships in <%= @country.name %></h1>
     <%= filters_and_order_for(country_scholarships_path(params[:country_id]), ["degree", "university", "category"], params) %>
-    <hr>
     <div class="row">
     <% @scholarships.each do |i| %>
         <%= card_for(i.name, 

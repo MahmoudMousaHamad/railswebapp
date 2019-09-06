@@ -2,7 +2,8 @@
 
     <h1 class="page-title">Museums in <%= @country.name %></h1>
 
-    <%= filters_and_order_for country_museums_path(@country), ["museum_kind", {"name" => "Name" }],params %>
+    <%= filters_and_order_for country_museums_path(@country), 
+    ["museum_kind", {"name" => "Name" }],params %>
 
     <% @museums.each do |i| %>
         <div class="row">

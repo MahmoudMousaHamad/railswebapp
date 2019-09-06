@@ -8,25 +8,14 @@
     <div class="city-tagline">
         <h2><%= @city.name %>: <%= @city.tagline %></h2>
     </div>
-    <% @sites.each do |c| %>
-        <div class="row">
-            <div class="col s12 m7">
-                <div class="card">
-                    <div class="card-image">
-                        <img src="<%= url_for(c.photos.first) %>" alt="<%= c.name %>">
-                        <span class="card-title"><%= c.name %></span>
-                    </div>
-                    <div class="card-content">
-                        <p><%= c.about %></p>
-                    </div>
-                    <div class="card-action">
-                        <%= link_to  "View Site",
-                country_city_site_path(c.country_id, c.city_id, c.id) %>
-                    </div>
-                </div>
-            </div>
-        </div>
-    <% end %>
+    <div class="row">
+        <% @sites.each do |s| %>
+            <%= card_for(s.name, 
+                        {"Name"=> s.name, 
+                        "" => s.about},
+                        country_city_site_path(@city.country, @city, s), 3, s.photos.first) %>
+        <% end %>
+    </div>
 
     <h3>Map of sites in <%= @city.name %></h3>
     <br>

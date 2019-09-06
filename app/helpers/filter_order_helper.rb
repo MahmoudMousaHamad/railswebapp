@@ -54,6 +54,7 @@ module FilterOrderHelper
             end
             selects_content = content_tag(:div, safe_join(selects), class: "select-container")
             content.push selects_content
+            content.push content_tag(:hr, nil)
             content_tag(:form, safe_join(content), :action => action)
         end
 

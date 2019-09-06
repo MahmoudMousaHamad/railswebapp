@@ -10,8 +10,16 @@
         <p><b>About:</b></p>
         <p class="lead"> <%= @i.about %></p>
         <p><b>Address:</b> <%= Geocoder.search([@i.lat, @i.lng]).first.display_name %></p>
-        <p><b>Colleges: </b><%= link_to  "View Colleges in " + @i.name, country_university_colleges_path(@i.country, @i) %></p>
         <p><b>Location:</b></p>
         <%= location_map_for( @i.lat, @i.lng )%>
+        <p><b>Colleges:</b></p>
+        <div class="row">
+        <% @i.colleges.each do |c| %>
+            <%= card_for(c.name, 
+                        {"Name"=> c.name,
+                        "" => c.about},
+                        country_university_college_path(@i.country, @i, c), 3, c.logo) %>
+            <% end %>
+        </div>
     </div>
 </div>
