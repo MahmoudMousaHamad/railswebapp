@@ -33,6 +33,8 @@ module FilterOrderHelper
             filters_order.each do |i|
                 if i.class.name == "Hash"
                     selects.push custom_select("order_by", params[:order_by], i, true)
+                elsif i == 'site'
+                    selects.push select_site
                 elsif i == 'degree'
                     selects.push custom_select("degree", params[:degree], 
                     { "phd" => "PhD", "masters" => "Masters", "bachelor" => "Bachelor's" })
@@ -73,12 +75,24 @@ module FilterOrderHelper
             content_tag(:nav, nav_wrapper_div)
         end
 
+        def select_site
+            options = []
+            options.push content_tag(:option, "All Sites", :value => "")
+            Site.where("country_id = ?", params[:country_id]).each do |s|
+                if s.id.to_s == params[:site]
+                    options.push content_tag(:option, s.name, :value => s.id, :selected => "selected")
+                elsif s.id != params[:site]
+                    options.push content_tag(:option, s.name, :value => s.id)
+                end
+            end
+            content_tag(:select, safe_join(options), :name => "site", :onchange => "this.form.submit();")
+        end
+
         def select_university
             options = []
             options.push content_tag(:option, "All Universities", :value => "")
             University.where("country_id = ?", params[:country_id]).each do |u|
                 if u.id.to_s == params[:university]
-                    puts "inside selected"
                     options.push content_tag(:option, u.name, :value => u.id, :selected => "selected")
                 elsif u.id != params[:university]
                     options.push content_tag(:option, u.name, :value => u.id)

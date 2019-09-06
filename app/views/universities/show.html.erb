@@ -14,11 +14,11 @@
         <%= location_map_for( @i.lat, @i.lng )%>
         <p><b>Colleges:</b></p>
         <div class="row">
-        <% @i.colleges.each do |c| %>
-            <%= card_for(c.name, 
-                        {"Name"=> c.name,
-                        "" => c.about},
-                        country_university_college_path(@i.country, @i, c), 3, c.logo) %>
+            <% @i.colleges.each do |c| %>
+                <%= card_for(c.name, 
+                            {"Name"=> c.name,
+                            "" => c.about},
+                            country_university_college_path(@i.country, @i, c), 3, c.logo) %>
             <% end %>
         </div>
     </div>

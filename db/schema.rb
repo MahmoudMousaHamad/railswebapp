@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_29_022357) do
+ActiveRecord::Schema.define(version: 2019_09_06_150740) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -302,7 +302,9 @@ ActiveRecord::Schema.define(version: 2019_08_29_022357) do
     t.bigint "country_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "site_id"
     t.index ["country_id"], name: "index_videos_on_country_id"
+    t.index ["site_id"], name: "index_videos_on_site_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
@@ -330,4 +332,5 @@ ActiveRecord::Schema.define(version: 2019_08_29_022357) do
   add_foreign_key "universities", "cities"
   add_foreign_key "universities", "countries"
   add_foreign_key "videos", "countries"
+  add_foreign_key "videos", "sites"
 end
