@@ -3,11 +3,14 @@ class PicturesController < ApplicationController
     @records = []
     country_id = params[:country_id]
 
-    @records.concat Site.where("country_id = ?", country_id)
-    @records.concat Museum.where("country_id = ?", country_id)
-    @records.concat University.where("country_id = ?", country_id)
+    @records.concat Site.filter(params.slice(:country_id, :city, :site)).q_name(params[:q])
+    
+    if params[:site] == "" or !params[:site]
+      @records.concat Museum.filter(params.slice(:country_id, :city)).q_name(params[:q])
+      @records.concat University.filter(params.slice(:country_id, :city)).q_name(params[:q])
+    end
 
-    @records = Kaminari.paginate_array(@records).page(params[:page]).per(10)
+    @records = Kaminari.paginate_array(@records).page(params[:page]).per(20)
 
   end
 end

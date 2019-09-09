@@ -1,7 +1,8 @@
 <div class="container">
     <div class="content">
         <h1><%= Country.find(params[:country_id]).name %>'s Photo Gallery</h1>
-
+        <%= filters_and_order_for(country_pictures_path(params[:country_id]), 
+        ["city-site"], params)%>
         <div class="grid content">
             <% @records.each do |r| %>
                 <% r.photos.each do |p| %>
@@ -9,7 +10,6 @@
                         <img class="materialboxed" width="100%" src="<%= url_for (p)%>" alt="Photo of a place in <%= Country.find(params[:country_id]).name %>">
                         <h6 class="img-description"><%= "#{r.name}, #{r.city.name}" %></h6>
                     </picture>
-                    
                 <% end %>
             <% end %>
         </div>

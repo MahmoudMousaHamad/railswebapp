@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_06_150740) do
+ActiveRecord::Schema.define(version: 2019_09_09_135251) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -303,6 +303,8 @@ ActiveRecord::Schema.define(version: 2019_09_06_150740) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "site_id"
+    t.bigint "city_id", null: false
+    t.index ["city_id"], name: "index_videos_on_city_id"
     t.index ["country_id"], name: "index_videos_on_country_id"
     t.index ["site_id"], name: "index_videos_on_site_id"
   end
@@ -331,6 +333,7 @@ ActiveRecord::Schema.define(version: 2019_09_06_150740) do
   add_foreign_key "subjects", "disciplines"
   add_foreign_key "universities", "cities"
   add_foreign_key "universities", "countries"
+  add_foreign_key "videos", "cities"
   add_foreign_key "videos", "countries"
   add_foreign_key "videos", "sites"
 end

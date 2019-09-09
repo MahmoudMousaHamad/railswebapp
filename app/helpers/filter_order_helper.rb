@@ -33,6 +33,8 @@ module FilterOrderHelper
             filters_order.each do |i|
                 if i.class.name == "Hash"
                     selects.push custom_select("order_by", params[:order_by], i, true)
+                elsif i == 'city-site'
+                    selects.push select_city_site
                 elsif i == 'site'
                     selects.push select_site
                 elsif i == 'degree'
@@ -73,6 +75,43 @@ module FilterOrderHelper
             nav_wrapper_div = content_tag(:div, input_field_div, class: "nav-wrapper search-container")
 
             content_tag(:nav, nav_wrapper_div)
+        end
+
+        def select_city_site
+            city_options = []
+            city_options.push content_tag(:option, "All Cities", :value => "")
+            City.where("country_id = ?", params[:country_id]).each do |c|
+                if c.id.to_s == params[:city]
+                    city_options.push content_tag(:option, c.name, :value => c.id, :selected => "selected")
+                elsif c.id != params[:city]
+                    city_options.push content_tag(:option, c.name, :value => c.id)
+                end
+            end
+            city_select = content_tag(:select, safe_join(city_options), :name => "city", :onchange => "this.form.submit();")
+            
+            city_chosen = false;
+            if params[:city]
+                if params[:city].length > 0
+                    city_chosen = true;
+                end
+            end
+
+            if city_chosen
+                options = []
+                options.push content_tag(:option, "All Sites", :value => "")
+                Site.where("country_id = ?", params[:country_id]).where("city_id = ?", params[:city]).each do |s|
+                    if s.id.to_s == params[:site]
+                        options.push content_tag(:option, s.name, :value => s.id, :selected => "selected")
+                    elsif s.id != params[:site]
+                        options.push content_tag(:option, s.name, :value => s.id)
+                    end
+                end
+                
+                site_select = content_tag(:select, safe_join(options), :name => "site", :onchange => "this.form.submit();")
+                content_tag(:span, safe_join([city_select, site_select]))
+            else
+                return city_select
+            end
         end
 
         def select_site
