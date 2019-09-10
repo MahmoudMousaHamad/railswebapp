@@ -4,10 +4,8 @@ class CitiesController < ApplicationController
         @country = Country.find(params[:country_id])
         if @cities
             @hash = Gmaps4rails.build_markers(@cities) do |city, marker|
-                results = Geocoder.search(city.name + ", " + @country.name)
-                coordinates = results.first.coordinates
-                marker.lat coordinates[0]
-                marker.lng coordinates[1]
+                marker.lat city.lat
+                marker.lng city.lng
                 marker.title city.name
                 marker.json({ link: country_city_sites_path(@country.id, city.id) })
             end

@@ -1,6 +1,6 @@
 ActiveAdmin.register City do
 
-  permit_params :name, :tagline, :country_id, photos: []
+  permit_params :name, :tagline, :country_id, :lat, :lng, photos: []
   
   form do |f|
     inputs do
@@ -8,6 +8,9 @@ ActiveAdmin.register City do
       input :tagline
       input :country
       input :photos, as: :file, input_html: { multiple: true }
+      input :lat
+      input :lng
+      div :id => "admin-add-map"
     end
     actions
   end

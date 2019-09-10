@@ -20,7 +20,6 @@
             }, function(){
                 markers = handler.addMarkers(markers_json);
                 handler.bounds.extendWith(markers);
-
                 links = []
                 for (let i = 0; i < markers.length; i++) {
                         links.push(markers_json[i].link);

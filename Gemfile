@@ -93,3 +93,6 @@ gem 'textacular', '~> 5.0'
 
 gem "webpacker"
 
+gem 'country_select', '~> 4.0'
+
+gem "normalize_country"
