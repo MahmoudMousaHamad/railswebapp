@@ -4,7 +4,8 @@ module Filterable
     included do 
         scope :country_id, -> (country_id) { where("country_id = ?", country_id) if country_id}
         scope :city, -> (city_id) { where city_id: city_id  if city_id != "" && city_id }
-        scope :site, -> (site_id) { where id: site_id  if site_id != "" && site_id }        
+        scope :site, -> (site_id) { where site_id: site_id  if site_id != "" && site_id }        
+        scope :id, -> (id) { where id: id  if id != "" && id }                
         scope :category, -> (category_id) { where category_id: category_id if category_id }
         scope :q_name, -> (q) { where("name like ?", "%#{q}%") if q}
         scope :q_title, -> (q) { where("title like ?", "%#{q}%") if q}

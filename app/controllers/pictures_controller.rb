@@ -2,10 +2,12 @@ class PicturesController < ApplicationController
   def index
     @records = []
     country_id = params[:country_id]
+    site_id = params[:site]
 
-    @records.concat Site.filter(params.slice(:country_id, :city, :site)).q_name(params[:q])
-    
-    if params[:site] == "" or !params[:site]
+    if (site_id and site_id != "") and params[:city] != ""
+      @records.concat Site.filter(params.slice(:country_id, :city)).id(params[:site])
+    else
+      @records.concat Site.filter(params.slice(:country_id, :city)).q_name(params[:q])
       @records.concat Museum.filter(params.slice(:country_id, :city)).q_name(params[:q])
       @records.concat University.filter(params.slice(:country_id, :city)).q_name(params[:q])
     end
