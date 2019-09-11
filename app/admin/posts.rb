@@ -9,7 +9,7 @@ ActiveAdmin.register Post do
       input :cover_photo, as: :file 
       input :city
       input :country
-      input :date_occurred
+      input :date_occurred, as: :date_picker
     end
     actions
   end

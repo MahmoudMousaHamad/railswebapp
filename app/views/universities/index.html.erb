@@ -5,9 +5,8 @@
     <div class="row">
         <% @country.universities.each do |i| %>
             <%= card_for(i.name, 
-                        {"Name"=> i.name, 
-                        "" => i.about},
-                        country_university_path(@country, i), 3, i.logo) %>
+                        {},
+                        country_university_path(@country, i), 4, i.logo) %>
         <% end %>
     </div>
     <%= paginate @universities %>

@@ -10,7 +10,7 @@
         <p><b>About:</b></p>
         <p class="lead"> <%= @i.about %></p>
         <p><b>Address:</b> <%= Geocoder.search([@i.lat, @i.lng]).first.display_name %></p>
-        <p><b>Schools: </b></p>
+        <p><b>Departments: </b></p>
         <div class="row">
             <% @i.schools.each do |c| %>
                 <%= card_for(c.name, 

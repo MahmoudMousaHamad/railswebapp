@@ -16,9 +16,8 @@
         <div class="row">
             <% @i.colleges.each do |c| %>
                 <%= card_for(c.name, 
-                            {"Name"=> c.name,
-                            "" => c.about},
-                            country_university_college_path(@i.country, @i, c), 3, c.logo) %>
+                            {},
+                            country_university_college_path(@i.country, @i, c), 4, c.logo) %>
             <% end %>
         </div>
     </div>

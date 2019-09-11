@@ -7,7 +7,7 @@
         <% @posts.each do |i| %>
             <%= card_for(i.title, 
                         {"City"=> i.city.name, 
-                        "" => i.body},
+                        "Date" => i.date_occurred.strftime("%d/%m/%Y")},
                         country_post_path(@country, i), 3, i.cover_photo) %>
         <% end %>
     </div>
