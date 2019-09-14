@@ -52,7 +52,6 @@ Rails.application.routes.draw do
 
   resources :subjects, param: :name
 
-  
   get '/library', to: 'library#index'
   get '/library/browse', to: 'library#browse'
   get 'library/basic_search', to: 'library#basic_search'

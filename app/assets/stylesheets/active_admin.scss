@@ -20,3 +20,27 @@
     height:600px; 
     width:100%;
 }
+
+.delete-image-wrap {
+    position: relative !important;
+    display: inline-block;
+}
+.delete-image-wrap .delete-image {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    z-index: 100;
+    background-color: #FFF;
+    padding: 5px 2px 2px;
+    color: #000;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    font-size: 22px;
+    line-height: 10px;
+    border-radius: 50%;
+}
+.image-admin {
+    width: 400px;
+    margin-left: 50px;
+}
