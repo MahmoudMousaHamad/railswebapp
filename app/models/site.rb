@@ -6,7 +6,8 @@ class Site < ApplicationRecord
 
   has_many :video
 
-  has_many_attached :photos
+  has_many_attached :slideshow_photos
+  has_many_attached :gallery_photos
 
   validates :name, presence: true, uniqueness: true
   validates :about, presence: true

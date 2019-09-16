@@ -1,4 +1,4 @@
-<%= carousel_for( @s.photos ) %>
+<%= carousel_for( @s.slideshow_photos ) %>
 
 <br>
 <br>
@@ -10,5 +10,6 @@
         <p class="lead"> <%= @s.about %></p>
     </div>
 
+    <%= gallery_for(@s.gallery_photos) %>
     
 </div>

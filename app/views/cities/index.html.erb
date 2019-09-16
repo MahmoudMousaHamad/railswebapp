@@ -1,4 +1,4 @@
-<%= carousel_for( @country.photos ) %>
+<%= carousel_for( @country.slideshow_photos ) %>
 <nav>
     <div class="container nav-wrapper">
         <a href="" data-target="mobile-sub-nav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
@@ -36,7 +36,7 @@
             <div class="col s12 m7">
                 <div class="card">
                     <div class="card-image">
-                        <img src="<%= url_for(c.photos.first) %>" alt="<%= c.name %>">
+                        <img src="<%= url_for(c.slideshow_photos.first) %>" alt="<%= c.name %>">
                         <span class="card-title"><%= c.name %></span>
                     </div>
                     <div class="card-content">
@@ -51,9 +51,7 @@
         </div>
     <% end %>
 
-    <br>
-    <br>
-    <br>
+    <%= gallery_for(@country.gallery_photos) %>
 
     <h3>Map of cities in <%= @country.name %></h3>
     <br>

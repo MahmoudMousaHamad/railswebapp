@@ -1,4 +1,4 @@
-<%= carousel_for( @city.photos ) %>
+<%= carousel_for( @city.slideshow_photos ) %>
 
 <br>
 <br>
@@ -13,9 +13,11 @@
             <%= card_for(s.name, 
                         {"Name"=> s.name, 
                         "" => s.about},
-                        country_city_site_path(@city.country, @city, s), 3, s.photos.first) %>
+                        country_city_site_path(@city.country, @city, s), 3, s.slideshow_photos.first) %>
         <% end %>
     </div>
+
+    <%= gallery_for(@city.gallery_photos) %>
 
     <h3>Map of sites in <%= @city.name %></h3>
     <br>
