@@ -9,7 +9,6 @@
     "materialize-css": "^1.0.0-rc.2",
     "trix": "1.0.0",
     "underscore": "^1.9.1",
-    "yarn": "^1.17.3"
   },
   "devDependencies": {
     "webpack-dev-server": "^3.8.0"
