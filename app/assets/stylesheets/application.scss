@@ -111,6 +111,11 @@ select {
     margin-top: 40px;
 }
 
+.card-image {
+    height: 300px;
+    overflow: hidden;
+}
+
 .grid { 
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
