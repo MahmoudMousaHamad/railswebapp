@@ -96,3 +96,5 @@ gem "webpacker"
 gem 'country_select', '~> 4.0'
 
 gem "normalize_country"
+
+gem "iso_country_codes"

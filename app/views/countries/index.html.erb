@@ -3,8 +3,11 @@
 <div class="container">
     <h1 class="page-title">Countries List</h1>
     <div class="collection">
-        <% @countries.each do |c| %>
-            <%= link_to  c.name, country_cities_path(c), class: "collection-item" %>
+        <% @countries.each do |continent, countries| %>
+            <h2><%= continent %></h2>
+            <% countries.each do |c| %>
+                <%= link_to  c.name, country_cities_path(c), class: "" %>
+            <% end %>
         <% end %>
     </div>
 </div>
