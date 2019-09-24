@@ -25,7 +25,7 @@ module CardHelper
         delegate :link_to, :content_tag, :image_tag, :safe_join, to: :view
 
         def card
-            content = safe_join([card_content, card_action])
+            content = safe_join([card_content])
             # check that image exists if it is attached using has_one_attached
             if image.class.name == "ActiveStorage::Attached::One"
                 if image.attached?
@@ -36,11 +36,12 @@ module CardHelper
             if image.class.name == "ActiveStorage::Attachment" and image
                 content = safe_join([card_image, content])
             end
-            content_tag(:div, content, class: "card")
+            link_content = content_tag(:div, content, class: "card")
+            return content_tag(:a, link_content, :href => link) 
         end
 
         def card_image
-            image_content = image_tag(image)
+            image_content = image_tag(image, class: "cover")
             content_tag(:div, image_content, class: "card-image")
         end
 

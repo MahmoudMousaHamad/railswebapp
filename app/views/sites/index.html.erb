@@ -11,8 +11,7 @@
     <div class="row">
         <% @sites.each do |s| %>
             <%= card_for(s.name, 
-                        {"Name"=> s.name, 
-                        "" => s.about},
+                        {},
                         country_city_site_path(@city.country, @city, s), 3, s.slideshow_photos.first) %>
         <% end %>
     </div>

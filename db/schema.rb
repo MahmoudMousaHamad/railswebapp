@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_09_141732) do
+ActiveRecord::Schema.define(version: 2019_09_24_132955) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -147,6 +147,18 @@ ActiveRecord::Schema.define(version: 2019_09_09_141732) do
     t.datetime "updated_at", null: false
     t.float "lat"
     t.float "lng"
+  end
+
+  create_table "country_references", force: :cascade do |t|
+    t.string "title"
+    t.string "author"
+    t.string "publisher"
+    t.date "publication_date"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "country_id"
+    t.string "period"
+    t.index ["country_id"], name: "index_country_references_on_country_id"
   end
 
   create_table "disciplines", force: :cascade do |t|
@@ -320,6 +332,7 @@ ActiveRecord::Schema.define(version: 2019_09_09_141732) do
   add_foreign_key "conferences", "categories"
   add_foreign_key "conferences", "cities"
   add_foreign_key "conferences", "countries"
+  add_foreign_key "country_references", "countries"
   add_foreign_key "issues", "journals"
   add_foreign_key "journals", "publishers"
   add_foreign_key "museums", "cities"

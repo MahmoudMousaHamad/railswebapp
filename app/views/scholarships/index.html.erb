@@ -5,8 +5,7 @@
     <div class="row">
     <% @scholarships.each do |i| %>
         <%= card_for(i.name, 
-                    {"About"=> i.about,
-                     "Degree" => i.degree, 
+                    {"Degree" => i.degree, 
                     "University" => i.university.name, 
                     "Scholarship" => i.scholarship,
                     "Deadline" => i.deadline.strftime("%d/%m/%Y") },

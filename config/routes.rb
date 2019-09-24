@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'country_references/index'
+  get 'country_references/show'
   get 'pictures/index'
   get 'videos/index'
   get 'schools/index'
@@ -26,6 +28,7 @@ Rails.application.routes.draw do
     resources :posts
     resources :pictures
     resources :videos
+    resources :country_references
     resources :universities do
       resources :colleges do
         resources :schools

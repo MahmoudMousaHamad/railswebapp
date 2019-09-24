@@ -15,6 +15,7 @@
  $primary-color: rgb(58, 42, 145)  !default;
  $secondary-color: rgb(208, 196, 156) !default;
  $reference-secondary-color: rgb(254, 251, 220);
+ $gold: rgb(224, 188, 70) !default;
  @import "materialize";
  @import "bootstrap-sprockets";
  @import "bootstrap";
@@ -158,3 +159,20 @@ text-align: center;
     padding: 20px !important;
 }
 
+picture img {
+    height: 200px;
+}
+
+.cover {
+    max-width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.card-content h4{
+    font-size: 20px;
+    color: $gold;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

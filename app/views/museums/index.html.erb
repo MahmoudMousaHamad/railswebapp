@@ -8,7 +8,7 @@
     <div class="row">
         <% @museums.each do |i| %>
             <%= card_for("#{i.name}, #{i.city.name}", 
-                { "About" => i.about },
+                { },
                 country_museum_path(@country, i),
                 3,
                 i.logo) %>

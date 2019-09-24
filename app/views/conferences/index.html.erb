@@ -5,8 +5,7 @@
     <% @conferences.each do |i| %>
         <%= card_for(i.name, 
                     {"City"=> i.city.name,
-                     "Dates" => "#{i.from_date.strftime('%d/%m/%Y')} - #{i.to_date.strftime('%d/%m/%Y')}", 
-                    "About" => i.about},
+                     "Dates" => "#{i.from_date.strftime('%d/%m/%Y')} - #{i.to_date.strftime('%d/%m/%Y')}"},
                     country_conference_path(@country, i), 3) %>
     <% end %>
     </div>

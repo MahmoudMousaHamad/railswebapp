@@ -6,10 +6,11 @@
             <li><%= link_to  "Museums", country_museums_path, class: 'nav-item nav-link' %></li>
             <li><%= link_to  "Conferences", country_conferences_path, class: 'nav-item nav-link' %></li>
             <li><%= link_to  "Scholarships", country_scholarships_path, class: 'nav-item nav-link' %></li>
-            <li><%= link_to  "Excavations and Surveys News", country_posts_path, class: 'nav-item nav-link' %></li>
+            <li><%= link_to  "News", country_posts_path, class: 'nav-item nav-link' %></li>
             <li><%= link_to  "Universities", country_universities_path, class: 'nav-item nav-link' %></li>
             <li><%= link_to  "Videos", country_videos_path, class: 'nav-item nav-link' %></li>
             <li><%= link_to  "Pictures Gallery", country_pictures_path, class: 'nav-item nav-link' %></li>
+            <li><%= link_to  "References", country_country_references_path, class: 'nav-item nav-link' %></li>
         </ul>
     </div>
 </nav>
@@ -18,11 +19,11 @@
     <li><%= link_to  "Museums", country_museums_path %></li>
     <li><%= link_to  "Conferences", country_conferences_path %></li>
     <li><%= link_to  "Scholarships", country_scholarships_path %></li>
-    <li><%= link_to  "Excavations and Surveys News", country_posts_path %></li>
+    <li><%= link_to  "News", country_posts_path %></li>
     <li><%= link_to  "Universities", country_universities_path %></li>
     <li><%= link_to  "Videos", country_videos_path %></li>
     <li><%= link_to  "Pictures Gallery", country_pictures_path %></li>
-       
+    <li><%= link_to  "References", country_country_references_path %></li>
 </ul>
 
 <div class="container content">
@@ -31,25 +32,20 @@
         <h2>About <%= @country.name %>: </h2>
         <p class="lead"><%= @country.about %></p>
     </div>
-    <% @country.cities.each do |c| %>
-        <div class="row">
-            <div class="col s12 m7">
+    <div class="row">
+        <% @country.cities.each do |c| %>
+            <div class="col s12 m6">
                 <div class="card">
-                    <div class="card-image">
-                        <img src="<%= url_for(c.slideshow_photos.first) %>" alt="<%= c.name %>">
-                        <span class="card-title"><%= c.name %></span>
-                    </div>
-                    <div class="card-content">
-                        <p><%= c.tagline %></p>
-                    </div>
-                    <div class="card-action">
-                        <%= link_to  "View Sites in " + c.name,
-                        country_city_sites_path(@country, c) %>
-                    </div>
+                    <a href='<%= country_city_sites_path(@country, c.id) %>'>
+                        <div class="card-image">
+                            <img src="<%= url_for(c.slideshow_photos.first) %>" alt="<%= c.name %>">
+                            <span class="card-title"><%= c.name %></span>
+                        </div>
+                    </a>
                 </div>
             </div>
-        </div>
-    <% end %>
+        <% end %>
+    </div>
 
     <%= gallery_for(@country.gallery_photos) %>
 

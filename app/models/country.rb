@@ -8,6 +8,7 @@ class Country < ApplicationRecord
     has_many :scholarships, dependent: :destroy
     has_many :posts, dependent: :destroy
     has_many :universities, dependent: :destroy
+    has_many :country_references, dependent: :destroy
 
     has_many_attached :slideshow_photos
     has_many_attached :gallery_photos

@@ -6,7 +6,7 @@
 
 <div class="container">
     <div class="about">
-        <h2><img src="<%= url_for(@i.university.logo)%>" width="50px"/>   <%= @i.name %> in <%= @i.university.name %> </h2>
+        <h2><img src="<%= url_for(@i.university.logo)%>" width="50px"/> <%= @i.name %> in <%= @i.university.name %> </h2>
         <p><b>About:</b></p>
         <p class="lead"> <%= @i.about %></p>
         <p><b>Address:</b> <%= Geocoder.search([@i.lat, @i.lng]).first.display_name %></p>
@@ -14,8 +14,7 @@
         <div class="row">
             <% @i.schools.each do |c| %>
                 <%= card_for(c.name, 
-                            {"Name"=> c.name,
-                            "" => c.about},
+                            {},
                             country_university_college_school_path(@university.country, @university, @i, c), 3, c.logo) %>
             <% end %>
         </div>

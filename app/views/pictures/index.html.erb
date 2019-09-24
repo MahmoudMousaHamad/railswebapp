@@ -5,11 +5,20 @@
         ["city-site"], params)%>
         <div class="grid content">
             <% @records.each do |r| %>
-                <% r.photos.each do |p| %>
-                    <picture>
-                        <img class="materialboxed" width="100%" src="<%= url_for (p)%>" alt="Photo of a place in <%= Country.find(params[:country_id]).name %>">
-                        <h6 class="img-description"><%= "#{r.name}, #{r.city.name}" %></h6>
-                    </picture>
+                <% if r.class.name == "Site" %>
+                    <% r.slideshow_photos.each do |p| %>
+                        <picture>
+                            <img class="materialboxed" width="100%" src="<%= url_for (p)%>" alt="Photo of a place in <%= Country.find(params[:country_id]).name %>">
+                            <h6 class="img-description"><%= "#{r.name}, #{r.city.name}" %></h6>
+                        </picture>
+                    <% end %>
+                <% else %>
+                    <% r.photos.each do |p| %>
+                        <picture>
+                            <img class="materialboxed" width="100%" src="<%= url_for (p)%>" alt="Photo of a place in <%= Country.find(params[:country_id]).name %>">
+                            <h6 class="img-description"><%= "#{r.name}, #{r.city.name}" %></h6>
+                        </picture>
+                    <% end %>
                 <% end %>
             <% end %>
         </div>
