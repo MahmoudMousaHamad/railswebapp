@@ -47,7 +47,7 @@ module CardHelper
 
         def card_content
             items = []
-            items.push content_tag(:h4, title)
+            items.push content_tag(:h4, title, :title => title)
             model.each_pair do |label, value|
                 if label == ""
                     items.push content_tag(:div, value.truncate(50))
