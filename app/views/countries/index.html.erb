@@ -1,12 +1,15 @@
 <% content_for :title, 'Countries' %>
 <% navigation_add 'Home', root_path %>
 <div class="container">
-    <h1 class="page-title">Countries List</h1>
-    <div class="collection">
+    <h1 class="page-title">Countries</h1>
+    <div class="row content">
         <% @countries.each do |continent, countries| %>
             <h2><%= continent %></h2>
             <% countries.each do |c| %>
-                <%= link_to  c.name, country_cities_path(c), class: "" %>
+                <div class="col s6 m2">
+                    <%= link_to  content_tag(:img, nil, :src => "https://www.countryflags.io/#{NormalizeCountry(c.name, to: :alpha2)}/flat/64.png"),
+                    country_cities_path(c), class: "flag-list-link" %>
+                </div>
             <% end %>
         <% end %>
     </div>

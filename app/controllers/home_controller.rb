@@ -7,9 +7,9 @@ class HomeController < ApplicationController
             marker.lng country.lng
             marker.title country.name
             marker.picture({
-                :url => "https://www.countryflags.io/#{country_code}/flat/24.png",
-                :width   => 24,
-                :height  => 24
+                :url => "https://www.countryflags.io/#{country_code}/flat/32.png",
+                :width   => 32,
+                :height  => 32
             })
             marker.json({ link: country_cities_path(country.id) })
         end
