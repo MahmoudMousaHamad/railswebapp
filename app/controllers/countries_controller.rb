@@ -3,6 +3,7 @@ class CountriesController < ApplicationController
         @countries = {}
         @hash = Country.all.group_by { |country| IsoCountryCodes.search_by_name(country.name)[0].continent }
         @hash.each do |continent, countries|
+            @hash[continent] = @hash[continent].sort_by { |country| country.name }
             case continent
             when "AS"
                 @countries["Asia"] = @hash.delete(continent)
@@ -20,5 +21,6 @@ class CountriesController < ApplicationController
                 @countries["Antarctica"] = @hash.delete(continent)
             end
         end
+        @countries = @countries.sort.to_h
     end
 end

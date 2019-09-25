@@ -9,7 +9,7 @@
                 <% countries.each do |c| %>
                     <div class="col s6 m2">
                         <%= link_to  content_tag(:img, nil, :src => "https://www.countryflags.io/#{NormalizeCountry(c.name, to: :alpha2)}/flat/64.png"),
-                        country_cities_path(c), class: "flag-list-link" %>
+                        country_cities_path(c), class: "flag-list-link", title: c.name %>
                     </div>
                 <% end %>
             </div>
