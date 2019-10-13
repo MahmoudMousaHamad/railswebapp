@@ -10,10 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_24_132955) do
+ActiveRecord::Schema.define(version: 2019_10_13_194827) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "academic_papers", force: :cascade do |t|
+    t.string "title"
+    t.string "author"
+    t.integer "publication_year"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "paper_type"
+  end
+
+  create_table "academic_papers_subjects", id: false, force: :cascade do |t|
+    t.bigint "academic_paper_id", null: false
+    t.bigint "subject_id", null: false
+    t.index ["academic_paper_id"], name: "index_academic_papers_subjects_on_subject_id_and_paper_id"
+    t.index ["subject_id"], name: "index_academic_papers_subjects_on_paper_id_and_subject_id"
+  end
 
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
@@ -72,6 +88,12 @@ ActiveRecord::Schema.define(version: 2019_09_24_132955) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "book_collections", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "books", force: :cascade do |t|
     t.string "title"
     t.text "about"
@@ -81,6 +103,11 @@ ActiveRecord::Schema.define(version: 2019_09_24_132955) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "publisher_id"
+    t.bigint "book_collection_id"
+    t.string "language"
+    t.string "isbn"
+    t.string "volume"
+    t.index ["book_collection_id"], name: "index_books_on_book_collection_id"
     t.index ["publisher_id"], name: "index_books_on_publisher_id"
   end
 
@@ -284,6 +311,7 @@ ActiveRecord::Schema.define(version: 2019_09_24_132955) do
     t.bigint "discipline_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "code"
     t.index ["discipline_id"], name: "index_subjects_on_discipline_id"
   end
 
@@ -326,6 +354,7 @@ ActiveRecord::Schema.define(version: 2019_09_24_132955) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "books", "book_collections"
   add_foreign_key "books", "publishers"
   add_foreign_key "cities", "countries"
   add_foreign_key "colleges", "universities"

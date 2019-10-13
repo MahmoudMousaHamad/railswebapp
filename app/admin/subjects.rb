@@ -1,5 +1,5 @@
 ActiveAdmin.register Subject do
 
-  permit_params :name, :about, :discipline_id
+  permit_params :name, :about, :code, :discipline_id
   
 end

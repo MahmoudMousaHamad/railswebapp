@@ -1,40 +1,76 @@
 <div class="container">
     <div class="content">
-        <div class="row browse-link">
-            <h3>Browse by Subject:</h3>
-            <%= link_to  "Browse", subjects_path, class: "waves-effect waves-light btn" %>
-        </div>
-        <div class="row browse-link">
-            <h3>Browse by Title:</h3>
-            <%= link_to  "Browse", library_browse_path(:letter => "0-9"), class: "waves-effect waves-light btn" %>
-        </div>
-        <div class="row browse-link">
-            <h3>Browse by Publisher:</h3>
-            <%= link_to  "Browse", publishers_path, class: "waves-effect waves-light btn" %>
+        <div class=" row search-container">
+            <div class="search-content">
+                <h3>Search journals and books</h3>
+                <nav>
+                    <div class="nav-wrapper">
+                        <form id="search-form" action="<%= library_path %>" method="get">
+                            <div class="input-field">
+                                <input name="q" id="search" type="search" required>
+                                <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                                <i class="material-icons">close</i>
+                            </div>
+                        </form>
+                    </div>
+                </nav>
+                <div class="col s12 m3 filter-section">
+                <h3>Filter Results</h3>
+                <form action="<%= library_basic_search_path %>">
+                    <input name="q" type="hidden" value="<%= params[:q] %>">
+                    <div style="margin-top: 20px;" class="filter">
+                        <h5>Content Type:</h5>
+                        <div class="checkboxes">
+                            <label>
+                                <%= check_box_tag "journals", nil, params[:journals] == "on", onChange: "this.form.submit();" %>
+                                <span>Journals</span>
+                            </label>
+                            <br>
+                            <label>
+                                <%= check_box_tag "books", nil, params[:books] == "on", onChange: "this.form.submit();" %>
+                                <span>Books</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="filter">
+                        <h5>Publication Year:</h5>
+                        <div class="col s12 m6">
+                            <input name="from_year" type="number" placeholder="From" value="<%= params[:from_year] %>">
+                        </div>
+                        <div class="col s12 m6">
+                            <input name="to_year" type="number" placeholder="To" value="<%= params[:to_year] %>">
+                        </div>
+                        <input class="btn-small" type="submit" value="Apply">
+                    </div>
+                    <div class="filter">
+                        <h5>Subject: </h5>
+                        <div class="checkboxes">
+                            <% Subject.all.each do |s| %>
+                                <label>
+                                    <%= check_box_tag "search[subjects][]", s.name, params[:search].nil? ? false : params[:search][:subjects].include?(s.name), onChange: "this.form.submit();" %>
+                                    <span><%= s.name %></span>
+                                </label>
+                                <br>
+                            <% end %>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            </div>
+            <% if @results %>
+                <div class="search-results collection">
+                    <% @results.each do |r| %>
+                        <%= link_to  r.title + ", " + truncate(r.about), journal_path(r.id), class: "collection-item" %>
+                    <% end %>
+                </div>
+            <% end %>
         </div>
 
-            <div class=" row search-container">
-                <div class="search-content">
-                    <h3>Search journals and books</h3>
-                    <nav>
-                        <div class="nav-wrapper">
-                            <form id="search-form" action="<%= library_path %>" method="get">
-                                <div class="input-field">
-                                    <input name="q" id="search" type="search" required>
-                                    <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-                                    <i class="material-icons">close</i>
-                                </div>
-                            </form>
-                        </div>
-                    </nav>
-                </div>
-                <% if @results %>
-                    <div class="search-results collection">
-                        <% @results.each do |r| %>
-                            <%= link_to  r.title + ", " + truncate(r.about), journal_path(r.id), class: "collection-item" %>
-                        <% end %>
-                    </div>
-                <% end %>
-            </div>
+        <div class="row browse-link" style="display: none;">
+            <h3>Browse by:</h3>
+            <%= link_to  "Subject", subjects_path, class: "waves-effect waves-light btn" %>
+            <%= link_to  "Title", library_browse_path(:letter => "0-9"), class: "waves-effect waves-light btn" %>
+            <%= link_to  "Publisher", publishers_path, class: "waves-effect waves-light btn" %>
+        </div>
     </div>
 </div>

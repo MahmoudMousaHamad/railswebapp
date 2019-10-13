@@ -1,6 +1,6 @@
 ActiveAdmin.register Book do
 
-  permit_params :title, :about, :year, :author, :pages, :pdf, :cover, :publisher_id, subject_ids: []
+  permit_params :title, :about, :year, :author, :pages, :pdf, :cover, :publisher_id, :book_collection_id, :language, :isbn, :volume, subject_ids: []
 
   form do |f|
     inputs do
@@ -13,6 +13,10 @@ ActiveAdmin.register Book do
       input :pdf, as: :file
       input :cover, as: :file
       input :subjects, label: 'Subjects', as: :check_boxes, collection: Subject.all
+      input :book_collection
+      input :language
+      input :isbn
+      input :volume
     end
     actions
   end
