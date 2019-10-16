@@ -1,4 +1,8 @@
 class Book < ApplicationRecord
+    include PgSearch::Model
+    multisearchable against: [:title, :author, :about, :issn, :keywords]
+                    if: :published?
+
     include Filterable
     
     belongs_to :publisher

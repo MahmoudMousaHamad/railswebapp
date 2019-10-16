@@ -17,10 +17,11 @@ class LibraryController < ApplicationController
         end
 
         if q
-            @result = Search.new(q, content_type)
-            @result = @result.select { |i| i.class.name == "Journal" ? i.coverageFrom.to_i >= from_year : i.year >= from_year } if from_year != 0
-            @result = @result.select { |i| i.class.name == "Journal" ? i.coverageTo.to_i <= to_year : i.year <= to_year } if to_year != 0
-            @result = @result.select { |i| !(i.subjects.map { |s| s.name } & params[:search][:subjects]).empty? } if params[:search]
+            @result = PgSearch.multisearch(q).page(params[:page]).per(params[:items_per_page])
+            # @result = Search.new(q, content_type)
+            # @result = @result.select { |i| i.class.name == "Journal" ? i.coverageFrom.to_i >= from_year : i.year >= from_year } if from_year != 0
+            # @result = @result.select { |i| i.class.name == "Journal" ? i.coverageTo.to_i <= to_year : i.year <= to_year } if to_year != 0
+            # @result = @result.select { |i| !(i.subjects.map { |s| s.name } & params[:search][:subjects]).empty? } if params[:search]
         end
     end
 
@@ -36,6 +37,4 @@ class LibraryController < ApplicationController
             @books = Book.order("title ASC").where("substr(title, 1, 1) = ? OR substr(title, 1, 1) = ?", params[:letter].upcase, params[:letter].downcase)
         end
     end
-
-    private
 end

@@ -1,4 +1,5 @@
 class Issue < ApplicationRecord
+  include PgSearch::Model
   include Filterable
     
   belongs_to :journal
