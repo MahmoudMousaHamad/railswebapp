@@ -1,6 +1,7 @@
 ActiveAdmin.register Book do
 
-  permit_params :title, :about, :year, :author, :pages, :pdf, :cover, :publisher_id, :book_collection_id, :language, :isbn, :volume, subject_ids: []
+  permit_params :title, :about, :year, :author, :pages, :pdf, :cover, :publisher_id, :keywords,
+                :book_collection_id, :language, :isbn, :volume, :published, subject_ids: []
 
   form do |f|
     inputs do
@@ -17,6 +18,8 @@ ActiveAdmin.register Book do
       input :language
       input :isbn
       input :volume
+      input :published
+      input :keywords
     end
     actions
   end

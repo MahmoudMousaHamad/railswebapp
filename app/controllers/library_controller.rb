@@ -17,7 +17,18 @@ class LibraryController < ApplicationController
         end
 
         if q
-            @result = PgSearch.multisearch(q).page(params[:page]).per(params[:items_per_page])
+            @search_results = PgSearch.multisearch(q).page(params[:page]).per(params[:items_per_page])
+            @categorized_results = []
+            @search_results.each do |r|
+                if r.searchable_type == "Book"
+                    @categorized_results.push(Book.find(r.searchable_id))
+                elsif r.searchable_type == "Journal"
+                    @categorized_results.push(Journal.find(r.searchable_id))                    
+                elsif r.searchable_type == "AcademicPaper"
+                    @categorized_results.push(AcademicPaper.find(r.searchable_id))                    
+                end
+            end
+
             # @result = Search.new(q, content_type)
             # @result = @result.select { |i| i.class.name == "Journal" ? i.coverageFrom.to_i >= from_year : i.year >= from_year } if from_year != 0
             # @result = @result.select { |i| i.class.name == "Journal" ? i.coverageTo.to_i <= to_year : i.year <= to_year } if to_year != 0

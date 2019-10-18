@@ -1,6 +1,6 @@
 class Book < ApplicationRecord
     include PgSearch::Model
-    multisearchable against: [:title, :author, :about, :issn, :keywords]
+    multisearchable against: [:title, :author, :about, :isbn, :keywords],
                     if: :published?
 
     include Filterable

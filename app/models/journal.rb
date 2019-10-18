@@ -1,6 +1,6 @@
 class Journal < ApplicationRecord
   include PgSearch::Model
-  multisearchable against: [:title, :about, :issn, :keywords]
+  multisearchable against: [:title, :about, :issn, :keywords],
                   if: :published?
 
   include Filterable

@@ -1,6 +1,6 @@
 ActiveAdmin.register Journal do
 
-  permit_params :title, :about, :coverageFrom, :coverageTo, :publisher_id, :issn, :cover, subject_ids: []
+  permit_params :title, :about, :coverageFrom, :coverageTo, :publisher_id, :issn, :cover, :published, :keywords, subject_ids: []
   
   form do |f| 
     inputs do
@@ -12,6 +12,8 @@ ActiveAdmin.register Journal do
       input :issn, label: "ISSN"
       input :cover, as: :file
       input :subjects, as: :check_boxes, collection: Subject.all
+      input :published
+      input :keywords
     end
     actions
   end
