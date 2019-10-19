@@ -18,6 +18,10 @@
                                 <%= check_box_tag "books", nil, params[:books] == "on", onChange: "this.form.submit();" %>
                                 <span>Books</span>
                             </label>
+                            <label>
+                                <%= check_box_tag "academic_papers", nil, params[:academic_papers] == "on", onChange: "this.form.submit();" %>
+                                <span>Academic Papers</span>
+                            </label>
                         </div>
                     </div>
                     <div class="filter">
@@ -31,12 +35,12 @@
                         <input class="btn-small" type="submit" value="Apply">
                     </div>
                     <div class="filter">
-                        <h5>Subject: </h5>
+                        <h5>Subjects: </h5>
                         <div class="checkboxes">
                             <% Subject.all.each do |s| %>
                                 <label>
                                     <%= check_box_tag "search[subjects][]", s.name, params[:search].nil? ? false : params[:search][:subjects].include?(s.name), onChange: "this.form.submit();" %>
-                                    <span><%= s.name %></span>
+                                    <span><%= "#{s.name} (#{s.code})" %></span>
                                 </label>
                                 <br>
                             <% end %>

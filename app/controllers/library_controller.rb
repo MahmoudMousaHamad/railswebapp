@@ -1,38 +1,39 @@
 class LibraryController < ApplicationController
-
     def basic_search
         q = params[:q]
         from_year = params[:from_year].to_i
         to_year = params[:to_year].to_i
 
-        content_type = ""
-        if params[:books] && params[:journals]
-            content_type = "book and journal"
-        elsif params[:books]
-            content_type = "book"
-        elsif params[:journals]
-            content_type = "journal"
-        else
-            content_type = "book and journal"
+        content_types = []
+        if params[:books]
+            content_types.push("Book")
         end
-
+        if params[:journals]
+            content_types.push("Journal")
+        end
+        if params[:academic_papers]
+            content_types.push("AcademicPaper")
+        end
+        if content_types.length == 0
+            content_types.push("Book")
+            content_types.push("Journal")
+            content_types.push("AcademicPaper")
+        end
         if q
-            @search_results = PgSearch.multisearch(q).page(params[:page]).per(params[:items_per_page])
+            @search_results = PgSearch.multisearch(q)
             @categorized_results = []
             @search_results.each do |r|
-                if r.searchable_type == "Book"
+                if content_types.include?(r.searchable_type) && r.searchable_type == "Book"
                     @categorized_results.push(Book.find(r.searchable_id))
-                elsif r.searchable_type == "Journal"
-                    @categorized_results.push(Journal.find(r.searchable_id))                    
-                elsif r.searchable_type == "AcademicPaper"
-                    @categorized_results.push(AcademicPaper.find(r.searchable_id))                    
+                elsif content_types.include?(r.searchable_type) && r.searchable_type == "Journal"
+                    @categorized_results.push(Journal.find(r.searchable_id))
+                elsif content_types.include?(r.searchable_type) && r.searchable_type == "AcademicPaper"
+                    @categorized_results.push(AcademicPaper.find(r.searchable_id))
                 end
             end
-
-            # @result = Search.new(q, content_type)
-            # @result = @result.select { |i| i.class.name == "Journal" ? i.coverageFrom.to_i >= from_year : i.year >= from_year } if from_year != 0
-            # @result = @result.select { |i| i.class.name == "Journal" ? i.coverageTo.to_i <= to_year : i.year <= to_year } if to_year != 0
-            # @result = @result.select { |i| !(i.subjects.map { |s| s.name } & params[:search][:subjects]).empty? } if params[:search]
+            @categorized_results = @categorized_results.select { |i| i.class.name == "Journal" ? i.coverageFrom.to_i >= from_year : i.year >= from_year } if from_year != 0
+            @categorized_results = @categorized_results.select { |i| i.class.name == "Journal" ? i.coverageTo.to_i <= to_year : i.year <= to_year } if to_year != 0
+            @categorized_results = @categorized_results.select { |i| !(i.subjects.map { |s| s.name } & params[:search][:subjects]).empty? } if params[:search]
         end
     end
 
