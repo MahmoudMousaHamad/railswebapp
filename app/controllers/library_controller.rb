@@ -32,7 +32,7 @@ class LibraryController < ApplicationController
                     @categorized_results.push(AcademicPaper.find(r.searchable_id))
                 end
             end
-            if from_year
+            if from_year != 0
                 @categorized_results = @categorized_results.select do |i| 
                     class_name = i.class.name
                     if class_name == "Journal"
@@ -44,7 +44,7 @@ class LibraryController < ApplicationController
                     end
                 end
             end
-            if to_year
+            if to_year != 0
                 @categorized_results = @categorized_results.select do |i| 
                     class_name = i.class.name
                     if class_name == "Journal"
