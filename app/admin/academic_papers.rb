@@ -1,10 +1,11 @@
 ActiveAdmin.register AcademicPaper do
 
-  permit_params :title, :author, :publication_year, :paper_type, :published, :keywords, subject_ids: []
+  permit_params :title, :author, :publication_year, :paper_type, :published, :keywords, :about, subject_ids: []
 
   form do |f|
     inputs do
       input :title
+      input :about, label: "Abstract"
       input :author
       input :publication_year
       input :paper_type, collection: ["Conference Paper", "Dissertation Paper"]
