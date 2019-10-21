@@ -90,10 +90,10 @@
             </div>
         </div>
         <h3>Browse by discipline:</h3>
-        <div class="grid">
+        <div class="grid" style="display: none;">
             <% @disciplines.each do |d| %>
                 <div class="discipline-block">
-                    <%= image_tag url_for(d.photo) %>
+                    
                     <%= d.name %>
                 </div>
             <% end %>
