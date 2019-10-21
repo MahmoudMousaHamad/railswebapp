@@ -3,89 +3,89 @@
         <div class=" row search-container">
             <div class="search-content">
                 <h3>Search journals and books</h3>
-                <nav>
-                    <div class="nav-wrapper">
-                        <form id="search-form" action="<%= library_path %>" method="get">
-                            <div class="input-field">
-                                <input name="q" id="search" type="search" required>
-                                <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-                                <i class="material-icons">close</i>
-                            </div>
-                        </form>
-                    </div>
-                </nav>
-                <hr>
                 <div class="filter-section">
-                    <div class="filter">
-                        <h5>View:</h5>
-                        <div class="radio-buttons">
+                    <form action="<%= library_basic_search_path %>">
+                        <nav>
+                            <div class="nav-wrapper">
+                                <div class="input-field">
+                                    <input name="q" id="search" type="search" required>
+                                    <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                                    <i class="material-icons">close</i>
+                                </div>
+                            </div>
+                        </nav>
+                        <div class="filter">
+                            View:
                             <label>
-                                <input name="view" type="radio" checked />
+                                <%= radio_button_tag "view", nil, params[:view] == "simple", value: "simple" %>
                                 <span>Simple</span>
                             </label>
                             <label>
-                                <input name="view" type="radio" />
+                                <%= radio_button_tag "view", nil, params[:view] == "detailed", value: "detailed" %>
                                 <span>Detailed</span>
                             </label>
                         </div>
-                    </div>
-                    <div class="filter">
-                        <h5>Search Field:</h5>
-                        <div class="radio-buttons">
+                        <div class="filter">
+                            Results Per Page:
+                            <div class="input-field inline">
+                                <input name="results_per_page" value="<%= params[:results_per_page] %>" type="number">
+                            </div>
+                        </div>
+                        <div class="filter">
+                            Search Field:
                             <label>
-                                <input name="search-field" type="radio" checked />
+                                <%= radio_button_tag "field", nil, params[:field] == "all", value: "all", selected: true %>
+                                <span>All</span>
+                            </label>
+                            <label>
+                                <%= radio_button_tag "field", nil, params[:field] == "title", value: "title" %>
                                 <span>Title</span>
                             </label>
                             <label>
-                                <input name="search-field" type="radio" />
-                                <span>Author(s)</span>
+                                <%= radio_button_tag "field", nil, params[:field] == "author", value: "author" %>
+                                <span>Author</span>
                             </label>
                             <label>
-                                <input name="search-field" type="radio" />
+                                <%= radio_button_tag "field", nil, params[:field] == "publisher", value: "publisher" %>
                                 <span>Publisher</span>
                             </label>
-                            <label>
-                                <input name="search-field" type="radio" />
-                                <span>ISBN</span>
-                            </label>
-                            <label>
-                                <input name="search-field" type="radio" />
-                                <span>Tags</span>
-                            </label>
                         </div>
-                    </div>
-                    <div class="filter">
-                        <h5>Document Type:</h5>
-                        <div class="radio-buttons">
+                        <div class="filter">
+                            Content Type:
                             <label>
-                                <input name="document_type" type="radio" checked />
+                                <%= check_box_tag "journals", nil, params[:journals] == "on" %>
+                                <span>Journals</span>
+                            </label>
+                            <label>
+                                <%= check_box_tag "books", nil, params[:books] == "on" %>
                                 <span>Books</span>
                             </label>
                             <label>
-                                <input name="document_type" type="radio" />
-                                <span>Journal Articles</span>
-                            </label>
-                            <label>
-                                <input name="document_type" type="radio" />
-                                <span>Master/PhD Dissertations</span>
-                            </label>
-                            <label>
-                                <input name="document_type" type="radio" />
-                                <span>Conference Papers</span>
+                                <%= check_box_tag "academic_papers", nil, params[:academic_papers] == "on" %>
+                                <span>Academic Papers</span>
                             </label>
                         </div>
-                    </div>
-                    <div class="filter">
-                        <h5>Subjects: </h5>
-                        <div class="checkboxes">
+                        <div class="filter">
+                            Publication Year:
+                            <div class="input-field inline">
+                                <input name="from_year" type="number" placeholder="From" value="<%= params[:from_year] %>">
+                            </div>
+                            -
+                            <div class="input-field inline">
+                                <input name="to_year" type="number" placeholder="To" value="<%= params[:to_year] %>">
+                            </div>
+                        </div>
+                        <div class="filter">
+                            Subjects:
                             <% Subject.all.each do |s| %>
-                                <label style="margin-right: 15px;">
-                                    <%= check_box_tag "search[subjects][]", s.name, params[:search].nil? ? false : params[:search][:subjects].include?(s.name), onChange: "this.form.submit();" %>
+                                <label style="margin-right: 5px;">
+                                    <%= check_box_tag "search[subjects][]", s.name, params[:search].nil? ? false : params[:search][:subjects].include?(s.name) %>
                                     <span><%= "#{s.name} (#{s.code})" %></span>
                                 </label>
                             <% end %>
                         </div>
-                    </div>
+                        <input class="btn-small" type="submit" value="Apply">
+                    </form>
                 </div>
             </div>
         </div>

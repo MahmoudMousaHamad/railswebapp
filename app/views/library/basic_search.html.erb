@@ -43,15 +43,11 @@
                         </label>
                         <label>
                             <%= radio_button_tag "field", nil, params[:field] == "author", onChange: "this.form.submit();", value: "author" %>
-                            <span>author</span>
+                            <span>Author</span>
                         </label>
                         <label>
                             <%= radio_button_tag "field", nil, params[:field] == "publisher", onChange: "this.form.submit();", value: "publisher" %>
                             <span>Publisher</span>
-                        </label>
-                        <label>
-                            <%= radio_button_tag "field", nil, params[:field] == "tags", onChange: "this.form.submit();", value: "tags" %>
-                            <span>Tags</span>
                         </label>
                     </div>
                     <div class="filter">
@@ -121,8 +117,8 @@
                 <% if params[:q] != "" && @categorized_results.length == 0 %>
                     <h4>Sorry, but nothing matches your search.</h4>                    
                 <% end %>
+                <%= paginate @categorized_results %>
             </div>
-            <%= paginate @categorized_results %>
         </div>
     </div>
 </div>
