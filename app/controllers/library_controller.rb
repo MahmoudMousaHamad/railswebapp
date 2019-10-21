@@ -67,9 +67,7 @@ class LibraryController < ApplicationController
     end
 
     def index
-        if params[:q]
-            redirect_to :action => "basic_search", :q => params[:q] 
-        end
+        @disciplines = Discipline.all
     end
 
     def browse

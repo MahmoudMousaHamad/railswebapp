@@ -7,7 +7,7 @@ one:
   coverageTo: 1
   es: MyString
   publisher: one
-  issn: MyString
+  isbn: MyString
 
 two:
   title: MyString
@@ -16,4 +16,4 @@ two:
   coverageTo: 1
   es: MyString
   publisher: two
-  issn: MyString
+  isbn: MyString

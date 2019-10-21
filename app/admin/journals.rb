@@ -1,6 +1,6 @@
 ActiveAdmin.register Journal do
 
-  permit_params :title, :about, :coverageFrom, :coverageTo, :publisher_id, :issn, :cover, :published, :keywords, subject_ids: []
+  permit_params :title, :about, :coverageFrom, :coverageTo, :publisher_id, :isbn, :cover, :published, :keywords, subject_ids: []
   
   form do |f| 
     inputs do
@@ -9,7 +9,7 @@ ActiveAdmin.register Journal do
       input :coverageFrom, label: "First Year of Publication"
       input :coverageTo, label: "Last Year of Publication"
       input :publisher
-      input :issn, label: "ISSN"
+      input :isbn, label: "ISBN"
       input :cover, as: :file
       input :subjects, as: :check_boxes, collection: Subject.all
       input :published
@@ -25,7 +25,7 @@ ActiveAdmin.register Journal do
       row :coverageFrom, label: "First Year of Publication"
       row :coverageTo, label: "Last Year of Publication"
       row :publisher
-      row :issn, label: "ISSN"
+      row :isbn, label: "ISBN"
       row :cover do |c|
         div do
           image_tag image_path(main_app.url_for(journal.cover))

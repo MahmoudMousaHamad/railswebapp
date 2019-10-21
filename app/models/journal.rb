@@ -1,6 +1,6 @@
 class Journal < ApplicationRecord
   include PgSearch::Model
-  multisearchable against: [:title, :about, :issn, :keywords],
+  multisearchable against: [:title, :about, :isbn, :keywords],
                   if: :published?
 
   include Filterable
@@ -16,7 +16,7 @@ class Journal < ApplicationRecord
   validates :coverageFrom, presence: true
   validates :coverageTo, presence: true
   validates :publisher, presence: true
-  validates :issn, presence: true
+  validates :isbn, presence: true
   validates :cover, presence: true
 
   def self.search(search)

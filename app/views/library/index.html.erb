@@ -89,7 +89,15 @@
                 </div>
             </div>
         </div>
-
+        <h3>Browse by discipline:</h3>
+        <div class="grid">
+            <% @disciplines.each do |d| %>
+                <div class="discipline-block">
+                    <%= image_tag url_for(d.photo) %>
+                    <%= d.name %>
+                </div>
+            <% end %>
+        </div>
         <div class="row browse-link" style="display: none;">
             <h3>Browse by:</h3>
             <%= link_to  "Subject", subjects_path, class: "waves-effect waves-light btn" %>

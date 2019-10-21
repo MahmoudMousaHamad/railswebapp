@@ -90,26 +90,33 @@
             <div class="col s12 m9 result-section">
                 <% if @categorized_results && params[:q] != "" %>
                     <% @categorized_results.each do |r| %>
-                        <div class="row">
-                            <div class="col s12 m9">
+                        <div class="">
+                            <div class="">
                                 <div class="content-type-name">
                                     <%= r.class.name %>
                                 </div>
                                 <% if r.class.name == "Book" %>
                                     <a href="<%= book_path(r) %>"><h4><%= r.title %></h4></a>
+                                    <p><b>Author(s): </b> <%= r.author %> </p>
+                                    <p><b>ISBN: </b> <%= r.isbn %> </p>
+
                                 <% elsif r.class.name == "Journal" %>
                                     <a href="<%= journal_path(r) %>"><h4><%= r.title %></h4></a>
+                                    <p><b>ISBN: </b> <%= r.isbn %> </p>
+                                    <p><b>Coverage Years: </b> <%= "#{r.coverageFrom} - #{r.coverageTo}" %> </p>
                                 <% else %>
                                     <a href="<%= academic_paper_path(r) %>"><h4><%= r.title %></h4></a>
+                                    <p><b>Author(s): </b> <%= r.author %> </p>
+                                    <p><b>Paper Type: </b> <%= r.paper_type %> </p>
+                                    <p><b>Publication Year: </b> <%= r.publication_year %> </p>
                                 <% end %>
                                 <% if params[:view] == "detailed" %>
-                                    <p><%= r.about.truncate(200) %></p>
                                     <p><b>Subjects: </b> <%= safe_join(r.subjects.map { |s| link_to  s.name, subject_path(s.name) }, ",").html_safe %> </p>
                                     <p><b>Keywords: </b> <%= r.keywords %> </p>
                                 <% end %>
                             </div>
                         </div>
-                        <hr style="margin-bottom: 50px;">
+                        <hr style="margin-bottom: 25px;">
                     <% end %>
                 <% else %>
                     <h4>Please enter a search term.</h4>
