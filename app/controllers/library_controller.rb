@@ -20,6 +20,11 @@ class LibraryController < ApplicationController
             content_types.push("AcademicPaper")
         end
         if q
+            if !params[:results_per_page]
+                results_per_page = 20
+            else
+                results_per_page = params[:results_per_page]
+            end
             @search_results = PgSearch.multisearch(q)
             @search_results = @search_results.select { |r| content_types.include? r.searchable_type }
             @categorized_results = []
@@ -57,6 +62,7 @@ class LibraryController < ApplicationController
                 end
             end
             @categorized_results = @categorized_results.select { |i| !(i.subjects.map { |s| s.name } & params[:search][:subjects]).empty? } if params[:search]
+            @categorized_results = Kaminari.paginate_array(@categorized_results).page(params[:page]).per(results_per_page)
         end
     end
 

@@ -24,6 +24,7 @@ $(document).ready(function(){
     $('.tabs').tabs();
     $('.collapsible').collapsible();
     $('.materialboxed').materialbox();
+    $('select').formSelect();
     // $('.modal').modal();
     initLocationMap();
 });

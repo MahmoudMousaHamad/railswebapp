@@ -1,55 +1,98 @@
 <div class="container">
     <div class="content">
-        <%= filters_and_order_for(library_basic_search_path, [], params) %>
         <div class="content row">
             <div class="col s12 m3 filter-section">
                 <h3>Filter Results</h3>
                 <form action="<%= library_basic_search_path %>">
-                    <input name="q" type="hidden" value="<%= params[:q] %>">
-                    <div style="margin-top: 20px;" class="filter">
-                        <h5>Content Type:</h5>
-                        <div class="checkboxes">
-                            <label>
-                                <%= check_box_tag "journals", nil, params[:journals] == "on", onChange: "this.form.submit();" %>
-                                <span>Journals</span>
-                            </label>
-                            <br>
-                            <label>
-                                <%= check_box_tag "books", nil, params[:books] == "on", onChange: "this.form.submit();" %>
-                                <span>Books</span>
-                            </label>
-                            <label>
-                                <%= check_box_tag "academic_papers", nil, params[:academic_papers] == "on", onChange: "this.form.submit();" %>
-                                <span>Academic Papers</span>
-                            </label>
+                    <nav>
+                        <div class="nav-wrapper">
+                            <div class="input-field">
+                                <input  id="search" type="search" name="q" value="<%= params[:q] %>" required>
+                                <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                                <i class="material-icons">close</i>
+                            </div>
                         </div>
+                    </nav>
+                    <div class="filter">
+                        View:
+                        <label>
+                            <%= radio_button_tag "view", nil, params[:view] == "simple", onChange: "this.form.submit();", value: "simple" %>
+                            <span>Simple</span>
+                        </label>
+                        <label>
+                            <%= radio_button_tag "view", nil, params[:view] == "detailed", onChange: "this.form.submit();", value: "detailed" %>
+                            <span>Detailed</span>
+                        </label>
                     </div>
                     <div class="filter">
-                        <h5>Publication Year:</h5>
-                        <div class="col s12 m6">
+                        Results Per Page:
+                        <div class="input-field inline">
+                            <input name="results_per_page" value="<%= params[:results_per_page] %>" type="number">
+                        </div>
+                        <input class="btn-small" type="submit" value="Apply">
+                    </div>
+                    <div class="filter">
+                        Search Field:
+                        <label>
+                            <%= radio_button_tag "field", nil, params[:field] == "all", onChange: "this.form.submit();", value: "all", selected: true %>
+                            <span>All</span>
+                        </label>
+                        <label>
+                            <%= radio_button_tag "field", nil, params[:field] == "title", onChange: "this.form.submit();", value: "title" %>
+                            <span>Title</span>
+                        </label>
+                        <label>
+                            <%= radio_button_tag "field", nil, params[:field] == "author", onChange: "this.form.submit();", value: "author" %>
+                            <span>author</span>
+                        </label>
+                        <label>
+                            <%= radio_button_tag "field", nil, params[:field] == "publisher", onChange: "this.form.submit();", value: "publisher" %>
+                            <span>Publisher</span>
+                        </label>
+                        <label>
+                            <%= radio_button_tag "field", nil, params[:field] == "tags", onChange: "this.form.submit();", value: "tags" %>
+                            <span>Tags</span>
+                        </label>
+                    </div>
+                    <div class="filter">
+                        Content Type:
+                        <label>
+                            <%= check_box_tag "journals", nil, params[:journals] == "on", onChange: "this.form.submit();" %>
+                            <span>Journals</span>
+                        </label>
+                        <label>
+                            <%= check_box_tag "books", nil, params[:books] == "on", onChange: "this.form.submit();" %>
+                            <span>Books</span>
+                        </label>
+                        <label>
+                            <%= check_box_tag "academic_papers", nil, params[:academic_papers] == "on", onChange: "this.form.submit();" %>
+                            <span>Academic Papers</span>
+                        </label>
+                    </div>
+                    <div class="filter">
+                        Publication Year:
+                        <div class="input-field inline">
                             <input name="from_year" type="number" placeholder="From" value="<%= params[:from_year] %>">
                         </div>
-                        <div class="col s12 m6">
+                        -
+                        <div class="input-field inline">
                             <input name="to_year" type="number" placeholder="To" value="<%= params[:to_year] %>">
                         </div>
                         <input class="btn-small" type="submit" value="Apply">
                     </div>
                     <div class="filter">
-                        <h5>Subjects: </h5>
-                        <div class="checkboxes">
-                            <% Subject.all.each do |s| %>
-                                <label style="margin-right: 5px;">
-                                    <%= check_box_tag "search[subjects][]", s.name, params[:search].nil? ? false : params[:search][:subjects].include?(s.name), onChange: "this.form.submit();" %>
-                                    <span><%= "#{s.name} (#{s.code})" %></span>
-                                </label>
-                            <% end %>
-                        </div>
+                        Subjects:
+                        <% Subject.all.each do |s| %>
+                            <label style="margin-right: 5px;">
+                                <%= check_box_tag "search[subjects][]", s.name, params[:search].nil? ? false : params[:search][:subjects].include?(s.name), onChange: "this.form.submit();" %>
+                                <span><%= "#{s.name} (#{s.code})" %></span>
+                            </label>
+                        <% end %>
                     </div>
                 </form>
             </div>
-
             <div class="col s12 m9 result-section">
-                <% if @categorized_results %>
+                <% if @categorized_results && params[:q] != "" %>
                     <% @categorized_results.each do |r| %>
                         <div class="row">
                             <div class="col s12 m9">
@@ -63,9 +106,11 @@
                                 <% else %>
                                     <a href="<%= academic_paper_path(r) %>"><h4><%= r.title %></h4></a>
                                 <% end %>
-                                <p><%= r.about.truncate(100) %></p>
-                                <p><b>Subjects: </b> <%= safe_join(r.subjects.map { |s| link_to  s.name, subject_path(s.name) }, ",").html_safe %> </p>
-                                <p><b>Keywords: </b> <%= r.keywords %> </p>
+                                <% if params[:view] == "detailed" %>
+                                    <p><%= r.about.truncate(200) %></p>
+                                    <p><b>Subjects: </b> <%= safe_join(r.subjects.map { |s| link_to  s.name, subject_path(s.name) }, ",").html_safe %> </p>
+                                    <p><b>Keywords: </b> <%= r.keywords %> </p>
+                                <% end %>
                             </div>
                         </div>
                         <hr style="margin-bottom: 50px;">
@@ -73,7 +118,11 @@
                 <% else %>
                     <h4>Please enter a search term.</h4>
                 <% end %>
+                <% if params[:q] != "" && @categorized_results.length == 0 %>
+                    <h4>Sorry, but nothing matches your search.</h4>                    
+                <% end %>
             </div>
+            <%= paginate @categorized_results %>
         </div>
     </div>
 </div>
