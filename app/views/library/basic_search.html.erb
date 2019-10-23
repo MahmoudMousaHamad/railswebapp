@@ -4,76 +4,34 @@
             <div class="col s12 m3 filter-section">
                 <h3>Filter Results</h3>
                 <form action="<%= library_basic_search_path %>">
-                    <nav>
-                        <div class="nav-wrapper">
-                            <div class="input-field">
-                                <input  id="search" type="search" name="q" value="<%= params[:q] %>" required>
-                                <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-                                <i class="material-icons">close</i>
-                            </div>
-                        </div>
-                    </nav>
+                    <%= search_bar_for("q", params)%>
                     <div class="filter">
                         View:
-                        <label>
-                            <%= radio_button_tag "view", nil, params[:view] == "simple", onChange: "this.form.submit();", value: "simple" %>
-                            <span>Simple</span>
-                        </label>
-                        <label>
-                            <%= radio_button_tag "view", nil, params[:view] == "detailed", onChange: "this.form.submit();", value: "detailed" %>
-                            <span>Detailed</span>
-                        </label>
+                        <%= radio_button_for("view", "simple", true, params) %>
+                        <%= radio_button_for("view", "detailed", true, params) %>                        
                     </div>
                     <div class="filter">
                         Results Per Page:
-                        <div class="input-field inline">
-                            <input name="results_per_page" value="<%= params[:results_per_page] %>" type="number">
-                        </div>
+                        <%= text_input_for("results_per_page", "1-100", "number", params)%>
                         <input class="btn-small" type="submit" value="Apply">
                     </div>
                     <div class="filter">
                         Search Field:
-                        <label>
-                            <%= radio_button_tag "field", nil, params[:field] == "all", onChange: "this.form.submit();", value: "all", selected: true %>
-                            <span>All</span>
-                        </label>
-                        <label>
-                            <%= radio_button_tag "field", nil, params[:field] == "title", onChange: "this.form.submit();", value: "title" %>
-                            <span>Title</span>
-                        </label>
-                        <label>
-                            <%= radio_button_tag "field", nil, params[:field] == "author", onChange: "this.form.submit();", value: "author" %>
-                            <span>Author</span>
-                        </label>
-                        <label>
-                            <%= radio_button_tag "field", nil, params[:field] == "publisher", onChange: "this.form.submit();", value: "publisher" %>
-                            <span>Publisher</span>
-                        </label>
+                        <%= radio_button_for("field", "all", true, params) %>
+                        <%= radio_button_for("field", "title", false, params) %>
+                        <%= radio_button_for("field", "author", false, params) %>
+                        <%= radio_button_for("field", "publisher", false, params) %>
                     </div>
                     <div class="filter">
                         Content Type:
-                        <label>
-                            <%= check_box_tag "journals", nil, params[:journals] == "on", onChange: "this.form.submit();" %>
-                            <span>Journals</span>
-                        </label>
-                        <label>
-                            <%= check_box_tag "books", nil, params[:books] == "on", onChange: "this.form.submit();" %>
-                            <span>Books</span>
-                        </label>
-                        <label>
-                            <%= check_box_tag "academic_papers", nil, params[:academic_papers] == "on", onChange: "this.form.submit();" %>
-                            <span>Academic Papers</span>
-                        </label>
+                        <%= check_box_for("journals", params) %>
+                        <%= check_box_for("books", params) %>
+                        <%= check_box_for("academic_papers", params) %>                        
                     </div>
                     <div class="filter">
                         Publication Year:
-                        <div class="input-field inline">
-                            <input name="from_year" type="number" placeholder="From" value="<%= params[:from_year] %>">
-                        </div>
-                        -
-                        <div class="input-field inline">
-                            <input name="to_year" type="number" placeholder="To" value="<%= params[:to_year] %>">
-                        </div>
+                        <%= text_input_for("from_year", "From", "number", params)%>
+                        <%= text_input_for("to_year", "To", "number", params)%>
                         <input class="btn-small" type="submit" value="Apply">
                     </div>
                     <div class="filter">
