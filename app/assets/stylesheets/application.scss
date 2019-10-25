@@ -12,15 +12,15 @@
  *
  */
  @import "materialize/components/color-variables";
- $primary-color: rgb(58, 42, 145)  !default;
- $secondary-color: rgb(208, 196, 156) !default;
+ $primary-color: rgb(208, 196, 156)  !default;
+ $secondary-color: rgb(58, 42, 145) !default;
  $reference-secondary-color: rgb(254, 251, 220);
  $gold: rgb(224, 188, 70) !default;
  @import "materialize";
  @import "bootstrap-sprockets";
  @import "bootstrap";
 
- $body-bg-color: white;
+ $body-bg-color: #fffadc;
 
  .content {
      margin-top: 50px;

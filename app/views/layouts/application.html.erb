@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>IACAROS - <%= yield :title %></title>
+    <title>IACAROS <%= yield :title %></title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <meta name="viewport" content="width=device-width, initial-scale=1" /> 
@@ -21,7 +21,7 @@
     <div class="navbar-fixed">
       <nav>
         <div class="container nav-wrapper">
-          <a href="/" class="brand-logo">IACAROS</a>
+          <a href="/" class="brand-logo"><%= image_tag("iacaros-logo.png", style: "max-width: 120px; margin-bottom: 10px;") %></a>
           <a href="" data-target="mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
           <ul class="right hide-on-med-and-down">
             <li><a href="#"><%= link_to  "Countries List", countries_path, class: 'nav-item nav-link' %></a></li>

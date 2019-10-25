@@ -20,7 +20,7 @@ class LibraryController < ApplicationController
             content_types.push("AcademicPaper")
         end
         if q
-            if !params[:results_per_page]
+            if !params[:results_per_page] || params[:results_per_page].to_i > 100 || params[:results_per_page].to_i < 5
                 results_per_page = 20
             else
                 results_per_page = params[:results_per_page]
@@ -34,7 +34,18 @@ class LibraryController < ApplicationController
                 elsif r.searchable_type == "Journal"
                     @categorized_results.push(Journal.find(r.searchable_id))
                 elsif r.searchable_type == "AcademicPaper"
-                    @categorized_results.push(AcademicPaper.find(r.searchable_id))
+                    academic_paper = AcademicPaper.find(r.searchable_id)
+                    if params[:dissertations] == "on"
+                        if academic_paper.paper_type == "Dissertation Paper"
+                            @categorized_results.push(academic_paper)
+                        end
+                    elsif params[:conference_papers] == "on" 
+                        if academic_paper.paper_type == "Conference Paper"
+                            @categorized_results.push(academic_paper)                            
+                        end
+                    else
+                        @categorized_results.push(academic_paper)
+                    end
                 end
             end
             if from_year != 0
