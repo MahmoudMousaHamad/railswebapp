@@ -17,15 +17,15 @@ local:
 # Remember not to checkin your GCS keyfile to a repository
 google:
   service: GCS
-  project: iacaros-rails
+  project: iacaros-web-app
   credentials: <%= ENV['GOOGLE_APPLICATION_CREDENTIALS'].as_json %>
-  bucket: iacaros-pic-bucket
+  bucket: iacaros_bucket
 
 google_dev:
   service: GCS
-  project: iacaros-rails
-  credentials: <%= Rails.root.join("config/secrets/iacaros-pic.json") %>
-  bucket: iacaros-pic-bucket
+  project: iacaros-web-app
+  credentials: <%= Rails.root.join("config/secrets/iacaros-gcs-bucket.json") %>
+  bucket: iacaros_bucket
 
 # Use rails credentials:edit to set the Azure Storage secret (as azure_storage:storage_access_key)
 # microsoft:
