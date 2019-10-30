@@ -8,7 +8,7 @@
                     <h3><%= d.name %></h3>
                     <% d.subjects.each do |s| %>
                         <ul>
-                            <li><%= link_to  s.name, subject_path(s.name) %></li>
+                            <li> - <%= link_to  s.name, subject_path(s.name) %></li>
                         </ul>
                     <% end %>
                 </div>

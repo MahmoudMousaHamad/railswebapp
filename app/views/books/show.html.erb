@@ -30,7 +30,11 @@
         <div class="row">
             <h3 class="title">Gain Access</h3>
             <hr>
-            <%= link_to  "Download PDF", url_for(@b.pdf), target: "_blank" %>
+            <% if @b.downloadable || @b.pdf != nil %>
+                <%= link_to  "Download PDF", url_for(@b.pdf), target: "_blank" %>
+            <% else %>
+                <p>Sorry, this file is not avalable at the moment.</p>
+            <% end %>
         </div>
     </div>
 </div>

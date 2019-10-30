@@ -1,6 +1,6 @@
 ActiveAdmin.register Issue do
 
-  permit_params :number, :year, :pageFrom, :pageTo, :journal_id, :pdf 
+  permit_params :number, :year, :pageFrom, :pageTo, :journal_id, :pdf, :downloadable
   
   form do |f|
     inputs do
@@ -10,6 +10,7 @@ ActiveAdmin.register Issue do
       input :pageTo, label: "Number of Last Page"
       input :journal
       input :pdf, as: :file
+      input :downloadable
     end
     actions
   end

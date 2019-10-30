@@ -1,0 +1,2 @@
+module AcademicPaperHelper
+end

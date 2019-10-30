@@ -16,7 +16,11 @@
 
         <div class="row">
             <h4>Get Access</h4>
-            <%= link_to  "Download this issue", url_for(@i.pdf), target: "_blank" %>
+            <% if @i.downloadable || @i.pdf != nil %>
+                <%= link_to  "Download PDF", url_for(@i.pdf), target: "_blank" %>
+            <% else %>
+                <p>Sorry, this file is not avalable at the moment.</p>
+            <% end %>
         </div>
     </div>
 </div>

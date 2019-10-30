@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_21_144717) do
+ActiveRecord::Schema.define(version: 2019_10_30_222916) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 2019_10_21_144717) do
     t.boolean "published"
     t.string "keywords"
     t.text "about"
+    t.boolean "downloadable"
   end
 
   create_table "academic_papers_subjects", id: false, force: :cascade do |t|
@@ -112,6 +113,7 @@ ActiveRecord::Schema.define(version: 2019_10_21_144717) do
     t.string "volume"
     t.boolean "published"
     t.string "keywords"
+    t.boolean "downloadable"
     t.index ["book_collection_id"], name: "index_books_on_book_collection_id"
     t.index ["publisher_id"], name: "index_books_on_publisher_id"
   end
@@ -180,6 +182,7 @@ ActiveRecord::Schema.define(version: 2019_10_21_144717) do
     t.float "lat"
     t.float "lng"
     t.boolean "published"
+    t.boolean "downloadable"
   end
 
   create_table "country_references", force: :cascade do |t|
@@ -209,6 +212,7 @@ ActiveRecord::Schema.define(version: 2019_10_21_144717) do
     t.bigint "journal_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "downloadable"
     t.index ["journal_id"], name: "index_issues_on_journal_id"
   end
 

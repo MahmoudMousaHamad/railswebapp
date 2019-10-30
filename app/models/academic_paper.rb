@@ -14,6 +14,7 @@ class AcademicPaper < ApplicationRecord
                             FragmentDelimiter: '&hellip;'
                         }
                     }
-
+                    
     has_and_belongs_to_many :subjects
+    has_one_attached :pdf
 end

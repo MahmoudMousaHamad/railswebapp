@@ -1,6 +1,6 @@
 ActiveAdmin.register AcademicPaper do
 
-  permit_params :title, :author, :publication_year, :paper_type, :published, :keywords, :about, subject_ids: []
+  permit_params :title, :author, :publication_year, :paper_type, :published, :keywords, :about, :pdf, :downloadable, subject_ids: []
 
   form do |f|
     inputs do
@@ -11,7 +11,9 @@ ActiveAdmin.register AcademicPaper do
       input :paper_type, collection: ["Conference Paper", "Dissertation Paper"]
       input :subjects, as: :check_boxes, collection: Subject.all
       input :published
+      input :downloadable
       input :keywords
+      input :pdf, as: :file, label: "PDF"
     end
     actions
   end

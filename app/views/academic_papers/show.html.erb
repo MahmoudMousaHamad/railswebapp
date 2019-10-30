@@ -1,0 +1,41 @@
+<div class="container">
+    <div class="content">
+        <div class="row">
+            <div class="col s12 m3 l2">
+                <%= image_tag  url_for("/assets/no-thumb.jpg"), style: "max-width: 150px; margin-bottom: 20px;" %>
+            </div>
+            <div class="col s12 m5 l6" style="float: left;">
+                <h2 class="title"><%= @paper.title %></h2>
+                <hr>
+                <h6><strong>Author:</strong> <%= @paper.author %></h6>
+                <h6><strong>Year: </strong><%= @paper.publication_year %></h6>
+                <h6><strong>Library Link: </strong><%= link_to request.original_url, request.original_url %></h6>
+                <h6><strong>Paper Type: </strong><%= @paper.paper_type %></h6>
+                <h6><strong>Keywords: </strong><%= @paper.keywords %></h6>
+            </div>
+            <div class="col s12 m4 l4">
+                <ul class="collapsible popout">
+                    <li>
+                        <div class="collapsible-header">PAPER INFO</div>
+                        <div class="collapsible-body">
+                            <h4>Title: <%= @paper.title %></h4>
+                            <label>Paper Description: </label>
+                            <p><%= @paper.about %></p>
+                            <%# <%= citation_btn_for(@p) %>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row">
+            <h3 class="title">Gain Access</h3>
+            <hr>
+            <% if @paper.downloadable || @paper.pdf != nil %>
+                <%= link_to  "Download PDF", url_for(@paper.pdf), target: "_blank" %>
+            <% else %>
+                <p>Sorry, this file is not avalable at the moment.</p>
+            <% end %>
+        </div>
+    </div>
+</div>
