@@ -24,7 +24,6 @@
 
  .content {
      margin-top: 50px;
-
  }
 
  body {
@@ -130,9 +129,7 @@ box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.3);
 max-width: 100%;
 }
 
-.grid .discipline-block {
-    border: 1px solid $primary-color;
-}
+
 
 .img-description {
 padding: 15px;
@@ -174,7 +171,7 @@ picture img {
     object-fit: cover;
 }
 
-.card-content h4{
+.card-content h4 {
     font-size: 20px;
     color: $gold;
     overflow: hidden;
@@ -182,6 +179,14 @@ picture img {
     white-space: nowrap;
 }
 
-.flag-list-item {
-    
+.subjects-items-container {
+    margin-top: 20px;
+}
+
+.subjects-item {
+    color: #3A2A91;
+    display: block;
+    font-size: 20px;
+    margin-top: 5px;
+    border-bottom: 1px solid #3A2A91;
 }

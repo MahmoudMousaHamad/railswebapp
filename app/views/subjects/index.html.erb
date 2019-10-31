@@ -4,7 +4,7 @@
 
         <div class="subjects-container">
             <% @disciplines.each do |d| %>
-                <div class="discipline-container">
+                <div id="<%= d.id %>" class="discipline-container">
                     <h3><%= d.name %></h3>
                     <% d.subjects.each do |s| %>
                         <ul>

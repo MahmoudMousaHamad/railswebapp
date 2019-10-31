@@ -90,12 +90,14 @@
             </div>
         </div>
         <h3>Browse by discipline:</h3>
-        <div class="grid" style="display: none;">
+        <div class="grid">
             <% @disciplines.each do |d| %>
-                <div class="discipline-block">
-                    
-                    <%= d.name %>
-                </div>
+                <a href="<%= "#{subjects_path}##{d.id}" %>" class="text-center">
+                    <div class="discipline-block">
+                        <%= image_tag url_for(d.photo) %>
+                        <%= d.name %>
+                    </div>
+                </a>
             <% end %>
         </div>
         <div class="row browse-link" style="display: none;">

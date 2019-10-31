@@ -1,46 +1,38 @@
 <div class="container">
     <div class="content">
         <h2><%= @subject.name %></h2>
-        <h4>Search within <%= @subject.name %></h3>
-        <div class="row">
-            <div class="col s12">
-            <ul class="tabs">
-                <li class="tab col s3"><a class="active" href="#journals">Journals</a></li>
-                <li class="tab col s3"><a href="#books">Books</a></li>
-            </ul>
-            </div>
-            <div id="journals" class="col s12">
-                <% if @subject.journals %>
-                    <div class="search-results collection">
-                        <table class="journal-table">
-                            <thead></thead>
-                            <tbody>
-                                <% @subject.journals.each do |r| %>
-                                    <tr>
-                                        <%= link_to  r.title, class: "collection-item" %>
-                                    </tr>
-                                <% end %>
-                            </tbody>
-                        </table>
-                    </div>
-                <% end %>
-            </div>
-            <div id="books" class="col s12">
+        <h4>Browse books, journals, and academic papers within <%= @subject.name %></h3>
+        <a class="waves-effect waves-light btn <%= params[:document_type] == "books" ? "disabled" : "nothing" %>" href="?document_type=books">Books</a>
+        <a class="waves-effect waves-light btn <%= params[:document_type] == "journals" ? "disabled" : "nothing" %>" href="?document_type=journals">Journals</a>
+        <a class="waves-effect waves-light btn <%= params[:document_type] == "academic_papers" ? "disabled" : "nothing" %>" href="?document_type=academic_papers">Academic Papers</a>
+
+        <div class="subjects-items-container">
+            <% if params[:document_type] == "books" %>
                 <% if @subject.books %>
-                    <div class="search-results collection">
-                        <table class="book-table">
-                            <thead></thead>
-                            <tbody>
-                                <% @subject.books.each do |b| %>
-                                    <tr>
-                                        <%= link_to  b.title, class: "collection-item" %>
-                                    </tr>
-                                <% end %>
-                            </tbody>
-                        </table>
+                    <div class="">
+                        <% @subject.books.each do |b| %>
+                            <%= link_to b.title, book_path(b), class: "subjects-item" %>
+                        <% end %>
                     </div>
                 <% end %>
-            </div>
+            <% elsif params[:document_type] == "journals" %>
+                <% if @subject.journals %>
+                    <div class="">
+                        <% @subject.journals.each do |r| %>
+                            <%= link_to r.title, journal_path(r), class: "subjects-item" %>
+                        <% end %>
+                    </div>
+                <% end %>
+            <% elsif params[:document_type] == "academic_papers" %>
+                <% if @subject.academic_papers %>
+                    <div class="">
+                        <% @subject.academic_papers.each do |p| %>
+                            <%= link_to p.title, academic_paper_path(p), class: "subjects-item" %>
+                        <% end %>
+                    </div>
+                <% end %>
+            <% else %>
+            <% end %>
         </div>
     </div>
 </div>
