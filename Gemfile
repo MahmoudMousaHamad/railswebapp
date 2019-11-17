@@ -102,3 +102,5 @@ gem "iso_country_codes"
 gem "pg_search"
 
 gem "datagrid"
+
+gem 'language-select'

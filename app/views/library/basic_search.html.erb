@@ -12,8 +12,12 @@
                     </div>
                     <div class="filter">
                         Results Per Page:
-                        <%= text_input_for("results_per_page", "1-100", "number", params)%>
-                        <input class="btn-small" type="submit" value="Apply">
+                        <select name="results_per_page" onChange="this.form.submit()">
+                            <option value="5" <%= params[:results_per_page] == "5" ? "selected" : "not_selected" %>>5</option>
+                            <option value="10" <%= params[:results_per_page] == "10" ? "selected" : "not_selected" %>>10</option>
+                            <option value="20" <%= params[:results_per_page] == "20" ? "selected" : "not_selected" %>>20</option>
+                            <option value="50" <%= params[:results_per_page] == "50" ? "selected" : "not_selected" %>>50</option>
+                        </select>
                     </div>
                     <div class="filter">
                         Search Field:
@@ -26,14 +30,8 @@
                         Content Type:
                         <%= check_box_for("journals", params) %>
                         <%= check_box_for("books", params) %>
-                        <%= check_box_for("academic_papers", params) %>                        
-                    </div>
-                    <div class="filter">
-                        <% if params[:academic_papers] == "on" || (params[:books].nil? && params[:academic_papers].nil? && params[:journals].nil?) %>
-                            Academic Paper Type:
-                            <%= check_box_for("dissertations", params) %>
-                            <%= check_box_for("conference_papers", params) %>
-                        <% end %>
+                        <%= check_box_for("dissertations", params) %>
+                        <%= check_box_for("conference_papers", params) %>                     
                     </div>
                     <div class="filter">
                         Publication Year:
@@ -42,13 +40,37 @@
                         <input class="btn-small" type="submit" value="Apply">
                     </div>
                     <div class="filter">
+                        Language:
+                        <%= render partial: "shared/languages_select", locals: {params: params} %>
+                    </div>
+                    <div class="filter">
                         Subjects:
-                        <% Subject.all.each do |s| %>
-                            <label style="margin-right: 5px;">
-                                <%= check_box_tag "search[subjects][]", s.name, params[:search].nil? ? false : params[:search][:subjects].include?(s.name), onChange: "this.form.submit();" %>
-                                <span><%= "#{s.name} (#{s.code})" %></span>
-                            </label>
-                        <% end %>
+                        <br>
+                        <button type="button" class="btn-small" data-toggle="modal" data-target="#subjects-modal">
+                            Choose subjects
+                        </button>
+                        <div class="modal fade" id="subjects-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Choose subjects</h5>
+                                    </div>
+                                    <div class="modal-body">
+                                        <% Subject.all.each do |s| %>
+                                            <label style="margin-right: 5px;">
+                                                <%= check_box_tag "search[subjects][]", s.name, params[:search].nil? ? false : params[:search][:subjects].include?(s.name) %>
+                                                <span><%= "#{s.name} (#{s.code})" %></span>
+                                            </label>
+                                            &#8195;
+                                        <% end %>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <input class="btn btn-primary" type="submit" value="Apply">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </form>
             </div>

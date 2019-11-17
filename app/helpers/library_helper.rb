@@ -48,7 +48,7 @@ module LibraryHelper
         delegate :radio_button_tag, :content_tag, :image_tag, :safe_join, to: :view
         def content
             input = radio_button_tag(name, nil, params[name] == value, value: value, onChange: $ON_CHANGE, selected: :selected)
-            span = content_tag(:span, value)
+            span = content_tag(:span, value.humanize)
             content_tag(:label, safe_join([input, span]))
         end
     end
@@ -84,7 +84,7 @@ module LibraryHelper
 
         def content
             check_box = check_box_tag(name, nil, params[name] == "on", onChange: $ON_CHANGE)
-            span = content_tag(:span, name)
+            span = content_tag(:span, name.humanize)
             content_tag(:label, safe_join([check_box, span]))
         end
     end

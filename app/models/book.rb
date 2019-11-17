@@ -1,19 +1,5 @@
 class Book < ApplicationRecord
     include PgSearch::Model
-    multisearchable against: [:title, :author, :about, :isbn, :keywords],
-                    if: :published?,
-                    using: {
-                        tsearch: {
-                            StartSel: '<b>',
-                            StopSel: '</b>',
-                            MaxWords: 123,
-                            MinWords: 456,
-                            ShortWord: 4,
-                            HighlightAll: true,
-                            MaxFragments: 3,
-                            FragmentDelimiter: '&hellip;'
-                        }
-                    }
 
     include Filterable
     
@@ -25,4 +11,13 @@ class Book < ApplicationRecord
     has_one_attached :pdf
 
     validates_presence_of :title, :about, :year, :author, :pages, :pdf, :cover, :publisher
+
+    multisearchable against: [:title, :author, :about, :isbn, :keywords], if: :published?
+    pg_search_scope :search_by_title, against: :title
+    pg_search_scope :search_by_author, against: :author
+    pg_search_scope :search_by_publisher, associated_against: {
+        publisher: :name
+    }
+
+
 end

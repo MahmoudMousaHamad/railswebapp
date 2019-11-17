@@ -190,3 +190,11 @@ picture img {
     margin-top: 5px;
     border-bottom: 1px solid #3A2A91;
 }
+
+.btn:hover, .btn:focus {
+    color: grey;
+}
+
+.pagination {
+    padding-left: 20px !important;
+}

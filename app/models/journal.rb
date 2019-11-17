@@ -1,7 +1,5 @@
 class Journal < ApplicationRecord
   include PgSearch::Model
-  multisearchable against: [:title, :about, :isbn, :keywords],
-                  if: :published?
 
   include Filterable
     
@@ -19,11 +17,9 @@ class Journal < ApplicationRecord
   validates :isbn, presence: true
   validates :cover, presence: true
 
-  def self.search(search)
-    if search 
-      where('title LIKE :search OR about LIKE :search', search: "%#{search}%");
-    else
-      find(:all)
-    end
-  end
+  multisearchable against: [:title, :about, :isbn, :keywords], if: :published?
+  pg_search_scope :search_by_title, against: :title
+  pg_search_scope :search_by_publisher, associated_against: {
+    publisher: :name
+  }
 end

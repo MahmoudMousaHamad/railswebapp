@@ -1,48 +1,51 @@
 <div class="col s12 m9 result-section">
-    <table class="highlight table table-striped sortable">
-        <thead>
-            <tr>
-                <th><a href="#">Type</a></th>
-                <th><a href="#">Author(s)</a></th>
-                <th><a href="#">Title</a></th>
-                <th><a href="#">Publisher</a></th>
-                <th><a href="#">Year</a></th>
-                <th><a href="#">Language</a></th>
-            </tr>
-        </thead>
-        <tbody>
-            <% if categorized_results && params[:q] != "" %>
+    <% if categorized_results.length > 0 && params[:q] != "" %>
+        <table class="highlight table table-striped sortable">
+            <thead>
+                <tr>
+                    <th><a href="#">Type</a></th>
+                    <th><a href="#">Author(s)</a></th>
+                    <th><a href="#">Title</a></th>
+                    <th><a href="#">Publisher</a></th>
+                    <th><a href="#">Year</a></th>
+                    <th><a href="#">Language</a></th>
+                </tr>
+            </thead>
+            <tbody>
             <% categorized_results.each do |r| %>
                 <tr>
-                    <td><%= r.class.name %></td>
                     <% if r.class.name == "Book" %>
+                        <td><%= r.class.name %></td>
                         <td><%= r.author %></td>
                         <td><a href="<%= book_path(r) %>"><%= r.title %></a></td>
                         <td><a href="<%= publisher_path(r.publisher) %>"><%= r.publisher.name %></a></td>
                         <td><%= r.year %></td>
                     <% end %>
                     <% if r.class.name == "Journal" %>
+                        <td><%= r.class.name %></td>
                         <td>N/A</td>
                         <td><a href="<%= journal_path(r) %>"><%= r.title %></a></td>
                         <td><a href="<%= publisher_path(r.publisher) %>"><%= r.publisher.name %></a></td>                        
                         <td><%= r.coverageFrom %> - <%= r.coverageTo %></td>
                     <% end %>
                     <% if r.class.name == "AcademicPaper" %>
+                        <td><%= r.paper_type %></td>
                         <td><%= r.author %></td>
                         <td><a href="<%= academic_paper_path(r) %>"><%= r.title %></a></td>
                         <td>N/A</td>
                         <td><%= r.publication_year %></td>
                     <% end %>
-                    <td>LANGUAGE</td>
+                    <td><%= r.language %></td>
                 </tr>
             <% end %>
-            <% else %>
-                <h4>Please enter a search term.</h4>
-            <% end %>
-            <% if params[:q] != "" && categorized_results.length == 0 %>
-                <h4>Sorry, but nothing matches your search.</h4>                    
-            <% end %>
-            <%= paginate categorized_results %>
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    <% elsif params[:q] == "" %>
+        <h4>Please enter a search term.</h4>
+    <% end %>
+    <% if params[:q] != "" && categorized_results.length == 0 %>
+        <h4>Sorry, but nothing matches your search.</h4>                    
+    <% end %>
+    <%= paginate categorized_results %>
+        
 </div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_30_222916) do
+ActiveRecord::Schema.define(version: 2019_11_17_195349) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 2019_10_30_222916) do
     t.string "keywords"
     t.text "about"
     t.boolean "downloadable"
+    t.string "language"
   end
 
   create_table "academic_papers_subjects", id: false, force: :cascade do |t|
@@ -227,6 +228,7 @@ ActiveRecord::Schema.define(version: 2019_10_30_222916) do
     t.boolean "published"
     t.string "keywords"
     t.string "isbn"
+    t.string "language"
     t.index ["publisher_id"], name: "index_journals_on_publisher_id"
   end
 

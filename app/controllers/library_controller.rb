@@ -3,6 +3,8 @@ class LibraryController < ApplicationController
         q = params[:q]
         from_year = params[:from_year].to_i
         to_year = params[:to_year].to_i
+        field = params[:field]
+        language = params[:language]
 
         content_types = []
         if params[:books]
@@ -11,7 +13,7 @@ class LibraryController < ApplicationController
         if params[:journals]
             content_types.push("Journal")
         end
-        if params[:academic_papers]
+        if params[:dissertations] || params[:conference_papers]
             content_types.push("AcademicPaper")
         end
         if content_types.length == 0
@@ -20,21 +22,46 @@ class LibraryController < ApplicationController
             content_types.push("AcademicPaper")
         end
         if q
-            if !params[:results_per_page] || params[:results_per_page].to_i > 100 || params[:results_per_page].to_i < 5
+            if !params[:results_per_page]
                 results_per_page = 20
             else
                 results_per_page = params[:results_per_page]
             end
-            @search_results = PgSearch.multisearch(q)
-            @search_results = @search_results.select { |r| content_types.include? r.searchable_type }
+            @search_results
+            multisearch = field != "title" && field != "author" && field != "publisher"
+            if field == "all"
+                @search_results = PgSearch.multisearch(q)
+            elsif field == "title"
+                @search_results = Book.search_by_title(q) + AcademicPaper.search_by_title(q) + Journal.search_by_title(q)
+            elsif field == "author"
+                @search_results = Book.search_by_author(q) + AcademicPaper.search_by_author(q)
+            elsif field == "publisher"
+                @search_results = Book.search_by_publisher(q) + Journal.search_by_publisher(q)
+            else
+                @search_results = PgSearch.multisearch(q)
+            end
+            if multisearch
+                @search_results = @search_results.select { |r| content_types.include? r.searchable_type }
+            else
+                @search_results = @search_results.select { |r| content_types.include? r.class.name }
+            end
             @categorized_results = []
             @search_results.each do |r|
-                if r.searchable_type == "Book"
-                    @categorized_results.push(Book.find(r.searchable_id))
-                elsif r.searchable_type == "Journal"
-                    @categorized_results.push(Journal.find(r.searchable_id))
-                elsif r.searchable_type == "AcademicPaper"
-                    academic_paper = AcademicPaper.find(r.searchable_id)
+                content_type = ""
+                content_id = 0
+                if multisearch
+                    content_type = r.searchable_type
+                    content_id = r.searchable_id
+                else
+                    content_type = r.class.name
+                    content_id = r.id
+                end
+                if content_type == "Book"
+                    @categorized_results.push(Book.find(content_id))
+                elsif content_type == "Journal"
+                    @categorized_results.push(Journal.find(content_id))
+                elsif content_type == "AcademicPaper"
+                    academic_paper = AcademicPaper.find(content_id)
                     if params[:dissertations] == "on"
                         if academic_paper.paper_type == "Dissertation Paper"
                             @categorized_results.push(academic_paper)
@@ -47,6 +74,9 @@ class LibraryController < ApplicationController
                         @categorized_results.push(academic_paper)
                     end
                 end
+            end
+            if params[:language] != ""
+                @categorized_results = @categorized_results.select { |i| language == i.language }                
             end
             if from_year != 0
                 @categorized_results = @categorized_results.select do |i| 
