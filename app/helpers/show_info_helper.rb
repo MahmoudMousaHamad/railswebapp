@@ -18,12 +18,13 @@ module ShowInfoHelper
         delegate :link_to, :content_tag, :image_tag, :safe_join, to: :view
 
         def info_list
-            content = []
+            content_list = []
             fields.each do |field|
                 label = content_tag(:label, field.humanize + ": ", class: "field-label")
-                content.push content_tag(:div, safe_join label, model[field])
+                content = safe_join(label, model[field])
+                content_list.push content_tag(:div, content)
             end
-            return content
+            return content_list
         end
     end
 end
