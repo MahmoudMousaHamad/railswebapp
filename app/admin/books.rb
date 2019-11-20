@@ -1,7 +1,7 @@
 ActiveAdmin.register Book do
 
-  permit_params :title, :about, :year, :author, :pages, :pdf, :cover, :publisher_id, :keywords, :downloadable,
-                :book_collection_id, :language, :isbn, :volume, :published, subject_ids: []
+  permit_params :title, :about, :year, :pages, :pdf, :cover, :publisher_id, :keywords, :downloadable,
+                :book_collection_id, :language, :isbn, :volume, :published,  author_ids: [], subject_ids: []
 
   form do |f|
     inputs do
@@ -9,11 +9,11 @@ ActiveAdmin.register Book do
       input :about, as: :text
       input :year
       input :pages
-      input :author, label: "Author Name"
       input :publisher
       input :pdf, as: :file
       input :cover, as: :file
-      input :subjects, label: 'Subjects', as: :check_boxes, collection: Subject.all
+      input :subjects, as: :check_boxes, collection: Subject.all
+      input :authors, as: :check_boxes, collection: Author.all
       input :book_collection
       input :language
       input :isbn

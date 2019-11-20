@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_17_195349) do
+ActiveRecord::Schema.define(version: 2019_11_20_144957) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,13 @@ ActiveRecord::Schema.define(version: 2019_11_17_195349) do
     t.text "about"
     t.boolean "downloadable"
     t.string "language"
+  end
+
+  create_table "academic_papers_authors", id: false, force: :cascade do |t|
+    t.bigint "academic_paper_id", null: false
+    t.bigint "author_id", null: false
+    t.index ["academic_paper_id"], name: "index_academic_papers_authors_on_author_id_and_paper_id"
+    t.index ["author_id"], name: "index_academic_papers_authors_on_paper_id_and_author_id"
   end
 
   create_table "academic_papers_subjects", id: false, force: :cascade do |t|
@@ -91,6 +98,20 @@ ActiveRecord::Schema.define(version: 2019_11_17_195349) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_admin_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+  end
+
+  create_table "authors", force: :cascade do |t|
+    t.string "name"
+    t.text "about"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "authors_books", id: false, force: :cascade do |t|
+    t.bigint "book_id", null: false
+    t.bigint "author_id", null: false
+    t.index ["author_id", "book_id"], name: "index_authors_books_on_author_id_and_book_id"
+    t.index ["book_id", "author_id"], name: "index_authors_books_on_book_id_and_author_id"
   end
 
   create_table "book_collections", force: :cascade do |t|

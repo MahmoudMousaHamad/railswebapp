@@ -16,7 +16,7 @@
                 <tr>
                     <% if r.class.name == "Book" %>
                         <td><%= r.class.name %></td>
-                        <td><%= r.author %></td>
+                        <td> <%= safe_join(r.authors.map { |s| link_to  s.name, author_path(s.name) }, ", ").html_safe %></td>
                         <td><a href="<%= book_path(r) %>"><%= r.title %></a></td>
                         <td><a href="<%= publisher_path(r.publisher) %>"><%= r.publisher.name %></a></td>
                         <td><%= r.year %></td>
@@ -30,7 +30,7 @@
                     <% end %>
                     <% if r.class.name == "AcademicPaper" %>
                         <td><%= r.paper_type %></td>
-                        <td><%= r.author %></td>
+                        <td><%= safe_join(r.authors.map { |s| link_to  s.name, author_path(s.name) }, ", ").html_safe %></td>                        
                         <td><a href="<%= academic_paper_path(r) %>"><%= r.title %></a></td>
                         <td>N/A</td>
                         <td><%= r.publication_year %></td>

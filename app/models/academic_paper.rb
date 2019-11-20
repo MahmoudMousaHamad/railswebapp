@@ -2,6 +2,7 @@ class AcademicPaper < ApplicationRecord
     include PgSearch::Model
                     
     has_and_belongs_to_many :subjects
+    has_and_belongs_to_many :authors
     has_one_attached :pdf
 
     multisearchable against: [:title, :author, :about, :keywords], if: :published?

@@ -63,8 +63,6 @@ gem 'devise'
 
 gem 'bootstrap-sass'
 
-gem 'materialize-sass'
-
 gem 'autoprefixer-rails'
 
 gem 'searchkick'
