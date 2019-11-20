@@ -7,11 +7,11 @@
             <div class="col s12 m5 l6" style="float: left;">
                 <h2 class="title"><%= @b.title %></h2>
                 <hr>
-                <h6><strong>Author:</strong> <%= safe_join(@b.authors.map { |s| link_to  s.name, author_path(s.name) }, ", ").html_safe %></h6>
-                <h6><strong>Publisher:</strong> <%= link_to  @b.publisher.name, publisher_path(@b.publisher), target: "_blank" %></h6>
-                <h6><strong>Pages: </strong><%= @b.pages %></h6>
-                <h6><strong>Library Link: </strong><%= link_to request.original_url, request.original_url %></h6>
-                <%= show_info_for(@b, [:pages, :language])%>
+                <p>Author(s): <%= safe_join(@b.authors.map { |s| link_to  s.name, author_path(s.name) }, ", ").html_safe %></p>
+                <p>Publisher: <%= link_to  @b.publisher.name, publisher_path(@b.publisher), target: "_blank" %></p>
+                <p>Pages: <%= @b.pages %></p>
+                <p>Library Link: <%= link_to request.original_url, request.original_url %></p>
+                <%= show_info_for(@b, [:pages, :language, :year, :volume, :isbn, :keywords, :about ]).html_safe %>
             </div>
             <div class="col s12 m4 l4">
                 <ul class="collapsible popout">

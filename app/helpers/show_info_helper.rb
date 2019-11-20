@@ -1,6 +1,6 @@
 module ShowInfoHelper
     def show_info_for(model, fields)
-        Info.new(self, model, fields)
+        Info.new(self, model, fields).html()
     end
 
     class Info
@@ -9,7 +9,7 @@ module ShowInfoHelper
         end
 
         def html
-            content_tag(:div, info_list)
+            content_tag(:div, safe_join(info_list))
         end
 
         private
@@ -20,8 +20,8 @@ module ShowInfoHelper
         def info_list
             content_list = []
             fields.each do |field|
-                label = content_tag(:label, field.humanize + ": ", class: "field-label")
-                content = safe_join(label, model[field])
+                string = content_tag(:span, field.to_s.humanize + ": " + model[field].to_s.humanize)
+                content = content_tag(:p, string, class: "field-label")
                 content_list.push content_tag(:div, content)
             end
             return content_list
