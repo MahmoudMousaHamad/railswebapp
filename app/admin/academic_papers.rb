@@ -12,7 +12,7 @@ ActiveAdmin.register AcademicPaper do
       input :authors, as: :check_boxes, collection: Author.all
       input :published
       input :downloadable
-      input :language
+      input :language, collection: LanguageList::COMMON_LANGUAGES.map { |l| [l.name, l.name] }
       input :keywords
       input :pdf, as: :file, label: "PDF"
     end

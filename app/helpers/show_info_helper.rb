@@ -20,9 +20,14 @@ module ShowInfoHelper
         def info_list
             content_list = []
             fields.each do |field|
-                string = content_tag(:span, field.to_s.humanize + ": " + model[field].to_s.humanize)
-                content = content_tag(:p, string, class: "field-label")
-                content_list.push content_tag(:div, content)
+                if !model[field]
+                    next
+                end
+                if model[field] != ""
+                    string = "<b>" + field.to_s.humanize + "</b>: " + model[field].to_s.humanize
+                    content = content_tag(:p, string.html_safe, class: "field-label")
+                    content_list.push content_tag(:div, content)
+                end
             end
             return content_list
         end

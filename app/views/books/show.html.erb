@@ -1,27 +1,29 @@
 <div class="container">
     <div class="content">
         <div class="row">
-            <div class="col s12 m3 l2">
+            <h2 class="title"><%= @b.title %></h2>
+            <hr>
+        <div>
+        <div class="row">
+            <div class="col s2">
                 <%= image_tag  url_for(@b.cover), style: "max-width: 150px; margin-bottom: 20px;" %>
             </div>
-            <div class="col s12 m5 l6" style="float: left;">
-                <h2 class="title"><%= @b.title %></h2>
-                <hr>
-                <p>Author(s): <%= safe_join(@b.authors.map { |s| link_to  s.name, author_path(s.name) }, ", ").html_safe %></p>
-                <p>Publisher: <%= link_to  @b.publisher.name, publisher_path(@b.publisher), target: "_blank" %></p>
-                <p>Pages: <%= @b.pages %></p>
-                <p>Library Link: <%= link_to request.original_url, request.original_url %></p>
-                <%= show_info_for(@b, [:pages, :language, :year, :volume, :isbn, :keywords, :about ]).html_safe %>
+            <div class="col s6" style="float: left;">
+                <p><b>Author(s):</b> <%= safe_join(@b.authors.map { |s| link_to  s.name, author_path(s.name) }, ", ").html_safe %></p>
+                <p><b>Publisher:</b> <%= link_to  @b.publisher.name, publisher_path(@b.publisher), target: "_blank" %></p>
+                <p><b>Pages:</b> <%= @b.pages %></p>
+                <p><b>Library Link:</b> <%= get_library_link(request) %></p>
+                <%= show_info_for(@b, [:pages, :language, :year, :volume, :isbn, :keywords, :downloadable ]).html_safe %>
+                <p><b>Subjects: </b> <%= safe_join(@b.subjects.map { |s| link_to  s.name, subject_path(s.name) }, ",").html_safe %> </p>
             </div>
-            <div class="col s12 m4 l4">
+            <div class="col s4">
                 <ul class="collapsible popout">
                     <li>
                         <div class="collapsible-header">BOOK INFO</div>
                         <div class="collapsible-body">
                             <h4>Title: <%= @b.title %></h4>
-                            <label>Book Description: </label>
+                            <p>Book Description: </p>
                             <p><%= @b.about %></p>
-                            <%= citation_btn_for(@b) %>
                         </div>
                     </li>
                 </ul>

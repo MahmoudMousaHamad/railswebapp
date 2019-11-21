@@ -214,7 +214,7 @@ GEM
       activerecord
       kaminari-core (= 1.1.1)
     kaminari-core (1.1.1)
-    language-select (1.1.1)
+    language_list (1.2.1)
     loofah (2.2.3)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -399,7 +399,7 @@ DEPENDENCIES
   iso_country_codes
   jbuilder (~> 2.5)
   kaminari
-  language-select
+  language_list
   materialize-sass
   mini_racer
   normalize_country

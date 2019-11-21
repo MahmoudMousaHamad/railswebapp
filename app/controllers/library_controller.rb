@@ -22,8 +22,8 @@ class LibraryController < ApplicationController
             content_types.push("AcademicPaper")
         end
         if q
-            if !params[:results_per_page]
-                results_per_page = 20
+            if !params[:results_per_page] || params[:results_per_page] == "" 
+                results_per_page = 5
             else
                 results_per_page = params[:results_per_page]
             end
@@ -75,7 +75,7 @@ class LibraryController < ApplicationController
                     end
                 end
             end
-            if params[:language] != ""
+            if params[:language] && params[:language] != ""
                 @categorized_results = @categorized_results.select { |i| language == i.language }                
             end
             if from_year != 0

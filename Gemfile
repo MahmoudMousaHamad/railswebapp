@@ -101,6 +101,6 @@ gem "pg_search"
 
 gem "datagrid"
 
-gem 'language-select'
+gem 'language_list'
 
 gem 'materialize-sass'

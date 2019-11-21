@@ -17,6 +17,10 @@ module LibraryHelper
         CheckBox.new(self, name, params).html
     end
 
+    def get_library_link(request)
+        return content_tag(:a, request.original_url, href: request.original_url)
+    end
+
     $ON_CHANGE = "this.form.submit()"
     class SearchBar
         def initialize(view, name, params)
