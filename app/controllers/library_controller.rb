@@ -102,7 +102,16 @@ class LibraryController < ApplicationController
                     end
                 end
             end
-            @categorized_results = @categorized_results.select { |i| !(i.subjects.map { |s| s.name } & params[:search][:subjects]).empty? } if params[:search]
+            @categorized_results = @categorized_results.select { |i| !(i.subjects.map { |s| s.name } & params[:search][:subjects]).empty? } if params[:search][:subjects] != nil
+            if params[:search][:authors] != nil
+                @categorized_results = @categorized_results.select do |i| 
+                    if i.class.name == "Journal"
+                        next
+                    end
+                    !(i.authors.map { |a| a.name } & params[:search][:authors]).empty?
+                end
+                @categorized_results = Kaminari.paginate_array(@categorized_results).page(params[:page]).per(results_per_page)
+            end
             @categorized_results = Kaminari.paginate_array(@categorized_results).page(params[:page]).per(results_per_page)
         end
     end

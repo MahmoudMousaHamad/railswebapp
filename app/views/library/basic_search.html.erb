@@ -44,6 +44,35 @@
                         <%= render partial: "shared/languages_select", locals: {params: params} %>
                     </div>
                     <div class="filter">
+                        Author(s):
+                        <br>
+                        <button type="button" class="btn-small" data-toggle="modal" data-target="#authors-modal">
+                            Choose Authors
+                        </button>
+                        <div class="modal fade" id="authors-modal" tabindex="-1" role="dialog" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Choose Authors</h5>
+                                    </div>
+                                    <div class="modal-body">
+                                        <% Author.all.each do |a| %>
+                                            <label style="margin-right: 5px;">
+                                                <%= check_box_tag "search[authors][]", a.name, params[:search].nil? ? false : params[:search][:authors].include?(a.name) %>
+                                                <span><%= a.name %></span>
+                                            </label>
+                                            &#8195;
+                                        <% end %>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <input class="btn btn-primary" type="submit" value="Apply">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="filter">
                         Subjects:
                         <br>
                         <button type="button" class="btn-small" data-toggle="modal" data-target="#subjects-modal">
@@ -58,7 +87,7 @@
                                     <div class="modal-body">
                                         <% Subject.all.each do |s| %>
                                             <label style="margin-right: 5px;">
-                                                <%= check_box_tag "search[subjects][]", s.name, params[:search].nil? ? false : params[:search][:subjects].include?(s.name) %>
+                                                <%= check_box_tag "search[subjects][]", s.name, params[:search][:subjects].nil? ? false : params[:search][:subjects].include?(s.name) %>
                                                 <span><%= "#{s.name} (#{s.code})" %></span>
                                             </label>
                                             &#8195;
