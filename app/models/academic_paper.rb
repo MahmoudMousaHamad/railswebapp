@@ -7,6 +7,8 @@ class AcademicPaper < ApplicationRecord
 
     multisearchable against: [:title, :author, :about, :keywords], if: :published?
     pg_search_scope :search_by_title, against: :title
-    pg_search_scope :search_by_author, against: :author
+    pg_search_scope :search_by_author, associated_against: {
+        authors: :name
+    }
 
 end
