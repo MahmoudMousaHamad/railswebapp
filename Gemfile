@@ -7,7 +7,7 @@ ruby '2.6.3'
 gem 'rails', '~> 6.0'
 gem 'pg'
 # Use Puma as the app server
-gem 'puma', '~> 3.11'
+gem "puma", ">= 3.12.2"
 gem "rack"
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
@@ -59,7 +59,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'activeadmin'
 
-gem 'devise'
+gem "devise", ">= 4.7.1"
 
 gem 'bootstrap-sass'
 
