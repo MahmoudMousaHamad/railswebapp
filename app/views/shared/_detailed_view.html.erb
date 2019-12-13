@@ -1,5 +1,7 @@
 <div class="col s12 m9 result-section">
-    <% if categorized_results && params[:q] != "" %>
+    <% if params[:q] == nil%>
+        <h4>Please enter a search term.</h4>        
+    <% elsif categorized_results.length > 0 && params[:q] != "" %>
         <% categorized_results.each do |r| %>
             <div class="row">
                 <div class="col s12 m8">
@@ -35,11 +37,10 @@
             </div>
             <hr style="margin-bottom: 25px;">
         <% end %>
-    <% else %>
+        <%= paginate categorized_results %>
+    <% elsif params[:q] == "" %>
         <h4>Please enter a search term.</h4>
-    <% end %>
-    <% if params[:q] != "" && categorized_results.length == 0 %>
+    <% elsif params[:q] != "" && categorized_results.length == 0 %>
         <h4>Sorry, but nothing matches your search.</h4>                    
-    <% end %>
-    <%= paginate categorized_results %>
+    <% end %>        
 </div>

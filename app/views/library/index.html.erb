@@ -2,91 +2,18 @@
     <div class="content">
         <div class=" row search-container">
             <div class="search-content">
-                <h3>Search journals and books</h3>
-                <div class="filter-section">
-                    <form action="<%= library_basic_search_path %>">
-                        <nav>
-                            <div class="nav-wrapper">
-                                <div class="input-field">
-                                    <input name="q" id="search" type="search" required>
-                                    <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-                                    <i class="material-icons">close</i>
-                                </div>
-                            </div>
-                        </nav>
-                        <div class="filter">
-                            View:
-                            <label>
-                                <%= radio_button_tag "view", nil, params[:view] == "simple", value: "simple" %>
-                                <span>Simple</span>
-                            </label>
-                            <label>
-                                <%= radio_button_tag "view", nil, params[:view] == "detailed", value: "detailed" %>
-                                <span>Detailed</span>
-                            </label>
-                        </div>
-                        <div class="filter">
-                            Results Per Page:
-                            <div class="input-field inline">
-                                <input name="results_per_page" value="<%= params[:results_per_page] %>" type="number">
+                <h3>Search Books, Journals, and Academic Papers</h3>
+                <form action="<%= library_basic_search_path %>">
+                    <nav>
+                        <div class="nav-wrapper">
+                            <div class="input-field">
+                                <input name="q" id="search" type="search" required>
+                                <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                                <i class="material-icons">close</i>
                             </div>
                         </div>
-                        <div class="filter">
-                            Search Field:
-                            <label>
-                                <%= radio_button_tag "field", nil, params[:field] == "all", value: "all", selected: true %>
-                                <span>All</span>
-                            </label>
-                            <label>
-                                <%= radio_button_tag "field", nil, params[:field] == "title", value: "title" %>
-                                <span>Title</span>
-                            </label>
-                            <label>
-                                <%= radio_button_tag "field", nil, params[:field] == "author", value: "author" %>
-                                <span>Author</span>
-                            </label>
-                            <label>
-                                <%= radio_button_tag "field", nil, params[:field] == "publisher", value: "publisher" %>
-                                <span>Publisher</span>
-                            </label>
-                        </div>
-                        <div class="filter">
-                            Content Type:
-                            <label>
-                                <%= check_box_tag "journals", nil, params[:journals] == "on" %>
-                                <span>Journals</span>
-                            </label>
-                            <label>
-                                <%= check_box_tag "books", nil, params[:books] == "on" %>
-                                <span>Books</span>
-                            </label>
-                            <label>
-                                <%= check_box_tag "academic_papers", nil, params[:academic_papers] == "on" %>
-                                <span>Academic Papers</span>
-                            </label>
-                        </div>
-                        <div class="filter">
-                            Publication Year:
-                            <div class="input-field inline">
-                                <input name="from_year" type="number" placeholder="From" value="<%= params[:from_year] %>">
-                            </div>
-                            -
-                            <div class="input-field inline">
-                                <input name="to_year" type="number" placeholder="To" value="<%= params[:to_year] %>">
-                            </div>
-                        </div>
-                        <div class="filter">
-                            Subjects:
-                            <% Subject.all.each do |s| %>
-                                <label style="margin-right: 5px;">
-                                    <%= check_box_tag "search[subjects][]", s.name, params[:search].nil? ? false : params[:search][:subjects].include?(s.name) %>
-                                    <span><%= "#{s.name} (#{s.code})" %></span>
-                                </label>
-                            <% end %>
-                        </div>
-                        <input class="btn-small" type="submit" value="Apply">
-                    </form>
-                </div>
+                    </nav>
+                </form>
             </div>
         </div>
         <h3>Browse by discipline:</h3>

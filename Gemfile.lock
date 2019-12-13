@@ -123,7 +123,7 @@ GEM
       rails (>= 4.0)
     declarative (0.0.10)
     declarative-option (0.1.0)
-    devise (4.7.0)
+    devise (4.7.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 4.1.0)
@@ -246,7 +246,8 @@ GEM
     polyamorous (2.3.0)
       activerecord (>= 5.0)
     public_suffix (3.1.1)
-    puma (3.12.1)
+    puma (4.3.1)
+      nio4r (~> 2.0)
     rack (2.0.7)
     rack-proxy (0.6.5)
       rack
@@ -391,7 +392,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   country_select (~> 4.0)
   datagrid
-  devise
+  devise (>= 4.7.1)
   dotenv-rails
   geocoder
   gmaps4rails
@@ -405,7 +406,7 @@ DEPENDENCIES
   normalize_country
   pg
   pg_search
-  puma (~> 3.11)
+  puma (>= 3.12.2)
   rack
   rails (~> 6.0)
   ransack

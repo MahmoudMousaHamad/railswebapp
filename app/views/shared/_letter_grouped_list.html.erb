@@ -1,0 +1,35 @@
+<div class="container">
+    <div class="content">
+        <h1>Browse by <% model.class.name.humanize %></h1>
+        <div class="letters-container">
+            <ul class="pagination">
+                <% [*('A'..'Z')].each do |l| %>
+                    <li class="page-item"><a class="page-link" href="#<%= l %>"><%= l %></a></li>
+                <% end %>
+            </ul>
+        </div>
+
+        <div class="subjects-container">
+            <% model.each do |letter, group| %>
+                <h3 id="<%= letter %>"><%= letter %></h3>
+                <ul>
+                    <% group.each do |element|%>
+                        <% if element.class.name == "Author" %>
+                            <li><%= link_to  element.name.capitalize, author_path(element.name) %></li>
+                        <% end %>
+                        <% if element.class.name == "Publisher" %>
+                            <li><%= link_to  element.name.capitalize, publisher_path(element.id) %></li>
+                        <% end %>
+                    <% end %>
+                </ul>
+            <% end %>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('.pagination li').click(function() {
+        $('.page-item').removeClass("active");
+        $(this).toggleClass("active");
+    });
+</script>

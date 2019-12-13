@@ -1,10 +1,11 @@
 <div class="content">
-    <h2><%= model.name %></h2>
-    <h4>Browse books, journals, and academic papers within <%= model.name %></h3>
-    
     <a class="waves-effect waves-light btn <%= params[:document_type] == "books" ? "disabled" : "nothing" %>" href="?document_type=books">Books</a>
-    <a class="waves-effect waves-light btn <%= params[:document_type] == "journals" ? "disabled" : "nothing" %>" href="?document_type=journals">Journals</a>
-    <a class="waves-effect waves-light btn <%= params[:document_type] == "academic_papers" ? "disabled" : "nothing" %>" href="?document_type=academic_papers">Academic Papers</a>
+    <% if model.class.name != "Author" %>
+        <a class="waves-effect waves-light btn <%= params[:document_type] == "journals" ? "disabled" : "nothing" %>" href="?document_type=journals">Journals</a>
+    <% end %>
+    <% if model.class.name != "Publisher" %>
+        <a class="waves-effect waves-light btn <%= params[:document_type] == "academic_papers" ? "disabled" : "nothing" %>" href="?document_type=academic_papers">Academic Papers</a>
+    <% end %>
 
     <div class="subjects-items-container">
         <% if params[:document_type] == "books" %>
@@ -15,7 +16,7 @@
                     <% end %>
                 </div>
             <% end %>
-        <% elsif params[:document_type] == "journals" %>
+        <% elsif params[:document_type] == "journals" && model.class.name != "Author" %>
             <% if model.journals %>
                 <div class="">
                     <% model.journals.each do |r| %>
@@ -23,7 +24,7 @@
                     <% end %>
                 </div>
             <% end %>
-        <% elsif params[:document_type] == "academic_papers" %>
+        <% elsif params[:document_type] == "academic_papers" && model.class.name != "Publisher" %>
             <% if model.academic_papers %>
                 <div class="">
                     <% model.academic_papers.each do |p| %>
