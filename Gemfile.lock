@@ -88,7 +88,7 @@ GEM
       autoprefixer-rails (>= 5.2.1)
       sassc (>= 2.0.0)
     breadcrumbs_on_rails (3.0.1)
-    builder (3.2.3)
+    builder (3.2.4)
     byebug (11.0.1)
     capybara (3.28.0)
       addressable
@@ -118,12 +118,12 @@ GEM
     country_select (4.0.0)
       countries (~> 3.0)
       sort_alphabetical (~> 1.0)
-    crass (1.0.4)
+    crass (1.0.5)
     datagrid (1.5.9)
       rails (>= 4.0)
     declarative (0.0.10)
     declarative-option (0.1.0)
-    devise (4.7.0)
+    devise (4.7.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 4.1.0)
@@ -142,10 +142,11 @@ GEM
     elasticsearch-transport (7.3.0)
       faraday
       multi_json
-    erubi (1.8.0)
+    erubi (1.9.0)
     execjs (2.7.0)
     faraday (0.15.4)
       multipart-post (>= 1.2, < 3)
+    ffi (1.11.1)
     ffi (1.11.1-x64-mingw32)
     formtastic (3.1.5)
       actionpack (>= 3.2.13)
@@ -185,7 +186,7 @@ GEM
       activesupport (>= 4.1)
     hashie (3.6.0)
     httpclient (2.8.3)
-    i18n (1.6.0)
+    i18n (1.7.0)
       concurrent-ruby (~> 1.0)
     i18n_data (0.8.0)
     inherited_resources (1.11.0)
@@ -215,7 +216,8 @@ GEM
       kaminari-core (= 1.1.1)
     kaminari-core (1.1.1)
     language_list (1.2.1)
-    loofah (2.2.3)
+    libv8 (7.3.492.27.1)
+    loofah (2.4.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.7.1)
@@ -229,16 +231,22 @@ GEM
     mimemagic (0.3.3)
     mini_mime (1.0.2)
     mini_portile2 (2.4.0)
-    minitest (5.11.3)
+    mini_racer (0.2.8)
+      libv8 (>= 6.9.411)
+    minitest (5.13.0)
+    msgpack (1.3.1)
     msgpack (1.3.1-x64-mingw32)
     multi_json (1.13.1)
     multipart-post (2.1.1)
     nio4r (2.4.0)
-    nokogiri (1.10.4-x64-mingw32)
+    nokogiri (1.10.7)
+      mini_portile2 (~> 2.4.0)
+    nokogiri (1.10.7-x64-mingw32)
       mini_portile2 (~> 2.4.0)
     normalize_country (0.2.2)
     orm_adapter (0.5.0)
     os (1.0.1)
+    pg (1.1.4)
     pg (1.1.4-x64-mingw32)
     pg_search (2.3.0)
       activerecord (>= 4.2)
@@ -246,7 +254,8 @@ GEM
     polyamorous (2.3.0)
       activerecord (>= 5.0)
     public_suffix (3.1.1)
-    puma (3.12.1)
+    puma (4.3.1)
+      nio4r (~> 2.0)
     rack (2.0.7)
     rack-proxy (0.6.5)
       rack
@@ -270,8 +279,8 @@ GEM
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
-    rails-html-sanitizer (1.2.0)
-      loofah (~> 2.2, >= 2.2.2)
+    rails-html-sanitizer (1.3.0)
+      loofah (~> 2.3)
     railties (6.0.0)
       actionpack (= 6.0.0)
       activesupport (= 6.0.0)
@@ -309,6 +318,8 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (>= 1.1, < 3)
+    sassc (2.2.0)
+      ffi (~> 1.9)
     sassc (2.2.0-x64-mingw32)
       ffi (~> 1.9)
     sassc-rails (2.1.2)
@@ -374,9 +385,10 @@ GEM
     xpath (3.2.0)
       nokogiri (~> 1.8)
     youtube_rails (1.2.2)
-    zeitwerk (2.1.9)
+    zeitwerk (2.2.2)
 
 PLATFORMS
+  ruby
   x64-mingw32
 
 DEPENDENCIES
@@ -391,7 +403,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   country_select (~> 4.0)
   datagrid
-  devise
+  devise (>= 4.7.1)
   dotenv-rails
   geocoder
   gmaps4rails
@@ -405,7 +417,7 @@ DEPENDENCIES
   normalize_country
   pg
   pg_search
-  puma (~> 3.11)
+  puma (>= 3.12.2)
   rack
   rails (~> 6.0)
   ransack
