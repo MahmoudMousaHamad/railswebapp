@@ -27,14 +27,6 @@
             </div>
         </div>
 
-        <div class="row">
-            <h3 class="title">Gain Access</h3>
-            <hr>
-            <% if @p.downloadable || @p.pdf != nil %>
-                <%= link_to  "Download PDF", url_for(@p.pdf), target: "_blank" %>
-            <% else %>
-                <p>Sorry, this file is not avalable at the moment.</p>
-            <% end %>
-        </div>
+        <%= render partial: "shared/gain_access", locals: {params: params, model: @p} %>
     </div>
 </div>
