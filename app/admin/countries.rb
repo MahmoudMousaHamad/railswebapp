@@ -1,5 +1,6 @@
 ActiveAdmin.register Country do
   extend DeleteImage
+  scope_to :current_user, if: proc{ current_user.country == Country.find(params[:id]).name }
 
   permit_params :name, :about, :lat, :lng, slideshow_photos: [], gallery_photos: []
 
