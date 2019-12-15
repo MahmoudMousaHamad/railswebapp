@@ -1,4 +1,5 @@
 ActiveAdmin.register Conference do
+  menu parent: "Countries"
 
   permit_params :name, :about, :city_id, :country_id, :website, :organizer, :papers, :lat, :lng, :to_date, :from_date, :category_id, photos: []
 

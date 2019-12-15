@@ -1,4 +1,5 @@
 ActiveAdmin.register Issue do
+  menu parent: "Library"
 
   permit_params :number, :year, :pageFrom, :pageTo, :journal_id, :pdf, :downloadable
   

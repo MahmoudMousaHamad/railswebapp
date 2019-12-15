@@ -1,4 +1,5 @@
 ActiveAdmin.register University do
+  menu parent: "Countries"
 
   permit_params :name, :about, :city_id, :country_id, :logo, :lat, :lng, photos: []
 

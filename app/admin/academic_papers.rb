@@ -1,5 +1,6 @@
 ActiveAdmin.register AcademicPaper do
-
+  menu parent: "Library"
+  
   permit_params :title, :publication_year, :paper_type, :published, :keywords, :about, :pdf, :downloadable, :language, subject_ids: [], author_ids: []
 
   form do |f|

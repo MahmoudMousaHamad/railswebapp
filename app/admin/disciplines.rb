@@ -1,4 +1,5 @@
 ActiveAdmin.register Discipline do
+  menu parent: "Library"
 
   permit_params :name, :about, :photo
 

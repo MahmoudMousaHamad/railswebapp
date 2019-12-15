@@ -1,4 +1,5 @@
 ActiveAdmin.register Scholarship do
+  menu parent: "Countries"
 
   permit_params :name, :about, :degree, :scholarship, :deadline, :university_id, :country_id, :category_id
 

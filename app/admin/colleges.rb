@@ -1,4 +1,5 @@
 ActiveAdmin.register College do
+  menu parent: "Countries"
 
   permit_params :name, :about, :university_id, :lat, :lng, :logo
   

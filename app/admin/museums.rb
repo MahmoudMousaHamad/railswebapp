@@ -1,4 +1,5 @@
 ActiveAdmin.register Museum do
+  menu parent: "Countries"
 
   permit_params :name, :about, :city_id, :country_id, :website, :ticket_price, :working_hours, :lat, :lng, :logo, :kind, photos: []
 

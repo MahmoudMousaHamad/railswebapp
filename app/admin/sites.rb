@@ -1,4 +1,5 @@
 ActiveAdmin.register Site do
+  menu parent: "Countries"
 
   extend DeleteImage
 

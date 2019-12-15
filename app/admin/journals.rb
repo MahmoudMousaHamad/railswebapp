@@ -1,4 +1,5 @@
 ActiveAdmin.register Journal do
+  menu parent: "Library"
 
   permit_params :title, :about, :coverageFrom, :coverageTo, :publisher_id, :isbn, :cover, :published, :keywords, :language, subject_ids: []
   

@@ -1,4 +1,5 @@
 ActiveAdmin.register Post do
+  menu parent: "Countries"
 
   permit_params :title, :body, :cover_photo, :country_id, :city_id, :date_occurred
 
