@@ -1,55 +1,51 @@
-<div class="container">
-    <div class="content">
-        <div class="row">
-            <h2 class="title"><%= @j.title %></h2>
-            <hr>
-        <div>
-        <div class="row">
-            <div class="col s2">
-                <%= image_tag  url_for(@j.cover), style: "width: 150px;" %>
-            </div>
-            <div class="col s6" style="float: left;">
-                <p><b>Publisher:</b> <%= link_to  @j.publisher.name, publisher_path(@j.publisher), target: "_blank" %></p>
-                <p><b>Coverage:</b> <%= "#{@j.coverageFrom} - #{@j.coverageTo}" %></p>
-                <p><b>Library Link:</b> <%= get_library_link(request) %></p>
-                <%= show_info_for(@j, [ :language, :isbn, :keywords ]).html_safe %>
-                <p><b>Subjects: </b> <%= safe_join(@j.subjects.map { |s| link_to  s.name, subject_path(s.name) }, ",").html_safe %> </p>
-            </div>
-            <div class="col s4">
-                <ul class="collapsible popout">
-                    <li>
-                        <div class="collapsible-header">JOURNAL INFO</div>
-                        <div class="collapsible-body">
-                            <h4>Title: <%= @j.title %></h4>
-                            <p><%= @j.about %></p>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="row">
-            <h3 class="title">All Issues</h3>
-            <hr>
-            <% if @issues.length > 0 %>
-                <ul class="collapsible">
-                    <% @issues.each_pair  do |year, issues| %>
-                        <li>
-                            <div class="collapsible-header"><%= year %></div>
-                            <div class="collapsible-body">
-                                <% issues.each do |i| %>
-                                    <p>
-                                        <%= link_to  "Issue No. #{i.number}, #{i.year}, pp #{i.pageFrom} - #{i.pageTo}",
-                                            issue_path(i) %>
-                                    </p>
-                                <% end %>
-                            </div>
-                        </li>
-                    <% end %>  
-                </ul>
-            <% else %>
-                <p>There are not issues for this journal.</p>
-            <% end %>
-        </div>
+<div class="row">
+    <h2 class="title"><%= @j.title %></h2>
+    <hr>
+<div>
+<div class="row">
+    <div class="col s2">
+        <%= image_tag  url_for(@j.cover), style: "width: 150px;" %>
     </div>
+    <div class="col s6" style="float: left;">
+        <p><b>Publisher:</b> <%= link_to  @j.publisher.name, publisher_path(@j.publisher), target: "_blank" %></p>
+        <p><b>Coverage:</b> <%= "#{@j.coverageFrom} - #{@j.coverageTo}" %></p>
+        <p><b>Library Link:</b> <%= get_library_link(request) %></p>
+        <%= show_info_for(@j, [ :language, :isbn, :keywords ]).html_safe %>
+        <p><b>Subjects: </b> <%= safe_join(@j.subjects.map { |s| link_to  s.name, subject_path(s.name) }, ",").html_safe %> </p>
+    </div>
+    <div class="col s4">
+        <ul class="collapsible popout">
+            <li>
+                <div class="collapsible-header">JOURNAL INFO</div>
+                <div class="collapsible-body">
+                    <h4>Title: <%= @j.title %></h4>
+                    <p><%= @j.about %></p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="row">
+    <h3 class="title">All Issues</h3>
+    <hr>
+    <% if @issues.length > 0 %>
+        <ul class="collapsible">
+            <% @issues.each_pair  do |year, issues| %>
+                <li>
+                    <div class="collapsible-header"><%= year %></div>
+                    <div class="collapsible-body">
+                        <% issues.each do |i| %>
+                            <p>
+                                <%= link_to  "Issue No. #{i.number}, #{i.year}, pp #{i.pageFrom} - #{i.pageTo}",
+                                    issue_path(i) %>
+                            </p>
+                        <% end %>
+                    </div>
+                </li>
+            <% end %>  
+        </ul>
+    <% else %>
+        <p>There are not issues for this journal.</p>
+    <% end %>
 </div>

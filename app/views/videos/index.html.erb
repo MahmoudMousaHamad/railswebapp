@@ -1,18 +1,14 @@
-<div class="container">
-    <div class="content">
-        <h1><%= @country.name %>'s Video Gallery</h1>
-        <%= filters_and_order_for(country_videos_path(@country), 
-        ["city-site", {"title" => "Title"}], params)%>
-        <div class="row">
-            <% @videos.each do |v| %>
-                <div class="col s12 m4 ">
-                    <div class="video-container">
-                        <%= raw YouTubeRails.youtube_embed_url(v.link, "auto", 400, disable_suggestion: true, ssl: true) %>
-                    </div>
-                    <p class="center"><b><%= v.title %></b></p>
-                </div>
-            <% end %>  
+<h1><%= @country.name %>'s Video Gallery</h1>
+<%= filters_and_order_for(country_videos_path(@country), 
+["city-site", {"title" => "Title"}], params)%>
+<div class="row">
+    <% @videos.each do |v| %>
+        <div class="col s12 m4 ">
+            <div class="video-container">
+                <%= raw YouTubeRails.youtube_embed_url(v.link, "auto", 400, disable_suggestion: true, ssl: true) %>
+            </div>
+            <p class="center"><b><%= v.title %></b></p>
         </div>
-    </div>
-    <%= paginate @videos %>
+    <% end %>  
 </div>
+<%= paginate @videos %>

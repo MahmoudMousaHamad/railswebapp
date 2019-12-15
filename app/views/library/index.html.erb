@@ -1,37 +1,33 @@
-<div class="container">
-    <div class="content">
-        <div class=" row search-container">
-            <div class="search-content">
-                <h3>Search Books, Journals, and Academic Papers</h3>
-                <form action="<%= library_basic_search_path %>">
-                    <nav>
-                        <div class="nav-wrapper">
-                            <div class="input-field">
-                                <input name="q" id="search" type="search" required>
-                                <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-                                <i class="material-icons">close</i>
-                            </div>
-                        </div>
-                    </nav>
-                </form>
-            </div>
-        </div>
-        <h3>Browse by discipline:</h3>
-        <div class="grid">
-            <% @disciplines.each do |d| %>
-                <a href="<%= "#{subjects_path}##{d.id}" %>" class="text-center">
-                    <div class="discipline-block">
-                        <%= image_tag url_for(d.photo) %>
-                        <%= d.name %>
+<div class=" row search-container">
+    <div class="search-content">
+        <h3>Search Books, Journals, and Academic Papers</h3>
+        <form action="<%= library_basic_search_path %>">
+            <nav>
+                <div class="nav-wrapper">
+                    <div class="input-field">
+                        <input name="q" id="search" type="search" required>
+                        <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                        <i class="material-icons">close</i>
                     </div>
-                </a>
-            <% end %>
-        </div>
-        <div class="row browse-link" style="display: none;">
-            <h3>Browse by:</h3>
-            <%= link_to  "Subject", subjects_path, class: "waves-effect waves-light btn" %>
-            <%= link_to  "Title", library_browse_path(:letter => "0-9"), class: "waves-effect waves-light btn" %>
-            <%= link_to  "Publisher", publishers_path, class: "waves-effect waves-light btn" %>
-        </div>
+                </div>
+            </nav>
+        </form>
     </div>
+</div>
+<h3>Browse by discipline:</h3>
+<div class="grid">
+    <% @disciplines.each do |d| %>
+        <a href="<%= "#{subjects_path}##{d.id}" %>" class="text-center">
+            <div class="discipline-block">
+                <%= image_tag url_for(d.photo) %>
+                <%= d.name %>
+            </div>
+        </a>
+    <% end %>
+</div>
+<div class="row browse-link" style="display: none;">
+    <h3>Browse by:</h3>
+    <%= link_to  "Subject", subjects_path, class: "waves-effect waves-light btn" %>
+    <%= link_to  "Title", library_browse_path(:letter => "0-9"), class: "waves-effect waves-light btn" %>
+    <%= link_to  "Publisher", publishers_path, class: "waves-effect waves-light btn" %>
 </div>

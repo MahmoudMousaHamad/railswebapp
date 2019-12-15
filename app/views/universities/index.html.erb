@@ -1,13 +1,9 @@
-<div class="container">
-
-    <h1 class="page-title">Universities in <%= @country.name %></h1>
-
-    <div class="row">
-        <% @country.universities.each do |i| %>
-            <%= card_for(i.name, 
-                        {},
-                        country_university_path(@country, i), 4, i.logo) %>
-        <% end %>
-    </div>
-    <%= paginate @universities %>
+<h1 class="page-title">Universities in <%= @country.name %></h1>
+<div class="row">
+    <% @country.universities.each do |i| %>
+        <%= card_for(i.name, 
+                    {},
+                    country_university_path(@country, i), 4, i.logo) %>
+    <% end %>
 </div>
+<%= paginate @universities %>

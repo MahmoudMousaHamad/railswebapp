@@ -1,16 +1,13 @@
-<div class="container">
-
-    <h1 class="page-title">Scholarships in <%= @country.name %></h1>
-    <%= filters_and_order_for(country_scholarships_path(params[:country_id]), ["degree", "university", "category"], params) %>
-    <div class="row">
+<h1 class="page-title">Scholarships in <%= @country.name %></h1>
+<%= filters_and_order_for(country_scholarships_path(params[:country_id]), ["degree", "university", "category"], params) %>
+<div class="row">
     <% @scholarships.each do |i| %>
         <%= card_for(i.name, 
-                    {"Degree" => i.degree, 
-                    "University" => i.university.name, 
-                    "Scholarship" => i.scholarship,
-                    "Deadline" => i.deadline.strftime("%d/%m/%Y") },
-                    country_scholarship_path(@country, i), 3) %>
+        {"Degree" => i.degree, 
+        "University" => i.university.name, 
+        "Scholarship" => i.scholarship,
+        "Deadline" => i.deadline.strftime("%d/%m/%Y") },
+        country_scholarship_path(@country, i), 3) %>
     <% end %>
-    </div>
-    <%= paginate @scholarships %>
 </div>
+<%= paginate @scholarships %>

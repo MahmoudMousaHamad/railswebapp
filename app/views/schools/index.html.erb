@@ -1,22 +1,18 @@
-<div class="container">
-
-    <h1 class="page-title">Departments in <%= @college.name %> in <%= @college.university.name %></h1>
-
-    <% @college.schools.each do |i| %>
-        <div class="row">
-            <div class="col s12 m7">
-                <div class="card">
-                    <div class="card-content">
-                        <h4><%= i.name %></h4>
-                        <p><%= i.about.truncate(27) %></p>
-                    </div>
-                    <div class="card-action">
-                        <%= link_to  "View " + i.name,
-                        country_university_college_school_path(@college.university.country, @college.university, @college, i) %>
-                    </div>
+<h1 class="page-title">Departments in <%= @college.name %> in <%= @college.university.name %></h1>
+<% @college.schools.each do |i| %>
+    <div class="row">
+        <div class="col s12 m7">
+            <div class="card">
+                <div class="card-content">
+                    <h4><%= i.name %></h4>
+                    <p><%= i.about.truncate(27) %></p>
+                </div>
+                <div class="card-action">
+                    <%= link_to  "View " + i.name,
+                    country_university_college_school_path(@college.university.country, @college.university, @college, i) %>
                 </div>
             </div>
         </div>
-    <% end %>
-    <%= paginate @schools %>
-</div>
+    </div>
+<% end %>
+<%= paginate @schools %>

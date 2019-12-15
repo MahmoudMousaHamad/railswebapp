@@ -1,10 +1,5 @@
-<div class="container">
-    <div class="content">
-        <h2 class="title"><%= @p.name %></h2>
-        <h5>Publisher Description</h5>
-        <h6><%= @p.about %></h6>
-        <a class="waves-effect btn-light btn-small" href="http://<%= @p.website %>" target="_blank">Publisher's Website</a>
-        
-        <%= render partial: "shared/documents_view", locals: {params: params, model: @p} %>
-    </div>
-</div>
+<h2 class="title"><%= @p.name %></h2>
+<h5>Publisher Description</h5>
+<h6><%= @p.about %></h6>
+<a class="waves-effect btn-light btn-small" href="http://<%= @p.website %>" target="_blank">Publisher's Website</a>
+<%= render partial: "shared/documents_view", locals: {params: params, model: @p} %>

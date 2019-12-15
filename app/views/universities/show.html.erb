@@ -1,24 +1,20 @@
 <%= carousel_for( @i.photos ) %>
-
 <br>
 <br>
 <br>
-
-<div class="container">
-    <div class="about">
-        <h2><img src="<%= url_for(@i.logo)%>" width="50px"/>   <%= @i.name %> </h2>
-        <p><b>About:</b></p>
-        <p class="lead"> <%= @i.about %></p>
-        <p><b>Address:</b> <%= Geocoder.search([@i.lat, @i.lng]).first.display_name %></p>
-        <p><b>Location:</b></p>
-        <%= location_map_for( @i.lat, @i.lng )%>
-        <p><b>Colleges:</b></p>
-        <div class="row">
-            <% @i.colleges.each do |c| %>
-                <%= card_for(c.name, 
-                            {},
-                            country_university_college_path(@i.country, @i, c), 4, c.logo) %>
-            <% end %>
-        </div>
+<div class="about">
+    <h2><img src="<%= url_for(@i.logo)%>" width="50px"/>   <%= @i.name %> </h2>
+    <p><b>About:</b></p>
+    <p class="lead"> <%= @i.about %></p>
+    <p><b>Address:</b> <%= Geocoder.search([@i.lat, @i.lng]).first.display_name %></p>
+    <p><b>Location:</b></p>
+    <%= location_map_for( @i.lat, @i.lng )%>
+    <p><b>Colleges:</b></p>
+    <div class="row">
+        <% @i.colleges.each do |c| %>
+            <%= card_for(c.name, 
+                        {},
+                        country_university_college_path(@i.country, @i, c), 4, c.logo) %>
+        <% end %>
     </div>
 </div>

@@ -10,8 +10,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">      
-
   </head>
+  
   <body>
     <ul id="dropdown-library" class="dropdown-content">
       <li><%= link_to  "By Subject", subjects_path %></li>
@@ -48,7 +48,7 @@
         <li><%= link_to  "Login ", new_user_session_path, class: 'nav-item nav-link' %></li>
       <% end %>
     </ul>
-    
+
     <div class="container">
       <div class="content">
         <%= yield %>

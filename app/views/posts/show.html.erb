@@ -1,17 +1,11 @@
-<div class="container">
-    <div class="content">
-        <div class="post-title page-title">
-            <h1><%= @i.title %></h1>
-        </div>
-
-        <div class="post-photo-container">
-            <img width="100%" src="<%= url_for(@i.cover_photo) %>" style="margin: 20px 0px;"/>
-        </div>
-
-        <div class="post-body">
-            <p class="lead post">
-                <%= @i.body %>
-            </p>
-        </div>
-    </div>
+<div class="post-title page-title">
+    <h1><%= @i.title %></h1>
+</div>
+<div class="post-photo-container">
+    <img width="100%" src="<%= url_for(@i.cover_photo) %>" style="margin: 20px 0px;"/>
+</div>
+<div class="post-body">
+    <p class="lead post">
+        <%= @i.body %>
+    </p>
 </div>

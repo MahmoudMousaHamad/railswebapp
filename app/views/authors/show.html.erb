@@ -1,8 +1,4 @@
-<div class="container">
-    <div class="content">
-        <h2 class="title"><%= @author.name %></h2>
-        <h5>About:</h5>
-        <h6><%= @author.about %></h6>        
-        <%= render partial: "shared/documents_view", locals: {params: params, model: @author} %>
-    </div>
-</div>
+<h2 class="title"><%= @author.name %></h2>
+<h5>About:</h5>
+<h6><%= @author.about %></h6>        
+<%= render partial: "shared/documents_view", locals: {params: params, model: @author} %>

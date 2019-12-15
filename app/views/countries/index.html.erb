@@ -1,18 +1,16 @@
 <% content_for :title, 'Countries' %>
 <% navigation_add 'Home', root_path %>
-<div class="container">
-    <h1 class="page-title">Countries</h1>
-    <div class="content">
-        <% @countries.each do |continent, countries| %>
-            <div class="row">
-                <h2><%= continent %></h2>
-                <% countries.each do |c| %>
-                    <div class="col s6 m2">
-                        <%= link_to  content_tag(:img, nil, :src => "https://www.countryflags.io/#{NormalizeCountry(c.name, to: :alpha2)}/flat/64.png"),
-                        country_cities_path(c), class: "flag-list-link", title: c.name %>
-                    </div>
-                <% end %>
-            </div>
-        <% end %>
-    </div>
+<h1 class="page-title">Countries</h1>
+<div class="content">
+    <% @countries.each do |continent, countries| %>
+        <div class="row">
+            <h2><%= continent %></h2>
+            <% countries.each do |c| %>
+                <div class="col s6 m2">
+                    <%= link_to  content_tag(:img, nil, :src => "https://www.countryflags.io/#{NormalizeCountry(c.name, to: :alpha2)}/flat/64.png"),
+                    country_cities_path(c), class: "flag-list-link", title: c.name %>
+                </div>
+            <% end %>
+        </div>
+    <% end %>
 </div>

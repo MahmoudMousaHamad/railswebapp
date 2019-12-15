@@ -1,25 +1,21 @@
-<div class="container">
-    <div class="content">
-        <h2 class="page-title"><%= @country.name %> References</h2>
-        <br>
-        <br>
-        <table>
-            <tr>
-                <th>Title</th>
-                <th>Author</th>
-                <th>Publisher</th>
-                <th>Publication Date</th>
-                <th>Period</th>
-            </tr>
-            <% @country.country_references.each do |r|%>
-                <tr>
-                    <td><%= r.title %></td>
-                    <td><%= r.author %></td>
-                    <td><%= r.publisher %></td>
-                    <td><%= r.publication_date.strftime("%d/%m/%Y") %></td>
-                    <td><%= r.period %></td>
-                </tr>
-            <% end %>
-        </table>
-    </div>
-</div>
+<h2 class="page-title"><%= @country.name %> References</h2>
+<br>
+<br>
+<table>
+    <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Publisher</th>
+        <th>Publication Date</th>
+        <th>Period</th>
+    </tr>
+    <% @country.country_references.each do |r|%>
+        <tr>
+            <td><%= r.title %></td>
+            <td><%= r.author %></td>
+            <td><%= r.publisher %></td>
+            <td><%= r.publication_date.strftime("%d/%m/%Y") %></td>
+            <td><%= r.period %></td>
+        </tr>
+    <% end %>
+</table>

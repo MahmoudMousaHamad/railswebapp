@@ -1,38 +1,36 @@
-<div class="content">
-    <a class="waves-effect waves-light btn <%= params[:document_type] == "books" ? "disabled" : "nothing" %>" href="?document_type=books">Books</a>
-    <% if model.class.name != "Author" %>
-        <a class="waves-effect waves-light btn <%= params[:document_type] == "journals" ? "disabled" : "nothing" %>" href="?document_type=journals">Journals</a>
-    <% end %>
-    <% if model.class.name != "Publisher" %>
-        <a class="waves-effect waves-light btn <%= params[:document_type] == "academic_papers" ? "disabled" : "nothing" %>" href="?document_type=academic_papers">Academic Papers</a>
-    <% end %>
+<a class="waves-effect waves-light btn <%= params[:document_type] == "books" ? "disabled" : "nothing" %>" href="?document_type=books">Books</a>
+<% if model.class.name != "Author" %>
+    <a class="waves-effect waves-light btn <%= params[:document_type] == "journals" ? "disabled" : "nothing" %>" href="?document_type=journals">Journals</a>
+<% end %>
+<% if model.class.name != "Publisher" %>
+    <a class="waves-effect waves-light btn <%= params[:document_type] == "academic_papers" ? "disabled" : "nothing" %>" href="?document_type=academic_papers">Academic Papers</a>
+<% end %>
 
-    <div class="subjects-items-container">
-        <% if params[:document_type] == "books" %>
-            <% if model.books %>
-                <div class="">
-                    <% model.books.each do |b| %>
-                        <%= link_to b.title, book_path(b), class: "subjects-item" %>
-                    <% end %>
-                </div>
-            <% end %>
-        <% elsif params[:document_type] == "journals" && model.class.name != "Author" %>
-            <% if model.journals %>
-                <div class="">
-                    <% model.journals.each do |r| %>
-                        <%= link_to r.title, journal_path(r), class: "subjects-item" %>
-                    <% end %>
-                </div>
-            <% end %>
-        <% elsif params[:document_type] == "academic_papers" && model.class.name != "Publisher" %>
-            <% if model.academic_papers %>
-                <div class="">
-                    <% model.academic_papers.each do |p| %>
-                        <%= link_to p.title, academic_paper_path(p), class: "subjects-item" %>
-                    <% end %>
-                </div>
-            <% end %>
-        <% else %>
+<div class="subjects-items-container">
+    <% if params[:document_type] == "books" %>
+        <% if model.books %>
+            <div class="">
+                <% model.books.each do |b| %>
+                    <%= link_to b.title, book_path(b), class: "subjects-item" %>
+                <% end %>
+            </div>
         <% end %>
-    </div>
+    <% elsif params[:document_type] == "journals" && model.class.name != "Author" %>
+        <% if model.journals %>
+            <div class="">
+                <% model.journals.each do |r| %>
+                    <%= link_to r.title, journal_path(r), class: "subjects-item" %>
+                <% end %>
+            </div>
+        <% end %>
+    <% elsif params[:document_type] == "academic_papers" && model.class.name != "Publisher" %>
+        <% if model.academic_papers %>
+            <div class="">
+                <% model.academic_papers.each do |p| %>
+                    <%= link_to p.title, academic_paper_path(p), class: "subjects-item" %>
+                <% end %>
+            </div>
+        <% end %>
+    <% else %>
+    <% end %>
 </div>

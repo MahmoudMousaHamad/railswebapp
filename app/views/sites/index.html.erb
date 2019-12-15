@@ -1,39 +1,35 @@
 <%= carousel_for( @city.slideshow_photos ) %>
+<br>
+<br>
+<br>
+<div class="city-tagline">
+    <h2><%= @city.name %>: <%= @city.tagline %></h2>
+</div>
+<div class="row">
+    <% @sites.each do |s| %>
+        <%= card_for(s.name, 
+                    {},
+                    country_city_site_path(@city.country, @city, s), 3, s.slideshow_photos.first) %>
+    <% end %>
+</div>
 
-<br>
-<br>
-<br>
+<%= gallery_for(@city.gallery_photos) %>
 
-<div class="container">
-    <div class="city-tagline">
-        <h2><%= @city.name %>: <%= @city.tagline %></h2>
+<h3>Map of sites in <%= @city.name %></h3>
+<br>
+<div class="row">
+    <div class="col-sm-8">
+        <div>
+            <div id="map" style='width: 100%; height: 90vh;'></div>
+        </div>
     </div>
-    <div class="row">
-        <% @sites.each do |s| %>
-            <%= card_for(s.name, 
-                        {},
-                        country_city_site_path(@city.country, @city, s), 3, s.slideshow_photos.first) %>
+    
+    <div class="col-sm-4">
+        <% @city.sites.each do |s| %>
+            <%= link_to  s.name, country_city_site_path(@city.country, @city, s),
+            class: "text-uppercase text-left" %>
+            <br>
         <% end %>
-    </div>
-
-    <%= gallery_for(@city.gallery_photos) %>
-
-    <h3>Map of sites in <%= @city.name %></h3>
-    <br>
-    <div class="row">
-        <div class="col-sm-8">
-            <div>
-                <div id="map" style='width: 100%; height: 90vh;'></div>
-            </div>
-        </div>
-        
-        <div class="col-sm-4">
-            <% @city.sites.each do |s| %>
-                <%= link_to  s.name, country_city_site_path(@city.country, @city, s),
-                class: "text-uppercase text-left" %>
-                <br>
-            <% end %>
-        </div>
     </div>
 </div>
 

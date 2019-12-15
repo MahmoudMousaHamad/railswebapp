@@ -1,8 +1,3 @@
-<div class="container">
-    <div class="content">
-        <h2><%= @subject.name %></h2>
-        <h4>Browse books, journals, and academic papers within <%= @subject.name %></h3>
-        
-        <%= render partial: "shared/documents_view", locals: {params: params, model: @subject} %>
-    </div>
-</div>
+<h2><%= @subject.name %></h2>
+<h4>Browse books, journals, and academic papers within <%= @subject.name %></h3>
+<%= render partial: "shared/documents_view", locals: {params: params, model: @subject} %>

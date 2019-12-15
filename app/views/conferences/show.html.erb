@@ -1,18 +1,12 @@
 <%= carousel_for(@i.photos) %>
-
-<div class="container">
-
-    <div class="content">
-        <h2><%= @i.name %>: </h2>
-        <p><%= "#{@i.from_date.strftime("%d/%m/%Y")} - #{@i.to_date.strftime("%d/%m/%Y")}" %></p>
-        <p><b>Address:</b> <%= Geocoder.search([@i.lat, @i.lng]).first.display_name %></p>
-        <p><b>About:</b></p>
-        <p class="lead"> <%= @i.about %></p>
-        <p><b>Website:</b> <%= link_to  "Visit website", @i.website, target: "_blank" %></p>
-        <p><b>Organized by:</b> <%= @i.organizer %></p>
-        <p><b>Papers discussed:</b></p>
-        <p><%= @i.papers %></p>
-        <p><b>Location:</b></p>
-        <%= location_map_for( @i.lat, @i.lng )%>
-    </div>
-</div>
+<h2><%= @i.name %>: </h2>
+<p><%= "#{@i.from_date.strftime("%d/%m/%Y")} - #{@i.to_date.strftime("%d/%m/%Y")}" %></p>
+<p><b>Address:</b> <%= Geocoder.search([@i.lat, @i.lng]).first.display_name %></p>
+<p><b>About:</b></p>
+<p class="lead"> <%= @i.about %></p>
+<p><b>Website:</b> <%= link_to  "Visit website", @i.website, target: "_blank" %></p>
+<p><b>Organized by:</b> <%= @i.organizer %></p>
+<p><b>Papers discussed:</b></p>
+<p><%= @i.papers %></p>
+<p><b>Location:</b></p>
+<%= location_map_for( @i.lat, @i.lng )%>

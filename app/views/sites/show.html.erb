@@ -1,15 +1,9 @@
 <%= carousel_for( @s.slideshow_photos ) %>
-
 <br>
 <br>
 <br>
-
-<div class="container">
-    <div class="about-site">
-        <h2><%= @s.name %>: </h2>
-        <p class="lead"> <%= @s.about %></p>
-    </div>
-
-    <%= gallery_for(@s.gallery_photos) %>
-    
+<div class="about-site">
+    <h2><%= @s.name %>: </h2>
+    <p class="lead"> <%= @s.about %></p>
 </div>
+<%= gallery_for(@s.gallery_photos) %>

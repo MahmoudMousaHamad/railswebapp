@@ -1,32 +1,28 @@
-<div class="container">
-    <div class="content">
-        <div class="row">
-            <h2 class="title"><%= @p.title %></h2>
-            <hr>
-        <div>
-        <div class="row">
-            <div class="col s2">
-                <%= image_tag  url_for("/assets/no-thumb.jpg"), style: "max-width: 150px; margin-bottom: 20px;" %>
-            </div>
-            <div class="col s6" style="float: left;">
-                <p><b>Author(s):</b> <%= safe_join(@p.authors.map { |s| link_to  s.name, author_path(s.name) }, ", ").html_safe %></p>
-                <p><b>Library Link: </b><%= get_library_link(request) %></p>
-                <%= show_info_for(@p, [ :language, :publication_year, :paper_type, :keywords, :downloadable ]).html_safe %>
-                <p><b>Subjects: </b> <%= safe_join(@p.subjects.map { |s| link_to  s.name, subject_path(s.name) }, ",").html_safe %> </p>
-            </div>
-            <div class="col s4">
-                <ul class="collapsible popout">
-                    <li>
-                        <div class="collapsible-header">PAPER INFO</div>
-                        <div class="collapsible-body">
-                            <h4>Title: <%= @p.title %></h4>
-                            <p><%= @p.about %></p>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-        <%= render partial: "shared/gain_access", locals: {params: params, model: @p} %>
+<div class="row">
+    <h2 class="title"><%= @p.title %></h2>
+    <hr>
+<div>
+<div class="row">
+    <div class="col s2">
+        <%= image_tag  url_for("/assets/no-thumb.jpg"), style: "max-width: 150px; margin-bottom: 20px;" %>
+    </div>
+    <div class="col s6" style="float: left;">
+        <p><b>Author(s):</b> <%= safe_join(@p.authors.map { |s| link_to  s.name, author_path(s.name) }, ", ").html_safe %></p>
+        <p><b>Library Link: </b><%= get_library_link(request) %></p>
+        <%= show_info_for(@p, [ :language, :publication_year, :paper_type, :keywords, :downloadable ]).html_safe %>
+        <p><b>Subjects: </b> <%= safe_join(@p.subjects.map { |s| link_to  s.name, subject_path(s.name) }, ",").html_safe %> </p>
+    </div>
+    <div class="col s4">
+        <ul class="collapsible popout">
+            <li>
+                <div class="collapsible-header">PAPER INFO</div>
+                <div class="collapsible-body">
+                    <h4>Title: <%= @p.title %></h4>
+                    <p><%= @p.about %></p>
+                </div>
+            </li>
+        </ul>
     </div>
 </div>
+
+<%= render partial: "shared/gain_access", locals: {params: params, model: @p} %>

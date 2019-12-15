@@ -1,19 +1,15 @@
-<div class="container">
-    <div class="content">
-        <div class="row">
-            <h2><%= @j.title %></h2>
-        <div>
-        <div class="row">
-            <div class="col s4">
-                <%= image_tag  url_for(@j.cover), style: "max-width: 150px;" %>
-            </div>
-            <div class="col s8">
-                <h5><%= "Issue No. #{@i.number}, #{@i.year}, pp #{@i.pageFrom} - #{@i.pageTo}" %></h5>
-                <h6>Coverage: <%= "#{@j.coverageFrom} - #{@j.coverageTo}" %></h6>
-                <h6>Published by: <%= link_to  @j.publisher.name, publisher_path(@j.publisher), target: "_blank" %></h6>
-            </div>
-        </div>
-
-        <%= render partial: "shared/gain_access", locals: {params: params, model: @i} %>
+<div class="row">
+    <h2><%= @j.title %></h2>
+<div>
+<div class="row">
+    <div class="col s4">
+        <%= image_tag  url_for(@j.cover), style: "max-width: 150px;" %>
+    </div>
+    <div class="col s8">
+        <h5><%= "Issue No. #{@i.number}, #{@i.year}, pp #{@i.pageFrom} - #{@i.pageTo}" %></h5>
+        <h6>Coverage: <%= "#{@j.coverageFrom} - #{@j.coverageTo}" %></h6>
+        <h6>Published by: <%= link_to  @j.publisher.name, publisher_path(@j.publisher), target: "_blank" %></h6>
     </div>
 </div>
+
+<%= render partial: "shared/gain_access", locals: {params: params, model: @i} %>

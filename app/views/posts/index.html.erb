@@ -1,14 +1,12 @@
-<div class="container">
-    <h1 class="page-title">Posts related to <%= @country.name %></h1>
-        <%= filters_and_order_for(country_posts_path(@country), 
-        ["city", {"title" => "Title", "date_occurred" => "Date"}], params)%>
-    
-    <div class="row">
-        <% @posts.each do |i| %>
-            <%= card_for(i.title, 
-                        {"" => i.date_occurred.strftime("%d/%m/%Y")},
-                        country_post_path(@country, i), 3, i.cover_photo) %>
-        <% end %>
-    </div>
-    <%= paginate @posts %>
+<h1 class="page-title">Posts related to <%= @country.name %></h1>
+<%= filters_and_order_for(country_posts_path(@country), 
+["city", {"title" => "Title", "date_occurred" => "Date"}], params)%>
+
+<div class="row">
+    <% @posts.each do |i| %>
+        <%= card_for(i.title, 
+        {"" => i.date_occurred.strftime("%d/%m/%Y")},
+        country_post_path(@country, i), 3, i.cover_photo) %>
+    <% end %>
 </div>
+<%= paginate @posts %>

@@ -1,41 +1,37 @@
-<div class="container">
-    <div class="content">
-        <h2 class="browse-title">Browse by Title: <%= params[:letter] %></h2>
-        <h3 class="browse-sub-title">Browse by titles starting with:</h3>
-        <div class="letters-container">
-            <ul class="pagination">
-                <% [('0-9'), *('A'..'Z')].each do |l| %>
-                    <li><a href="?letter=<%= l %>"><%= l %></a></li>
-                <% end %>
-            </ul>
-        </div>
-        <div class="row">
-            <div class="col s12">
-            <ul class="tabs">
-                <li class="tab col s3"><a class="active" href="#journals">Journals</a></li>
-                <li class="tab col s3"><a href="#books">Books</a></li>
-            </ul>
-            </div>
-            <div id="journals" class="col s12">
-                <h5 style="margin-top: 20px;">Titles starting with <%= params[:letter]%></h5>
-                <% if @journals %>
-                    <div class="search-results collection">
-                        <% @journals.each do |r| %>
-                            <%= link_to  r.title + ", " + truncate(r.about), journal_path(r), class: "collection-item" %>
-                        <% end %>
-                    </div>
+<h2 class="browse-title">Browse by Title: <%= params[:letter] %></h2>
+<h3 class="browse-sub-title">Browse by titles starting with:</h3>
+<div class="letters-container">
+    <ul class="pagination">
+        <% [('0-9'), *('A'..'Z')].each do |l| %>
+            <li><a href="?letter=<%= l %>"><%= l %></a></li>
+        <% end %>
+    </ul>
+</div>
+<div class="row">
+    <div class="col s12">
+    <ul class="tabs">
+        <li class="tab col s3"><a class="active" href="#journals">Journals</a></li>
+        <li class="tab col s3"><a href="#books">Books</a></li>
+    </ul>
+    </div>
+    <div id="journals" class="col s12">
+        <h5 style="margin-top: 20px;">Titles starting with <%= params[:letter]%></h5>
+        <% if @journals %>
+            <div class="search-results collection">
+                <% @journals.each do |r| %>
+                    <%= link_to  r.title + ", " + truncate(r.about), journal_path(r), class: "collection-item" %>
                 <% end %>
             </div>
-            <div id="books" class="col s12">
-                <h5 style="margin-top: 20px;">Titles starting with <%= params[:letter] %></h5>
-                <% if @books %>
-                    <div class="search-results collection">
-                        <% @books.each do |b| %>
-                            <%= link_to  b.title + ", " + truncate(b.about), book_path(b.id), class: "collection-item" %>
-                        <% end %>
-                    </div>
+        <% end %>
+    </div>
+    <div id="books" class="col s12">
+        <h5 style="margin-top: 20px;">Titles starting with <%= params[:letter] %></h5>
+        <% if @books %>
+            <div class="search-results collection">
+                <% @books.each do |b| %>
+                    <%= link_to  b.title + ", " + truncate(b.about), book_path(b.id), class: "collection-item" %>
                 <% end %>
             </div>
-        </div>
+        <% end %>
     </div>
 </div>
