@@ -9,8 +9,8 @@ ActiveAdmin.register AcademicPaper do
       input :about, label: "Abstract"
       input :publication_year
       input :paper_type, collection: ["Conference Paper", "Dissertation Paper"]
-      input :subjects, as: :check_boxes, collection: Subject.all
-      input :authors, as: :check_boxes, collection: Author.all
+      input :subjects, as: :select, collection: Subject.all
+      input :authors, as: :select, collection: Author.all
       input :published
       input :downloadable
       input :language, collection: LanguageList::COMMON_LANGUAGES.map { |l| [l.name, l.name] }

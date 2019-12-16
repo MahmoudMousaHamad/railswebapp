@@ -1,12 +1,6 @@
 ActiveAdmin.register Country do
   extend DeleteImage
-
-  # controller do 
-  #   if current_user.country != Country.find(country.id)
-  #     redirect_to root_path
-  #   end
-  # end
-
+  
   permit_params :name, :about, :lat, :lng, slideshow_photos: [], gallery_photos: []
 
   form do |f|
