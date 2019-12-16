@@ -9,13 +9,13 @@ class Journal < ApplicationRecord
   
   has_one_attached :cover
 
-  validates :title, presence: true, uniqueness: true
-  validates :about, presence: true
-  validates :coverageFrom, presence: true
-  validates :coverageTo, presence: true
-  validates :publisher, presence: true
-  validates :isbn, presence: true
-  validates :cover, presence: true
+  # validates :title, presence: true, uniqueness: true
+  # validates :about, presence: true
+  # validates :coverageFrom, presence: true
+  # validates :coverageTo, presence: true
+  # validates :publisher, presence: true
+  # validates :isbn, presence: true
+  # validates :cover, presence: true
 
   multisearchable against: [:title, :about, :isbn, :keywords], if: :published?
   pg_search_scope :search_by_title, against: :title

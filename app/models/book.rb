@@ -11,7 +11,7 @@ class Book < ApplicationRecord
     has_one_attached :cover
     has_one_attached :pdf
 
-    validates_presence_of :title, :about, :year, :pages, :pdf, :cover, :publisher
+    validates_presence_of :title, :about, :pages
 
     multisearchable against: [:title, :author, :about, :isbn, :keywords], if: :published?
     pg_search_scope :search_by_title, against: :title
