@@ -1,5 +1,7 @@
 class Country < ApplicationRecord
     include Filterable
+
+    user_owned
     
     has_many :cities, dependent: :destroy
     has_many :sites, dependent: :destroy

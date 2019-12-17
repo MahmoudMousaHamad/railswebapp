@@ -1,5 +1,7 @@
 class Subject < ApplicationRecord
   include Filterable
+
+  user_owned
     
   belongs_to :discipline
   has_and_belongs_to_many :books

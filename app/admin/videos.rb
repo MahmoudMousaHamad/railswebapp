@@ -1,19 +1,15 @@
 ActiveAdmin.register Video do
   menu parent: "Countries"
 
-  # See permitted parameters documentation:
-  # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-  #
-  # permit_params :list, :of, :attributes, :on, :model
-  #
-  # or
-  #
-  # permit_params do
-  #   permitted = [:permitted, :attributes]
-  #   permitted << :other if params[:action] == 'create' && current_user.admin?
-  #   permitted
-  # end
+  controller do
+    def create
+      @video = Video.new(permitted_params[:video])
+      @video.user_id = current_user.id
+      @video.save
+      super
+    end
+  end
 
-  permit_params :title, :link, :country_id, :city_id, :site_id
+  permit_params :title, :link, :country_id, :city_id, :site_id, :user_id
   
 end

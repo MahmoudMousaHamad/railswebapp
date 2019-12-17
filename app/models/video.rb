@@ -1,5 +1,7 @@
 class Video < ApplicationRecord
   include Filterable
+
+  user_owned
   
   belongs_to :country
   belongs_to :city

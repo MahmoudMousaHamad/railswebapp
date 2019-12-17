@@ -1,5 +1,7 @@
 class Post < ApplicationRecord
   include Filterable
+
+  user_owned
     
   belongs_to :country
   belongs_to :city

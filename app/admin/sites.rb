@@ -1,9 +1,17 @@
 ActiveAdmin.register Site do
   menu parent: "Countries"
-
   extend DeleteImage
 
-  permit_params :name, :about, :city_id, :country_id, :lat, :lng, slideshow_photos: [], gallery_photos: []
+  controller do
+    def create
+      @site = Site.new(permitted_params[:site])
+      @site.user_id = current_user.id
+      @site.save
+      super
+    end
+  end
+
+  permit_params :name, :about, :city_id, :country_id, :lat, :lng, :user_id, slideshow_photos: [], gallery_photos: []
 
   form do |f|
     inputs do

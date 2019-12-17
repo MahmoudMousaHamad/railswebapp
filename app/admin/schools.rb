@@ -1,7 +1,16 @@
 ActiveAdmin.register School do
   menu parent: "Countries"
 
-  permit_params :name, :professors, :about, :college_id, :university_id, :logo
+  controller do
+    def create
+      @school = School.new(permitted_params[:school])
+      @school.user_id = current_user.id
+      @school.save
+      super
+    end
+  end
+
+  permit_params :name, :professors, :about, :college_id, :university_id, :logo, :user_id
 
   form do |f|
     inputs do

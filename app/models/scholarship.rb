@@ -1,5 +1,7 @@
 class Scholarship < ApplicationRecord
   include Filterable
+
+  user_owned
   
   belongs_to :university
   belongs_to :country

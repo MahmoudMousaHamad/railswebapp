@@ -1,7 +1,16 @@
 ActiveAdmin.register Discipline do
   menu parent: "Library"
 
-  permit_params :name, :about, :photo
+  controller do
+    def create
+      @discipline = Discipline.new(permitted_params[:discipline])
+      @discipline.user_id = current_user.id
+      @discipline.save
+      super
+    end
+  end
+
+  permit_params :name, :about, :photo, :user_id
 
   form do |f|
     inputs do

@@ -1,6 +1,8 @@
 class Issue < ApplicationRecord
   include PgSearch::Model
   include Filterable
+
+  user_owned
     
   belongs_to :journal
   has_one_attached :pdf

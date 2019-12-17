@@ -1,5 +1,7 @@
 class City < ApplicationRecord
   include Filterable
+
+  user_owned
     
   belongs_to :country
   has_many :sites

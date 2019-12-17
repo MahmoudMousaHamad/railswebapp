@@ -1,7 +1,16 @@
 ActiveAdmin.register Museum do
   menu parent: "Countries"
 
-  permit_params :name, :about, :city_id, :country_id, :website, :ticket_price, :working_hours, :lat, :lng, :logo, :kind, photos: []
+  controller do
+    def create
+      @museum = Museum.new(permitted_params[:museum])
+      @museum.user_id = current_user.id
+      @museum.save
+      super
+    end
+  end
+
+  permit_params :name, :about, :city_id, :country_id, :website, :ticket_price, :working_hours, :lat, :lng, :logo, :kind, :user_id, photos: []
 
   form do |f|
     inputs do

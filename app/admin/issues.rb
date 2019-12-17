@@ -1,7 +1,16 @@
 ActiveAdmin.register Issue do
   menu parent: "Library"
 
-  permit_params :number, :year, :pageFrom, :pageTo, :journal_id, :pdf, :downloadable
+  controller do
+    def create
+      @issue = Issue.new(permitted_params[:issue])
+      @issue.user_id = current_user.id
+      @issue.save
+      super
+    end
+  end
+
+  permit_params :number, :year, :pageFrom, :pageTo, :journal_id, :pdf, :downloadable, :user_id
   
   form do |f|
     inputs do

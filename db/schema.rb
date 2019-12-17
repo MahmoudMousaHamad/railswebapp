@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_17_163313) do
+ActiveRecord::Schema.define(version: 2019_12_17_205854) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -106,6 +106,8 @@ ActiveRecord::Schema.define(version: 2019_12_17_163313) do
     t.text "about"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
+    t.boolean "published"
   end
 
   create_table "authors_books", id: false, force: :cascade do |t|
@@ -119,6 +121,8 @@ ActiveRecord::Schema.define(version: 2019_12_17_163313) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
+    t.boolean "published"
   end
 
   create_table "books", force: :cascade do |t|
@@ -137,6 +141,7 @@ ActiveRecord::Schema.define(version: 2019_12_17_163313) do
     t.boolean "published"
     t.string "keywords"
     t.boolean "downloadable"
+    t.integer "user_id"
     t.index ["book_collection_id"], name: "index_books_on_book_collection_id"
     t.index ["publisher_id"], name: "index_books_on_publisher_id"
   end
@@ -153,6 +158,8 @@ ActiveRecord::Schema.define(version: 2019_12_17_163313) do
     t.text "about"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.boolean "published"
   end
 
   create_table "cities", force: :cascade do |t|
@@ -163,6 +170,8 @@ ActiveRecord::Schema.define(version: 2019_12_17_163313) do
     t.datetime "updated_at", null: false
     t.float "lat"
     t.float "lng"
+    t.integer "user_id"
+    t.boolean "published"
     t.index ["country_id"], name: "index_cities_on_country_id"
   end
 
@@ -174,6 +183,8 @@ ActiveRecord::Schema.define(version: 2019_12_17_163313) do
     t.datetime "updated_at", null: false
     t.float "lat"
     t.float "lng"
+    t.integer "user_id"
+    t.boolean "published"
     t.index ["university_id"], name: "index_colleges_on_university_id"
   end
 
@@ -192,6 +203,8 @@ ActiveRecord::Schema.define(version: 2019_12_17_163313) do
     t.datetime "from_date"
     t.datetime "to_date"
     t.bigint "category_id"
+    t.integer "user_id"
+    t.boolean "published"
     t.index ["category_id"], name: "index_conferences_on_category_id"
     t.index ["city_id"], name: "index_conferences_on_city_id"
     t.index ["country_id"], name: "index_conferences_on_country_id"
@@ -206,6 +219,7 @@ ActiveRecord::Schema.define(version: 2019_12_17_163313) do
     t.float "lng"
     t.boolean "published"
     t.boolean "downloadable"
+    t.integer "user_id"
   end
 
   create_table "country_references", force: :cascade do |t|
@@ -217,6 +231,8 @@ ActiveRecord::Schema.define(version: 2019_12_17_163313) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "country_id"
     t.string "period"
+    t.integer "user_id"
+    t.boolean "published"
     t.index ["country_id"], name: "index_country_references_on_country_id"
   end
 
@@ -225,6 +241,8 @@ ActiveRecord::Schema.define(version: 2019_12_17_163313) do
     t.text "about"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.boolean "published"
   end
 
   create_table "issues", force: :cascade do |t|
@@ -236,6 +254,8 @@ ActiveRecord::Schema.define(version: 2019_12_17_163313) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "downloadable"
+    t.integer "user_id"
+    t.boolean "published"
     t.index ["journal_id"], name: "index_issues_on_journal_id"
   end
 
@@ -251,6 +271,7 @@ ActiveRecord::Schema.define(version: 2019_12_17_163313) do
     t.string "keywords"
     t.string "isbn"
     t.string "language"
+    t.integer "user_id"
     t.index ["publisher_id"], name: "index_journals_on_publisher_id"
   end
 
@@ -274,6 +295,8 @@ ActiveRecord::Schema.define(version: 2019_12_17_163313) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "kind"
+    t.integer "user_id"
+    t.boolean "published"
     t.index ["city_id"], name: "index_museums_on_city_id"
     t.index ["country_id"], name: "index_museums_on_country_id"
   end
@@ -295,6 +318,8 @@ ActiveRecord::Schema.define(version: 2019_12_17_163313) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.date "date_occurred"
+    t.integer "user_id"
+    t.boolean "published"
     t.index ["city_id"], name: "index_posts_on_city_id"
     t.index ["country_id"], name: "index_posts_on_country_id"
   end
@@ -305,6 +330,8 @@ ActiveRecord::Schema.define(version: 2019_12_17_163313) do
     t.string "website"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.boolean "published"
   end
 
   create_table "scholarships", force: :cascade do |t|
@@ -318,6 +345,8 @@ ActiveRecord::Schema.define(version: 2019_12_17_163313) do
     t.datetime "updated_at", null: false
     t.bigint "country_id"
     t.bigint "category_id"
+    t.integer "user_id"
+    t.boolean "published"
     t.index ["category_id"], name: "index_scholarships_on_category_id"
     t.index ["country_id"], name: "index_scholarships_on_country_id"
     t.index ["university_id"], name: "index_scholarships_on_university_id"
@@ -331,6 +360,8 @@ ActiveRecord::Schema.define(version: 2019_12_17_163313) do
     t.bigint "university_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.boolean "published"
     t.index ["college_id"], name: "index_schools_on_college_id"
     t.index ["university_id"], name: "index_schools_on_university_id"
   end
@@ -345,6 +376,7 @@ ActiveRecord::Schema.define(version: 2019_12_17_163313) do
     t.bigint "user_id"
     t.float "lat"
     t.float "lng"
+    t.boolean "published"
     t.index ["city_id"], name: "index_sites_on_city_id"
     t.index ["country_id"], name: "index_sites_on_country_id"
     t.index ["user_id"], name: "index_sites_on_user_id"
@@ -357,6 +389,8 @@ ActiveRecord::Schema.define(version: 2019_12_17_163313) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "code"
+    t.integer "user_id"
+    t.boolean "published"
     t.index ["discipline_id"], name: "index_subjects_on_discipline_id"
   end
 
@@ -369,6 +403,8 @@ ActiveRecord::Schema.define(version: 2019_12_17_163313) do
     t.datetime "updated_at", null: false
     t.float "lat"
     t.float "lng"
+    t.integer "user_id"
+    t.boolean "published"
     t.index ["city_id"], name: "index_universities_on_city_id"
     t.index ["country_id"], name: "index_universities_on_country_id"
   end
@@ -414,6 +450,8 @@ ActiveRecord::Schema.define(version: 2019_12_17_163313) do
     t.datetime "updated_at", null: false
     t.bigint "site_id"
     t.bigint "city_id", null: false
+    t.integer "user_id"
+    t.boolean "published"
     t.index ["city_id"], name: "index_videos_on_city_id"
     t.index ["country_id"], name: "index_videos_on_country_id"
     t.index ["site_id"], name: "index_videos_on_site_id"

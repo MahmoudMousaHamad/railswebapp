@@ -1,7 +1,16 @@
 ActiveAdmin.register Journal do
   menu parent: "Library"
 
-  permit_params :title, :about, :coverageFrom, :coverageTo, :publisher_id, :isbn, :cover, :published, :keywords, :language, subject_ids: []
+  controller do
+    def create
+      @journal = Journal.new(permitted_params[:journal])
+      @journal.user_id = current_user.id
+      @journal.save
+      super
+    end
+  end
+
+  permit_params :title, :about, :coverageFrom, :coverageTo, :publisher_id, :isbn, :cover, :published, :keywords, :language, :user_id, subject_ids: []
   
   form do |f| 
     inputs do
@@ -14,7 +23,7 @@ ActiveAdmin.register Journal do
       input :cover, as: :file
       input :subjects, as: :check_boxes, collection: Subject.all
       input :language
-      input :published
+      input :published if authorized? :publish, resource
       input :keywords
     end
     actions

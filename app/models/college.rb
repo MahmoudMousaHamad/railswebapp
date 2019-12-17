@@ -1,5 +1,7 @@
 class College < ApplicationRecord
   include Filterable
+
+  user_owned
     
   belongs_to :university
   has_many :schools

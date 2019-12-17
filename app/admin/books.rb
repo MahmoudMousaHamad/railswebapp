@@ -1,6 +1,15 @@
 ActiveAdmin.register Book do
   menu parent: "Library"
 
+  controller do
+    def create
+      @academic_paper = AcademicPaper.new(permitted_params[:academic_paper])
+      @academic_paper.user_id = current_user.id
+      @academic_paper.save
+      super
+    end
+  end
+
   permit_params :title, :about, :year, :pages, :pdf, :cover, :publisher_id, :keywords, :downloadable,
                 :book_collection_id, :language, :isbn, :volume, :published,  author_ids: [], subject_ids: []
 
@@ -20,7 +29,7 @@ ActiveAdmin.register Book do
       input :isbn
       input :volume
       input :downloadable
-      input :published
+      input :published if authorized? :publish, resource
       input :keywords
     end
     actions

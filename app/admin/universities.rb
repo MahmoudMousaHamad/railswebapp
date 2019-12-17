@@ -1,7 +1,16 @@
 ActiveAdmin.register University do
   menu parent: "Countries"
 
-  permit_params :name, :about, :city_id, :country_id, :logo, :lat, :lng, photos: []
+  controller do
+    def create
+      @universities = University.new(permitted_params[:universities])
+      @universities.user_id = current_user.id
+      @universities.save
+      super
+    end
+  end
+
+  permit_params :name, :about, :city_id, :country_id, :logo, :lat, :lng, :user_id, photos: []
 
   form do |f|
     inputs do

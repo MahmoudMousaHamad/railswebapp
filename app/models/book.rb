@@ -2,6 +2,8 @@ class Book < ApplicationRecord
     include PgSearch::Model
 
     include Filterable
+
+    user_owned
     
     belongs_to :publisher
     belongs_to :book_collection, optional: true

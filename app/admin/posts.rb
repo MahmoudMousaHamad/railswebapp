@@ -1,7 +1,16 @@
 ActiveAdmin.register Post do
   menu parent: "Countries"
 
-  permit_params :title, :body, :cover_photo, :country_id, :city_id, :date_occurred
+  controller do
+    def create
+      @post = Post.new(permitted_params[:post])
+      @post.user_id = current_user.id
+      @post.save
+      super
+    end
+  end
+
+  permit_params :title, :body, :cover_photo, :country_id, :city_id, :date_occurred, :user_id
 
   form do |f|
     inputs do

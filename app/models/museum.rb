@@ -1,5 +1,7 @@
 class Museum < ApplicationRecord
   include Filterable
+
+  user_owned
     
   belongs_to :city
   belongs_to :country
