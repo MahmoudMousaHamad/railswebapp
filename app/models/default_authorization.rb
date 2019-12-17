@@ -2,8 +2,14 @@ class DefaultAuthorization < ActiveAdmin::AuthorizationAdapter
 
     def authorized?(action, subject = nil)
         case subject
-        when normalized(Post)
+        when normalized(subject)
+          if (action == :update || action == :destroy) && subject.class != Class
+            subject.user_id == user.id
+          else
             true
+          end
+        else
+          true
         end
     end
 
