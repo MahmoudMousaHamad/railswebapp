@@ -3,14 +3,14 @@ ActiveAdmin.register Country do
 
   controller do
     def create
-      @academic_paper = AcademicPaper.new(permitted_params[:academic_paper])
-      @academic_paper.user_id = current_user.id
-      @academic_paper.save
+      @country = Country.new(permitted_params[:country])
+      @country.user_id = current_user.id
+      @country.save
       super
     end
   end
   
-  permit_params :name, :about, :lat, :lng, slideshow_photos: [], gallery_photos: []
+  permit_params :name, :about, :lat, :lng, :published, slideshow_photos: [], gallery_photos: []
 
   form do |f|
     inputs do
@@ -41,7 +41,7 @@ ActiveAdmin.register Country do
           span image_tag image_path(main_app.url_for(p)), class: "image-admin"
         end
       end
-
+      input :published
       input :lat
       input :lng
       div :id => "admin-add-map"

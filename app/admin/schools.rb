@@ -10,7 +10,7 @@ ActiveAdmin.register School do
     end
   end
 
-  permit_params :name, :professors, :about, :college_id, :university_id, :logo, :user_id
+  permit_params :name, :professors, :about, :college_id, :university_id, :logo, :user_id, :published
 
   form do |f|
     inputs do
@@ -20,6 +20,7 @@ ActiveAdmin.register School do
       input :college
       input :university
       input :logo, as: :file
+      input :published if authorized? :publish, resource
     end
     actions
   end

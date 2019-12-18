@@ -3,13 +3,21 @@ ActiveAdmin.register BookCollection do
 
   controller do
     def create
-      @academic_paper = AcademicPaper.new(permitted_params[:academic_paper])
-      @academic_paper.user_id = current_user.id
-      @academic_paper.save
+      @book_collection = BookCollection.new(permitted_params[:book_collection])
+      @book_collection.user_id = current_user.id
+      @book_collection.save
       super
     end
   end
 
-  permit_params :name
+  permit_params :name, :published
+
+  form do |f|
+    inputs do
+      input :name
+      input :published if authorized? :publish, book_collection      
+    end
+    actions
+  end
   
 end

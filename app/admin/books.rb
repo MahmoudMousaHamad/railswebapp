@@ -3,9 +3,9 @@ ActiveAdmin.register Book do
 
   controller do
     def create
-      @academic_paper = AcademicPaper.new(permitted_params[:academic_paper])
-      @academic_paper.user_id = current_user.id
-      @academic_paper.save
+      @book = Book.new(permitted_params[:book])
+      @book.user_id = current_user.id
+      @book.save
       super
     end
   end
@@ -22,15 +22,15 @@ ActiveAdmin.register Book do
       input :publisher
       input :pdf, as: :file
       input :cover, as: :file
-      input :subjects, as: :check_boxes, collection: Subject.all
-      input :authors, as: :check_boxes, collection: Author.all
+      input :subjects, as: :select, collection: Subject.published
+      input :authors, as: :select, collection: Author.published
       input :book_collection
       input :language
       input :isbn
       input :volume
       input :downloadable
-      input :published if authorized? :publish, resource
       input :keywords
+      input :published if authorized? :publish, resource
     end
     actions
   end

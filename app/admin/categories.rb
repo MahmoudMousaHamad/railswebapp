@@ -3,13 +3,22 @@ ActiveAdmin.register Category do
 
   controller do
     def create
-      @academic_paper = AcademicPaper.new(permitted_params[:academic_paper])
-      @academic_paper.user_id = current_user.id
-      @academic_paper.save
+      @category = Category.new(permitted_params[:category])
+      @category.user_id = current_user.id
+      @category.save
       super
     end
   end
 
-  permit_params :name, :about
+  permit_params :name, :about, :published
+
+  form do |f|
+    inputs do
+      input :name
+      input :about
+      input :published if authorized? :publish, resource      
+    end
+    actions
+  end
   
 end

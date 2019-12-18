@@ -1,5 +1,7 @@
 class Discipline < ApplicationRecord
-    has_many :subjects
+    include Publishable
+    
+    has_many :subjects, dependent: :destroy
 
     user_owned
 

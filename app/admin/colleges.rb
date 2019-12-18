@@ -3,14 +3,14 @@ ActiveAdmin.register College do
 
   controller do
     def create
-      @academic_paper = AcademicPaper.new(permitted_params[:academic_paper])
-      @academic_paper.user_id = current_user.id
-      @academic_paper.save
+      @college = College.new(permitted_params[:college])
+      @college.user_id = current_user.id
+      @college.save
       super
     end
   end
 
-  permit_params :name, :about, :university_id, :lat, :lng, :logo
+  permit_params :name, :about, :university_id, :lat, :lng, :logo, :published
   
   form do |f|
     inputs do
@@ -18,6 +18,7 @@ ActiveAdmin.register College do
       input :about
       input :university
       input :logo, as: :file
+      input :published if authorized? :publish, resource
       input :lat
       input :lng
       div :id => "admin-add-map"

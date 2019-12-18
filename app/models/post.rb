@@ -1,5 +1,6 @@
 class Post < ApplicationRecord
   include Filterable
+  include Publishable
 
   user_owned
     

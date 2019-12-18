@@ -10,6 +10,17 @@ ActiveAdmin.register Subject do
     end
   end
 
-  permit_params :name, :about, :code, :discipline_id, :user_id
+  permit_params :name, :about, :code, :discipline_id, :user_id, :published
+
+  form do |f|
+    inputs do
+      input :name
+      input :about
+      input :code
+      input :discipline
+      input :published if authorized? :publish, resource
+    end
+    actions
+  end
   
 end

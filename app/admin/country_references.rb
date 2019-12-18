@@ -10,6 +10,19 @@ ActiveAdmin.register CountryReference do
     end
   end
 
-  permit_params :title, :author, :publisher, :publication_date, :country_id, :period, :user_id
+  permit_params :title, :author, :publisher, :publication_date, :country_id, :period, :user_id, :published
+
+  form do |f|
+    inputs do
+      input :title
+      input :author
+      input :publisher
+      input :publication_date
+      input :country
+      input :period
+      input :published if authorized? :publish, resource      
+    end
+    actions
+  end
   
 end

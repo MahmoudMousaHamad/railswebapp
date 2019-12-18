@@ -2,11 +2,12 @@ class Journal < ApplicationRecord
   include PgSearch::Model
 
   include Filterable
+  include Publishable
 
   user_owned
     
   belongs_to :publisher
-  has_many :issues
+  has_many :issues, dependent: :destroy
   has_and_belongs_to_many :subjects
   
   has_one_attached :cover

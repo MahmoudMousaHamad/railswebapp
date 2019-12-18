@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_17_205854) do
+ActiveRecord::Schema.define(version: 2019_12_18_204225) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -460,29 +460,29 @@ ActiveRecord::Schema.define(version: 2019_12_17_205854) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "books", "book_collections"
   add_foreign_key "books", "publishers"
-  add_foreign_key "cities", "countries"
+  add_foreign_key "cities", "countries", on_delete: :cascade
   add_foreign_key "colleges", "universities"
   add_foreign_key "conferences", "categories"
   add_foreign_key "conferences", "cities"
-  add_foreign_key "conferences", "countries"
-  add_foreign_key "country_references", "countries"
+  add_foreign_key "conferences", "countries", on_delete: :cascade
+  add_foreign_key "country_references", "countries", on_delete: :cascade
   add_foreign_key "issues", "journals"
   add_foreign_key "journals", "publishers"
   add_foreign_key "museums", "cities"
-  add_foreign_key "museums", "countries"
+  add_foreign_key "museums", "countries", on_delete: :cascade
   add_foreign_key "posts", "cities"
-  add_foreign_key "posts", "countries"
+  add_foreign_key "posts", "countries", on_delete: :cascade
   add_foreign_key "scholarships", "categories"
-  add_foreign_key "scholarships", "countries"
+  add_foreign_key "scholarships", "countries", on_delete: :cascade
   add_foreign_key "scholarships", "universities"
   add_foreign_key "schools", "colleges"
   add_foreign_key "schools", "universities"
   add_foreign_key "sites", "cities"
-  add_foreign_key "sites", "countries"
+  add_foreign_key "sites", "countries", on_delete: :cascade
   add_foreign_key "sites", "users"
   add_foreign_key "subjects", "disciplines"
   add_foreign_key "universities", "cities"
-  add_foreign_key "universities", "countries"
+  add_foreign_key "universities", "countries", on_delete: :cascade
   add_foreign_key "videos", "cities"
   add_foreign_key "videos", "countries"
   add_foreign_key "videos", "sites"

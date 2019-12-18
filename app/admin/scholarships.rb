@@ -10,7 +10,7 @@ ActiveAdmin.register Scholarship do
     end
   end
 
-  permit_params :name, :about, :degree, :scholarship, :deadline, :university_id, :country_id, :category_id, :user_id
+  permit_params :name, :about, :degree, :scholarship, :deadline, :university_id, :country_id, :category_id, :user_id, :published
 
   form do |f|
     inputs do
@@ -22,6 +22,7 @@ ActiveAdmin.register Scholarship do
       input :university
       input :country
       input :category
+      input :published if authorized? :publish, resource
     end
     actions
   end

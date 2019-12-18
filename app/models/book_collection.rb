@@ -1,4 +1,6 @@
 class BookCollection < ApplicationRecord
-    has_many :books
+    include Publishable
+    
+    has_many :books, dependent: :destroy
     user_owned
 end

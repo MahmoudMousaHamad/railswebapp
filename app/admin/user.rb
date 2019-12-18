@@ -11,7 +11,7 @@ ActiveAdmin.register User do
       f.input :password_confirmation
       f.input :role, collection: ["superadmin", "leader", "member"], :label => "User Role"
       f.input :country, as: :country, format: :with_data_attr
-      f.input :verified
+      f.input :verified if authorized? :edit, user
     end
     actions
   end

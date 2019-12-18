@@ -21,10 +21,10 @@ ActiveAdmin.register Journal do
       input :publisher
       input :isbn, label: "ISBN"
       input :cover, as: :file
-      input :subjects, as: :check_boxes, collection: Subject.all
+      input :subjects, as: :check_boxes, collection: Subject.published
       input :language
-      input :published if authorized? :publish, resource
       input :keywords
+      input :published if authorized? :publish, resource
     end
     actions
   end

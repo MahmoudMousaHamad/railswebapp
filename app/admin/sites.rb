@@ -11,7 +11,7 @@ ActiveAdmin.register Site do
     end
   end
 
-  permit_params :name, :about, :city_id, :country_id, :lat, :lng, :user_id, slideshow_photos: [], gallery_photos: []
+  permit_params :name, :about, :city_id, :country_id, :lat, :lng, :user_id, :published, slideshow_photos: [], gallery_photos: []
 
   form do |f|
     inputs do
@@ -44,7 +44,7 @@ ActiveAdmin.register Site do
           span image_tag image_path(main_app.url_for(p)), class: "image-admin"
         end
       end
-
+      input :published if authorized? :publish, resource
       input :lat
       input :lng
       div :id => "admin-add-map"

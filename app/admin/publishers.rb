@@ -10,6 +10,16 @@ ActiveAdmin.register Publisher do
     end
   end
 
-  permit_params :name, :about, :website, :user_id
+  permit_params :name, :about, :website, :user_id, :published
+
+  form do |f|
+    inputs do
+      input :name
+      input :about
+      input :website
+      input :published if authorized? :publish, resource
+    end
+    actions
+  end
   
 end

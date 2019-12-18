@@ -10,7 +10,7 @@ ActiveAdmin.register Issue do
     end
   end
 
-  permit_params :number, :year, :pageFrom, :pageTo, :journal_id, :pdf, :downloadable, :user_id
+  permit_params :number, :year, :pageFrom, :pageTo, :journal_id, :pdf, :downloadable, :user_id, :published
   
   form do |f|
     inputs do
@@ -21,6 +21,7 @@ ActiveAdmin.register Issue do
       input :journal
       input :pdf, as: :file
       input :downloadable
+      input :published if authorized? :publish, resource
     end
     actions
   end

@@ -1,5 +1,6 @@
 class Video < ApplicationRecord
   include Filterable
+  include Publishable
 
   user_owned
   

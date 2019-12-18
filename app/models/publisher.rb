@@ -1,12 +1,11 @@
 class Publisher < ApplicationRecord
   include Filterable
+  include Publishable
 
   user_owned
     
-  has_many :journals
-  has_many :books
+  has_and_belongs_to_many :journals, dependent: :destroy
+  has_and_belongs_to_many :books, dependent: :destroy
   
-  validates :name, presence: true, uniqueness: true
-  validates :about, presence: true
-  validates :website, presence: true
+  validates :name, presence: true
 end

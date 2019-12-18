@@ -1,5 +1,6 @@
 class Country < ApplicationRecord
     include Filterable
+    include Publishable
 
     user_owned
     
@@ -16,5 +17,4 @@ class Country < ApplicationRecord
     has_many_attached :gallery_photos
 
     validates :name, uniqueness: true
-    validates :about, presence: true
 end

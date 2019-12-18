@@ -1,5 +1,6 @@
 class Conference < ApplicationRecord
   include Filterable
+  include Publishable
 
   user_owned
 

@@ -18,13 +18,13 @@ ActiveAdmin.register AcademicPaper do
       input :about, label: "Abstract"
       input :publication_year
       input :paper_type, collection: ["Conference Paper", "Dissertation Paper"]
-      input :subjects, as: :select, collection: Subject.all
-      input :authors, as: :select, collection: Author.all
-      input :published
+      input :subjects, as: :select, collection: Subject.published
+      input :authors, as: :select, collection: Author.published
       input :downloadable
       input :language, collection: LanguageList::COMMON_LANGUAGES.map { |l| [l.name, l.name] }
       input :keywords
       input :pdf, as: :file, label: "PDF"
+      input :published if authorized? :publish, academic_paper
     end
     actions
   end

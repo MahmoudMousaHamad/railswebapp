@@ -1,6 +1,7 @@
 class Issue < ApplicationRecord
   include PgSearch::Model
   include Filterable
+  include Publishable
 
   user_owned
     

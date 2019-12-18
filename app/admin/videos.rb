@@ -10,6 +10,18 @@ ActiveAdmin.register Video do
     end
   end
 
-  permit_params :title, :link, :country_id, :city_id, :site_id, :user_id
+  permit_params :title, :link, :country_id, :city_id, :site_id, :user_id, :published
+
+  form do |f|
+    inputs do
+      input :title
+      input :link
+      input :country
+      input :city
+      input :site
+      input :published if authorized? :publish, resource
+    end
+    actions
+  end
   
 end

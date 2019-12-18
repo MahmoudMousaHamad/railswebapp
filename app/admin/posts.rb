@@ -10,7 +10,7 @@ ActiveAdmin.register Post do
     end
   end
 
-  permit_params :title, :body, :cover_photo, :country_id, :city_id, :date_occurred, :user_id
+  permit_params :title, :body, :cover_photo, :country_id, :city_id, :date_occurred, :user_id, :published
 
   form do |f|
     inputs do
@@ -20,6 +20,7 @@ ActiveAdmin.register Post do
       input :city
       input :country
       input :date_occurred, as: :date_picker
+      input :published if authorized? :publish, resource
     end
     actions
   end
