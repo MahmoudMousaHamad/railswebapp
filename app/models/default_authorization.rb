@@ -3,20 +3,25 @@ class DefaultAuthorization < ActiveAdmin::AuthorizationAdapter
     def authorized?(action, subject = nil)
         case subject
         when normalized(subject)
-        if (action == :update || action == :destroy || action == :publish) && subject.class != Class && user.role == "member" 
-            if action == :publish
-                return false
-            end
-            if subject.has_attribute?(:user_id)
-                subject.user_id == user.id
+            if subject.class != Class
+                if user.role == "member"
+                    if action == :publish
+                        return false
+                    elsif subject.has_attribute?(:user_id)
+                        subject.user_id == user.id
+                    end
+                elsif user.role == "leader"
+                    if action == :create && subject.class == Country
+                        return false
+                    else
+                        return true
+                    end
+                elsif user.role == "superadmin"
+                    true
+                end
             else
-                false
+                true
             end
-          else
-            true
-          end
-        else
-          true
         end
     end
 
