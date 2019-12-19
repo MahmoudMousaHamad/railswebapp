@@ -10,7 +10,7 @@ ActiveAdmin.register Journal do
     end
   end
 
-  permit_params :title, :about, :coverageFrom, :coverageTo, :publisher_id, :isbn, :cover, :published, :keywords, :language, :user_id, subject_ids: []
+  permit_params :title, :about, :coverageFrom, :coverageTo, :publisher_id, :isbn, :cover, :published, :keywords, :language, :user_id, :library_id, subject_ids: []
   
   form do |f| 
     inputs do

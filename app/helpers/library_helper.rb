@@ -80,7 +80,7 @@ module LibraryHelper
             view, name, params
         end
         def html
-            content_tag(:div, content)            
+            content_tag(:span, content)            
         end
         private
         attr_accessor :view, :name, :params

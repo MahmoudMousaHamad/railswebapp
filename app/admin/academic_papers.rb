@@ -5,12 +5,13 @@ ActiveAdmin.register AcademicPaper do
     def create
       @academic_paper = AcademicPaper.new(permitted_params[:academic_paper])
       @academic_paper.user_id = current_user.id
+      @academic_paper.library_id = discipline_code + subject_code + academic_paper_code + id
       @academic_paper.save
       super
     end
   end
 
-  permit_params :title, :publication_year, :paper_type, :published, :keywords, :about, :pdf, :downloadable, :language, :user_id, subject_ids: [], author_ids: []
+  permit_params :title, :publication_year, :paper_type, :published, :keywords, :about, :pdf, :downloadable, :language, :user_id, :library_id, subject_ids: [], author_ids: []
 
   form do |f|
     inputs do

@@ -10,13 +10,14 @@ ActiveAdmin.register Discipline do
     end
   end
 
-  permit_params :name, :about, :photo, :user_id, :published
+  permit_params :name, :about, :photo, :user_id, :published, :code
 
   form do |f|
     inputs do
       input :name
       input :about
       input :photo, as: :file
+      input :code
       input :published if authorized? :publish, resource
     end
     actions

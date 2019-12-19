@@ -7,12 +7,18 @@ class DefaultAuthorization < ActiveAdmin::AuthorizationAdapter
                 if user.role == "member"
                     if action == :publish
                         return false
-                    elsif subject.has_attribute?(:user_id)
+                    elsif action == :create && subject.class == Country
+                        return false
+                    elsif action == :update || action == :delete
                         subject.user_id == user.id
+                    else
+                        return true
                     end
                 elsif user.role == "leader"
                     if action == :create && subject.class == Country
                         return false
+                    elsif action == :update || action == :delete
+                        return subject.user_id == user.id
                     else
                         return true
                     end
