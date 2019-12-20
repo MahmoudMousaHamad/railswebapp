@@ -26,10 +26,12 @@
                     <p><b>Keywords: </b> <%= r.keywords %> </p>
                 </div>
                 <div class="col s12 m4">
-                    <% if r.class.name == "Book" %>
-                        <%= image_tag  url_for(r.cover), style: "max-width: 150px; margin-bottom: 20px;" %>
-                    <% elsif r.class.name == "Journal" %>
-                        <%= image_tag  url_for(r.cover), style: "max-width: 150px; margin-bottom: 20px;" %>
+                    <% if r.class.name == "Book" || r.class.name == "Journal" %>
+                        <% if r.cover.attached? %>
+                            <%= image_tag  url_for(r.cover), style: "max-width: 150px; margin-bottom: 20px;" if r.cover.attached? %>
+                        <% else %>
+                            <%= image_tag  "no-thumb.jpg", style: "max-width: 150px; margin-bottom: 20px;" %>                                    
+                        <% end %>
                     <% else %>
                         <%= image_tag  "no-thumb.jpg", style: "max-width: 150px; margin-bottom: 20px;" %>                                    
                     <% end %>
