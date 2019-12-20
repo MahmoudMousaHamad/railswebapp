@@ -19,7 +19,7 @@
     <% @disciplines.each do |d| %>
         <a href="<%= "#{subjects_path}##{d.id}" %>" class="text-center">
             <div class="discipline-block">
-                <%= image_tag url_for(d.photo) %>
+                <%= image_tag url_for(d.photo) if d.photo.attached? %>
                 <%= d.name %>
             </div>
         </a>

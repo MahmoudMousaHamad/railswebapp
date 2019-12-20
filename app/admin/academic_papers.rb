@@ -2,11 +2,12 @@ ActiveAdmin.register AcademicPaper do
   menu parent: "Library"
   
   controller do
+    include DocumentsHelper
     def create
       @academic_paper = AcademicPaper.new(permitted_params[:academic_paper])
       @academic_paper.user_id = current_user.id
-      @academic_paper.library_id = discipline_code + subject_code + academic_paper_code + id
       @academic_paper.save
+      generate_and_save_library_id(@academic_paper, AcademicPaper::ACADEMICPAPER_DOCUMENT_CODE)
       super
     end
   end

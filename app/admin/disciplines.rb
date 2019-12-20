@@ -28,7 +28,7 @@ ActiveAdmin.register Discipline do
       row :name
       row :about
       row :photo do
-        span image_tag image_path(main_app.url_for(discipline.photo)), class: "image-admin"
+        span image_tag image_path(main_app.url_for(discipline.photo)), class: "image-admin" if discipline.photo.attached?
       end
     end 
   end

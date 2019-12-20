@@ -5,6 +5,7 @@
         <table class="highlight table table-striped sortable">
             <thead>
                 <tr>
+                    <th><a href="#">ID</a></th>
                     <th><a href="#">Type</a></th>
                     <th><a href="#">Author(s)</a></th>
                     <th><a href="#">Title</a></th>
@@ -16,6 +17,7 @@
             <tbody>
             <% categorized_results.each do |r| %>
                 <tr>
+                    <td><%= r.library_id %></td>
                     <% if r.class.name == "Book" %>
                         <td><%= r.class.name %></td>
                         <td> <%= safe_join(r.authors.map { |s| link_to  s.name, author_path(s.name) }, ", ").html_safe %></td>

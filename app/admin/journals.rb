@@ -2,10 +2,12 @@ ActiveAdmin.register Journal do
   menu parent: "Library"
 
   controller do
+    include DocumentsHelper
     def create
       @journal = Journal.new(permitted_params[:journal])
       @journal.user_id = current_user.id
       @journal.save
+      generate_and_save_library_id(@journal, Journal::JOURNALS_DOCUMENT_CODE)
       super
     end
   end
@@ -39,7 +41,7 @@ ActiveAdmin.register Journal do
       row :isbn, label: "ISBN"
       row :cover do |c|
         div do
-          image_tag image_path(main_app.url_for(journal.cover))
+          image_tag image_path(main_app.url_for(journal.cover)) if journal.cover.attached?
         end
       end
       table_for journal.subjects do

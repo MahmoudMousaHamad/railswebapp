@@ -3,6 +3,8 @@ class AcademicPaper < ApplicationRecord
 
     include Publishable
 
+    ACADEMICPAPER_DOCUMENT_CODE = "01".freeze
+
     has_and_belongs_to_many :subjects
     has_and_belongs_to_many :authors
     has_one_attached :pdf

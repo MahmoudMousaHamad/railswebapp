@@ -2,10 +2,12 @@ ActiveAdmin.register Book do
   menu parent: "Library"
 
   controller do
+    include DocumentsHelper
     def create
       @book = Book.new(permitted_params[:book])
       @book.user_id = current_user.id
       @book.save
+      generate_and_save_library_id(@book, Book::BOOK_DOCUMENT_CODE)
       super
     end
   end
@@ -45,12 +47,12 @@ ActiveAdmin.register Book do
       row :publisher
       row :pdf do |pdf|
         div do
-          a "Click to Download", href: main_app.url_for(book.pdf)
+          a "Click to Download", href: main_app.url_for(book.pdf) if book.pdf.attached?
         end
       end
       row :cover do |c|
         div do
-          image_tag image_path(main_app.url_for(book.cover))
+          image_tag image_path(main_app.url_for(book.cover)) if book.cover.attached?
         end
       end
       table_for book.subjects do

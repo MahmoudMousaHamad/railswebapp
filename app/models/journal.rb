@@ -4,6 +4,8 @@ class Journal < ApplicationRecord
   include Filterable
   include Publishable
 
+  JOURNALS_DOCUMENT_CODE = "03".freeze
+
   user_owned
     
   belongs_to :publisher

@@ -9,7 +9,7 @@ class DefaultAuthorization < ActiveAdmin::AuthorizationAdapter
                         return false
                     elsif action == :create && subject.class == Country
                         return false
-                    elsif action == :update || action == :delete
+                    elsif action == :update || action == :destroy || action == :delete
                         subject.user_id == user.id
                     else
                         return true

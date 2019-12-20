@@ -4,10 +4,12 @@ class Book < ApplicationRecord
     include Filterable
     include Publishable
 
+    BOOK_DOCUMENT_CODE = "02".freeze
+
     user_owned
     
-    has_many :publisher
-    has_many :book_collection
+    belongs_to :publisher, optional: true
+    belongs_to :book_collection, optional: true
     has_and_belongs_to_many :subjects
     has_and_belongs_to_many :authors
 
