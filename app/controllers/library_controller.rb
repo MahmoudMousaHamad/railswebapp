@@ -82,11 +82,11 @@ class LibraryController < ApplicationController
                 @categorized_results = @categorized_results.select do |i| 
                     class_name = i.class.name
                     if class_name == "Journal"
-                        i.coverageFrom.to_i >= from_year 
+                        i.coverageFrom.to_i >= from_year if i.coverageFrom
                     elsif class_name == "Book"
-                        i.year >= from_year
+                        i.year >= from_year if i.year
                     elsif class_name == "AcademicPaper"
-                        i.publication_year >= from_year
+                        i.publication_year >= from_year if i.publication_year
                     end
                 end
             end
@@ -94,11 +94,11 @@ class LibraryController < ApplicationController
                 @categorized_results = @categorized_results.select do |i| 
                     class_name = i.class.name
                     if class_name == "Journal"
-                        i.coverageTo.to_i <= to_year 
+                        i.coverageTo.to_i <= to_year if i.coverageTo
                     elsif class_name == "Book"
-                        i.year <= to_year
+                        i.year <= to_year if i.year
                     elsif class_name == "AcademicPaper"
-                        i.publication_year <= to_year
+                        i.publication_year <= to_year if i.publication_year 
                     end
                 end
             end

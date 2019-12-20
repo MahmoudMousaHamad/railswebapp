@@ -33,9 +33,10 @@
                 <%= check_box_for("conference_papers", params) %> (<%= @categorized_results.count{|item| item.paper_type == "Conference Paper" if item.class == AcademicPaper} %>) <br>                 
             </div>
             <div class="filter">
-                Publication Year:
-                <%= text_input_for("from_year", "From", "number", params)%>
-                <%= text_input_for("to_year", "To", "number", params)%>
+                Publication Year:<br>
+                From: <input style="width: 50px" type="text" value="<%= params[:from_year] %>" name="from_year" min="0" max="<% Date.current.year %>" minlength="0" maxlength="4" pattern="\d{0,4}"> 
+                <br>
+                To: <input style="width: 50px" type="text" value="<%= params[:to_year] %>" name="to_year" min="0" max="<% Date.current.year %>" minlength="0" maxlength="4" pattern="\d{0,4}">
                 <input class="btn-small" type="submit" value="Apply">
             </div>
             <div class="filter">
