@@ -5,5 +5,11 @@
     <p><b>Subjects: </b> <%= safe_join(j.subjects.map { |s| link_to  s.name, subject_path(s.name) }, ",").html_safe %> </p>
     <p><b>Keywords: </b> <%= j.keywords %> </p>
 <% else %>
-
+    <td><%= j.library_id %></td>
+    <td><%= j.class.name %></td>
+    <td>N/A</td>
+    <td><a href="<%= journal_path(j) %>"><%= j.title %></a></td>
+    <td><a href="<%= publisher_path(j.publisher) %>"><%= j.publisher.name %></a></td>                        
+    <td><%= j.coverageFrom %> - <%= j.coverageTo %></td>
+    <td><%= j.language %></td>
 <% end %>

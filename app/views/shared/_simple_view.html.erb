@@ -1,49 +1,8 @@
 <div class="col s12 m9 result-section">
-    <% if params[:q] == nil%>
+    <% if params[:q] == nil %>
         <h4>Please enter a search term.</h4>        
     <% elsif categorized_results.length > 0 && params[:q] != "" %>
-        <table class="highlight table table-striped sortable">
-            <thead>
-                <tr>
-                    <th><a href="#">ID</a></th>
-                    <th><a href="#">Type</a></th>
-                    <th><a href="#">Author(s)</a></th>
-                    <th><a href="#">Title</a></th>
-                    <th><a href="#">Publisher</a></th>
-                    <th><a href="#">Year</a></th>
-                    <th><a href="#">Language</a></th>
-                </tr>
-            </thead>
-            <tbody>
-            <% categorized_results.each do |r| %>
-                <tr>
-                    <td><%= r.library_id %></td>
-                    <% if r.class.name == "Book" %>
-                        <td><%= r.class.name %></td>
-                        <td> <%= safe_join(r.authors.map { |s| link_to  s.name, author_path(s.name) }, ", ").html_safe %></td>
-                        <td><a href="<%= book_path(r) %>"><%= r.title %></a></td>
-                        <td><a href="<%= publisher_path(r.publisher) %>"><%= r.publisher.name %></a></td>
-                        <td><%= r.year %></td>
-                    <% end %>
-                    <% if r.class.name == "Journal" %>
-                        <td><%= r.class.name %></td>
-                        <td>N/A</td>
-                        <td><a href="<%= journal_path(r) %>"><%= r.title %></a></td>
-                        <td><a href="<%= publisher_path(r.publisher) %>"><%= r.publisher.name %></a></td>                        
-                        <td><%= r.coverageFrom %> - <%= r.coverageTo %></td>
-                    <% end %>
-                    <% if r.class.name == "AcademicPaper" %>
-                        <td><%= r.paper_type %></td>
-                        <td><%= safe_join(r.authors.map { |s| link_to  s.name, author_path(s.name) }, ", ").html_safe %></td>                        
-                        <td><a href="<%= academic_paper_path(r) %>"><%= r.title %></a></td>
-                        <td>N/A</td>
-                        <td><%= r.publication_year %></td>
-                    <% end %>
-                    <td><%= r.language %></td>
-                </tr>
-            <% end %>
-            </tbody>
-        </table>
+        <%= render partial: "shared/documents_table", locals: {documents: categorized_results} %>        
         <%= paginate categorized_results %>
     <% elsif params[:q] == "" %>
         <h4>Please enter a search term.</h4>

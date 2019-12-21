@@ -21,6 +21,14 @@ module LibraryHelper
         return content_tag(:a, request.original_url, href: request.original_url)
     end
 
+    def document_cover_for(cover, style = "max-width: 150px; margin-bottom: 20px;")
+        if cover.attached?
+            return image_tag url_for(cover), style: style
+        else
+            return image_tag url_for("/assets/no-thumb.jpg"), style: style             
+        end
+    end
+
     $ON_CHANGE = "this.form.submit()"
     class SearchBar
         def initialize(view, name, params)

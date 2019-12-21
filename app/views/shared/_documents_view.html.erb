@@ -6,31 +6,18 @@
     <a class="waves-effect waves-light btn <%= params[:document_type] == "academic_papers" ? "disabled" : "nothing" %>" href="?document_type=academic_papers">Academic Papers</a>
 <% end %>
 
-<div class="subjects-items-container">
+<div class="subjects-items-container">        
     <% if params[:document_type] == "books" %>
         <% if model.books %>
-            <div class="">
-                <% model.books.each do |b| %>
-                    <%= link_to b.title, book_path(b), class: "subjects-item" %>
-                <% end %>
-            </div>
+            <%= render partial: "shared/documents_table", locals: {documents: model.books} %>
         <% end %>
     <% elsif params[:document_type] == "journals" && model.class.name != "Author" %>
         <% if model.journals %>
-            <div class="">
-                <% model.journals.each do |r| %>
-                    <%= link_to r.title, journal_path(r), class: "subjects-item" %>
-                <% end %>
-            </div>
+            <%= render partial: "shared/documents_table", locals: {documents: model.journals} %>
         <% end %>
     <% elsif params[:document_type] == "academic_papers" && model.class.name != "Publisher" %>
         <% if model.academic_papers %>
-            <div class="">
-                <% model.academic_papers.each do |p| %>
-                    <%= link_to p.title, academic_paper_path(p), class: "subjects-item" %>
-                <% end %>
-            </div>
+            <%= render partial: "shared/documents_table", locals: {documents: model.academic_papers} %>
         <% end %>
-    <% else %>
     <% end %>
 </div>

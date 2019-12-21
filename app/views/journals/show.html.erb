@@ -4,7 +4,7 @@
 <div>
 <div class="row">
     <div class="col s2">
-        <%= image_tag  url_for(@j.cover), style: "width: 150px;" %>
+        <%= document_cover_for(@j.cover) %>
     </div>
     <div class="col s6" style="float: left;">
         <p><b>Publisher:</b> <%= link_to  @j.publisher.name, publisher_path(@j.publisher), target: "_blank" %></p>

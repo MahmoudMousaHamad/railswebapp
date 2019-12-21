@@ -7,4 +7,12 @@
     <p><b>Keywords: </b> <%= p.keywords %> </p>
 <% else %>
 
+    <td><%= p.library_id %></td>
+    <td><%= p.paper_type %></td>
+    <td><%= safe_join(p.authors.map { |s| link_to  s.name, author_path(s.name) }, ", ").html_safe %></td>                        
+    <td><a href="<%= academic_paper_path(p) %>"><%= p.title %></a></td>
+    <td>N/A</td>
+    <td><%= p.publication_year %></td>
+    <td><%= p.language %></td>
+
 <% end %>

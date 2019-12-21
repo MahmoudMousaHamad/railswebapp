@@ -4,7 +4,7 @@
 <div>
 <div class="row">
     <div class="col s2">
-        <%= image_tag  url_for(@b.cover), style: "max-width: 150px; margin-bottom: 20px;" %>
+        <%= document_cover_for(@b.cover) %>
     </div>
     <div class="col s6" style="float: left;">
         <p><b>Author(s):</b> <%= safe_join(@b.authors.map { |s| link_to  s.name, author_path(s.name) }, ", ").html_safe %></p>
