@@ -27,7 +27,7 @@ ActiveAdmin.register Book do
       input :subjects, as: :select, collection: Subject.published
       input :authors, as: :select, collection: Author.published
       input :book_collection
-      input :language
+      input :language, collection: LanguageList::COMMON_LANGUAGES.map { |l| [l.name, l.name] }      
       input :isbn
       input :volume
       input :downloadable

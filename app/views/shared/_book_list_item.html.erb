@@ -1,0 +1,9 @@
+<% if view == :detailed %>
+    <a href="<%= book_path(b) %>"><h4><%= b.title %></h4></a>
+    <p><b>Author(s): </b><%= safe_join(b.authors.map { |s| link_to  s.name, author_path(s.name) }, ", ").html_safe %> </p>
+    <p><b>ISBN: </b> <%= b.isbn %> </p>
+    <p><b>Subjects: </b> <%= safe_join(b.subjects.map { |s| link_to  s.name, subject_path(s.name) }, ",").html_safe %> </p>
+    <p><b>Keywords: </b> <%= b.keywords %> </p>
+<% else %>
+
+<% end %>

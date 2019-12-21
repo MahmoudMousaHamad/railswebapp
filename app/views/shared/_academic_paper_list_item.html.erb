@@ -1,0 +1,10 @@
+<% if view == :detailed %>
+    <a href="<%= academic_paper_path(p) %>"><h4><%= p.title %></h4></a>
+    <p><b>Author(s): </b><%= safe_join(p.authors.map { |s| link_to  s.name, author_path(s.name) }, ", ").html_safe %> </p>
+    <p><b>Paper Type: </b> <%= p.paper_type %> </p>
+    <p><b>Publication Year: </b> <%= p.publication_year %> </p>
+    <p><b>Subjects: </b> <%= safe_join(p.subjects.map { |s| link_to  s.name, subject_path(s.name) }, ",").html_safe %> </p>
+    <p><b>Keywords: </b> <%= p.keywords %> </p>
+<% else %>
+
+<% end %>

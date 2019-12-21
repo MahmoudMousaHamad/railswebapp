@@ -1,0 +1,9 @@
+<% if view == :detailed %>
+    <a href="<%= journal_path(j) %>"><h4><%= j.title %></h4></a>
+    <p><b>ISBN: </b> <%= j.isbn %> </p>
+    <p><b>Coverage Years: </b> <%= "#{j.coverageFrom} - #{j.coverageTo}" %> </p>
+    <p><b>Subjects: </b> <%= safe_join(j.subjects.map { |s| link_to  s.name, subject_path(s.name) }, ",").html_safe %> </p>
+    <p><b>Keywords: </b> <%= j.keywords %> </p>
+<% else %>
+
+<% end %>

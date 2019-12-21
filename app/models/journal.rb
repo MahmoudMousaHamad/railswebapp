@@ -8,7 +8,7 @@ class Journal < ApplicationRecord
 
   user_owned
     
-  belongs_to :publisher
+  belongs_to :publisher, optional: true
   has_many :issues, dependent: :destroy
   has_and_belongs_to_many :subjects
   

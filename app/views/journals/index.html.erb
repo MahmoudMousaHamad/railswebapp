@@ -1,0 +1,5 @@
+<h1>Browse <%= params[:language].humanize %> Journals </h1>
+
+<% @journals.each do |j| %>
+    <%= render partial: "shared/journal_list_item", locals: {view: :detailed, j: j} %>
+<% end %>

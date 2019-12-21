@@ -12,11 +12,12 @@ ActiveAdmin.register Journal do
     end
   end
 
-  permit_params :title, :about, :coverageFrom, :coverageTo, :publisher_id, :isbn, :cover, :published, :keywords, :language, :user_id, :library_id, subject_ids: []
+  permit_params :title, :arabic_title, :about, :coverageFrom, :coverageTo, :publisher_id, :isbn, :cover, :published, :keywords, :language, :user_id, :library_id, subject_ids: []
   
   form do |f| 
     inputs do
       input :title
+      input :arabic_title
       input :about, as: :text
       input :coverageFrom, label: "First Year of Publication"
       input :coverageTo, label: "Last Year of Publication"
@@ -24,7 +25,7 @@ ActiveAdmin.register Journal do
       input :isbn, label: "ISBN"
       input :cover, as: :file
       input :subjects, as: :check_boxes, collection: Subject.published
-      input :language
+      input :language, collection: LanguageList::COMMON_LANGUAGES.map { |l| [l.name, l.name] }      
       input :keywords
       input :published if authorized? :publish, resource
     end
