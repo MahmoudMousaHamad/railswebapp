@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_21_182851) do
+ActiveRecord::Schema.define(version: 2019_12_21_203326) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -118,14 +118,6 @@ ActiveRecord::Schema.define(version: 2019_12_21_182851) do
     t.index ["book_id", "author_id"], name: "index_authors_books_on_book_id_and_author_id"
   end
 
-  create_table "book_collections", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.integer "user_id"
-    t.boolean "published"
-  end
-
   create_table "books", force: :cascade do |t|
     t.string "title"
     t.text "about"
@@ -135,7 +127,6 @@ ActiveRecord::Schema.define(version: 2019_12_21_182851) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "publisher_id"
-    t.bigint "book_collection_id"
     t.string "language"
     t.string "isbn"
     t.string "volume"
@@ -144,7 +135,6 @@ ActiveRecord::Schema.define(version: 2019_12_21_182851) do
     t.boolean "downloadable"
     t.integer "user_id"
     t.string "library_id"
-    t.index ["book_collection_id"], name: "index_books_on_book_collection_id"
     t.index ["publisher_id"], name: "index_books_on_publisher_id"
   end
 
@@ -463,7 +453,6 @@ ActiveRecord::Schema.define(version: 2019_12_21_182851) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "books", "book_collections"
   add_foreign_key "books", "publishers"
   add_foreign_key "cities", "countries", on_delete: :cascade
   add_foreign_key "colleges", "universities"

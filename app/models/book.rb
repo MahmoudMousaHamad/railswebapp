@@ -9,7 +9,6 @@ class Book < ApplicationRecord
     user_owned
     
     belongs_to :publisher, optional: true
-    belongs_to :book_collection, optional: true
     has_and_belongs_to_many :subjects
     has_and_belongs_to_many :authors
 

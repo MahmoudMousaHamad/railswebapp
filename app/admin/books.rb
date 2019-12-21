@@ -13,7 +13,7 @@ ActiveAdmin.register Book do
   end
 
   permit_params :title, :about, :year, :pages, :pdf, :cover, :publisher_id, :keywords, :downloadable,
-                :book_collection_id, :language, :isbn, :volume, :published, :library_id,  author_ids: [], subject_ids: []
+                :language, :isbn, :volume, :published, :library_id,  author_ids: [], subject_ids: []
 
   form do |f|
     inputs do
@@ -26,7 +26,6 @@ ActiveAdmin.register Book do
       input :cover, as: :file
       input :subjects, as: :select, collection: Subject.published
       input :authors, as: :select, collection: Author.published
-      input :book_collection
       input :language, collection: LanguageList::COMMON_LANGUAGES.map { |l| [l.name, l.name] }      
       input :isbn
       input :volume
