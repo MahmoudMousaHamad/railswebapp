@@ -17,7 +17,6 @@ class AcademicPaper < ApplicationRecord
         authors: :name
     }
 
-    accepts_nested_attributes_for :subjects
-    accepts_nested_attributes_for :authors
+    accepts_nested_attributes_for :authors, allow_destroy: true
 
 end
