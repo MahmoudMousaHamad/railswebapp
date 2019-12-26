@@ -16,7 +16,7 @@ class AcademicPaper < ApplicationRecord
     pg_search_scope :search_by_author, associated_against: {
         authors: :name
     }
-
-    accepts_nested_attributes_for :authors, allow_destroy: true
+    
+    accepts_nested_attributes_for :authors
 
 end

@@ -26,5 +26,5 @@ class Book < ApplicationRecord
         publisher: :name
     }
 
-
+    accepts_nested_attributes_for :authors
 end

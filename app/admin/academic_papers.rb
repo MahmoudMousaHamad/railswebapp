@@ -10,7 +10,7 @@ ActiveAdmin.register AcademicPaper do
     def create
       @academic_paper = AcademicPaper.new(permitted_params[:academic_paper])
       @academic_paper.user_id = current_user.id
-      @academic_paper.save
+      @academic_paper.save!
       generate_and_save_library_id(@academic_paper, AcademicPaper::ACADEMICPAPER_DOCUMENT_CODE)
       super
     end
@@ -24,10 +24,10 @@ ActiveAdmin.register AcademicPaper do
       input :about, label: "Abstract"
       input :publication_year
       input :paper_type, collection: ["Conference Paper", "Dissertation Paper"]
-      input :subjects, as: :select, collection: Subject.published
-      # input :authors, as: :select, collection: Author.published
-      inputs "Author(s)" do
-        has_many :authors, allow_destroy: true do |a|
+      input :subjects, as: :select, collection: Subject.all
+      input :authors, as: :select, collection: Author.all
+      inputs do
+        f.has_many :authors, heading: 'Author(s)' do |a|
           a.input :name
         end
       end

@@ -1,5 +1,8 @@
 ActiveAdmin.register City do
   menu parent: "Countries"
+
+  # TODO:
+  belongs_to :country, optional: true
   
   controller do
     def create

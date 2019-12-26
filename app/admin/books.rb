@@ -6,16 +6,17 @@ ActiveAdmin.register Book do
     def create
       @book = Book.new(permitted_params[:book])
       @book.user_id = current_user.id
-      @book.save
+      @book.save!
       generate_and_save_library_id(@book, Book::BOOK_DOCUMENT_CODE)
       super
     end
   end
 
   permit_params :title, :about, :year, :pages, :pdf, :cover, :publisher_id, :keywords, :downloadable,
-                :language, :isbn, :volume, :published, :library_id,  author_ids: [], subject_ids: []
+                :language, :isbn, :volume, :published, :library_id, authors_attributes: [:id, :name], author_ids: [], subject_ids: []
 
   form do |f|
+    f.semantic_errors
     inputs do
       input :title
       input :about, as: :text
@@ -24,8 +25,13 @@ ActiveAdmin.register Book do
       input :publisher
       input :pdf, as: :file
       input :cover, as: :file
-      input :subjects, as: :select, collection: Subject.published
-      input :authors, as: :select, collection: Author.published
+      input :subjects, as: :select, collection: Subject.all
+      input :authors, as: :select, collection: Author.all
+      inputs do
+        f.has_many :authors, heading: 'Author(s)' do |a|
+          a.input :name
+        end
+      end
       input :language, collection: LanguageList::COMMON_LANGUAGES.map { |l| [l.name, l.name] }      
       input :isbn
       input :volume

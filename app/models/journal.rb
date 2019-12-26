@@ -27,4 +27,5 @@ class Journal < ApplicationRecord
   pg_search_scope :search_by_publisher, associated_against: {
     publisher: :name
   }
+  
 end
