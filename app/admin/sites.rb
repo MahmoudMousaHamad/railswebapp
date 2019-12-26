@@ -2,6 +2,9 @@ ActiveAdmin.register Site do
   menu parent: "Countries"
   extend DeleteImage
 
+  # TODO:
+  belongs_to :city, optional: true
+
   controller do
     def create
       @site = Site.new(permitted_params[:site])

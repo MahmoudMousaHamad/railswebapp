@@ -1,6 +1,9 @@
 ActiveAdmin.register Post do
   menu parent: "Countries"
 
+  # TODO:
+  belongs_to :country, optional: true
+  
   controller do
     def create
       @post = Post.new(permitted_params[:post])

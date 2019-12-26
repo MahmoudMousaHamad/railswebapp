@@ -1,6 +1,9 @@
 ActiveAdmin.register University do
   menu parent: "Countries"
 
+  # TODO:
+  belongs_to :country, optional: true
+  
   controller do
     def create
       @universities = University.new(permitted_params[:universities])

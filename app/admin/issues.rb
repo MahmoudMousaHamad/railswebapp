@@ -1,6 +1,9 @@
 ActiveAdmin.register Issue do
   menu parent: "Library"
 
+  # TODO:
+  belongs_to :journal, optional: true
+
   controller do
     def create
       @issue = Issue.new(permitted_params[:issue])

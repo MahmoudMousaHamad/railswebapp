@@ -1,6 +1,9 @@
 ActiveAdmin.register Video do
   menu parent: "Countries"
 
+  # TODO:
+  belongs_to :country, optional: true
+  
   controller do
     def create
       @video = Video.new(permitted_params[:video])

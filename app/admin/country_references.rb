@@ -1,6 +1,9 @@
 ActiveAdmin.register CountryReference do
   menu parent: "Countries"
 
+  # TODO:
+  belongs_to :country, optional: true
+  
   controller do
     def create
       @country_reference = CountryReference.new(permitted_params[:country_reference])

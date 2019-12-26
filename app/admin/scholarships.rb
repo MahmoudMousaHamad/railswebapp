@@ -1,6 +1,9 @@
 ActiveAdmin.register Scholarship do
   menu parent: "Countries"
 
+  # TODO:
+  belongs_to :country, optional: true
+  
   controller do
     def create
       @schoolarship = Schoolarship.new(permitted_params[:schoolarship])
