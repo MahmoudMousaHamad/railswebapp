@@ -13,16 +13,16 @@ ActiveAdmin.register CountryReference do
     end
   end
 
-  permit_params :title, :author, :publisher, :publication_date, :country_id, :period, :user_id, :published
+  permit_params :title, :author, :publisher, :publication_year, :country_id, :reference_type,:user_id, :published
 
   form do |f|
     inputs do
       input :title
       input :author
       input :publisher
-      input :publication_date
+      input :publication_year
+      input :reference_type, collection: ["Book", "Essay", "PhD or Master's Thesis"]
       input :country
-      input :period
       input :published if authorized? :publish, resource      
     end
     actions

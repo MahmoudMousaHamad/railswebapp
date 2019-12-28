@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_21_203326) do
+ActiveRecord::Schema.define(version: 2019_12_28_185731) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,9 @@ ActiveRecord::Schema.define(version: 2019_12_21_203326) do
     t.string "language"
     t.integer "user_id"
     t.string "library_id"
+    t.string "supervisor_name"
+    t.string "university_name"
+    t.string "college_name"
   end
 
   create_table "academic_papers_authors", id: false, force: :cascade do |t|
@@ -218,13 +221,13 @@ ActiveRecord::Schema.define(version: 2019_12_21_203326) do
     t.string "title"
     t.string "author"
     t.string "publisher"
-    t.date "publication_date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "country_id"
-    t.string "period"
     t.integer "user_id"
     t.boolean "published"
+    t.integer "publication_year"
+    t.string "reference_type"
     t.index ["country_id"], name: "index_country_references_on_country_id"
   end
 
