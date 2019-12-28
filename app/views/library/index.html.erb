@@ -20,14 +20,13 @@
 </div>
 
 <h3>Browse by discipline:</h3>
-<div class="grid">
+<div class="row">
     <% @disciplines.each do |d| %>
-        <a href="<%= "#{subjects_path}##{d.id}" %>" class="text-center">
-            <div class="discipline-block">
-                <%= image_tag url_for(d.photo) if d.photo.attached? %>
-                <%= d.name %>
-            </div>
-        </a>
+        <%= card_for(d.name, 
+            { },
+            "#{subjects_path}##{d.id}",
+            3,
+            d.photo) %>
     <% end %>
 </div>
 
