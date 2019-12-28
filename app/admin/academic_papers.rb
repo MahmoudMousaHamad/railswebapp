@@ -1,8 +1,9 @@
 ActiveAdmin.register AcademicPaper do
   menu parent: "Library"
   
-  permit_params :title, :publication_year, :paper_type, :published, :keywords, :about, :pdf, :downloadable, :language, :user_id, :library_id, 
-  :subject_ids => [], :author_ids => [], :authors_attributes => [:id, :name]
+  permit_params :title, :publication_year, :paper_type, :published, :keywords, :about, :pdf,
+                :downloadable, :language, :user_id, :library_id, :supervisor_name, :university_name, :college_name, 
+                :subject_ids => [], :author_ids => [], :authors_attributes => [:id, :name]
 
 
   controller do
@@ -35,6 +36,9 @@ ActiveAdmin.register AcademicPaper do
       input :language, collection: LanguageList::COMMON_LANGUAGES.map { |l| [l.name, l.name] }
       input :keywords
       input :pdf, as: :file, label: "PDF"
+      input :supervisor_name
+      input :university_name
+      input :college_name
       input :published if authorized? :publish, academic_paper
     end
     actions

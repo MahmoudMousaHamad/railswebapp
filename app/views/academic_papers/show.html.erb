@@ -9,7 +9,7 @@
     <div class="col s6" style="float: left;">
         <p><b>Author(s):</b> <%= safe_join(@p.authors.map { |s| link_to  s.name, author_path(s.name) }, ", ").html_safe %></p>
         <p><b>Library Link: </b><%= get_library_link(request) %></p>
-        <%= show_info_for(@p, [ :language, :publication_year, :paper_type, :keywords, :downloadable ]).html_safe %>
+        <%= show_info_for(@p, [ :language, :publication_year, :paper_type, :keywords, :downloadable, :supervisor_name, :university_name, :college_name ]).html_safe %>
         <p><b>Subjects: </b> <%= safe_join(@p.subjects.map { |s| link_to  s.name, subject_path(s.name) }, ",").html_safe %> </p>
     </div>
     <div class="col s4">
