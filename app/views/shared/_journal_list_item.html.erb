@@ -9,7 +9,7 @@
     <td><%= j.class.name %></td>
     <td>N/A</td>
     <td><a href="<%= journal_path(j) %>"><%= j.title %></a></td>
-    <td><a href="<%= publisher_path(j.publisher) %>"><%= j.publisher.name %></a></td>                        
+    <td><a href="<%= publisher_path(j.publisher) if j.publisher %>"><%= j.publisher.name if j.publisher %></a></td>                        
     <td><%= j.coverageFrom %> - <%= j.coverageTo %></td>
     <td><%= j.language %></td>
 <% end %>

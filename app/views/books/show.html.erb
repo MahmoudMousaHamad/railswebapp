@@ -8,7 +8,7 @@
     </div>
     <div class="col s6" style="float: left;">
         <p><b>Author(s):</b> <%= safe_join(@b.authors.map { |s| link_to  s.name, author_path(s.name) }, ", ").html_safe %></p>
-        <p><b>Publisher:</b> <%= link_to  @b.publisher.name, publisher_path(@b.publisher), target: "_blank" %></p>
+        <p><b>Publisher:</b> <%= link_to  @b.publisher.name, publisher_path(@b.publisher), target: "_blank" if @b.publisher %></p>
         <p><b>Pages:</b> <%= @b.pages %></p>
         <p><b>Library Link:</b> <%= get_library_link(request) %></p>
         <%= show_info_for(@b, [:pages, :language, :year, :volume, :isbn, :keywords, :downloadable ]).html_safe %>

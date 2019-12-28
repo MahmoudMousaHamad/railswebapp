@@ -27,5 +27,7 @@ class Journal < ApplicationRecord
   pg_search_scope :search_by_publisher, associated_against: {
     publisher: :name
   }
+
+  accepts_nested_attributes_for :publisher
   
 end

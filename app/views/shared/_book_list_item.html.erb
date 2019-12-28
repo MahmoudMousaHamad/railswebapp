@@ -10,7 +10,7 @@
     <td><%= b.class.name %></td>
     <td> <%= safe_join(b.authors.map { |s| link_to  s.name, author_path(s.name) }, ", ").html_safe %></td>
     <td><a href="<%= book_path(b) %>"><%= b.title %></a></td>
-    <td><a href="<%= publisher_path(b.publisher) %>"><%= b.publisher.name %></a></td>
+    <td><a href="<%= publisher_path(b.publisher) if b.publisher %>"><%= b.publisher.name if b.publisher %></a></td>
     <td><%= b.year %></td>
     <td><%= b.language %></td>
 <% end %>
