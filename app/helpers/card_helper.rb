@@ -28,9 +28,7 @@ module CardHelper
             content = safe_join([card_content])
             # check that image exists if it is attached using has_one_attached
             if image.class.name == "ActiveStorage::Attached::One"
-                if image.attached?
-                    content = safe_join([card_image, content])
-                end
+                content = safe_join([card_image, content])
             end
             # check that image exists if it is attached using has_many_attached
             if image.class.name == "ActiveStorage::Attachment" and image
@@ -41,7 +39,12 @@ module CardHelper
         end
 
         def card_image
-            image_content = image_tag(image, class: "cover")
+            image_content = nil
+            if !image.attached?
+                image_content = image_tag("no-thumb.jpg", class: "cover")
+            else
+                image_content = image_tag(image, class: "cover")
+            end
             content_tag(:div, image_content, class: "card-image")
         end
 

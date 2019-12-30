@@ -16,7 +16,7 @@ ActiveAdmin.register User do
       f.input :profile_photo, as: :file
       f.input :cv, as: :file, label: "C.V."
       f.input :education_level, collection: ["PhD", "Master's", "Bachelor's"]
-      f.input :specialization, collection: Discipline.all
+      f.input :specialization, collection: Discipline.all.map{|d| d.name }
       f.input :about
       f.input :verified if authorized? :edit, user
     end

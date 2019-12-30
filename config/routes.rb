@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'members/show'
+  get 'members/index'
   get 'country_references/index'
   get 'country_references/show'
   get 'pictures/index'

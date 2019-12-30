@@ -30,6 +30,7 @@
               <li><%= link_to  "Backend", admin_root_path, class: 'nav-item nav-link' %></li>
               <li><%= link_to  "Logout", destroy_user_session_path, class: 'nav-item nav-link', method: :delete %></li>
             <% else %>
+              <li><%= link_to  "Our Team", members_index_path, class: 'nav-item nav-link' %></li>
               <li><%= link_to  "Join Our Team", new_user_registration_path, class: 'nav-item nav-link' %></li>
               <li><%= link_to  "Login ", new_user_session_path, class: 'nav-item nav-link' %></li>
             <% end %>
@@ -41,11 +42,12 @@
       <li><%= link_to  "Countries List", countries_path %></li>
       <li><%= link_to  "Library", library_path %></li>
       <% if current_user %>
-        <li><%= link_to  "Backend", admin_root_path, class: 'nav-item nav-link' %></li>
-        <li><%= link_to  "Logout", destroy_user_session_path, class: 'nav-item nav-link', method: :delete %></li>
+        <li><%= link_to  "Backend", admin_root_path %></li>
+        <li><%= link_to  "Logout", destroy_user_session_path, method: :delete %></li>
       <% else %>
-        <li><%= link_to  "Join Our Team", new_user_registration_path, class: 'nav-item nav-link' %></li>
-        <li><%= link_to  "Login ", new_user_session_path, class: 'nav-item nav-link' %></li>
+        <li><%= link_to  "Our Team", members_index_path %></li>      
+        <li><%= link_to  "Join Our Team", new_user_registration_path %></li>
+        <li><%= link_to  "Login ", new_user_session_path %></li>
       <% end %>
     </ul>
 
