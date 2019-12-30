@@ -14,7 +14,7 @@ ActiveAdmin.register Country do
 
   form do |f|
     inputs do
-      input :name
+      f.input :name, as: :country, format: :with_data_attr
       input :about
       input :slideshow_photos, as: :file, input_html: { multiple: true }
       country.slideshow_photos.each do |p|
