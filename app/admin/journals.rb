@@ -13,7 +13,7 @@ ActiveAdmin.register Journal do
   end
 
   permit_params :title, :arabic_title, :about, :coverageFrom, :coverageTo, :publisher_id, :isbn,
-                :cover, :published, :keywords, :language, :user_id, :library_id, subject_ids: [],
+                :cover, :published, :keywords, :language, :user_id, :library_id, :second_language, :subject_ids => [],
                 publisher_attributes: [:id, :name]
   
   form do |f| 
@@ -30,7 +30,8 @@ ActiveAdmin.register Journal do
       input :isbn, label: "ISBN"
       input :cover, as: :file
       input :subjects, as: :check_boxes, collection: Subject.published
-      input :language, collection: LanguageList::COMMON_LANGUAGES.map { |l| [l.name, l.name] }      
+      input :language, collection: LanguageList::COMMON_LANGUAGES.map { |l| [l.name, l.name] }     
+      input :second_language, collection: LanguageList::COMMON_LANGUAGES.map { |l| [l.name, l.name] }     
       input :keywords
       input :published if authorized? :publish, resource
     end

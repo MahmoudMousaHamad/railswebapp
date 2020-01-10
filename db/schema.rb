@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_30_205842) do
+ActiveRecord::Schema.define(version: 2020_01_10_154412) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -270,6 +270,7 @@ ActiveRecord::Schema.define(version: 2019_12_30_205842) do
     t.integer "user_id"
     t.string "library_id"
     t.string "arabic_title"
+    t.string "second_language"
     t.index ["publisher_id"], name: "index_journals_on_publisher_id"
   end
 
