@@ -12,7 +12,7 @@
  *
  */
  @import "materialize/components/color-variables";
- $primary-color: rgb(208, 196, 156)  !default;
+ $primary-color: #FFFADC  !default;
  $secondary-color: rgb(58, 42, 145) !default;
  $reference-secondary-color: rgb(254, 251, 220);
  $gold: rgb(224, 188, 70) !default;
@@ -40,11 +40,7 @@
  }
 
 .nav-link, .brand-logo {
-    color: white !important;
-    &:hover {
-        color: white !important;
-        text-decoration: none;
-    }
+    color: black;
 }
 
 .page-title {
@@ -197,4 +193,16 @@ picture img {
 
 .pagination {
     padding-left: 20px !important;
+}
+
+nav a{
+    color: black;
+}
+
+.current {
+    color: $secondary-color;
+    font-weight: 650;
+}
+.material-icons {
+    color: $secondary-color !important;
 }
