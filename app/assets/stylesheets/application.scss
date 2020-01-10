@@ -68,10 +68,7 @@
 }
 
 body > div.container > div > ul > li > a {
-    color: $primary-color;
-    &:hover {
-        color: $secondary-color
-    }
+    color: $secondary-color;
 }
 
 .citation {

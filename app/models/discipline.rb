@@ -2,8 +2,8 @@ class Discipline < ApplicationRecord
     include Publishable
 
     has_many :subjects, dependent: :destroy
-    user_owned
     has_one_attached :photo
+    user_owned
 
     validates :code, uniqueness: true
     validates :name, uniqueness: true

@@ -24,7 +24,7 @@
     <% @disciplines.each do |d| %>
         <%= card_for(d.name, 
             { },
-            "#{subjects_path}##{d.id}",
+            discipline_path(d.name),
             3,
             d.photo) %>
     <% end %>

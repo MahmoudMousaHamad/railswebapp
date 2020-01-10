@@ -56,6 +56,7 @@ Rails.application.routes.draw do
   resources :academic_papers
 
   resources :subjects, param: :name
+  resources :disciplines, param: :name
   resources :authors, param: :name
 
   get '/library', to: 'library#index'

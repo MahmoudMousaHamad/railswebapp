@@ -1,0 +1,7 @@
+<h1>Subjects in <%= @discipline.name %></h1>
+
+<% @discipline.subjects.sort_by{|s| s.name}.each do |s| %>
+    <ul>
+        <li> - <%= link_to  s.name, subject_path(s.name) %></li>
+    </ul>
+<% end %>
