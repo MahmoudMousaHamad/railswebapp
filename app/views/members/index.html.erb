@@ -4,7 +4,8 @@
 
 <div class="row">
     <% @leaders.each do |l| %>
-        <%= card_for(l.name, {}, members_show_path(l.id), 6, l.profile_photo) %>
+        <%= card_for("#{l.name}, #{l.country}", {}, members_show_path(l.id), 4, l.profile_photo) %>
+        
     <% end %>
 </div>
 
@@ -13,20 +14,22 @@
 <h4>PhD</h4>
 <div class="row">
     <% @members_phd.each do |l| %>
-        <%= card_for(l.name, {}, members_show_path(l.id), 6, l.profile_photo) %>
+        <%= card_for("#{l.name}, #{l.country}", {}, members_show_path(l.id), 4, l.profile_photo) %>
+        
     <% end %>
 </div>
 
 <h4>Master's</h4>
 <div class="row">
     <% @members_masters.each do |l| %>
-        <%= card_for(l.name, {}, members_show_path(l.id), 6, l.profile_photo) %>
+        <%= card_for("#{l.name}, #{l.country}", {}, members_show_path(l.id), 4, l.profile_photo) %>
+        
     <% end %>
 </div>
 
 <h4>Bachelor's</h4>
 <div class="row">
     <% @members_bachelors.each do |l| %>
-        <%= card_for(l.name, {}, members_show_path(l.id), 6, l.profile_photo) %>
+        <%= card_for("#{l.name}, #{l.country}", {}, members_show_path(l.id), 4, l.profile_photo) %>
     <% end %>
 </div>
