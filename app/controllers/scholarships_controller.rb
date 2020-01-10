@@ -1,7 +1,7 @@
 class ScholarshipsController < ApplicationController
   def index
     @country = Country.find(params[:country_id])
-    @scholarships = Scholarship.filter(params.slice(:country_id, :degree, :university, :category)).q_name(params[:q]).page(params[:page])
+    @scholarships = Scholarship.filter(params.slice(:country_id, :degree, :university, :category)).q_name(params[:q]).page(params[:page]).per(params[:results_per_page])
   end
 
   def show

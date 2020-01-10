@@ -12,7 +12,7 @@ class PicturesController < ApplicationController
       @records.concat University.filter(params.slice(:country_id, :city)).q_name(params[:q])
     end
 
-    @records = Kaminari.paginate_array(@records).page(params[:page]).per(20)
+    @records = Kaminari.paginate_array(@records).page(params[:page]).per(params[:results_per_page])
 
   end
 end

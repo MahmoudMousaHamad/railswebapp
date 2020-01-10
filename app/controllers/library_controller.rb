@@ -22,7 +22,7 @@ class LibraryController < ApplicationController
             content_types.push("AcademicPaper")
         end
         if q
-            if !params[:results_per_page] || params[:results_per_page] == "" 
+            if !params[:results_per_page] || params[:results_per_page] == "" || params[:results_per_page].to_i > 50
                 results_per_page = 5
             else
                 results_per_page = params[:results_per_page]

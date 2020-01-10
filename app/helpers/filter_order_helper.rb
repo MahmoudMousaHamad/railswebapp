@@ -32,28 +32,33 @@ module FilterOrderHelper
             selects = []
             filters_order.each do |i|
                 if i.class.name == "Hash"
-                    selects.push custom_select("order_by", params[:order_by], i, true)
+                    selects.push custom_select("order_by", {:name => "Order by", :value => ""}, params[:order_by], i, true)
                 elsif i == 'city-site'
                     selects.push select_city_site
                 elsif i == 'site'
                     selects.push select_site
                 elsif i == 'degree'
-                    selects.push custom_select("degree", params[:degree], 
+                    selects.push custom_select("degree", {:name => "All Degrees", :value => ""}, params[:degree], 
                     { "phd" => "PhD", "masters" => "Masters", "bachelor" => "Bachelor's" })
                 elsif i == 'period'
-                    selects.push custom_select("period", params[:period], 
+                    selects.push custom_select("period", {:name => "All Periods", :value => ""}, params[:period], 
                         { "past" => "Past", "current" => "Current", "upcoming" => "Upcoming" })
                 elsif i == 'university'
                     selects.push select_university
                 elsif i == 'category'
                     selects.push select_category
                 elsif i == 'museum_kind'
-                    selects.push custom_select("kind", params[:kind], 
+                    selects.push custom_select("kind", {:name => "Results per Page", :value => 5}, params[:kind], 
                         { "Archaeological" => "Archaeological",
                              "Heritage" => "Heritage",
                               "Other" => "Other" })
                 elsif i == 'city'
                     selects.push select_city
+                elsif i == 'results_per_page'
+                    if !params[:results_per_page] || params[:results_per_page] == "" || params[:results_per_page].to_i > 50
+                        results_per_page = 5
+                    end
+                    selects.push custom_select("results_per_page", {:name => "Results per Page", :value => 5}, params[:results_per_page], {5 => 5, 10 => 10, 20 => 20, 50 => 50})
                 end
             end
             selects_content = content_tag(:div, safe_join(selects), class: "select-container")
@@ -166,14 +171,9 @@ module FilterOrderHelper
             content_tag(:select, safe_join(options), :name => "city", :onchange => "this.form.submit();")
         end
 
-        def custom_select(name, param_value, values_options, is_order = false)
+        def custom_select(name, first_option_hash, param_value, values_options, is_order = false)
             options = []
-            if is_order
-                options.push content_tag(:option, "Order By", :value => "")
-            else
-                options.push content_tag(:option, "All #{name.capitalize}s", :value => "")
-            end
-            
+            options.push content_tag(:option, first_option_hash[:name], :value => first_option_hash[:value])
             values_options.each do |value, option|
                 if param_value.to_s == value.to_s
                     options.push content_tag(:option, option, :value => value, :selected => "selected")

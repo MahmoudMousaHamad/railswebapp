@@ -1,6 +1,6 @@
 <h1><%= @country.name %>'s Video Gallery</h1>
 <%= filters_and_order_for(country_videos_path(@country), 
-["city-site", {"title" => "Title"}], params)%>
+["city-site", {"title" => "Title"}, "results_per_page"], params)%>
 <div class="row">
     <% @videos.each do |v| %>
         <div class="col s12 m4 ">

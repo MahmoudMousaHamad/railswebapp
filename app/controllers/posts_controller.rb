@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   def index
     @country = Country.find(params[:country_id])
-    @posts = Post.country_id(params[:country_id]).city(params[:city]).q_title(params[:q]).order_by(params[:order_by]).page(params[:page])
+    @posts = Post.country_id(params[:country_id]).city(params[:city]).q_title(params[:q]).order_by(params[:order_by]).page(params[:page]).per(params[:results_per_page])
   end
 
   def show

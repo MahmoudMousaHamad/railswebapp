@@ -10,7 +10,7 @@ class Museum < ApplicationRecord
   has_many_attached :photos
   has_one_attached :logo
 
-  validates_presence_of :name, :about, :city_id, :country_id, :photos, :logo, :website, :kind, :logo, :working_hours, :ticket_price
+  validates_presence_of :name
 
   paginates_per 5
 end

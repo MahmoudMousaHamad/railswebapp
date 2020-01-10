@@ -1,21 +1,21 @@
 <h2 class="page-title"><%= @country.name %> References</h2>
 <br>
 <br>
-<table>
+<table class="highlight table table-striped sortable">
     <tr>
-        <th>Author</th>
-        <th>Type</th>
-        <th>Title</th>
-        <th>Publisher</th>
-        <th>Publication Year</th>
+        <th><a href="#">Author</a></th>
+        <th><a href="#">Title</a></th>
+        <th><a href="#">Publisher</a></th>
+        <th><a href="#">Publication Year</a></th>
+        <th><a href="#">Type</a></th>
     </tr>
     <% @country.country_references.each do |r|%>
         <tr>
             <td><%= r.author %></td>
-            <td><%= r.reference_type %></td>
             <td><%= r.title %></td>
             <td><%= r.publisher %></td>
             <td><%= r.publication_year %></td>
+            <td><%= r.reference_type %></td>
         </tr>
     <% end %>
 </table>

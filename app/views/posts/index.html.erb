@@ -1,6 +1,6 @@
 <h1 class="page-title">Posts related to <%= @country.name %></h1>
 <%= filters_and_order_for(country_posts_path(@country), 
-["city", {"title" => "Title", "date_occurred" => "Date"}], params)%>
+["city", {"title" => "Title", "date_occurred" => "Date"}, "results_per_page"], params)%>
 
 <div class="row">
     <% @posts.each do |i| %>
