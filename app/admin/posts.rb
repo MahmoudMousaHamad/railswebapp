@@ -1,7 +1,6 @@
 ActiveAdmin.register Post do
   menu parent: "Countries"
 
-  # TODO:
   belongs_to :country, optional: true
   belongs_to :city, optional: true
 

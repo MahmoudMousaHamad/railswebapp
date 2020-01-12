@@ -1,7 +1,6 @@
 ActiveAdmin.register CountryReference do
   menu parent: "Countries"
 
-  # TODO:
   belongs_to :country, optional: true
   
   controller do

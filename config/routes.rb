@@ -20,7 +20,24 @@ Rails.application.routes.draw do
   get 'museums/index'
   get 'museums/show'
   devise_for :users
+
   ActiveAdmin.routes(self)
+  namespace :admin do
+    resources :countries do
+      resources :museums
+      resources :posts
+      resources :scholarships
+      resources :universities
+    end
+    resources :cities do
+      resources :museums 
+      resources :posts
+      resources :universities
+    end
+    resources :universities do
+      resources :scholarships
+    end 
+  end
 
   resources :countries do
     resources :museums
