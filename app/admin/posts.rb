@@ -3,6 +3,8 @@ ActiveAdmin.register Post do
 
   # TODO:
   belongs_to :country, optional: true
+  belongs_to :city, optional: true
+
   
   controller do
     def create
@@ -37,7 +39,7 @@ ActiveAdmin.register Post do
       row :date_occurred
       row :cover_photo do |c|
         div do
-          image_tag image_path(main_app.url_for(post.cover_photo))
+          image_tag image_path(main_app.url_for(post.cover_photo)) if post.cover_photo.attached?
         end
       end
     end

@@ -1,7 +1,6 @@
 ActiveAdmin.register College do
   menu parent: "Countries"
 
-  # TODO:
   belongs_to :university, optional: true
 
   controller do
@@ -27,5 +26,17 @@ ActiveAdmin.register College do
       div :id => "admin-add-map"
     end
     actions
+  end
+
+  show do
+    attributes_table do
+      row :name
+      row :about
+      row :university
+      row :published
+    end
+    panel "Schools of this college" do
+      div nested_resource_links_for(college, "college", ["schools"])
+    end
   end
 end

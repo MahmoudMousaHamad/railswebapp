@@ -1,6 +1,8 @@
 ActiveAdmin.register Book do
   menu parent: "Library"
 
+  belongs_to :author, optional: true
+
   controller do
     include DocumentsHelper
     def create

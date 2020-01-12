@@ -57,5 +57,8 @@ ActiveAdmin.register Journal do
         end
       end
     end
+    panel "Issues" do
+      div nested_resource_links_for(journal, "journal", ["issues"])
+    end
   end
 end

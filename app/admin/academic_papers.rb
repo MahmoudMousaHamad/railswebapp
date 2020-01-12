@@ -1,4 +1,8 @@
 ActiveAdmin.register AcademicPaper do
+
+  belongs_to :subject, optional: true
+  belongs_to :author, optional: true
+
   menu parent: "Library"
   
   permit_params :title, :publication_year, :paper_type, :published, :keywords, :about, :pdf,

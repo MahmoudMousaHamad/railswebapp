@@ -1,7 +1,6 @@
 ActiveAdmin.register School do
   menu parent: "Countries"
 
-  # TODO:
   belongs_to :college, optional: true
 
   controller do

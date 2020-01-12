@@ -2,7 +2,6 @@ ActiveAdmin.register Site do
   menu parent: "Countries"
   extend DeleteImage
 
-  # TODO:
   belongs_to :city, optional: true
 
   controller do

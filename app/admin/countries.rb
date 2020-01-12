@@ -55,9 +55,12 @@ ActiveAdmin.register Country do
       row :about
       row :slideshow_photos do
         country.slideshow_photos.each do |p|
-          span image_tag image_path(main_app.url_for(p)), class: "image-admin"
+          span image_tag image_path(main_app.url_for(p)), class: "image-admin" if country.slideshow_photos.attached?
         end
       end
+    end
+    panel "Related to this country" do
+      div nested_resource_links_for(country, "country", ["cities", "museums", "conferences", "scholarships", "posts", "universities", "videos", "country_references"])
     end
   end
 end

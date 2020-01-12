@@ -1,8 +1,8 @@
 ActiveAdmin.register University do
   menu parent: "Countries"
 
-  # TODO:
   belongs_to :country, optional: true
+  belongs_to :city, optional: true
   
   controller do
     def create
@@ -39,16 +39,19 @@ ActiveAdmin.register University do
       row :country
       row :logo do |c|
         div do
-          image_tag image_path(main_app.url_for(university.logo))
+          image_tag image_path(main_app.url_for(university.logo)) if university.logo.attached?
         end
       end
       row :photos do
         university.photos.each do |p|
           div do
-            image_tag image_path(main_app.url_for(p))
+            image_tag image_path(main_app.url_for(p)) if university.photos.attached?
           end
         end
       end
+    end
+    panel "Colleges of this university" do
+      div nested_resource_links_for(university, "university", ["scholarships", "colleges"])
     end
   end
   

@@ -322,3 +322,7 @@ Rails.application.config.after_initialize do
   javascripts += ActiveAdmin.application.javascripts.to_a
   ActiveAdmin.application.javascripts.replace javascripts
 end
+
+module ActiveAdmin::ViewHelpers
+  include AdminNestedResourceHelper
+end

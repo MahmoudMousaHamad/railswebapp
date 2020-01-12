@@ -48,7 +48,7 @@ module FilterOrderHelper
                 elsif i == 'category'
                     selects.push select_category
                 elsif i == 'museum_kind'
-                    selects.push custom_select("kind", {:name => "Results per Page", :value => 5}, params[:kind], 
+                    selects.push custom_select("kind", {:name => "All Kinds", :value => ""}, params[:kind], 
                         { "Archaeological" => "Archaeological",
                              "Heritage" => "Heritage",
                               "Other" => "Other" })
@@ -58,7 +58,7 @@ module FilterOrderHelper
                     if !params[:results_per_page] || params[:results_per_page] == "" || params[:results_per_page].to_i > 50
                         results_per_page = 5
                     end
-                    selects.push custom_select("results_per_page", {:name => "Results per Page", :value => 5}, params[:results_per_page], {5 => 5, 10 => 10, 20 => 20, 50 => 50})
+                    selects.push custom_select("results_per_page", {:name => "Results per Page", :value => ""}, params[:results_per_page], {5 => 5, 10 => 10, 20 => 20, 50 => 50})
                 end
             end
             selects_content = content_tag(:div, safe_join(selects), class: "select-container")

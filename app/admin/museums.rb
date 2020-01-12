@@ -3,6 +3,7 @@ ActiveAdmin.register Museum do
 
   # TODO:
   belongs_to :country, optional: true
+  belongs_to :city, optional: true
   
   controller do
     def create

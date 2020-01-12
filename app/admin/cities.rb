@@ -62,8 +62,11 @@ ActiveAdmin.register City do
       row :country
       row :slideshow_photos do
         city.slideshow_photos.each do |p|
-          span image_tag image_path(main_app.url_for(p)), class: "image-admin"
+          span image_tag image_path(main_app.url_for(p)), class: "image-admin" if city.slideshow_photos.attached?
         end
+      end
+      panel "More to this city" do
+        div nested_resource_links_for(city, "city", ["sites", "museums", "posts", "universities"])
       end
     end
   end

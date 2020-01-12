@@ -1,8 +1,8 @@
 ActiveAdmin.register Scholarship do
   menu parent: "Countries"
 
-  # TODO:
   belongs_to :country, optional: true
+  belongs_to :university, optional: true
   
   controller do
     def create

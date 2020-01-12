@@ -20,5 +20,16 @@ ActiveAdmin.register Author do
     end
     actions
   end
+
+  show do
+    attributes_table do
+      row :name
+      row :about
+      row :published
+    end
+    panel "More from this Author" do
+      div nested_resource_links_for(author, "author", ["books", "academic_papers"])
+    end
+  end
   
 end

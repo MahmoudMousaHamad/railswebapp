@@ -1,4 +1,7 @@
 ActiveAdmin.register Conference do
+
+  belongs_to :country, optional: true
+
   menu parent: "Countries"
 
   controller do

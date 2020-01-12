@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_12_191257) do
+ActiveRecord::Schema.define(version: 2020_01_12_195557) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -298,6 +298,12 @@ ActiveRecord::Schema.define(version: 2020_01_12_191257) do
     t.boolean "published"
     t.index ["city_id"], name: "index_museums_on_city_id"
     t.index ["country_id"], name: "index_museums_on_country_id"
+  end
+
+  create_table "news_tickers", force: :cascade do |t|
+    t.text "body"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "pg_search_documents", force: :cascade do |t|
