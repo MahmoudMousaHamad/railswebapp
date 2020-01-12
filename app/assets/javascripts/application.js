@@ -19,6 +19,7 @@
 //= require underscore
 //= require gmaps/google
 
+
 $(document).ready(function(){
     $('.sidenav').sidenav();
     $('.tabs').tabs();

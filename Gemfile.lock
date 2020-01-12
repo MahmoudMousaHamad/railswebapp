@@ -322,6 +322,7 @@ GEM
       activemodel (>= 5)
       elasticsearch (>= 6)
       hashie
+    selectize-rails (0.12.6)
     selenium-webdriver (3.142.3)
       childprocess (>= 0.5, < 2.0)
       rubyzip (~> 1.2, >= 1.2.2)
@@ -412,6 +413,7 @@ DEPENDENCIES
   ransack
   sass-rails (~> 5.0)
   searchkick
+  selectize-rails
   selenium-webdriver
   textacular (~> 5.0)
   tzinfo-data

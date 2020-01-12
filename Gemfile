@@ -104,3 +104,5 @@ gem "datagrid"
 gem 'language_list'
 
 gem 'materialize-sass'
+
+gem "selectize-rails"

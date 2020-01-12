@@ -1,6 +1,11 @@
 //= require active_admin/base
+//= require selectize
 
 // $.getScript("//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js")
+
+$(document).ready(function () {
+    $('select').selectize();
+});
 
 document.addEventListener("DOMContentLoaded", initMap);
 
