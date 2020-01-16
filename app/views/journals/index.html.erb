@@ -1,5 +1,8 @@
-<h1>Browse <%= params[:language].humanize %> Journals </h1>
+<h1>Browse <%= params[:language].humanize if params[:language] == "arabic" || params[:language] == "english" %> Journals </h1>
 
-<% @journals.each do |j| %>
-    <%= render partial: "shared/journal_list_item", locals: {view: :detailed, j: j} %>
+<% @journals_hash.each do |letter, journals| %>
+    <h2><%= letter %></h2>
+    <% journals.each do |j| %>
+        <%= render partial: "shared/journal_list_item", locals: {view: :detailed, j: j} %>
+    <% end %>
 <% end %>

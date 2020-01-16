@@ -7,6 +7,8 @@ class AcademicPaper < ApplicationRecord
 
     has_and_belongs_to_many :subjects
     has_and_belongs_to_many :authors
+    belongs_to :supervisor, optional: true
+    
     has_one_attached :pdf
 
     user_owned
@@ -18,5 +20,6 @@ class AcademicPaper < ApplicationRecord
     }
     
     accepts_nested_attributes_for :authors
+    accepts_nested_attributes_for :supervisor
 
 end

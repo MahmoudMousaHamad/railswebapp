@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_12_195557) do
+ActiveRecord::Schema.define(version: 2020_01_16_001941) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,9 +29,10 @@ ActiveRecord::Schema.define(version: 2020_01_12_195557) do
     t.string "language"
     t.integer "user_id"
     t.string "library_id"
-    t.string "supervisor_name"
     t.string "university_name"
     t.string "college_name"
+    t.bigint "supervisor_id"
+    t.index ["supervisor_id"], name: "index_academic_papers_on_supervisor_id"
   end
 
   create_table "academic_papers_authors", id: false, force: :cascade do |t|
@@ -399,6 +400,13 @@ ActiveRecord::Schema.define(version: 2020_01_12_195557) do
     t.index ["discipline_id"], name: "index_subjects_on_discipline_id"
   end
 
+  create_table "supervisors", force: :cascade do |t|
+    t.string "name"
+    t.text "about"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "universities", force: :cascade do |t|
     t.string "name"
     t.text "about"
@@ -465,6 +473,7 @@ ActiveRecord::Schema.define(version: 2020_01_12_195557) do
     t.index ["site_id"], name: "index_videos_on_site_id"
   end
 
+  add_foreign_key "academic_papers", "supervisors"
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "books", "publishers"
   add_foreign_key "cities", "countries", on_delete: :cascade

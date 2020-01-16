@@ -1,5 +1,7 @@
-<a class="waves-effect waves-light btn <%= params[:document_type] == "books" ? "disabled" : "nothing" %>" href="?document_type=books">Books</a>
-<% if model.class.name != "Author" %>
+<% if model.class.name != "Supervisor" %>
+    <a class="waves-effect waves-light btn <%= params[:document_type] == "books" ? "disabled" : "nothing" %>" href="?document_type=books">Books</a>
+<% end %>
+<% if model.class.name != "Author" && model.class.name != "Supervisor" %>
     <a class="waves-effect waves-light btn <%= params[:document_type] == "journals" ? "disabled" : "nothing" %>" href="?document_type=journals">Journals</a>
 <% end %>
 <% if model.class.name != "Publisher" %>

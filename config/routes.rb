@@ -75,6 +75,7 @@ Rails.application.routes.draw do
   resources :subjects, param: :name
   resources :disciplines, param: :name
   resources :authors, param: :name
+  resources :supervisor, param: :name
 
   get '/library', to: 'library#index'
   get '/library/browse', to: 'library#browse'

@@ -36,7 +36,7 @@ ActiveAdmin.register Issue do
       row :pageTo, label: "Number of Last Page"
       row :journal
       row :pdf do
-        a "Click to Download", href: main_app.url_for(issue.pdf)
+        a "Click to Download", href: main_app.url_for(issue.pdf) if issue.pdf.attached?
       end
     end
   end

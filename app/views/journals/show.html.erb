@@ -7,7 +7,7 @@
         <%= document_cover_for(@j.cover) %>
     </div>
     <div class="col s6" style="float: left;">
-        <p><b>Publisher:</b> <%= link_to  @j.publisher.name, publisher_path(@j.publisher), target: "_blank" %></p>
+        <p><b>Publisher:</b> <%= link_to  @j.publisher.name, publisher_path(@j.publisher), target: "_blank" if @j.publisher %></p>
         <p><b>Coverage:</b> <%= "#{@j.coverageFrom} - #{@j.coverageTo}" %></p>
         <p><b>Library Link:</b> <%= get_library_link(request) %></p>
         <%= show_info_for(@j, [ :language, :isbn, :keywords ]).html_safe %>
