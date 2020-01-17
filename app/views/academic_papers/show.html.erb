@@ -7,11 +7,11 @@
         <%= image_tag  url_for("/assets/no-thumb.jpg"), style: "max-width: 150px; margin-bottom: 20px;" %>
     </div>
     <div class="col s6" style="float: left;">
-        <p><b>Author(s):</b> <%= safe_join(@p.authors.map { |s| link_to  s.name, author_path(s.name) }, ", ").html_safe %></p>
-        <p><b>Supervisor:</b> <%= link_to @p.supervisor.name, supervisor_path(@p.supervisor.name) %></p>
-        <p><b>Library Link: </b><%= get_library_link(request) %></p>
+        <p><label>Author(s):</label> <%= safe_join(@p.authors.map { |s| link_to  s.name, author_path(s.name) }, ", ").html_safe %></p>
+        <p><label>Supervisor:</label> <%= link_to @p.supervisor.name, supervisor_path(@p.supervisor.name) if @p.supervisor.name %></p>
+        <p><label>Library Link: </label><%= get_library_link(request) %></p>
         <%= show_info_for(@p, [ :language, :publication_year, :paper_type, :keywords, :downloadable, :university_name, :college_name ]).html_safe %>
-        <p><b>Subjects: </b> <%= safe_join(@p.subjects.map { |s| link_to  s.name, subject_path(s.name) }, ",").html_safe %> </p>
+        <p><label>Subjects: </label> <%= safe_join(@p.subjects.map { |s| link_to  s.name, subject_path(s.name) }, ",").html_safe %> </p>
     </div>
     <div class="col s4">
         <ul class="collapsible popout">
@@ -26,4 +26,4 @@
     </div>
 </div>
 
-<%= render partial: "shared/gain_access", locals: {params: params, model: @p} %>
+<%= render partial: "shared/download", locals: {params: params, file: @p.pdf} %>

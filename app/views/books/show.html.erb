@@ -7,12 +7,12 @@
         <%= document_cover_for(@b.cover) %>
     </div>
     <div class="col s6" style="float: left;">
-        <p><b>Author(s):</b> <%= safe_join(@b.authors.map { |s| link_to  s.name, author_path(s.name) }, ", ").html_safe %></p>
-        <p><b>Publisher:</b> <%= link_to  @b.publisher.name, publisher_path(@b.publisher), target: "_blank" if @b.publisher %></p>
-        <p><b>Pages:</b> <%= @b.pages %></p>
-        <p><b>Library Link:</b> <%= get_library_link(request) %></p>
+        <p><label>Author(s):</label> <%= safe_join(@b.authors.map { |s| link_to  s.name, author_path(s.name) }, ", ").html_safe %></p>
+        <p><label>Publisher:</label> <%= link_to  @b.publisher.name, publisher_path(@b.publisher), target: "_blank" if @b.publisher %></p>
+        <p><label>Pages:</label> <%= @b.pages %></p>
+        <p><label>Library Link:</label> <%= get_library_link(request) %></p>
         <%= show_info_for(@b, [:pages, :language, :year, :volume, :isbn, :keywords, :downloadable ]).html_safe %>
-        <p><b>Subjects: </b> <%= safe_join(@b.subjects.map { |s| link_to  s.name, subject_path(s.name) }, ",").html_safe %> </p>
+        <p><label>Subjects: </label> <%= safe_join(@b.subjects.map { |s| link_to  s.name, subject_path(s.name) }, ",").html_safe %> </p>
     </div>
     <div class="col s4">
         <ul class="collapsible popout">
@@ -28,4 +28,4 @@
     </div>
 </div>
 
-<%= render partial: "shared/gain_access", locals: {params: params, model: @b} %>
+<%= render partial: "shared/download", locals: {params: params, file: @b.pdf} %>

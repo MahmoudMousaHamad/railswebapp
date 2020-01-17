@@ -24,7 +24,7 @@ module ShowInfoHelper
                     next
                 end
                 if model[field] != ""
-                    string = "<b>" + field.to_s.humanize + "</b>: " + model[field].to_s.humanize
+                    string = "<label>" + field.to_s.humanize + ":</label> " + model[field].to_s.humanize
                     content = content_tag(:p, string.html_safe, class: "field-label")
                     content_list.push content_tag(:div, content)
                 end

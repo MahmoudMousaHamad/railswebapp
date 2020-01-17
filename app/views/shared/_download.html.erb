@@ -1,18 +1,18 @@
 <div class="row">
-    <h3 class="title">Gain Access</h3>
+    <h3 class="title"><%= defined?(text) ? text : "Gain Access" %></h3>
     <hr>
     <button type="button" class="btn-small" data-toggle="modal" data-target="#gain-access-modal">
-            Gain Access
+            <%= defined?(text) ? text : "Gain Access" %>
     </button>
     <div class="modal fade" id="gain-access-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Gain Access</h5>
+                    <h5 class="modal-title"><%= defined?(text) ? text : "Gain Access" %></h5>
                 </div>
                 <div class="modal-body">
-                    <% if model.pdf.attachment %>
-                        <%= link_to  "Download PDF", url_for(model.pdf), target: "_blank" %>
+                    <% if file.attachment %>
+                        <%= link_to  "Download PDF", url_for(file), target: "_blank" %>
                     <% else %>
                         <p>Sorry, this file is not avalable at the moment.</p>
                     <% end %>

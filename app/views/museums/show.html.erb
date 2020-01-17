@@ -5,12 +5,12 @@
 <div class="about">
     <h2><%= @i.name %>: </h2>
     <p class="lead"> <%= @i.about %></p>
-    <p><b>Address:</b> <%= Geocoder.search([@i.lat, @i.lng]).first.display_name %></p>
-    <p><b>Website:</b> <%= link_to  "Visit website", @i.website, target: "_blank" %></p>
-    <p><b>Ticket Price:</b></p>
+    <p><label>Address:</label> <%= Geocoder.search([@i.lat, @i.lng]).first.display_name %></p>
+    <p><label>Website:</label> <%= link_to  "Visit website", @i.website, target: "_blank" %></p>
+    <p><label>Ticket Price:</label></p>
     <p><%= @i.ticket_price %></p>
-    <p><b>Working Hours:</b></p>
+    <p><label>Working Hours:</label></p>
     <p><%= @i.working_hours %></p>
-    <p><b>Location:</b></p>
+    <p><label>Location:</label></p>
     <%= location_map_for( @i.lat, @i.lng )%>
 </div>

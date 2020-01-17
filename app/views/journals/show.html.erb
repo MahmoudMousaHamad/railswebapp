@@ -7,11 +7,11 @@
         <%= document_cover_for(@j.cover) %>
     </div>
     <div class="col s6" style="float: left;">
-        <p><b>Publisher:</b> <%= link_to  @j.publisher.name, publisher_path(@j.publisher), target: "_blank" if @j.publisher %></p>
-        <p><b>Coverage:</b> <%= "#{@j.coverageFrom} - #{@j.coverageTo}" %></p>
-        <p><b>Library Link:</b> <%= get_library_link(request) %></p>
+        <p><label>Publisher:</label> <%= link_to  @j.publisher.name, publisher_path(@j.publisher), target: "_blank" if @j.publisher %></p>
+        <p><label>Coverage:</label> <%= "#{@j.coverageFrom} - #{@j.coverageTo}" %></p>
+        <p><label>Library Link:</label> <%= get_library_link(request) %></p>
         <%= show_info_for(@j, [ :language, :isbn, :keywords ]).html_safe %>
-        <p><b>Subjects: </b> <%= safe_join(@j.subjects.map { |s| link_to  s.name, subject_path(s.name) }, ",").html_safe %> </p>
+        <p><label>Subjects: </label> <%= safe_join(@j.subjects.map { |s| link_to  s.name, subject_path(s.name) }, ",").html_safe %> </p>
     </div>
     <div class="col s4">
         <ul class="collapsible popout">

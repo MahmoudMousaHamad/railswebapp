@@ -4,12 +4,12 @@
 <br>
 <div class="about">
     <h2><img src="<%= url_for(@i.logo)%>" width="50px"/>   <%= @i.name %> </h2>
-    <p><b>About:</b></p>
+    <p><label>About:</label></p>
     <p class="lead"> <%= @i.about %></p>
-    <p><b>Address:</b> <%= Geocoder.search([@i.lat, @i.lng]).first.display_name %></p>
-    <p><b>Location:</b></p>
+    <p><label>Address:</label> <%= Geocoder.search([@i.lat, @i.lng]).first.display_name %></p>
+    <p><label>Location:</label></p>
     <%= location_map_for( @i.lat, @i.lng )%>
-    <p><b>Colleges:</b></p>
+    <p><label>Colleges:</label></p>
     <div class="row">
         <% @i.colleges.each do |c| %>
             <%= card_for(c.name, 

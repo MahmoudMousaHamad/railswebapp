@@ -1,8 +1,8 @@
 <div class="about">
     <h2><%= @i.name %>: </h2>
-    <p><b>Degree:</b> <%= @i.degree %></p>
-    <p><b>University:</b> <%= link_to  @i.university.name, university_path(@i.university) %></p>
-    <p><b>Scholarship:</b> <%= @i.scholarship %></p>
-    <p><b>Deadline:</b> <%= @i.deadline.strftime("%d/%m/%Y at %H:%M") %></p>
+    <p><label>Degree:</label> <%= @i.degree %></p>
+    <p><label>University:</label> <%= link_to  @i.university.name, university_path(@i.university) %></p>
+    <p><label>Scholarship:</label> <%= @i.scholarship %></p>
+    <p><label>Deadline:</label> <%= @i.deadline.strftime("%d/%m/%Y at %H:%M") %></p>
     <p class="lead"><%= @i.about %></p>
 </div>

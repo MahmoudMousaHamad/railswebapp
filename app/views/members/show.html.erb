@@ -1,5 +1,32 @@
-<h1><%= @member.name %>'s Public Profile</h1>
+<div class="">
+    <div class="row">
+        <%= get_image_safe_url(@member.profile_photo, "profile_photo materialboxed") %>
+        <br>
+        <h1><%= @member.name %></h1>
+    </div>
 
-<br>
-<br>
+    <div class="row">
+        <h2>BIO</h2>
+        <% if @member.education_level %>
+            <blockquote>
+                <%= @member.about %>
+            </blockquote>
+        <% end %>
+    </div>
 
+    <div class="row">
+        <h2>PUBLIC INFO</h2>
+        <% if @member.education_level %>
+            <div>
+                <label>Educational Level:</label> <%= @member.education_level %>
+            </div>
+        <% end %>
+        <% if @member.education_level %>
+            <div>
+                <label>Specialization:</label> <%= @member.specialization %>
+            </div>
+        <% end %>
+    </div>
+
+    <%= render partial: "shared/download", locals: {params: params, file: @member.cv, text: "C.V."} %>
+</div>
