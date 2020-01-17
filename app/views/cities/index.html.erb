@@ -32,7 +32,7 @@
 
     <div class="about-country">
         <h2>About <%= @country.name %>: </h2>
-        <p class="lead"><%= @country.about %></p>
+        <p class="lead"><%= @country.about.html_safe %></p>
     </div>
     <div class="row">
         <% @country.cities.each do |c| %>

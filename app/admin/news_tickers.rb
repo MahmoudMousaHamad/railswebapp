@@ -8,4 +8,11 @@ ActiveAdmin.register NewsTicker do
       super
     end
   end
+
+  form do |f|
+    inputs do
+      input :body, as: :quill_editor
+    end
+    actions
+  end
 end

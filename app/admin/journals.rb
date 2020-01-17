@@ -20,7 +20,7 @@ ActiveAdmin.register Journal do
     inputs do
       input :title
       input :arabic_title
-      input :about, as: :text
+      input :about, as: :quill_editor
       input :coverageFrom, label: "First Year of Publication"
       input :coverageTo, label: "Last Year of Publication"
       input :publisher

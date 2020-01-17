@@ -15,7 +15,7 @@ ActiveAdmin.register Discipline do
   form do |f|
     inputs do
       input :name
-      input :about
+      input :about, as: :quill_editor
       input :photo, as: :file
       input :code
       input :published if authorized? :publish, resource

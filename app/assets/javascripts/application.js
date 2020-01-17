@@ -21,12 +21,12 @@
 
 
 $(document).ready(function(){
+    initLocationMap();
     $('.sidenav').sidenav();
     $('.tabs').tabs();
     $('.collapsible').collapsible();
     $('.materialboxed').materialbox();
     $('.modal').modal_m();
-    initLocationMap();
 });
 
 
@@ -61,4 +61,5 @@ $(document).ready(function(){
         animation: google.maps.Animation.DROP,
         map: map,
     });
+    marker.setMap(map);
   }

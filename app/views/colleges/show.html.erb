@@ -5,7 +5,7 @@
 <div class="about">
     <h2><img src="<%= url_for(@i.university.logo)%>" width="50px"/> <%= @i.name %> in <%= @i.university.name %> </h2>
     <p><label>About:</label></p>
-    <p class="lead"> <%= @i.about %></p>
+    <p class="lead"> <%= @i.about.html_safe %></p>
     <p><label>Address:</label> <%= Geocoder.search([@i.lat, @i.lng]).first.display_name %></p>
     <p><label>Departments: </label></p>
     <div class="row">

@@ -19,9 +19,9 @@ ActiveAdmin.register Video do
     inputs do
       input :title
       input :link
-      input :country
-      input :city
       input :site
+      input :city
+      input :country
       input :published if authorized? :publish, resource
     end
     actions

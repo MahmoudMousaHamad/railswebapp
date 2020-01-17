@@ -1,5 +1,5 @@
 <h2><%= @i.name %>: </h2>
-<p class="lead"><%= @i.about %></p>
+<p class="lead"><%= @i.about.html_safe %></p>
 <p><label>College:</label> <%= link_to  @i.college.name, college_path(@i.college) %> </p>
 <p><label>University:</label> <%= link_to  @i.university.name, university_path(@i.university) %> </p>
 <p><label>Faculty:</label> <%= @i.professors %></p>

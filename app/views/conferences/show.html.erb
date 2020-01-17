@@ -3,7 +3,7 @@
 <p><%= "#{@i.from_date.strftime("%d/%m/%Y")} - #{@i.to_date.strftime("%d/%m/%Y")}" %></p>
 <p><label>Address:</label> <%= Geocoder.search([@i.lat, @i.lng]).first.display_name %></p>
 <p><label>About:</label></p>
-<p class="lead"> <%= @i.about %></p>
+<p class="lead"> <%= @i.about.html_safe %></p>
 <p><label>Website:</label> <%= link_to  "Visit website", @i.website, target: "_blank" %></p>
 <p><label>Organized by:</label> <%= @i.organizer %></p>
 <p><label>Papers discussed:</label></p>

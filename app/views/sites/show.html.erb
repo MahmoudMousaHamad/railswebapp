@@ -4,6 +4,6 @@
 <br>
 <div class="about-site">
     <h2><%= @s.name %>: </h2>
-    <p class="lead"> <%= @s.about %></p>
+    <p class="lead"> <%= @s.about.html_safe %></p>
 </div>
 <%= gallery_for(@s.gallery_photos) %>

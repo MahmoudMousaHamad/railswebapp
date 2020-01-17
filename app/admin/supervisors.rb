@@ -3,4 +3,11 @@ ActiveAdmin.register Supervisor do
   
   permit_params :name, :about
   
+  form do |f|
+    inputs do 
+      input :name
+      input :about, as: :quill_editor
+    end
+  end
+
 end

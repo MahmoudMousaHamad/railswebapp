@@ -18,7 +18,7 @@ ActiveAdmin.register Site do
   form do |f|
     inputs do
       input :name
-      input :about
+      input :about, as: :quill_editor
       input :city
       input :country
       input :slideshow_photos, as: :file, input_html: { multiple: true }

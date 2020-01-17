@@ -106,3 +106,5 @@ gem 'language_list'
 gem 'materialize-sass'
 
 gem "selectize-rails"
+
+gem 'activeadmin_quill_editor'

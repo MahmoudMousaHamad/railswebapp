@@ -18,7 +18,7 @@ ActiveAdmin.register University do
   form do |f|
     inputs do
       input :name
-      input :about
+      input :about, as: :quill_editor
       input :city
       input :country
       input :logo, as: :file

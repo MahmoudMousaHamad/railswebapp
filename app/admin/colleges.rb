@@ -17,7 +17,7 @@ ActiveAdmin.register College do
   form do |f|
     inputs do
       input :name
-      input :about
+      input :about, as: :quill_editor
       input :university
       input :logo, as: :file
       input :published if authorized? :publish, resource

@@ -22,7 +22,7 @@ ActiveAdmin.register Book do
     f.semantic_errors
     inputs do
       input :title
-      input :about, as: :text
+      input :about, as: :quill_editor
       input :year
       input :pages
       input :publisher

@@ -17,7 +17,7 @@ ActiveAdmin.register School do
   form do |f|
     inputs do
       input :name
-      input :about
+      input :about, as: :quill_editor
       input :professors
       input :college
       input :university

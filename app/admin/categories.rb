@@ -15,7 +15,7 @@ ActiveAdmin.register Category do
   form do |f|
     inputs do
       input :name
-      input :about
+      input :about, as: :quill_editor
       input :published if authorized? :publish, resource      
     end
     actions

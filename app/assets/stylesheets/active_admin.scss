@@ -11,6 +11,7 @@
 @import "active_admin/mixins";
 @import "active_admin/base";
 @import 'selectize';
+@import 'activeadmin/quill_editor_input';
 
 
 // Overriding any non-variable SASS must be done after the fact.
@@ -74,4 +75,8 @@
     color: #5E6469;
     padding: 12px 17px 10px;
     margin: 0px;
+}
+
+form input[type=date] {
+    width: auto;
 }

@@ -19,12 +19,12 @@ ActiveAdmin.register Museum do
   form do |f|
     inputs do
       input :name
-      input :about
+      input :about, as: :quill_editor
       input :city
       input :country
       input :website
       input :ticket_price
-      input :working_hours
+      input :working_hours, as: :quill_editor
       input :logo, as: :file, input_html: { accept: 'image/png,image/gif,image/jpeg' }
       input :photos, as: :file, input_html: { multiple: true, accept: 'image/png,image/gif,image/jpeg' }
       input :kind, collection: ["Archaeological", "Heritage", "Other"]
@@ -49,8 +49,8 @@ ActiveAdmin.register Museum do
       row :lng
       row :photos do
         museum.photos.each do |p|
-          div do
-            image_tag image_path(main_app.url_for(p))
+          span do
+            image_tag image_path(main_app.url_for(p)), class: "image-admin"
           end
         end
       end

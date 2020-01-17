@@ -1,4 +1,4 @@
 <h2 class="title"><%= @author.name %></h2>
 <h5>About:</h5>
-<h6><%= @author.about %></h6>        
+<h6><%= @author.about.html_safe %></h6>        
 <%= render partial: "shared/documents_view", locals: {params: params, model: @author} %>

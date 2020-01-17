@@ -18,14 +18,14 @@ ActiveAdmin.register Conference do
   form do |f|
     inputs do
       input :name
-      input :about
+      input :about, as: :quill_editor
       input :city
       input :country
       input :website
       input :organizer
       input :papers
-      input :from_date
-      input :to_date
+      input :from_date, as: :date_picker
+      input :to_date, as: :date_picker
       input :photos, as: :file, input_html: { multiple: true }
       input :category
       input :published if authorized? :publish, resource

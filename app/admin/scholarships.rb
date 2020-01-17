@@ -18,10 +18,10 @@ ActiveAdmin.register Scholarship do
   form do |f|
     inputs do
       input :name
-      input :about
+      input :about, as: :quill_editor
       input :degree
       input :scholarship
-      input :deadline
+      input :deadline, as: :date_picker
       input :university
       input :country
       input :category

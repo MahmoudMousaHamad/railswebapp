@@ -19,7 +19,7 @@ ActiveAdmin.register Post do
   form do |f|
     inputs do
       input :title
-      input :body
+      input :body, as: :quill_editor
       input :cover_photo, as: :file 
       input :city
       input :country

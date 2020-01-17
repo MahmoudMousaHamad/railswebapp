@@ -17,7 +17,7 @@ ActiveAdmin.register User do
       f.input :cv, as: :file, label: "C.V."
       f.input :education_level, collection: ["PhD", "Master's", "Bachelor's"]
       f.input :specialization, collection: Discipline.all.map{|d| d.name }
-      f.input :about
+      f.input :about, as: :quill_editor
       f.input :verified if authorized? :edit, user
     end
     actions

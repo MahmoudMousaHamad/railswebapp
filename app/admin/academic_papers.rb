@@ -23,15 +23,14 @@ ActiveAdmin.register AcademicPaper do
 
 
   form do |f|
-    actions
     inputs do
       input :title
-      input :about, label: "Abstract"
+      input :about, label: "Abstract", as: :quill_editor
       input :publication_year
       input :paper_type, collection: ["Conference Paper", "Dissertation Paper"]
       input :subjects, as: :select, collection: Subject.all
       input :authors, as: :select, collection: Author.all
-      inputs do
+      f.inputs "Add New Authors" do
         f.has_many :authors, heading: 'Author(s)' do |a|
           a.input :name
         end
@@ -41,7 +40,7 @@ ActiveAdmin.register AcademicPaper do
       input :keywords
       input :pdf, as: :file, label: "PDF"
       input :supervisor, as: :select
-      f.inputs "Add New Supervisor", for: [:supervisor, f.object.supervisor || Supervisor.new] do |s|
+      f.inputs "Add A New Supervisor", for: [:supervisor, f.object.supervisor || Supervisor.new] do |s|
         s.input :name
         s.actions
       end

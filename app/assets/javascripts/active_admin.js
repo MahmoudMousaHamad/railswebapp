@@ -1,5 +1,7 @@
 //= require active_admin/base
 //= require selectize
+//= require activeadmin/quill_editor/quill
+//= require activeadmin/quill_editor_input
 
 // $.getScript("//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js")
 
@@ -66,3 +68,4 @@ function initMap () {
         map.panTo(marker.getPosition());   
     });
 }
+

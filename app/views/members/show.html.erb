@@ -9,7 +9,7 @@
         <h2>BIO</h2>
         <% if @member.education_level %>
             <blockquote>
-                <%= @member.about %>
+                <%= @member.about.html_safe %>
             </blockquote>
         <% end %>
     </div>
