@@ -215,10 +215,16 @@ input {
     border-radius: 50%;
     width: 250px;
     height: 250px;
+    border: 5px solid rgba(0, 0, 0, 0.3);
 }
 
-label {
+label:not(.label-icon) {
     color: $secondary-color;
     font-size: 16px;
-    display: block;
+    background-color: white;
+    padding: 2px 5px;
+}
+
+blockquote {
+    border-color: $secondary-color;
 }
