@@ -104,8 +104,8 @@
         </form>
     </div>
     <% if params[:view] == "detailed" %>
-        <%= render partial: "shared/detailed_view", locals: {params: params, categorized_results: @categorized_results} %>
+        <%= render partial: "shared/detailed_view", locals: {params: params, items: @categorized_results, search: true, paginate_items: true} %>
     <%else%>
-        <%= render partial: "shared/simple_view", locals: {params: params, categorized_results: @categorized_results} %>
+        <%= render partial: "shared/simple_view", locals: {params: params, items: @categorized_results, search: true, paginate_items: true} %>
     <%end%>
 </div>

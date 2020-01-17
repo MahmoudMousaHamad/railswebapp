@@ -2,7 +2,5 @@
 
 <% @journals_hash.each do |letter, journals| %>
     <h2><%= letter %></h2>
-    <% journals.each do |j| %>
-        <%= render partial: "shared/journal_list_item", locals: {view: :detailed, j: j} %>
-    <% end %>
+    <%= render partial: "shared/detailed_view", locals: {items: journals, search: false, paginate_items: false} %>
 <% end %>

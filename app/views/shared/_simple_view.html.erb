@@ -1,12 +1,12 @@
 <div class="col s12 m9 result-section">
     <% if params[:q] == nil %>
         <h4>Please enter a search term.</h4>        
-    <% elsif categorized_results.length > 0 && params[:q] != "" %>
-        <%= render partial: "shared/documents_table", locals: {documents: categorized_results} %>        
-        <%= paginate categorized_results %>
+    <% elsif items.length > 0 && params[:q] != "" %>
+        <%= render partial: "shared/documents_table", locals: {documents: items} %>        
+        <%= paginate items %>
     <% elsif params[:q] == "" %>
         <h4>Please enter a search term.</h4>
-    <% elsif params[:q] != "" && categorized_results.length == 0 %>
+    <% elsif params[:q] != "" && items.length == 0 %>
         <h4>Sorry, but nothing matches your search.</h4>                    
     <% end %>        
 </div>
