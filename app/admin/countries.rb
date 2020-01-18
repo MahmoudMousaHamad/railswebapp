@@ -10,6 +10,18 @@ ActiveAdmin.register Country do
     end
   end
   
+  index do
+    id_column
+    column :name
+    column :published
+    actions
+  end
+
+  index as: :grid do |country|
+    link_to  content_tag(:img, nil, :src => "https://www.countryflags.io/#{NormalizeCountry(country.name, to: :alpha2)}/flat/64.png"), 
+                          admin_country_path(country), class: "flag-list-link", title: country.name
+  end
+
   permit_params :name, :about, :lat, :lng, :published, slideshow_photos: [], gallery_photos: []
 
   form do |f|

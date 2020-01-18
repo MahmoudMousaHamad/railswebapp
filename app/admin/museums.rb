@@ -16,6 +16,15 @@ ActiveAdmin.register Museum do
 
   permit_params :name, :about, :city_id, :country_id, :website, :ticket_price, :working_hours, :lat, :lng, :logo, :kind, :user_id, :published, photos: []
 
+  index do
+    selectable_column 
+    id_column
+    column :name
+    column :published
+    column :user
+    actions
+  end
+  
   form do |f|
     inputs do
       input :name

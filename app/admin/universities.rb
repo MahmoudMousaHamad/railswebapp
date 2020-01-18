@@ -15,6 +15,15 @@ ActiveAdmin.register University do
 
   permit_params :name, :about, :city_id, :country_id, :logo, :lat, :lng, :user_id, :published, photos: []
 
+  index do
+    selectable_column 
+    id_column
+    column :name
+    column :published
+    column :user
+    actions
+  end
+  
   form do |f|
     inputs do
       input :name

@@ -18,6 +18,15 @@ ActiveAdmin.register Book do
                 :language, :isbn, :volume, :published, :library_id, 
                 authors_attributes: [:id, :name], publisher_attributes: [:id, :name], author_ids: [], subject_ids: []
 
+  index do
+    selectable_column 
+    id_column
+    column :name
+    column :published
+    column :user
+    actions
+  end
+
   form do |f|
     f.semantic_errors
     inputs do

@@ -12,6 +12,15 @@ ActiveAdmin.register Category do
 
   permit_params :name, :about, :published
 
+  index do
+    selectable_column 
+    id_column
+    column :name
+    column :published
+    column :user
+    actions
+  end
+  
   form do |f|
     inputs do
       input :name

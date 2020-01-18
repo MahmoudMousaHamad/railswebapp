@@ -15,6 +15,15 @@ ActiveAdmin.register Scholarship do
 
   permit_params :name, :about, :degree, :scholarship, :deadline, :university_id, :country_id, :category_id, :user_id, :published
 
+  index do
+    selectable_column 
+    id_column
+    column :name
+    column :published
+    column :user
+    actions
+  end
+  
   form do |f|
     inputs do
       input :name

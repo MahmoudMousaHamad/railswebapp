@@ -2,6 +2,15 @@ ActiveAdmin.register IslamicPeriod do
 
   permit_params :name, :about, :start_year, :end_year, :slideshow_photos => []
 
+  index do
+    selectable_column 
+    id_column
+    column :name
+    column :published
+    column :user
+    actions
+  end
+  
   form do |f|
     inputs do
       input :name

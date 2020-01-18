@@ -21,6 +21,14 @@ ActiveAdmin.register AcademicPaper do
     end
   end
 
+  index do
+    selectable_column 
+    id_column
+    column :title
+    column :published
+    column :user
+    actions
+  end
 
   form do |f|
     inputs do

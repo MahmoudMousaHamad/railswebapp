@@ -15,6 +15,15 @@ ActiveAdmin.register Site do
 
   permit_params :name, :about, :city_id, :country_id, :lat, :lng, :user_id, :published, slideshow_photos: [], gallery_photos: []
 
+  index do
+    selectable_column 
+    id_column
+    column :name
+    column :published
+    column :user
+    actions
+  end
+  
   form do |f|
     inputs do
       input :name

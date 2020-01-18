@@ -14,6 +14,15 @@ ActiveAdmin.register College do
 
   permit_params :name, :about, :university_id, :lat, :lng, :logo, :published
   
+  index do
+    selectable_column 
+    id_column
+    column :name
+    column :published
+    column :user
+    actions
+  end
+  
   form do |f|
     inputs do
       input :name

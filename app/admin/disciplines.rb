@@ -12,6 +12,15 @@ ActiveAdmin.register Discipline do
 
   permit_params :name, :about, :photo, :user_id, :published, :code
 
+  index do
+    selectable_column 
+    id_column
+    column :name
+    column :published
+    column :user
+    actions
+  end
+  
   form do |f|
     inputs do
       input :name

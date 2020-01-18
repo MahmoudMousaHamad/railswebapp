@@ -16,6 +16,14 @@ ActiveAdmin.register Journal do
                 :cover, :published, :keywords, :language, :user_id, :library_id, :second_language, :subject_ids => [],
                 publisher_attributes: [:id, :name]
   
+  index do
+    selectable_column 
+    id_column
+    column :title
+    column :published
+    column :user
+    actions
+  end
   form do |f| 
     inputs do
       input :title

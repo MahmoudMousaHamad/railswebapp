@@ -12,6 +12,24 @@ ActiveAdmin.register Subject do
 
   permit_params :name, :about, :code, :discipline_id, :user_id, :published
 
+  index do
+    selectable_column 
+    id_column
+    column :name
+    column :published
+    column :user
+    actions
+  end
+
+  index do
+    selectable_column 
+    id_column
+    column :name
+    column :published
+    column :user
+    actions
+  end
+  
   form do |f|
     inputs do
       input :name

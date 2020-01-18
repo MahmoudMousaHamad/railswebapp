@@ -4,6 +4,18 @@ ActiveAdmin.register User do
   permit_params :name, :email, :password, :password_confirmation, :role, :country, :verified,
                 :phone_number, :dob, :gender, :profile_photo, :cv, :education_level, :specialization, :about
 
+  index do
+    selectable_column 
+    id_column
+    column :name
+    column :email
+    column :country
+    column :education_level
+    column :specialization
+    column :verified
+    actions
+  end
+  
   form do |f|
     f.inputs "User Details" do
       f.input :name
