@@ -1,0 +1,12 @@
+<h1>Islamic Art</h1>
+
+<a href="<%= subject_path(Subject.find_by(name: "Islamic Art").name)%>" class="waves-effect waves-light btn-small">OUR ISLAMIC ART COLLECTION IN OUR LIBRARY!</a>
+
+<% @periods.each do |p| %>
+    <div class="row">
+        <%= card_for(p.name, 
+                    {"" => sanitize(p.about, tags:[])},
+                    islamic_period_path(p.name), 1, p.slideshow_photos.sample) %>
+    </div>
+    <hr>
+<% end %>

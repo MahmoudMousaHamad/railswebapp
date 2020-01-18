@@ -76,6 +76,7 @@ Rails.application.routes.draw do
   resources :disciplines, param: :name
   resources :authors, param: :name
   resources :supervisor, param: :name
+  resources :islamic_periods, param: :name
 
   get '/library', to: 'library#index'
   get '/library/browse', to: 'library#browse'

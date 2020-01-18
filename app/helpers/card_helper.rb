@@ -1,4 +1,5 @@
 module CardHelper
+    include ActionView::Helpers::TextHelper
     def card_for(title, model, link, column_num, image = nil)
         Card.new(self, title, model, link, column_num, image).html
     end
@@ -40,7 +41,9 @@ module CardHelper
 
         def card_image
             image_content = nil
-            if !image.attached?
+            if !image.respond_to? 'attached?'
+                image_content = image_tag(image, class: "cover")
+            elsif !image.attached?
                 image_content = image_tag("no-thumb.jpg", class: "cover")
             else
                 image_content = image_tag(image, class: "cover")
