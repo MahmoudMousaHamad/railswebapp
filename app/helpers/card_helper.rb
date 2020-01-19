@@ -27,6 +27,9 @@ module CardHelper
 
         def card
             content = safe_join([card_content])
+            if image.is_a? String
+                content = safe_join([card_image, content])
+            end
             # check that image exists if it is attached using has_one_attached
             if image.class.name == "ActiveStorage::Attached::One"
                 content = safe_join([card_image, content])
@@ -41,7 +44,9 @@ module CardHelper
 
         def card_image
             image_content = nil
-            if !image.respond_to? 'attached?'
+            if image.is_a? String
+                image_content = image_tag(image, class: "cover")
+            elsif !image.respond_to? 'attached?'
                 image_content = image_tag(image, class: "cover")
             elsif !image.attached?
                 image_content = image_tag("no-thumb.jpg", class: "cover")
