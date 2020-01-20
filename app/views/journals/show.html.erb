@@ -31,9 +31,9 @@
     <hr>
     <% if @issues.length > 0 %>
         <ul class="collapsible">
-            <% @issues.each_pair  do |year, issues| %>
+            <% @issues.each_pair  do |decade, issues| %>
                 <li>
-                    <div class="collapsible-header"><%= year %></div>
+                    <div class="collapsible-header"><%= "#{decade}0's" %></div>
                     <div class="collapsible-body">
                         <% issues.each do |i| %>
                             <p>

@@ -21,12 +21,12 @@
 
 
 $(document).ready(function(){
-    initLocationMap();
     $('.sidenav').sidenav();
     $('.tabs').tabs();
     $('.collapsible').collapsible();
     $('.materialboxed').materialbox();
     $('.modal').modal_m();
+    initLocationMap();
 });
 
 
