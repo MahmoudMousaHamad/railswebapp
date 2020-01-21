@@ -12,7 +12,7 @@ ActiveAdmin.register Issue do
     end
   end
 
-  permit_params :number, :year, :pageFrom, :pageTo, :journal_id, :pdf, :downloadable, :user_id, :published
+  permit_params :number, :year, :pageFrom, :pageTo, :journal_id, :pdf, :downloadable, :user_id, :published, :collection_number
   
   form do |f|
     inputs do
@@ -20,6 +20,7 @@ ActiveAdmin.register Issue do
       input :year
       input :pageFrom, label: "Number of First Page"
       input :pageTo, label: "Number of Last Page"
+      input :collection_number
       input :journal
       input :pdf, as: :file
       input :downloadable

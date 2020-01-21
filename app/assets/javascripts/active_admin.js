@@ -6,13 +6,6 @@
 
 // $.getScript("//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js")
 
-$(document).ready(function () {
-    if (window.location.href.includes("admin"))
-    {
-        $('select').selectize();
-    }
-});
-
 document.addEventListener("DOMContentLoaded", initMap);
 
 function initMap () {

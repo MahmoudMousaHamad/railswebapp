@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_18_234254) do
+ActiveRecord::Schema.define(version: 2020_01_21_153418) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -252,7 +252,7 @@ ActiveRecord::Schema.define(version: 2020_01_18_234254) do
   end
 
   create_table "issues", force: :cascade do |t|
-    t.integer "number"
+    t.string "number"
     t.integer "year"
     t.integer "pageFrom"
     t.integer "pageTo"
@@ -262,6 +262,7 @@ ActiveRecord::Schema.define(version: 2020_01_18_234254) do
     t.boolean "downloadable"
     t.integer "user_id"
     t.boolean "published"
+    t.string "collection_number"
     t.index ["journal_id"], name: "index_issues_on_journal_id"
   end
 
@@ -281,6 +282,7 @@ ActiveRecord::Schema.define(version: 2020_01_18_234254) do
     t.string "library_id"
     t.string "arabic_title"
     t.string "second_language"
+    t.string "collection_type"
     t.index ["publisher_id"], name: "index_journals_on_publisher_id"
   end
 

@@ -13,7 +13,7 @@ ActiveAdmin.register Journal do
   end
 
   permit_params :title, :arabic_title, :about, :coverageFrom, :coverageTo, :publisher_id, :isbn,
-                :cover, :published, :keywords, :language, :user_id, :library_id, :second_language, :subject_ids => [],
+                :cover, :published, :keywords, :language, :user_id, :library_id, :second_language, :collection_type, :subject_ids => [],
                 publisher_attributes: [:id, :name]
   
   index do
@@ -31,6 +31,7 @@ ActiveAdmin.register Journal do
       input :about, as: :quill_editor
       input :coverageFrom, label: "First Year of Publication"
       input :coverageTo, label: "Last Year of Publication"
+      input :collection_type, collection: ["Vol.", "Bd."]
       input :publisher
       f.has_many :publisher, heading: false do |p|
         p.input :name

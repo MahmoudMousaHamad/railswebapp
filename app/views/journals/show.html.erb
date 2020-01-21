@@ -31,15 +31,18 @@
     <hr>
     <% if @issues.length > 0 %>
         <ul class="collapsible">
-            <% @issues.each_pair  do |decade, issues| %>
+            <% @issues.each_pair  do |decade, issues_per_decade| %>
                 <li>
                     <div class="collapsible-header"><%= "#{decade}0's" %></div>
                     <div class="collapsible-body">
-                        <% issues.each do |i| %>
-                            <p>
-                                <%= link_to  "Issue No. #{i.number}, #{i.year}, pp #{i.pageFrom} - #{i.pageTo}",
-                                    issue_path(i) %>
-                            </p>
+                        <% issues_per_decade.group_by {|issue| issue.year }.each do |year, issues_per_year| %>
+                            <h6><%= year %> <%= "(#{@j.collection_type} #{issues_per_year.first.collection_number})" if @j.collection_type && issues_per_year.first.collection_number %></h6>
+                            <% issues_per_year.each do |i| %>
+                                <p style="margin-left: 10px;">
+                                    - <%= link_to  "Issue No. #{i.number}, #{i.year}, pp #{i.pageFrom} - #{i.pageTo}",
+                                        issue_path(i) %>
+                                </p>
+                            <% end %>
                         <% end %>
                     </div>
                 </li>
