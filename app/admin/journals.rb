@@ -20,7 +20,7 @@ ActiveAdmin.register Journal do
     selectable_column 
     id_column
     column :title
-    column :published
+    toggle_bool_column :published
     column :user
     actions
   end

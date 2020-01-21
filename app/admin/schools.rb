@@ -18,7 +18,7 @@ ActiveAdmin.register School do
     selectable_column 
     id_column
     column :name
-    column :published
+    toggle_bool_column :published
     column :user
     actions
   end

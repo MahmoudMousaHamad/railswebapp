@@ -108,3 +108,7 @@ gem 'materialize-sass'
 gem "selectize-rails"
 
 gem 'activeadmin_quill_editor'
+
+gem 'active_admin-advanced_create_another'
+
+gem 'activeadmin_addons'
