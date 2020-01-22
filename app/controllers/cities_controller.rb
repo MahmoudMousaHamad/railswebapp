@@ -1,6 +1,6 @@
 class CitiesController < ApplicationController
     def index
-        @cities = City.where("country_id = ?", params[:country_id])
+        @cities = City.where("country_id = ?", params[:country_id]).published
         @country = Country.find(params[:country_id])
         if @cities
             @hash = Gmaps4rails.build_markers(@cities) do |city, marker|

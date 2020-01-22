@@ -6,7 +6,7 @@ ActiveAdmin.register University do
   
   controller do
     def create
-      @universities = University.new(permitted_params[:universities])
+      @universities = University.new(permitted_params[:university])
       @universities.user_id = current_user.id
       @universities.save
       super

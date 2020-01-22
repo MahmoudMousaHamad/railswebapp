@@ -4,6 +4,6 @@ class IslamicPeriodsController < ApplicationController
   end
 
   def index
-    @periods = IslamicPeriod.all
+    @periods = IslamicPeriod.all.published
   end
 end

@@ -1,5 +1,5 @@
 class DisciplinesController < ApplicationController
   def show
-    @discipline = Discipline.where(name: params[:name]).first
+    @discipline = Discipline.where(name: params[:name]).published.first
   end
 end

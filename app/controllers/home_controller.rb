@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
     def index
-        @countries = Country.all
+        @countries = Country.all.published
         @hash = Gmaps4rails.build_markers(@countries) do |country, marker|
             country_code = NormalizeCountry(country.name, to: :alpha2)
             marker.lat country.lat

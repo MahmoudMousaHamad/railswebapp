@@ -38,7 +38,7 @@ ActiveAdmin.register Journal do
       end
       input :isbn, label: "ISBN"
       input :cover, as: :file
-      input :subjects, as: :check_boxes, collection: Subject.published
+      input :subjects, collection: Subject.published
       input :language, collection: LanguageList::COMMON_LANGUAGES.map { |l| [l.name, l.name] }     
       input :second_language, collection: LanguageList::COMMON_LANGUAGES.map { |l| [l.name, l.name] }     
       input :keywords

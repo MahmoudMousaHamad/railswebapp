@@ -1,7 +1,7 @@
 class CountriesController < ApplicationController
     def index
         @countries = {}
-        @hash = Country.all.group_by { |country| IsoCountryCodes.search_by_name(country.name)[0].continent }
+        @hash = Country.all.published.group_by { |country| IsoCountryCodes.search_by_name(country.name)[0].continent }
         @hash.each do |continent, countries|
             @hash[continent] = @hash[continent].sort_by { |country| country.name }
             case continent
