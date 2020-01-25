@@ -4,7 +4,7 @@ ActiveAdmin.register JournalArticle do
 
   menu parent: "Library"
 
-  permit_params :title, :about, :issue, :published, :user_id, :page_from, :page_to, :file, :author_ids => [], :authors_attributes => [:id, :name]
+  permit_params :title, :about, :issue_id, :published, :user_id, :page_from, :page_to, :file, :author_ids => [], :authors_attributes => [:id, :name]
 
   controller do
     include DocumentsHelper
@@ -20,6 +20,7 @@ ActiveAdmin.register JournalArticle do
     inputs do
       input :title
       input :about, as: :quill_editor
+      input :issue
       input :page_from
       input :page_to
       input :authors, as: :select, collection: Author.all
