@@ -1,1 +1,19 @@
 
+<div class="section">
+    <h2><%= @article.title.humanize if @article.title %></h2>
+<div>
+<div class="section">
+    <div class="col s4">
+        <%= document_cover_for(@article.issue.journal.cover) %>
+    </div>
+    <div class="section">
+        <p><label>About:</label><%= @article.about.html_safe if @article.about %></p>
+        <p><label>Author(s):</label> <%= safe_join(@article.authors.map { |s| link_to  s.name, author_path(s.name) }, ", ").html_safe %></p>
+        <p><label>Journal:</label> <%= link_to @article.issue.journal.title, journal_path(@article.issue.journal) %></p>
+        <p><label>Issue:</label> <%= link_to "Issue No. #{@article.issue.number}, #{@article.issue.year}, pp #{@article.issue.pageFrom} - #{@article.issue.pageTo}", journal_path(@article.issue.journal) %></p>
+        <p><label>Library Link:</label> <%= get_library_link(request) %></p>
+        <p><label>Pages:</label> <%= "#{@article.page_from}-#{@article.page_to}"%> </p>
+    <div>
+</div>
+
+<%= render partial: "shared/download", locals: {params: params, file: @article.file} %>
