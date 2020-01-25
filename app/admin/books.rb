@@ -16,7 +16,7 @@ ActiveAdmin.register Book do
 
   permit_params :title, :about, :year, :pages, :pdf, :cover, :publisher_id, :keywords, :downloadable,
                 :language, :isbn, :volume, :published, :library_id, 
-                authors_attributes: [:id, :name], publisher_attributes: [:id, :name], author_ids: [], subject_ids: []
+                authors_attributes: [:id, :_destroy, :name], publisher_attributes: [:id, :_destroy, :name], author_ids: [], subject_ids: []
 
   index do
     selectable_column 
@@ -35,14 +35,14 @@ ActiveAdmin.register Book do
       input :year
       input :pages
       input :publisher
-      f.has_many :publisher, heading: false do |p|
+      f.has_many :publisher, heading: false, allow_destroy: true do |p|
         p.input :name
       end
       input :pdf, as: :file
       input :cover, as: :file
-      input :subjects, as: :select, collection: Subject.all
+      input :subjects, as: :select, collection: Subject.all, required: true
       input :authors, as: :select, collection: Author.all
-      f.has_many :authors, heading: false do |a|
+      f.has_many :authors, heading: false, allow_destroy: true do |a|
         a.input :name
       end
       input :language, collection: LanguageList::COMMON_LANGUAGES.map { |l| [l.name, l.name] }      

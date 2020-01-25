@@ -7,7 +7,7 @@ ActiveAdmin.register AcademicPaper do
   
   permit_params :title, :publication_year, :paper_type, :published, :keywords, :about, :pdf,
                 :downloadable, :language, :user_id, :library_id, :university_name, :college_name, 
-                :supervisor, :supervisor_attributes => [:id, :name], :subject_ids => [], :author_ids => [], :authors_attributes => [:id, :name]
+                :supervisor, :supervisor_attributes => [:id, :name], :subject_ids => [], :author_ids => [], :authors_attributes => [:id, :_destroy, :name]
 
 
   controller do
@@ -36,10 +36,10 @@ ActiveAdmin.register AcademicPaper do
       input :about, label: "Abstract", as: :quill_editor
       input :publication_year
       input :paper_type, collection: ["Conference Paper", "Dissertation Paper"]
-      input :subjects, as: :select, collection: Subject.all
+      input :subjects, as: :select, collection: Subject.all, required: true
       input :authors, as: :select, collection: Author.all
       f.inputs "Add New Authors" do
-        f.has_many :authors, heading: 'Author(s)' do |a|
+        f.has_many :authors, heading: 'Author(s)', allow_destroy: true do |a|
           a.input :name
         end
       end

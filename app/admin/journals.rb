@@ -14,16 +14,18 @@ ActiveAdmin.register Journal do
 
   permit_params :title, :arabic_title, :about, :coverageFrom, :coverageTo, :publisher_id, :isbn,
                 :cover, :published, :keywords, :language, :user_id, :library_id, :second_language, :collection_type, :subject_ids => [],
-                publisher_attributes: [:id, :name]
+                publisher_attributes: [:id, :_destroy, :name]
   
   index do
     selectable_column 
     id_column
     column :title
     toggle_bool_column :published
+    toggle_bool_column :downloadable
     column :user
     actions
   end
+
   form do |f| 
     inputs do
       input :title
@@ -33,12 +35,12 @@ ActiveAdmin.register Journal do
       input :coverageTo, label: "Last Year of Publication"
       input :collection_type, collection: ["Vol.", "Bd."]
       input :publisher
-      f.has_many :publisher, heading: false do |p|
+      f.has_many :publisher, heading: false, allow_destroy: true do |p|
         p.input :name
       end
       input :isbn, label: "ISBN"
       input :cover, as: :file
-      input :subjects, collection: Subject.published
+      input :subjects, collection: Subject.published, as: :select, required: true
       input :language, collection: LanguageList::COMMON_LANGUAGES.map { |l| [l.name, l.name] }     
       input :second_language, collection: LanguageList::COMMON_LANGUAGES.map { |l| [l.name, l.name] }     
       input :keywords

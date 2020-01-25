@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'journal_articles/show'
   get 'members/show'
   get 'members/index'
   get 'country_references/index'

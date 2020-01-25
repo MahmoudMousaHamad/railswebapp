@@ -28,6 +28,6 @@ class Journal < ApplicationRecord
     publisher: :name
   }
 
-  accepts_nested_attributes_for :publisher
+  accepts_nested_attributes_for :publisher, allow_destroy: true
   
 end
