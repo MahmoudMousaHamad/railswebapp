@@ -1,4 +1,4 @@
 <h2><%= @subject.name %></h2>
-<p><%= @subject.about.html_safe %></p>
+<p><%= @subject.about.html_safe if @subject.about %></p>
 <h4>Browse books, journals, and academic papers within <%= @subject.name %></h3>
 <%= render partial: "shared/documents_view", locals: {params: params, model: @subject} %>

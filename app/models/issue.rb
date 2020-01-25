@@ -6,6 +6,7 @@ class Issue < ApplicationRecord
   user_owned
     
   belongs_to :journal
+  has_many :journal_articles
   has_one_attached :pdf
 
   # validates :number, presence: true

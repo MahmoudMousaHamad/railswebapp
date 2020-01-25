@@ -1,5 +1,5 @@
 class AddUserIdToTables < ActiveRecord::Migration[6.0]
-  AFFECTED_TABLES = [:authors, :book_collections, :books, :categories, :cities, :colleges, :conferences,
+  AFFECTED_TABLES = [:authors, :books, :categories, :cities, :colleges, :conferences,
                      :country_references, :countries, :disciplines, :issues, :journals, :museums, :posts, 
                      :publishers, :scholarships, :schools, :sites, :subjects, :universities, :videos]
   def change

@@ -6,7 +6,7 @@
     <marquee behavior="scroll" direction="right" 
         onmouseover="this.stop();" 
         onmouseout="this.start();">
-            <%= NewsTicker.first.body.html_safe %>
+            <%= NewsTicker.first.body.html_safe if NewsTicker.first %>
     </marquee>
     <div id="map" style='width: 100%; height: 90vh;'></div>
 </div>

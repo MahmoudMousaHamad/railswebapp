@@ -5,4 +5,11 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
+if !User.find_by(email: "admin@test.com")
+    User.create!(email: "admin@test.com", password: "password", password_confirmation: "password", role: "superadmin", verified: true)
+end
+
+if !Discipline.find_by(name: "Art")
+    art_discipline = Discipline.create! :name => "Art", :published => true 
+    Subject.create! :name => "Islamic Art", :discipline_id => art_discipline.id, :published => true
+end

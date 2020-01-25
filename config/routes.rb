@@ -70,6 +70,7 @@ Rails.application.routes.draw do
     end
   end
   resources :issues
+  resources :journal_articles
   resources :academic_papers
 
   resources :subjects, param: :name

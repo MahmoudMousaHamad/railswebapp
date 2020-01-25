@@ -40,5 +40,8 @@ ActiveAdmin.register Issue do
         a "Click to Download", href: main_app.url_for(issue.pdf) if issue.pdf.attached?
       end
     end
+    panel "Articles" do
+      div nested_resource_links_for(issue, "issue", ["journal_articles"])
+    end
   end
 end

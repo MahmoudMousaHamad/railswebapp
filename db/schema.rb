@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_22_192055) do
+ActiveRecord::Schema.define(version: 2020_01_25_195529) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -94,18 +94,6 @@ ActiveRecord::Schema.define(version: 2020_01_22_192055) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "admin_users", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["email"], name: "index_admin_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
-  end
-
   create_table "authors", force: :cascade do |t|
     t.string "name"
     t.text "about"
@@ -122,6 +110,13 @@ ActiveRecord::Schema.define(version: 2020_01_22_192055) do
     t.index ["book_id", "author_id"], name: "index_authors_books_on_book_id_and_author_id"
   end
 
+  create_table "authors_journal_articles", id: false, force: :cascade do |t|
+    t.bigint "journal_article_id", null: false
+    t.bigint "author_id", null: false
+    t.index ["author_id"], name: "index_journal_articles_authors_on_article_id_and_author_id"
+    t.index ["journal_article_id"], name: "index_journal_articles_authors_on_author_id_and_article_id"
+  end
+
   create_table "books", force: :cascade do |t|
     t.string "title"
     t.text "about"
@@ -131,8 +126,6 @@ ActiveRecord::Schema.define(version: 2020_01_22_192055) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "publisher_id"
-    t.string "language"
-    t.string "isbn"
     t.string "volume"
     t.boolean "published"
     t.string "keywords"
@@ -266,6 +259,20 @@ ActiveRecord::Schema.define(version: 2020_01_22_192055) do
     t.boolean "published"
     t.string "collection_number"
     t.index ["journal_id"], name: "index_issues_on_journal_id"
+  end
+
+  create_table "journal_articles", force: :cascade do |t|
+    t.string "title"
+    t.text "about"
+    t.bigint "issue_id", null: false
+    t.integer "user_id"
+    t.boolean "published"
+    t.integer "page_from"
+    t.integer "page_to"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.boolean "downloadable"
+    t.index ["issue_id"], name: "index_journal_articles_on_issue_id"
   end
 
   create_table "journals", force: :cascade do |t|
@@ -445,10 +452,6 @@ ActiveRecord::Schema.define(version: 2020_01_22_192055) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "name"
-    t.string "phone_number"
-    t.date "dob"
-    t.string "gender"
     t.string "role", default: "member"
     t.string "country"
     t.boolean "verified", default: false, null: false
@@ -467,6 +470,10 @@ ActiveRecord::Schema.define(version: 2020_01_22_192055) do
     t.string "education_level"
     t.string "specialization"
     t.text "about"
+    t.string "name"
+    t.string "phone_number"
+    t.date "dob"
+    t.string "gender"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -480,7 +487,7 @@ ActiveRecord::Schema.define(version: 2020_01_22_192055) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "site_id"
-    t.bigint "city_id", null: false
+    t.bigint "city_id"
     t.integer "user_id"
     t.boolean "published"
     t.index ["city_id"], name: "index_videos_on_city_id"
@@ -498,6 +505,7 @@ ActiveRecord::Schema.define(version: 2020_01_22_192055) do
   add_foreign_key "conferences", "countries", on_delete: :cascade
   add_foreign_key "country_references", "countries", on_delete: :cascade
   add_foreign_key "issues", "journals"
+  add_foreign_key "journal_articles", "issues"
   add_foreign_key "journals", "publishers"
   add_foreign_key "museums", "cities"
   add_foreign_key "museums", "countries", on_delete: :cascade
