@@ -1,5 +1,6 @@
 class JournalArticle < ApplicationRecord
   include PgSearch::Model
+
   include Filterable
   include Publishable
 
@@ -12,4 +13,13 @@ class JournalArticle < ApplicationRecord
   accepts_nested_attributes_for :authors, allow_destroy: true
 
   has_one_attached :file
+
+  validates_presence_of :title
+
+  multisearchable against: [:title, :about], if: :published?
+  pg_search_scope :search_by_title, against: :title
+  pg_search_scope :search_by_author, associated_against: {
+      authors: :name
+  }
+  
 end

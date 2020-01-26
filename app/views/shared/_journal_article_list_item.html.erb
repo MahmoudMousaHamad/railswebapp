@@ -1,0 +1,13 @@
+<% if view == :detailed %>
+    <a href="<%= journal_article_path(a) %>"><h4><%= a.title %></h4></a>
+    <p><label>Author(s): </label><%= safe_join(a.authors.map { |s| link_to  s.name, author_path(s.name) }, ", ").html_safe %></p>
+    <% if a.issue.journal.subjects.length > 0 %><p><label>Subjects: </label> <%= safe_join(a.issue.journal.subjects.map { |s| link_to  s.name, subject_path(s.name) }, ", ").html_safe %> </p><% end %>
+<% else %>
+    <td>N/A</td>
+    <td>Journal Article</td>
+    <td><%= safe_join(a.authors.map { |s| link_to  s.name, author_path(s.name) }, ", ").html_safe %></td>
+    <td><a href="<%= journal_article_path(a) %>"><%= a.title %></a></td>
+    <td><a href="<%= publisher_path(a.issue.journal.publisher) if a.issue.journal.publisher %>"><%= a.issue.journal.publisher.name if a.issue.journal.publisher %></a></td>                        
+    <td><%= "#{a.issue.journal.coverageFrom}-#{a.issue.journal.coverageTo}" if a.issue.journal.coverageFrom && a.issue.journal.coverageTo %></td>
+    <td><%= a.issue.journal.language %> <%= "& #{a.issue.journal.second_language}" if !a.issue.journal.second_language.empty? %></td>
+<% end %>

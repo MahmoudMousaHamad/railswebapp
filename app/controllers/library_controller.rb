@@ -1,119 +1,55 @@
 class LibraryController < ApplicationController
+    include LibrarySearchHelper
+    
     def basic_search
+        # get search parameters
         q = params[:q]
         from_year = params[:from_year].to_i
         to_year = params[:to_year].to_i
         field = params[:field]
         language = params[:language]
+        # get content types wanted
+        content_types = get_content_types_list(params)
 
-        content_types = []
-        if params[:books]
-            content_types.push("Book")
-        end
-        if params[:journals]
-            content_types.push("Journal")
-        end
-        if params[:dissertations] || params[:conference_papers]
-            content_types.push("AcademicPaper")
-        end
-        if content_types.length == 0
-            content_types.push("Book")
-            content_types.push("Journal")
-            content_types.push("AcademicPaper")
-        end
         if q
-            if !params[:results_per_page] || params[:results_per_page] == "" || params[:results_per_page].to_i > 50
-                results_per_page = 5
-            else
-                results_per_page = params[:results_per_page]
-            end
-            @search_results
-            multisearch = field != "title" && field != "author" && field != "publisher"
-            if field == "all"
-                @search_results = PgSearch.multisearch(q)
-            elsif field == "title"
-                @search_results = Book.search_by_title(q) + AcademicPaper.search_by_title(q) + Journal.search_by_title(q)
-            elsif field == "author"
-                @search_results = Book.search_by_author(q) + AcademicPaper.search_by_author(q)
-            elsif field == "publisher"
-                @search_results = Book.search_by_publisher(q) + Journal.search_by_publisher(q)
-            else
-                @search_results = PgSearch.multisearch(q)
-            end
+            # get results per page
+            results_per_page = get_results_per_page(params)
+            # get search results based on query
+            multisearch = is_search_multisearch(field)
+            search_results = get_search_results_based_on_query(field, q) 
             if multisearch
-                @search_results = @search_results.select { |r| content_types.include? r.searchable_type }
+                search_results = search_results.select { |r| content_types.include? r.searchable_type }
             else
-                @search_results = @search_results.select { |r| content_types.include? r.class.name }
+                search_results = search_results.select { |r| content_types.include? r.class.name }
             end
+            # categorize and filter search results depending on search parameters 
             @categorized_results = []
-            @search_results.each do |r|
-                content_type = ""
-                content_id = 0
-                if multisearch
-                    content_type = r.searchable_type
-                    content_id = r.searchable_id
-                else
-                    content_type = r.class.name
-                    content_id = r.id
-                end
-                if content_type == "Book"
-                    @categorized_results.push(Book.find(content_id))
-                elsif content_type == "Journal"
-                    @categorized_results.push(Journal.find(content_id))
-                elsif content_type == "AcademicPaper"
-                    academic_paper = AcademicPaper.find(content_id)
-                    if params[:dissertations] == "on"
-                        if academic_paper.paper_type == "Dissertation Paper"
-                            @categorized_results.push(academic_paper)
-                        end
-                    elsif params[:conference_papers] == "on" 
-                        if academic_paper.paper_type == "Conference Paper"
-                            @categorized_results.push(academic_paper)                            
-                        end
-                    else
-                        @categorized_results.push(academic_paper)
-                    end
-                end
+            search_results.each do |r|
+                # get the content type and id from our search results
+                content_type_and_id = get_content_type_and_id_for_a_single_search_result(r, multisearch)
+                content_id = content_type_and_id[:id]
+                content_type = content_type_and_id[:type]
+                # convert our PgSearch results into records using their content_id
+                @categorized_results.push(convert_a_pgsearch_result_to_active_record_object(content_id, content_type, params))
             end
-            if params[:language] && params[:language] != ""
-                @categorized_results = @categorized_results.select { |i| language == i.language }                
-            end
-            if from_year != 0
-                @categorized_results = @categorized_results.select do |i| 
-                    class_name = i.class.name
-                    if class_name == "Journal"
-                        i.coverageFrom.to_i >= from_year if i.coverageFrom
-                    elsif class_name == "Book"
-                        i.year >= from_year if i.year
-                    elsif class_name == "AcademicPaper"
-                        i.publication_year >= from_year if i.publication_year
-                    end
-                end
-            end
-            if to_year != 0
-                @categorized_results = @categorized_results.select do |i| 
-                    class_name = i.class.name
-                    if class_name == "Journal"
-                        i.coverageTo.to_i <= to_year if i.coverageTo
-                    elsif class_name == "Book"
-                        i.year <= to_year if i.year
-                    elsif class_name == "AcademicPaper"
-                        i.publication_year <= to_year if i.publication_year 
-                    end
-                end
-            end
-            @categorized_results = @categorized_results.select { |i| !(i.subjects.map { |s| s.name } & params[:subjects]).empty? } if params[:subjects] != nil
-            if params[:authors] != nil
-                @categorized_results = @categorized_results.select do |i| 
-                    if i.class.name == "Journal"
-                        next
-                    end
-                    !(i.authors.map { |a| a.name } & params[:authors]).empty?
-                end
-                @categorized_results = Kaminari.paginate_array(@categorized_results).page(params[:page]).per(results_per_page)
-            end
+            # filter based on language
+            @categorized_results = filter_langauge(@categorized_results, params)
             
+            # filter based on form_year
+            @categorized_results = filter_from_year(from_year, @categorized_results, params)            
+            
+            # filter based on to_year
+            @categorized_results = filter_to_year(to_year, @categorized_results, params)                        
+            
+            # filter based on subjects chosen
+            @categorized_results = @categorized_results.select { |i| !(i.subjects.map { |s| s.name } & params[:subjects]).empty? } if params[:subjects] != nil
+            
+            # filter based on authors chosen
+            @categorized_results = filter_authors(@categorized_results, params)                        
+            
+            # finally, paginate results
             @categorized_results = Kaminari.paginate_array(@categorized_results).page(params[:page]).per(results_per_page)
+            
         end
     end
 

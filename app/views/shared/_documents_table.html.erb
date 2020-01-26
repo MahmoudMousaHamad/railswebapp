@@ -16,6 +16,7 @@
             <%= render partial: "shared/journal_list_item", locals: {view: :simple, j: r} if r.class == Journal %>
             <%= render partial: "shared/book_list_item", locals: {view: :simple, b: r} if r.class == Book %>
             <%= render partial: "shared/academic_paper_list_item", locals: {view: :simple, p: r} if r.class == AcademicPaper %>
+            <%= render partial: "shared/journal_article_list_item", locals: {view: :simple, a: r} if r.class == JournalArticle %>
         </tr>
     <% end %>
     </tbody>

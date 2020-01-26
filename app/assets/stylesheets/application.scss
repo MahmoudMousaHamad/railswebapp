@@ -29,7 +29,7 @@
  }
 
  body {
-     background-color: $body-bg-color !important; 
+    //  background-color: $body-bg-color !important; 
  }
 
  a:hover {
@@ -227,4 +227,8 @@ label:not(.label-icon) {
 
 blockquote {
     border-color: $secondary-color;
+}
+
+span.badge {
+    color: $primary-color;
 }

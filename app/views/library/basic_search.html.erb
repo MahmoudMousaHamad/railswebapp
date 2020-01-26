@@ -28,6 +28,7 @@
                 Content Type:
                 <br>
                 <%= check_box_for("journals", params) %> (<%= @categorized_results.count{|item| item.class == Journal} %>) <br>
+                <%= check_box_for("journal_articles", params) %> (<%= @categorized_results.count{|item| item.class == "Journal Article"} %>) <br>                 
                 <%= check_box_for("books", params) %> (<%= @categorized_results.count{|item| item.class == Book} %>) <br>
                 <%= check_box_for("dissertations", params) %> (<%= @categorized_results.count{|item| item.paper_type == "Dissertation Paper" if item.class == AcademicPaper} %>) <br>
                 <%= check_box_for("conference_papers", params) %> (<%= @categorized_results.count{|item| item.paper_type == "Conference Paper" if item.class == AcademicPaper} %>) <br>                 
