@@ -21,7 +21,6 @@ ActiveAdmin.register Journal do
     id_column
     column :title
     toggle_bool_column :published
-    toggle_bool_column :downloadable
     column :user
     actions
   end

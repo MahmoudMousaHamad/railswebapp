@@ -1,20 +1,24 @@
 <div class="section">
     <h2><%= @j.title.humanize %></h2>
 <div>
-<div class="divider"></div>
-<div class="section">
-    <div class="col s4">
+<hr>
+<div class="row">
+    <div class="col-sm-2">
         <%= document_cover_for(@j.cover) %>
     </div>
-    <div class="col s8">
+    <div class="col-sm-8">
         <h5><%= "Issue No. #{@i.number}, #{@i.year}, pp #{@i.pageFrom} - #{@i.pageTo}" %></h5>
-        <h6>Coverage: <%= "#{@j.coverageFrom} - #{@j.coverageTo}" %></h6>
-        <h6>Published by: <%= link_to  @j.publisher.name, publisher_path(@j.publisher), target: "_blank" if @j.publisher %></h6>
+        <p><label>Journal:</label> <%= link_to @j.title, journal_path(@j) %></p>
+        <p><label>Publisher:</label> <%= link_to  @j.publisher.name, publisher_path(@j.publisher), target: "_blank" if @j.publisher %></p>
+        <p><label>Coverage:</label> <%= "#{@j.coverageFrom} - #{@j.coverageTo}" %></p>
+        <p><label>Library Link:</label> <%= get_library_link(request) %></p>
+        <%= show_info_for(@j, [ :language, :isbn, :keywords ]).html_safe %>
+        <p><label>Subjects: </label> <%= safe_join(@j.subjects.map { |s| link_to  s.name, subject_path(s.name) }, ",").html_safe %> </p>
     </div>
 </div>
-<div class="divider"></div>
-<div class="section">
-    <h3>Table of Content</h3>
+<h3>Table of Content</h3>
+<hr>
+<div class="row">
     <% @i.journal_articles.order_by(:page_to).each_with_index do |article, index| %>
         <div class="" style="margin-left: 30px">
             <a href="<%= journal_article_path(article) %>"><h5><%= "#{index + 1}. #{article.title.humanize}" %> <%= "(pp. #{article.page_from}-#{article.page_to})" if article.page_from && article.page_to %> </h5></a>
