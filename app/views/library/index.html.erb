@@ -15,8 +15,12 @@
     </div>
 </div>
 <div class="row browse-link">
-    <%= link_to  "Browse Arabic Journals", journals_path(:language => :arabic), class: "waves-effect waves-light btn" %>
-    <%= link_to  "Browse English Journals", journals_path(:language => :english), class: "waves-effect waves-light btn" %>
+    <div class="col-sm-5">
+        <%= link_to  "Browse Arabic Journals", journals_path(:language => :arabic), class: "waves-effect waves-light btn" %>
+    </div>
+    <div class="col-sm-5">
+        <%= link_to  "Browse English Journals", journals_path(:language => :english), class: "waves-effect waves-light btn" %>
+    </div>
 </div>
 
 <h3>Browse by discipline:</h3>
