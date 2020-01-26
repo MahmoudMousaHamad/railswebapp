@@ -5,7 +5,6 @@
     <p><label>Subjects: </label> <%= safe_join(b.subjects.map { |s| link_to  s.name, subject_path(s.name) }, ",").html_safe %> </p>
     <p><label>Keywords: </label> <%= b.keywords %> </p>
 <% else %>
-
     <td><%= b.library_id %></td>
     <td><%= b.class.name %></td>
     <td> <%= safe_join(b.authors.map { |s| link_to  s.name, author_path(s.name) }, ", ").html_safe %></td>

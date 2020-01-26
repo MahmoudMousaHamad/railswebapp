@@ -1,9 +1,9 @@
 <% if view == :detailed %>
     <a href="<%= journal_path(j) %>"><h4><%= arabic_title ? j.arabic_title : j.title %></h4></a>
-    <p><label>ISBN: </label> <%= j.isbn %> </p>
-    <p><label>Coverage Years: </label> <%= "#{j.coverageFrom} - #{j.coverageTo}" %> </p>
-    <p><label>Subjects: </label> <%= safe_join(j.subjects.map { |s| link_to  s.name, subject_path(s.name) }, ",").html_safe %> </p>
-    <p><label>Keywords: </label> <%= j.keywords %> </p>
+    <% if !j.isbn.empty? %><p><label>ISBN: </label> <%= j.isbn %> </p><% end %>
+    <% if j.coverageFrom &&  j.coverageTo %><p><label>Coverage Years: </label> <%= "#{j.coverageFrom} - #{j.coverageTo}" %> </p><% end %>
+    <% if j.subjects.length > 0 %><p><label>Subjects: </label> <%= safe_join(j.subjects.map { |s| link_to  s.name, subject_path(s.name) }, ", ").html_safe %> </p><% end %>
+    <% if !j.keywords.empty? %><p><label>Keywords: </label> <%= j.keywords %> </p><% end %>    
 <% else %>
     <td><%= j.library_id %></td>
     <td><%= j.class.name %></td>

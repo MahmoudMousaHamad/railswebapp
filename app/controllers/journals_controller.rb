@@ -2,15 +2,15 @@ class JournalsController < ApplicationController
     def index
         if params[:language] && !params[:language].empty?
             if params[:language] == "arabic"
-                @journals_hash = Journal.where.not(arabic_title: [nil, ""]).order_by(:arabic_title).group_by{|u| u.arabic_title[0]}
+                @journals_hash = Journal.where.not(arabic_title: [nil, ""]).published.order_by(:arabic_title).group_by{|u| u.arabic_title[0]}
             else
-                @journals_hash = Journal.all.order_by(:title).group_by{|u| u.title[0]}
+                @journals_hash = Journal.all.published.order_by(:title).group_by{|u| u.title[0].capitalize }
             end
         end
     end
     
     def show
         @j = Journal.find(params[:id])
-        @issues = Issue.where("journal_id = ?", params[:id]).order(:year).reverse_order.group_by { |issue| issue.year / 10}
+        @issues = Issue.where("journal_id = ?", params[:id]).published.order(:year).reverse_order.group_by { |issue| issue.year / 10 if issue.year }
     end
 end

@@ -1,5 +1,5 @@
 <div class="row">
-    <h2 class="title"><%= @j.title %> <%= "(#{@j.arabic_title})" if @j.arabic_title %></h2>
+    <h2 class="title"><%= @j.title %> <%= "(#{@j.arabic_title})" if !@j.arabic_title.empty? %></h2>
     <hr>
 <div>
 <div class="row">
@@ -49,6 +49,6 @@
             <% end %>  
         </ul>
     <% else %>
-        <p>There are not issues for this journal.</p>
+        <p>There are no issues for this journal.</p>
     <% end %>
 </div>
