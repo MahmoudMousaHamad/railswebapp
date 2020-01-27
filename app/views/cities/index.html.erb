@@ -1,30 +1,28 @@
 <%= carousel_for( @country.slideshow_photos ) %>
 <nav>
     <div class="container nav-wrapper">
-        <a href="" data-target="mobile-sub-nav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-        <ul>
+        <a href="" data-target="country-mobile-nav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <ul class="hide-on-med-and-down">
             <li><%= link_to  "Museums", country_museums_path, class: 'nav-item nav-link' %></li>
             <li><%= link_to  "Conferences", country_conferences_path, class: 'nav-item nav-link' %></li>
             <li><%= link_to  "Scholarships", country_scholarships_path, class: 'nav-item nav-link' %></li>
-            <li><%= link_to  "News", country_posts_path, class: 'nav-item nav-link' %></li>
             <li><%= link_to  "Universities", country_universities_path, class: 'nav-item nav-link' %></li>
+            <li><%= link_to  "News", country_posts_path, class: 'nav-item nav-link' %></li>
             <li><%= link_to  "Videos", country_videos_path, class: 'nav-item nav-link' %></li>
-            <li><%= link_to  "Pictures Gallery", country_pictures_path, class: 'nav-item nav-link' %></li>
-            <li><%= link_to  "Posts", country_posts_path, class: 'nav-item nav-link' %></li>
+            <li><%= link_to  "Pictures", country_pictures_path, class: 'nav-item nav-link' %></li>
             <li><%= link_to  "References", country_country_references_path, class: 'nav-item nav-link' %></li>
         </ul>
     </div>
 </nav>
 
-<ul class="sidenav" id="mobile-sub-nav">
+<ul class="sidenav" id="country-mobile-nav">
     <li><%= link_to  "Museums", country_museums_path %></li>
     <li><%= link_to  "Conferences", country_conferences_path %></li>
     <li><%= link_to  "Scholarships", country_scholarships_path %></li>
-    <li><%= link_to  "News", country_posts_path %></li>
     <li><%= link_to  "Universities", country_universities_path %></li>
+    <li><%= link_to  "News", country_posts_path %></li>
     <li><%= link_to  "Videos", country_videos_path %></li>
-    <li><%= link_to  "Pictures Gallery", country_pictures_path %></li>
-    <li><%= link_to  "Posts", country_posts_path %></li>
+    <li><%= link_to  "Pictures", country_pictures_path %></li>
     <li><%= link_to  "References", country_country_references_path %></li>
 </ul>
 
