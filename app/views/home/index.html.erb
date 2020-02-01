@@ -1,3 +1,4 @@
+<% title "Home" %>
 <%= card_for("EXPLORE ISLAMIC ART", 
     {},
     islamic_periods_path, 1, "/assets/islamic-art-banner-photo.jpg") %>
@@ -6,11 +7,12 @@
     <marquee behavior="scroll" direction="right" 
         onmouseover="this.stop();" 
         onmouseout="this.start();">
-            <%= NewsTicker.first.body.html_safe if NewsTicker.first %>
+            <%= @news_ticker.body.html_safe if NewsTicker.first %>
     </marquee>
     <div id="map" style='width: 100%; height: 90vh;'></div>
 </div>
 <br>
+<h5 class="badge">Site Views: <%= @views_count %></h5>
 <script>
     $(document).ready(() => {
         markers_json = <%=raw @hash.to_json %>;

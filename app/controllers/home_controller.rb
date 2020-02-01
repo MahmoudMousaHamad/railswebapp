@@ -1,6 +1,15 @@
 class HomeController < ApplicationController
     def index
         @countries = Country.all.published
+
+        @news_ticker = NewsTicker.all.first
+        if !@news_ticker.views_count
+            @news_ticker.views_count = 0
+        end
+        @news_ticker.views_count = @news_ticker.views_count + 1
+        @news_ticker.save
+        @views_count = @news_ticker.views_count
+
         @hash = Gmaps4rails.build_markers(@countries) do |country, marker|
             country_code = NormalizeCountry(country.name, to: :alpha2)
             marker.lat country.lat

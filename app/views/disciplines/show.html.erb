@@ -1,3 +1,4 @@
+<% title "Subjects in #{@discipline.name}" %>
 <h1>Subjects in <%= @discipline.name %></h1>
 
 <% @discipline.subjects.sort_by{|s| s.name}.each do |s| %>

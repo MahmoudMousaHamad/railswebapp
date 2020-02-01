@@ -112,3 +112,5 @@ gem 'active_admin-advanced_create_another'
 gem 'activeadmin_addons'
 
 gem 'loaf'
+
+gem "punching_bag"

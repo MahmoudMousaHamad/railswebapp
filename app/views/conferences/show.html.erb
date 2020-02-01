@@ -1,3 +1,4 @@
+<% title @i.name %>
 <%= carousel_for(@i.photos) %>
 <h2><%= @i.name %>: </h2>
 <p><%= "#{@i.from_date.strftime("%d/%m/%Y")} - #{@i.to_date.strftime("%d/%m/%Y")}" %></p>

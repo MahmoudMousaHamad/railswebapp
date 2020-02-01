@@ -1,3 +1,4 @@
+<% title "Pictures" %>
 <h1><%= Country.find(params[:country_id]).name %>'s Photo Gallery</h1>
 <%= filters_and_order_for(country_pictures_path(params[:country_id]), 
 ["city-site", "results_per_page"], params)%>

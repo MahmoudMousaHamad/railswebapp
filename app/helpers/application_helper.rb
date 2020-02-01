@@ -6,4 +6,8 @@ module ApplicationHelper
             return image_tag url_for("/assets/no-thumb.jpg"), class: style_class           
         end
     end
+
+    def title(page_title)
+        content_for :title, page_title.to_s
+    end
 end

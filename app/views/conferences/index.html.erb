@@ -1,3 +1,4 @@
+<% title "Conferences" %>
 <h1 class="page-title"><%= @period ? @period.capitalize : "" %> Conferences in <%= @country.name %></h1>
 <%= filters_and_order_for(country_conferences_path(@country), ["category", "period"], params)%>
 <div class="row">

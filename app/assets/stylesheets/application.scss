@@ -236,3 +236,17 @@ span.badge {
 .btn {
     margin-top: 10px;
 }
+
+footer {
+    color:  black !important;
+    a {
+        color: black !important;
+        &:hover{
+            text-decoration: underline !important;
+        }
+    }
+}
+
+.footer-copyright {
+    color: black
+}

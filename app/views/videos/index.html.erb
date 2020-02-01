@@ -1,3 +1,4 @@
+<% title "Videos" %>
 <h1><%= @country.name %>'s Video Gallery</h1>
 <%= filters_and_order_for(country_videos_path(@country), 
 ["city-site", {"title" => "Title"}, "results_per_page"], params)%>

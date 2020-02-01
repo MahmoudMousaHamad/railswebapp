@@ -3,6 +3,7 @@
     <h2><%= @article.title.humanize if @article.title %></h2>
 <div>
 <hr>
+<% title "#{@article.title} in #{@journal.title}" %>
 <div class="row">
     <div class="col-sm-2">
         <%= document_cover_for(@journal.cover) %>

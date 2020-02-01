@@ -2,6 +2,7 @@
     <h2 class="title"><%= @j.title %> <%= "(#{@j.arabic_title})" if !@j.arabic_title.empty? %></h2>
     <hr>
 <div>
+<% title "#{@j.title}" %>
 <div class="row">
     <div class="col-sm-2">
         <%= document_cover_for(@j.cover) %>

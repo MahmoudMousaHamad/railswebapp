@@ -1,3 +1,4 @@
+<% title "#{@i.name}" %>
 <h2><%= @i.name %>: </h2>
 <p class="lead "><%= @i.about.html_safe %></p>
 <p><label>College:</label> <%= link_to  @i.college.name, college_path(@i.college) %> </p>
