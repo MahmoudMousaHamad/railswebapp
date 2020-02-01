@@ -20,7 +20,7 @@
 <hr>
 <div class="row">
     <div class="col-sm-12">
-        <p><label>About:</label><%= @article.about.html_safe if @article.about %></p>
+        <p><label>About:</label><p class="checkRTL"><%= @article.about.html_safe if @article.about %></p></p>
         <p><label>Author(s):</label> <%= safe_join(@article.authors.map { |s| link_to  s.name, author_path(s.name) }, ", ").html_safe %></p>
         <p><label>Issue:</label> <%= link_to "Issue No. #{@article.issue.number}, #{@article.issue.year}, pp #{@article.issue.pageFrom} - #{@article.issue.pageTo}", journal_path(@journal) %></p>
         <p><label>Library Link:</label> <%= get_library_link(request) %></p>

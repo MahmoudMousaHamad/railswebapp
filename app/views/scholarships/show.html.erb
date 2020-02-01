@@ -4,5 +4,5 @@
     <p><label>University:</label> <%= link_to  @i.university.name, university_path(@i.university) %></p>
     <p><label>Scholarship:</label> <%= @i.scholarship %></p>
     <p><label>Deadline:</label> <%= @i.deadline.strftime("%d/%m/%Y at %H:%M") %></p>
-    <p class="lead"><%= @i.about.html_safe %></p>
+    <p class="lead checkRTL"><%= @i.about.html_safe %></p>
 </div>

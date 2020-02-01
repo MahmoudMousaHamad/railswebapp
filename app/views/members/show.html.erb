@@ -7,7 +7,7 @@
 
     <div class="row">
         <h2>BIO</h2>
-        <% if @member.education_level %>
+        <% if @member.about %>
             <blockquote>
                 <%= @member.about.html_safe %>
             </blockquote>
@@ -21,7 +21,7 @@
                 <label>Educational Level:</label> <%= @member.education_level %>
             </div>
         <% end %>
-        <% if @member.education_level %>
+        <% if @member.specialization %>
             <div>
                 <label>Specialization:</label> <%= @member.specialization %>
             </div>

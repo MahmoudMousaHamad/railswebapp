@@ -27,7 +27,22 @@ $(document).ready(function(){
     $('.materialboxed').materialbox();
     initLocationMap();
     $('.modal').modal_m();
+    checkRTL();
 });
+
+  function checkRTL() 
+  {
+    var rtlChar = /[\u0590-\u083F]|[\u08A0-\u08FF]|[\uFB1D-\uFDFF]|[\uFE70-\uFEFF]/mg;
+    $('.checkRTL').keyup(function(){
+        var isRTL = this.value.match(rtlChar);
+        if(isRTL !== null) {
+            this.style.direction = 'rtl';
+        }
+        else {
+            this.style.direction = 'ltr';
+        }
+    });
+  }
 
 
   $('.pagination > li > a').on('click', function(){
