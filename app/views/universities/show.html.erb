@@ -5,7 +5,7 @@
 <div class="about">
     <h2><img src="<%= url_for(@i.logo)%>" width="50px"/>   <%= @i.name %> </h2>
     <p><label>About:</label></p>
-    <p class="lead checkRTL"> <%= @i.about.html_safe %></p>
+    <p class="lead "> <%= @i.about.html_safe %></p>
     <p><label>Address:</label> <%= Geocoder.search([@i.lat, @i.lng]).first.display_name %></p>
     <p><label>Location:</label></p>
     <%= location_map_for( @i.lat, @i.lng )%>
