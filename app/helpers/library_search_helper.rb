@@ -99,7 +99,7 @@ module LibrarySearchHelper
 
     def filter_langauge(search_results, params)
         if params[:language] && params[:language] != ""
-            search_results = search_results.select { |i| language == i.language if i.language }                
+            search_results = search_results.select { |i| params[:language] == i.language if i.has_attribute?("language") }                
         end
         return search_results
     end

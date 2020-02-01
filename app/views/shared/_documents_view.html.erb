@@ -1,5 +1,6 @@
 <% if model.class.name != "Supervisor" %>
     <a class="waves-effect waves-light btn <%= params[:document_type] == "books" ? "disabled" : "nothing" %>" href="?document_type=books">Books</a>
+    <a class="waves-effect waves-light btn <%= params[:document_type] == "journal_articles" ? "disabled" : "nothing" %>" href="?document_type=journal_articles">Journal Articles</a>
 <% end %>
 <% if model.class.name != "Author" && model.class.name != "Supervisor" %>
     <a class="waves-effect waves-light btn <%= params[:document_type] == "journals" ? "disabled" : "nothing" %>" href="?document_type=journals">Journals</a>
@@ -20,6 +21,10 @@
     <% elsif params[:document_type] == "academic_papers" && model.class.name != "Publisher" %>
         <% if model.academic_papers %>
             <%= render partial: "shared/documents_table", locals: {documents: model.academic_papers} %>
+        <% end %>
+    <% elsif params[:document_type] == "journal_articles" && model.class.name != "Publisher" %>
+        <% if model.journal_articles %>
+            <%= render partial: "shared/documents_table", locals: {documents: model.journal_articles} %>
         <% end %>
     <% end %>
 </div>
