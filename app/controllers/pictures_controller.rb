@@ -13,6 +13,7 @@ class PicturesController < ApplicationController
     end
 
     @records = Kaminari.paginate_array(@records).page(params[:page]).per(params[:results_per_page])
-
+    breadcrumb @country.name, country_cities_path(@country)
+    breadcrumb "Pictures", country_pictures_path(@country)
   end
 end

@@ -67,8 +67,6 @@ gem 'autoprefixer-rails'
 
 gem 'searchkick'
 
-gem "breadcrumbs_on_rails"
-
 gem 'mini_racer', platforms: :ruby
 
 gem "google-cloud-storage"
@@ -112,3 +110,5 @@ gem 'activeadmin_quill_editor'
 gem 'active_admin-advanced_create_another'
 
 gem 'activeadmin_addons'
+
+gem 'loaf'

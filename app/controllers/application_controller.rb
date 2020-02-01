@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+  breadcrumb "Home", :root_path
+
   def authenticate_active_admin_user!
     authenticate_user!
     unless (current_user.role == "superadmin" || current_user.role == "leader" || current_user.role == "member") && current_user.verified

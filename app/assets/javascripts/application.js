@@ -26,7 +26,6 @@ $(document).ready(function(){
     $('.collapsible').collapsible();
     $('.materialboxed').materialbox();
     initLocationMap();
-    $('.modal').modal_m();
 });
 
   $('.pagination > li > a').on('click', function(){
@@ -45,6 +44,11 @@ $(document).ready(function(){
   function initLocationMap() {
     var lat = $('#show-map-location').data('lat');
     var lng = $('#show-map-location').data('lng');
+
+    if (lat == null || lng == null)
+    {
+      return;
+    }
 
     var myCoords = new google.maps.LatLng(lat, lng);
 

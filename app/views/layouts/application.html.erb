@@ -53,6 +53,11 @@
 
     <div class="container">
       <div class="content">
+        <div>
+          <% breadcrumb_trail do |crumb| %>
+              <%= link_to crumb.name, crumb.url%> > 
+          <% end %>
+        </div>
         <%= yield %>
       </div>
     </div>

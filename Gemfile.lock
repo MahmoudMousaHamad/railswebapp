@@ -94,7 +94,6 @@ GEM
     bootstrap-sass (3.4.1)
       autoprefixer-rails (>= 5.2.1)
       sassc (>= 2.0.0)
-    breadcrumbs_on_rails (3.0.1)
     builder (3.2.4)
     byebug (11.1.1)
     capybara (3.31.0)
@@ -223,6 +222,8 @@ GEM
       kaminari-core (= 1.1.1)
     kaminari-core (1.1.1)
     language_list (1.2.1)
+    loaf (0.9.0)
+      rails (>= 3.2)
     loofah (2.4.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -398,7 +399,6 @@ DEPENDENCIES
   autoprefixer-rails
   bootsnap (>= 1.1.0)
   bootstrap-sass
-  breadcrumbs_on_rails
   byebug
   capybara (>= 2.15)
   chromedriver-helper
@@ -414,6 +414,7 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   kaminari
   language_list
+  loaf
   materialize-sass
   mini_racer
   normalize_country

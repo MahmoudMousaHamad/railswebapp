@@ -9,5 +9,9 @@ class VideosController < ApplicationController
     else
       @videos = Video.filter(params.slice(:country_id, :city, :order_by)).q_title(params[:q]).page(params[:page]).per(params[:results_per_page])
     end
+
+    breadcrumb @country.name, country_cities_path(@country)
+    breadcrumb "Videos", country_videos_path(@country)
+
   end
 end

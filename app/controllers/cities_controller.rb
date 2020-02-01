@@ -10,43 +10,6 @@ class CitiesController < ApplicationController
                 marker.json({ link: country_city_sites_path(@country.id, city.id) })
             end
         end
+        breadcrumb @country.name, country_cities_path(@country)
     end
-
-    def new
-        @city = City.new
-    end
-
-    def create
-        @city = City.new(params.require(:city).permit(:name, :country))
-        if @city.save
-            redirect_to cities_path
-        else 
-            render 'new'
-        end
-    end
-
-    def show
-        @city = City.find(params[:id])
-    end
-
-    def edit
-        @city = City.find(params[:id])
-    end
-
-    def update
-        @city = City.find(params[:id])
-        if @city.update
-            redirect_to cities_path
-        else
-            render 'edit'
-        end
-    end
-
-    def destroy
-        @city = City.find(params[:id])
-        @city.destroy
-        redirect_to cities_path
-    end
-    
-
 end

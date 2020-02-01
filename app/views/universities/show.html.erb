@@ -3,7 +3,7 @@
 <br>
 <br>
 <div class="about">
-    <h2><img src="<%= url_for(@i.logo)%>" width="50px"/>   <%= @i.name %> </h2>
+    <h2><%= document_cover_for(@i.logo) %>   <%= @i.name if @i.name %> </h2>
     <p><label>About:</label></p>
     <p class="lead "> <%= @i.about.html_safe %></p>
     <p><label>Address:</label> <%= Geocoder.search([@i.lat, @i.lng]).first.display_name %></p>

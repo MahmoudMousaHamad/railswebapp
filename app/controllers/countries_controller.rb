@@ -22,5 +22,6 @@ class CountriesController < ApplicationController
             end
         end
         @countries = @countries.sort.to_h
+        breadcrumb "Countries List", countries_path
     end
 end
