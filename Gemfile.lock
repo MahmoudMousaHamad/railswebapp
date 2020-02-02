@@ -229,6 +229,9 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.7.1)
       mini_mime (>= 0.1.1)
+    mail_form (1.8.0)
+      actionmailer (>= 5.0)
+      activemodel (>= 5.0)
     marcel (0.3.3)
       mimemagic (~> 0.3.2)
     materialize-sass (1.0.0)
@@ -420,6 +423,7 @@ DEPENDENCIES
   kaminari
   language_list
   loaf
+  mail_form
   materialize-sass
   mini_racer
   normalize_country

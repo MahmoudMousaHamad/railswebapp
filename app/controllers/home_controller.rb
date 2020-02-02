@@ -22,5 +22,8 @@ class HomeController < ApplicationController
             })
             marker.json({ link: country_cities_path(country.id) })
         end
-    end 
+    end
+
+    def about_us
+    end
 end

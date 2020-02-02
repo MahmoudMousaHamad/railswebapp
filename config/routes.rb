@@ -83,6 +83,7 @@ Rails.application.routes.draw do
   get '/library', to: 'library#index'
   get '/library/browse', to: 'library#browse'
   get 'library/basic_search', to: 'library#basic_search'
-  
+
+  get '/about_us', :to => 'home#about_us'
   root 'home#index'
 end

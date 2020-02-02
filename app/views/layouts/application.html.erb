@@ -89,6 +89,7 @@
           <ul>
             <li><%= link_to  "Countries List", countries_path %></li>
             <li><%= link_to  "Library", library_path %></li>
+            <li><%= link_to  "About Us", "/about_us" %></li>
             <% if current_user %>
               <li><%= link_to  "Backend", admin_root_path %></li>
               <li><%= link_to  "Logout", destroy_user_session_path, method: :delete %></li>
