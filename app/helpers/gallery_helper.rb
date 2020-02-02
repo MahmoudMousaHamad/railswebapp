@@ -24,7 +24,7 @@ module GalleryHelper
         def pictures
             pictures = []
             images.each do |image|
-                pictures.push content_tag(:picture, image_tag(image, style: 'width=100%', class: 'materialboxed'))
+                pictures.push content_tag(:picture, image_tag(image, style: 'width=100%', class: 'materialboxed', width: "100%"))
             end
             return pictures
         end

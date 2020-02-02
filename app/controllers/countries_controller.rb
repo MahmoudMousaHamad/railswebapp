@@ -1,4 +1,5 @@
 class CountriesController < ApplicationController
+    breadcrumb "Countries", :countries_path
     def index
         @countries = {}
         @hash = Country.all.published.group_by { |country| IsoCountryCodes.search_by_name(country.name)[0].continent }
@@ -22,6 +23,5 @@ class CountriesController < ApplicationController
             end
         end
         @countries = @countries.sort.to_h
-        breadcrumb "Countries List", countries_path
     end
 end

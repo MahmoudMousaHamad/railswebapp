@@ -1,4 +1,5 @@
 class UniversitiesController < ApplicationController
+  breadcrumb "Countries", :countries_path
   def index
     @country = Country.find(params[:country_id])
     @universities = @country.universities.page(params[:page])

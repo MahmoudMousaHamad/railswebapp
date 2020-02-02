@@ -1,4 +1,6 @@
 class JournalsController < ApplicationController
+    breadcrumb "Library", :library_path
+    breadcrumb "Journals", :journals_path
     def index
         if params[:language] && !params[:language].empty?
             if params[:language] == "arabic"
@@ -12,5 +14,6 @@ class JournalsController < ApplicationController
     def show
         @j = Journal.find(params[:id])
         @issues = Issue.where("journal_id = ?", params[:id]).published.order(:year).reverse_order.group_by { |issue| issue.year / 10 if issue.year }
+        breadcrumb @j.title, journal_path(@j)
     end
 end

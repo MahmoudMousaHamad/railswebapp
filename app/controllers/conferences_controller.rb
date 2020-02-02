@@ -1,4 +1,5 @@
 class ConferencesController < ApplicationController
+  breadcrumb "Countries", :countries_path
   def index
     @country = Country.find(params[:country_id])
     @period = params[:period]
@@ -10,5 +11,6 @@ class ConferencesController < ApplicationController
   def show
     @i = Conference.find(params[:id])
     breadcrumb "Conferences", country_conferences_path(@country)
+    breadcrumb @i.name, country_conference_path(@country, @i)
   end
 end

@@ -55,10 +55,8 @@
       <div class="content">
         <div>
           <% breadcrumb_trail do |crumb| %>
-              <%= link_to crumb.name, crumb.url%> 
-              <% if !crumb.current? %>
-              > 
-              <% end %>
+              <%= link_to crumb.name, crumb.url, class: "breadcrumb-iacaros" %> 
+              <span class="breadcrumb-arrow"><i class="material-icons">keyboard_arrow_right</i></span>
           <% end %>
         </div>
         <br>
@@ -86,18 +84,12 @@
           </ul>
         </div>
         <div class="col s12 m4 l2">
+          <h5>Links: </h5>
           <ul>
             <li><%= link_to  "Countries List", countries_path %></li>
             <li><%= link_to  "Library", library_path %></li>
             <li><%= link_to  "About Us", "/about_us" %></li>
-            <% if current_user %>
-              <li><%= link_to  "Backend", admin_root_path %></li>
-              <li><%= link_to  "Logout", destroy_user_session_path, method: :delete %></li>
-            <% else %>
-              <li><%= link_to  "Our Team", members_index_path %></li>      
-              <li><%= link_to  "Join Our Team", new_user_registration_path %></li>
-              <li><%= link_to  "Login ", new_user_session_path %></li>              
-            <% end %>
+            <li><%= link_to  "Our Team", members_index_path %></li>      
           </ul>
         </div>
       </div>

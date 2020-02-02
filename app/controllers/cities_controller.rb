@@ -1,4 +1,5 @@
 class CitiesController < ApplicationController
+    breadcrumb "Countries", :countries_path
     def index
         @cities = City.where("country_id = ?", params[:country_id]).published
         @country = Country.find(params[:country_id])

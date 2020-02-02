@@ -1,4 +1,5 @@
 class PicturesController < ApplicationController
+  breadcrumb "Countries", :countries_path
   def index
     @records = []
     country_id = params[:country_id]
@@ -11,7 +12,7 @@ class PicturesController < ApplicationController
       @records.concat Museum.filter(params.slice(:country_id, :city)).q_name(params[:q])
       @records.concat University.filter(params.slice(:country_id, :city)).q_name(params[:q])
     end
-
+    @country = Country.find(country_id)
     @records = Kaminari.paginate_array(@records).page(params[:page]).per(params[:results_per_page])
     breadcrumb @country.name, country_cities_path(@country)
     breadcrumb "Pictures", country_pictures_path(@country)

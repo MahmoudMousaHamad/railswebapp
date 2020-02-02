@@ -1,7 +1,9 @@
 class LibraryController < ApplicationController
     include LibrarySearchHelper
-    
+    breadcrumb "Library", :library_path
+
     def basic_search
+        breadcrumb "Search", library_basic_search_path
         # get search parameters
         q = params[:q]
         from_year = params[:from_year].to_i

@@ -1,6 +1,8 @@
 class MembersController < ApplicationController
+  breadcrumb "Our Team", :members_index_path
   def show
     @member = User.find(params[:format])
+    breadcrumb @member.name, members_show_path(@member)
   end
 
   def index

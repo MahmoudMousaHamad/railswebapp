@@ -250,3 +250,23 @@ footer {
 .footer-copyright {
     color: black
 }
+
+.breadcrumb-iacaros {
+    padding: 5px 10px;
+    background-color: #3a2a91;
+    color: white;
+    border-radius: 7px;
+    font-weight: 700;
+    &:hover {
+        color: white;
+    }
+    &:focus{
+        color: white;        
+    }
+}
+.breadcrumb-arrow {
+    margin: 0px 5px;
+    & > i{
+        font-size: 16px;
+    }
+}

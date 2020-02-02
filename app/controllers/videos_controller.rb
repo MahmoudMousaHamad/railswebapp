@@ -1,4 +1,5 @@
 class VideosController < ApplicationController
+  breadcrumb "Countries", :countries_path
   def index
     @country = Country.find(params[:country_id])
 
@@ -12,6 +13,5 @@ class VideosController < ApplicationController
 
     breadcrumb @country.name, country_cities_path(@country)
     breadcrumb "Videos", country_videos_path(@country)
-
   end
 end
