@@ -13,7 +13,7 @@ ActiveAdmin.register Country do
   index do
     id_column
     column :name
-    toggle_bool_column :published
+    toggle_bool_column :published if authorized? :publish
     actions
   end
 

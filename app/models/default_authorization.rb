@@ -5,19 +5,32 @@ class DefaultAuthorization < ActiveAdmin::AuthorizationAdapter
         when normalized(subject)
             if subject.class != Class
                 if user.role == "member"
+                    if !user_can_access?(user, subject)
+                        return false
+                    end
                     if action == :publish
                         return false
                     elsif action == :create && subject.class == Country
                         return false
                     elsif action == :update || action == :destroy || action == :delete
-                        subject.user_id == user.id
+                        if subject.class == User
+                            false
+                        else
+                            subject.user_id == user.id
+                        end
                     else
                         return true
                     end
                 elsif user.role == "leader"
+                    if !user_can_access?(user, subject)
+                        return false
+                    end
                     if action == :create && subject.class == Country
                         return false
                     elsif action == :update || action == :delete || action == :destroy
+                        if subject.class == User
+                            return false
+                        end
                         if subject.user_id == user.id
                             return true
                         elsif User.find(subject.user_id).country == user.country
@@ -40,6 +53,12 @@ class DefaultAuthorization < ActiveAdmin::AuthorizationAdapter
         if !collection_item 
             return collection 
         end
+        if user.role == "superadmin"
+            return collection
+        end
+        if !user_can_access?(user, collection_item)
+            return false
+        end
         user_country = Country.find_by(name: user.country) 
         if user.role == "member" || user.role == "leader"
             if collection_item.class.name == "Country"
@@ -53,6 +72,23 @@ class DefaultAuthorization < ActiveAdmin::AuthorizationAdapter
             collection
         end
         
+    end
+
+    def user_can_access?(user, model)
+        if user.resource_permissions == nil
+            return false
+        end
+
+        if user.resource_permissions.empty?
+            return false
+        end
+
+        if model.class == ActiveAdmin::Page
+            sadsad =asd asdas 
+            return true
+        end
+
+        return user.resource_permissions.upcase.include?(model.class.name.upcase)
     end
 
 end

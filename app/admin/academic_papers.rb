@@ -25,7 +25,7 @@ ActiveAdmin.register AcademicPaper do
     selectable_column 
     id_column
     column :title
-    toggle_bool_column :published
+    toggle_bool_column :published if authorized? :publish
     column :user
     actions
   end

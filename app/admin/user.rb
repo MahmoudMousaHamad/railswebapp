@@ -2,7 +2,7 @@ ActiveAdmin.register User do
   menu parent: "Admin"
 
   permit_params :name, :email, :password, :password_confirmation, :role, :country, :verified,
-                :phone_number, :dob, :gender, :profile_photo, :cv, :education_level, :specialization, :about
+                :phone_number, :dob, :gender, :profile_photo, :cv, :education_level, :specialization, :about, :resource_permissions
 
   index do
     selectable_column 
@@ -12,9 +12,12 @@ ActiveAdmin.register User do
     column :country
     column :education_level
     column :specialization
-    column :verified
+    toggle_bool_column :verified
     actions
   end
+
+  Rails.application.eager_load!
+  model_names = ApplicationRecord.descendants
   
   form do |f|
     f.inputs "User Details" do
@@ -30,6 +33,7 @@ ActiveAdmin.register User do
       f.input :education_level, collection: ["PhD", "Master's", "Bachelor's"]
       f.input :specialization, collection: Discipline.all.map{|d| d.name }
       f.input :about, as: :quill_editor
+      f.input :resource_permissions, collection: model_names, as: :tags
       f.input :verified if authorized? :edit, user
     end
     actions
