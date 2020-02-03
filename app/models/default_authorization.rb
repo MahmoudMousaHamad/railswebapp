@@ -84,7 +84,6 @@ class DefaultAuthorization < ActiveAdmin::AuthorizationAdapter
         end
 
         if model.class == ActiveAdmin::Page
-            sadsad =asd asdas 
             return true
         end
 
