@@ -12,7 +12,7 @@
         <p><label>Supervisor:</label> <%= link_to @p.supervisor.name, supervisor_path(@p.supervisor.name) if @p.supervisor && !@p.supervisor.name.empty? %></p>
         <p><label>Library Link: </label><%= get_library_link(request) %></p>
         <%= show_info_for(@p, [ :language, :publication_year, :paper_type, :keywords, :downloadable, :university_name, :college_name ]).html_safe %>
-        <p><label>Subjects: </label> <%= safe_join(@p.subjects.map { |s| link_to  s.name, subject_path(s.name) }, ",").html_safe %> </p>
+        <p><label>Subjects: </label> <%= safe_join(@p.subjects.map { |s| link_to  s.name, subject_path(s.name) }, ", ").html_safe %> </p>
     </div>
     <div class="col s4">
         <ul class="collapsible popout">

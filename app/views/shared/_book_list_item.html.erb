@@ -2,7 +2,7 @@
     <a href="<%= book_path(b) %>"><h4><%= b.title %></h4></a>
     <p><label>Author(s): </label><%= safe_join(b.authors.map { |s| link_to  s.name, author_path(s.name) }, ", ").html_safe %> </p>
     <p><label>ISBN: </label> <%= b.isbn %> </p>
-    <p><label>Subjects: </label> <%= safe_join(b.subjects.map { |s| link_to  s.name, subject_path(s.name) }, ",").html_safe %> </p>
+    <p><label>Subjects: </label> <%= safe_join(b.subjects.map { |s| link_to  s.name, subject_path(s.name) }, ", ").html_safe %> </p>
     <p><label>Keywords: </label> <%= b.keywords %> </p>
 <% else %>
     <td><%= b.library_id %></td>

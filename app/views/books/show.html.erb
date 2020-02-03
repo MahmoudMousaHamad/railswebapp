@@ -13,7 +13,7 @@
         <p><label>Pages:</label> <%= @b.pages %></p>
         <p><label>Library Link:</label> <%= get_library_link(request) %></p>
         <%= show_info_for(@b, [:pages, :language, :year, :volume, :isbn, :keywords, :downloadable ]).html_safe %>
-        <p><label>Subjects: </label> <%= safe_join(@b.subjects.map { |s| link_to  s.name, subject_path(s.name) }, ",").html_safe %> </p>
+        <p><label>Subjects: </label> <%= safe_join(@b.subjects.map { |s| link_to  s.name, subject_path(s.name) }, ", ").html_safe %> </p>
     </div>
     <div class="col s4">
         <ul class="collapsible popout">

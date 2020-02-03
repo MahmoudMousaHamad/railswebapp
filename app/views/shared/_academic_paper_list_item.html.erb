@@ -3,7 +3,7 @@
     <p><label>Author(s): </label><%= safe_join(p.authors.map { |s| link_to  s.name, author_path(s.name) }, ", ").html_safe %> </p>
     <p><label>Paper Type: </label> <%= p.paper_type %> </p>
     <p><label>Publication Year: </label> <%= p.publication_year %> </p>
-    <p><label>Subjects: </label> <%= safe_join(p.subjects.map { |s| link_to  s.name, subject_path(s.name) }, ",").html_safe %> </p>
+    <p><label>Subjects: </label> <%= safe_join(p.subjects.map { |s| link_to  s.name, subject_path(s.name) }, ", ").html_safe %> </p>
     <p><label>Keywords: </label> <%= p.keywords %> </p>
 <% else %>
 
