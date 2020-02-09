@@ -12,7 +12,7 @@
 /tmp/*
 !/log/.keep
 !/tmp/.keep
-!/log/pids/*
+!/tmp/pids/server.pid
 
 # Ignore uploaded files in development
 /storage/*
