@@ -114,3 +114,5 @@ gem 'activeadmin_addons'
 gem 'loaf'
 
 gem "punching_bag"
+
+gem 'irb', require: false
