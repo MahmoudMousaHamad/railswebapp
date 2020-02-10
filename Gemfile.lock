@@ -431,6 +431,7 @@ DEPENDENCIES
   rails (~> 6.0)
   ransack
   sass-rails (~> 5.0)
+  sassc (~> 2.2.1)
   searchkick
   selectize-rails
   selenium-webdriver

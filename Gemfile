@@ -109,6 +109,8 @@ gem 'activeadmin_quill_editor'
 
 gem 'active_admin-advanced_create_another'
 
+gem 'sassc', '~> 2.2.1'
+
 gem 'activeadmin_addons'
 
 gem 'loaf'
@@ -116,3 +118,4 @@ gem 'loaf'
 gem "punching_bag"
 
 # gem 'irb', require: false
+
