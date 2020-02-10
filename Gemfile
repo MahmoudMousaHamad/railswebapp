@@ -117,5 +117,5 @@ gem 'loaf'
 
 gem "punching_bag"
 
-# gem 'irb', require: false
+gem 'irb', require: false
 
