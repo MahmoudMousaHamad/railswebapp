@@ -201,6 +201,7 @@ GEM
       railties (>= 5.0, < 6.1)
       responders (>= 2, < 4)
     io-like (0.3.1)
+    irb (1.0.0)
     iso_country_codes (0.7.8)
     jbuilder (2.9.1)
       activesupport (>= 4.2.0)
@@ -415,6 +416,7 @@ DEPENDENCIES
   geocoder
   gmaps4rails
   google-cloud-storage
+  irb
   iso_country_codes
   jbuilder (~> 2.5)
   kaminari
