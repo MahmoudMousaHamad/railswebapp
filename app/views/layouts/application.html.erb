@@ -12,6 +12,12 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">      
   </head>
   
+  <header>
+    <% flash.each do |key, value| %>
+      <div style="display: none" onload="M.toast({html: '<%= value %>'})"></div>
+    <% end %>
+  </header>
+
   <body>
     <ul id="dropdown-library" class="dropdown-content">
       <li><%= link_to  "By Subject", subjects_path %></li>
