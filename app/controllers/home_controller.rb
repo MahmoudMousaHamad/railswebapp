@@ -25,5 +25,6 @@ class HomeController < ApplicationController
     end
 
     def about_us
+        breadcrumb "About Us", "/about_us"
     end
 end

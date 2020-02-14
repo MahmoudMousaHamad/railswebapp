@@ -24,25 +24,61 @@
 
  $body-bg-color: #fffadc;
 
+ html {
+    height: 100%;
+    box-sizing: border-box;
+  }
+  
+  *,
+  *:before,
+  *:after {
+    box-sizing: inherit;
+  }
+  
+  body {
+    position: relative;
+    margin: 0;
+    padding-bottom: 6rem;
+    min-height: 100%;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+  }
+
+  .footer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+
  .content {
      margin-top: 50px;
  }
 
  body {
-    //  background-color: $body-bg-color !important; 
+    min-height: 100%;
+    background-image: url('/assets/iacaros-bg-mobile.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: left;
  }
+
+ @media only screen and (max-width: 500px) {
+    body {
+        background-image: none;
+    }
+  }
 
  a:hover {
     text-decoration: none !important;
  }
  .nav-link {
-    font-size: 0.9rem;
-    letter-spacing: 2px;
+    font-size: 1.1rem;
+    // letter-spacing: 2px;
     font-weight: 300;
  }
 
 .nav-link, .brand-logo {
-    color: black;
+    color: black !important;
 }
 
 .page-title {
@@ -67,6 +103,11 @@
 
 .row {
     margin-bottom: 50px;
+}
+
+.container {
+    margin-bottom: 50px;
+    height: 100%;
 }
 
 body > div.container > div > ul > li > a {
@@ -187,7 +228,7 @@ picture img {
 }
 
 .btn:hover, .btn:focus {
-    color: grey;
+    color: white;
 }
 
 .pagination {
@@ -204,10 +245,6 @@ nav a{
 }
 .material-icons {
     color: $secondary-color !important;
-}
-
-input {
-    color: black !important;
 }
 
 .profile_photo {
@@ -269,4 +306,18 @@ footer {
     & > i{
         font-size: 16px;
     }
+}
+
+.field{
+    margin: 10px 0px;
+}
+
+textarea {
+    resize: vertical;
+    height: 100px;
+}
+
+[type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+    position: relative;
+    opacity: 1;
 }

@@ -26,6 +26,7 @@ $(document).ready(function(){
     $('.collapsible').collapsible();
     $('.materialboxed').materialbox();
     initLocationMap();
+    $('.dropdown-trigger').dropdown({hover: true});
 });
 
   $('.pagination > li > a').on('click', function(){
