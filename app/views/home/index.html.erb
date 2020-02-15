@@ -4,7 +4,7 @@
     islamic_periods_path, 1, "/assets/islamic-art-banner-photo.jpg") %>
 <br>
 <div>
-    <marquee behavior="scroll" direction="right" 
+    <marquee behavior="scroll" direction="left" 
         onmouseover="this.stop();" 
         onmouseout="this.start();">
             <%= @news_ticker.body.html_safe if NewsTicker.first %>

@@ -78,7 +78,7 @@
  }
 
 .nav-link, .brand-logo {
-    color: black !important;
+    color: $secondary-color !important;
 }
 
 .page-title {
@@ -236,7 +236,7 @@ picture img {
 }
 
 nav a{
-    color: black;
+    color: $secondary-color;
 }
 
 .current {
@@ -277,7 +277,7 @@ span.badge {
 footer {
     color:  black !important;
     a {
-        color: black !important;
+        color: $secondary-color !important;
         &:hover{
             text-decoration: underline !important;
         }
@@ -294,6 +294,7 @@ footer {
     color: white;
     border-radius: 7px;
     font-weight: 700;
+    line-height: 2;
     &:hover {
         color: white;
     }
