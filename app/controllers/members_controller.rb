@@ -10,5 +10,6 @@ class MembersController < ApplicationController
     @members_phd = User.where(role: "member").where(education_level: "PhD").group_by{|m| m.specialization }.values.each{|arr| arr.group_by{|m| m.country}}.flatten
     @members_masters = User.where(role: "member").where(education_level: "Master's").group_by{|m| m.specialization }.values.each{|arr| arr.group_by{|m| m.country}}.flatten
     @members_bachelors = User.where(role: "member").where(education_level: "Bachelor's").group_by{|m| m.specialization }.values.each{|arr| arr.group_by{|m| m.country}}.flatten
+    @all_members = @members_phd + @members_masters + @members_bachelors
   end
 end

@@ -2,35 +2,19 @@
 <h1>Our Team</h1>
 
 <h2>Leaders</h2>
-
 <div class="row">
     <% @leaders.each do |l| %>
-        <%= card_for("#{l.name}, #{l.country}", {}, members_show_path(l.id), 4, l.profile_photo) %>
-        
+        <%= card_for("#{l.name} <br> #{content_tag(:img, nil, :src => "https://www.countryflags.io/#{NormalizeCountry(l.country, to: :alpha2)}/flat/32.png")}".html_safe, {}, members_show_path(l.id), 4, l.profile_photo) %>        
     <% end %>
 </div>
-
 <h3>Members</h3>
-
-<h4>PhD</h4>
-<div class="row">
-    <% @members_phd.each do |l| %>
-        <%= card_for("#{l.name}, #{l.country}", {}, members_show_path(l.id), 4, l.profile_photo) %>
-        
-    <% end %>
-</div>
-
-<h4>Master's</h4>
-<div class="row">
-    <% @members_masters.each do |l| %>
-        <%= card_for("#{l.name}, #{l.country}", {}, members_show_path(l.id), 4, l.profile_photo) %>
-        
-    <% end %>
-</div>
-
-<h4>Bachelor's</h4>
-<div class="row">
-    <% @members_bachelors.each do |l| %>
-        <%= card_for("#{l.name}, #{l.country}", {}, members_show_path(l.id), 4, l.profile_photo) %>
-    <% end %>
-</div>
+<% @all_members.group_by {|member| member.education_level }.each do |degree, members_in_degree| %>
+    <h4><%= degree %></h4>
+    <div class="row">
+        <% members_in_degree.group_by {|member| member.country}.each do |country, members| %>
+            <% members.each do |member| %>
+                <%= card_for("#{member.name} <br> #{content_tag(:img, nil, :src => "https://www.countryflags.io/#{NormalizeCountry(member.country, to: :alpha2)}/flat/32.png")}".html_safe, {}, members_show_path(member.id), 4, member.profile_photo) %>
+            <% end %>
+        <% end %>
+    </div>
+<% end %>
