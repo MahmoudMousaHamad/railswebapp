@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_03_001341) do
+ActiveRecord::Schema.define(version: 2020_02_15_234202) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -335,13 +335,6 @@ ActiveRecord::Schema.define(version: 2020_02_03_001341) do
     t.index ["country_id"], name: "index_museums_on_country_id"
   end
 
-  create_table "news_tickers", force: :cascade do |t|
-    t.text "body"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.integer "views_count"
-  end
-
   create_table "pg_search_documents", force: :cascade do |t|
     t.text "content"
     t.string "searchable_type"
@@ -500,6 +493,7 @@ ActiveRecord::Schema.define(version: 2020_02_03_001341) do
     t.string "specialization"
     t.text "about"
     t.string "role", default: "member", null: false
+    t.string "resource_permissions"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -519,6 +513,17 @@ ActiveRecord::Schema.define(version: 2020_02_03_001341) do
     t.index ["city_id"], name: "index_videos_on_city_id"
     t.index ["country_id"], name: "index_videos_on_country_id"
     t.index ["site_id"], name: "index_videos_on_site_id"
+  end
+
+  create_table "website_generics", force: :cascade do |t|
+    t.text "news_ticker"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "views_count"
+    t.text "about_us_content"
+    t.string "facebook_url"
+    t.string "twitter_url"
+    t.string "instagram_url"
   end
 
   add_foreign_key "academic_papers", "supervisors", on_delete: :cascade

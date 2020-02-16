@@ -7,7 +7,7 @@
     <marquee behavior="scroll" direction="left" 
         onmouseover="this.stop();" 
         onmouseout="this.start();">
-            <%= @news_ticker.body.html_safe if NewsTicker.first %>
+            <%= @website_generic.news_ticker.html_safe if WebsiteGeneric.first %>
     </marquee>
     <div id="map" style='width: 100%; height: 90vh;'></div>
 </div>
