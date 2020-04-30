@@ -6,7 +6,7 @@
     "@rails/webpacker": "^4.0.7",
     "fitty": "^2.3.0",
     "g": "^2.0.1",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "materialize-css": "^1.0.0-rc.2",
     "trix": "1.0.0",
     "underscore": "^1.9.1"
